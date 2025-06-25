@@ -1,17 +1,26 @@
-.nav-bar {
-
+body{
+    margin: 0;
 }
 
-li {
-    padding-top: 10px;
-    display: inline-block;
-    padding-right: 60px;
+.logo-bar {
+    background-color: lightcyan;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    padding: 10px 0;
 }
+
+.nav-bar {
+    background-color: #333;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
 
 .nav-container {
     position: fixed;
-    display: grid;
+    display: flex;
     top: 0;
     left: 0;
     width: 100%;
@@ -19,5 +28,34 @@ li {
     color: white;
     padding: 10px 20px;
     justify-content: space-between;
+    align-items: center;
     z-index: 1000;
+}
+
+.nav-navigation {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-logo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-bar ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-bar li {
+    padding-top: 10px;
+    display: inline-block;
+    padding-right: 20px;
+    color: white;
 }
