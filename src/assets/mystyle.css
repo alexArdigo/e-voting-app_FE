@@ -1,6 +1,17 @@
 .nav-bar {
+
+}
+
+li {
+    padding-top: 10px;
+    display: inline-block;
+    padding-right: 60px;
+    justify-content: center;
+}
+
+.nav-container {
     position: fixed;
-    display: flex;
+    display: grid;
     top: 0;
     left: 0;
     width: 100%;
@@ -9,23 +20,4 @@
     padding: 10px 20px;
     justify-content: space-between;
     z-index: 1000;
-
-}
-
-nav li {
-    padding-top: 10px;
-    display: inline-block;
-    padding-right: 60px;
-    justify-content: center;
-}
-
-nav ul{
-    list-style: none;
-    padding-right: 200px;
-}
-
-nav img {
-    width: 150px;
-    display: flex;
-    padding-left: 30px;
 }
