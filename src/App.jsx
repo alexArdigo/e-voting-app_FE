@@ -1,5 +1,3 @@
-
-import './assets/mystyle.css';
 import VoterData from "./pages/VoterData.jsx";
 import UserProvider from "./services/UserContext.jsx";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
