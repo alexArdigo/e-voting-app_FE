@@ -3,25 +3,24 @@ import {useUserContext} from "../services/UserContext.jsx";
 
 const VoterData = () => {
 
-    const context= useUserContext();
-    const user = context.user;
+    const { user } = useUserContext();
 
-  return (
+    return (
     <div>
         <Header/>
         <h1>Voter Data</h1>
         <div>
-            <p><strong>Nome:</strong> {user?.nome}</p>
-            <p><strong>Data Nascimento:</strong> {user?.nascimento}</p>
-            <p><strong>Contacto telefónico:</strong> {user?.telefone}</p>
+            <p><strong>Nome:</strong> {user ? `${user.firstName} ${user.lastName}` : "N/A"}</p>
+            <p><strong>Contacto telefónico:</strong> {user?.telephoneNumber}</p>
             <p><strong>NIF:</strong> {user?.nif}</p>
         </div>
 
         <div>
-            <p><strong>Círculo Eleitoral:</strong> {user?.circulo}</p>
-            <p><strong>Freguesia:</strong> {user?.freguesia}</p>
-            <p><strong>Elegível:</strong> {user?.elegivel ? "Sim" : "Não"}</p>
-            <p><strong>Verificado:</strong> {user?.verificado ? "Sim" : "Não"}</p>
+            <p><strong>Distrito:</strong> {user?.district}</p>
+            <p><strong>Concelho:</strong> {user?.municipality}</p>
+            <p><strong>Freguesia:</strong> {user?.parish}</p>
+            <p><strong>Elegível:</strong> {user?.eligible ? "Sim" : "Não"}</p>
+            <p><strong>Verificado:</strong> {user?.verified ? "Sim" : "Não"}</p>
         </div>
         <input
             type="radio"
