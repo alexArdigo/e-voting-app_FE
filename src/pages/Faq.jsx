@@ -6,6 +6,7 @@ import HelpComment from "../componentsAPP/HelpComment.jsx";
 const Faq = () => {
 
     const [comments, setComments] = useState([]);
+    const [newComment, setNewComment] = useState("");
 
     useEffect(() => {
         async function fetchComments() {
@@ -20,7 +21,10 @@ const Faq = () => {
         fetchComments();
     }, []);
 
-    console.log(comments);
+    const handleInput = (e) => {
+        setNewComment(e.target.value);
+    }
+
 
     return (
         <>
