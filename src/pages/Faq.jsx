@@ -46,10 +46,14 @@ const Faq = () => {
                 </section>
 
                 <section>
-                    <h2>Tem mais alguma pergunta? Escreva suas dúvidas abaixo.</h2>
-                    <form>
-
-                    </form>
+                    <label htmlFor="comentarios">Tem mais alguma pergunta? Escreva suas dúvidas abaixo.</label>
+                    <textarea
+                        name="comentarios"
+                        id="comentarios"
+                        value={newComment}
+                        placeholder="Compartilhe suas expectativas, sugestões ou dúvidas sobre o festival..."
+                        onChange={handleInput}
+                    ></textarea>
                 </section>
 
             </main>
