@@ -1,4 +1,4 @@
-import Header from "../componentsAPP/Header.jsx";
+import Header from "../components/Header.jsx";
 import {useUserContext} from "../services/UserContext.jsx";
 
 const VoterData = () => {

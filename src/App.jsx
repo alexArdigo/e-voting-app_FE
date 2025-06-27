@@ -3,6 +3,7 @@ import UserProvider from "./services/UserContext.jsx";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Faq from "./pages/Faq.jsx";
+import Home from "./pages/Home.jsx";
 
 
 function App() {
