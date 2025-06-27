@@ -1,18 +1,15 @@
 import Header from "../componentsAPP/Header.jsx";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import api from "../services/api.jsx";
 import HelpComment from "../componentsAPP/HelpComment.jsx";
-import {toast} from "react-toastify";
-import {useUserContext} from "../services/UserContext.jsx";
+import { toast } from "react-toastify";
+import { useUserContext } from "../services/UserContext.jsx";
 
 const Faq = () => {
-
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
-
-    const {user} = useUserContext();
-
-    const [adminAnswerText, setAdminAnswerText] = useState("");
+    const [adminAnswerTexts, setAdminAnswerTexts] = useState({});
+    const { user } = useUserContext();
 
     useEffect(() => {
         async function fetchComments() {
@@ -29,15 +26,20 @@ const Faq = () => {
 
     const handleAdminReply = async (e, commentId) => {
         e.preventDefault();
-        if (!adminAnswerText.trim()) return;
+        const text = adminAnswerTexts[commentId];
+        if (!text?.trim()) return;
 
         const form = new FormData();
-        form.set("text", adminAnswerText);
+        form.set("text", text);
 
         try {
             await api.post(`/comment/${commentId}/answer`, form);
             toast("Comentário respondido com sucesso!");
-            setAdminAnswerText("");
+
+            setAdminAnswerTexts((prev) => ({
+                ...prev,
+                [commentId]: "",
+            }));
         } catch (err) {
             toast("Erro ao responder comentário.");
         }
@@ -45,7 +47,7 @@ const Faq = () => {
 
     const handleInput = (e) => {
         setNewComment(e.target.value);
-    }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -57,21 +59,19 @@ const Faq = () => {
 
         try {
             let body = new FormData();
-            body.set("text", newComment)
+            body.set("text", newComment);
             const response = await api.post(`/comment`, body);
 
             setComments([...comments, response.data]);
             setNewComment("");
-
         } catch (e) {
             toast("Erro ao adicionar um comentário.");
         }
-    }
-
+    };
 
     return (
         <>
-            <Header/>
+            <Header />
             <main className="general-container">
                 <h1>FAQ</h1>
 
@@ -80,14 +80,25 @@ const Faq = () => {
                     <div className="comments-list">
                         {comments.map((comment) => (
                             <div key={comment.id}>
-                                <p>{comment.comment}</p>
-                                <p>{comment.localDateTime}</p>
+                                <HelpComment
+                                    id={comment.id}
+                                    comment_text={comment.comment}
+                                    pub_datetime={comment.localDateTime}
+                                    likes={comment.voterHashLike?.length || 0}
+                                    answer={comment.answer?.answer}
+                                />
+
                                 {user?.role === "ADMIN" && (
                                     <form onSubmit={(e) => handleAdminReply(e, comment.id)}>
-                <textarea
-                    value={adminAnswerText}
-                    onChange={(e) => setAdminAnswerText(e.target.value)}
-                />
+                                        <textarea
+                                            value={adminAnswerTexts[comment.id] || ""}
+                                            onChange={(e) =>
+                                                setAdminAnswerTexts({
+                                                    ...adminAnswerTexts,
+                                                    [comment.id]: e.target.value,
+                                                })
+                                            }
+                                        />
                                         <button type="submit">Responder</button>
                                     </form>
                                 )}
@@ -98,7 +109,9 @@ const Faq = () => {
 
                 <form onSubmit={handleSubmit}>
                     <section>
-                        <label htmlFor="comentarios">Tem mais alguma pergunta? Escreva suas dúvidas abaixo.</label>
+                        <label htmlFor="comentarios">
+                            Tem mais alguma pergunta? Escreva suas dúvidas abaixo.
+                        </label>
                         <textarea
                             name="comentarios"
                             id="comentarios"
@@ -107,9 +120,8 @@ const Faq = () => {
                             onChange={handleInput}
                         ></textarea>
                     </section>
-                    <input type={"submit"} value={"Enviar"} className={"submit-button"}/>
+                    <input type="submit" value="Enviar" className="submit-button" />
                 </form>
-
             </main>
         </>
     );
