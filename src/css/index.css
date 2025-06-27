@@ -1,0 +1,11 @@
+body{
+    margin: 0;
+}
+
+.main-container {
+    background-image: url('/images/assembleia.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+}

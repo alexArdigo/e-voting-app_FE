@@ -1,12 +1,10 @@
-import Header from "../Components/Header.jsx";
+
 
 const Home = () => {
     return (
-        <>
-            <Header/>
-            <h1>Home Page</h1>
-            <p>Welcome to the home page!</p>
-        </>
+        <main className={"main-container"}>
+            <button>Eu Voto</button>
+        </main>
     );
 }
 
