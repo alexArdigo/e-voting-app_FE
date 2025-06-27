@@ -2,10 +2,12 @@ import Header from "../componentsAPP/Header.jsx";
 import {useEffect, useState} from "react";
 import api from "../services/api.jsx";
 import HelpComment from "../componentsAPP/HelpComment.jsx";
+import {toast} from "react-toastify";
 
 const Faq = () => {
 
     const [comments, setComments] = useState([]);
+    const [newComment, setNewComment] = useState("");
 
     useEffect(() => {
         async function fetchComments() {
@@ -20,7 +22,31 @@ const Faq = () => {
         fetchComments();
     }, []);
 
-    console.log(comments);
+    const handleInput = (e) => {
+        setNewComment(e.target.value);
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!newComment.trim()) {
+            toast("Comentário não pode estar vazio.");
+            return;
+        }
+
+        try {
+            let body = new FormData();
+            body.set("text", newComment)
+            const response = await api.post(`/comment`, body);
+
+            setComments([...comments, response.data]);
+            setNewComment("");
+
+        } catch (e) {
+            toast("Erro ao adicionar um comentário.");
+        }
+    }
+
 
     return (
         <>
@@ -45,6 +71,7 @@ const Faq = () => {
                     </div>
                 </section>
 
+                <form onSubmit={handleSubmit}>
                 <section>
                     <label htmlFor="comentarios">Tem mais alguma pergunta? Escreva suas dúvidas abaixo.</label>
                     <textarea
@@ -55,6 +82,8 @@ const Faq = () => {
                         onChange={handleInput}
                     ></textarea>
                 </section>
+                    <input type={"submit"} value={"Enviar"} className={"submit-button"}/>
+                </form>
 
             </main>
         </>
