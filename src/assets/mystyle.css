@@ -1,9 +1,22 @@
+/*DEFAULT STYLES, FONTS AND HEADER 1, 2, 3, 4, 5*/
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+
 body{
     margin: 0;
 }
+p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #333;
+    text-decoration: underline;
+
+}
 
 .logo-bar {
-    background-color: lightcyan;
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,7 +24,7 @@ body{
 }
 
 .nav-bar {
-    background-color: #333;
+    background-color: #1c420c;
     padding: 10px 20px;
     display: flex;
     justify-content: flex-end;
@@ -51,11 +64,38 @@ body{
     list-style: none;
     margin: 0;
     padding: 0;
+    margin-right: 200px;
 }
 
 .nav-bar li {
-    padding-top: 10px;
+    padding: 10px;
     display: inline-block;
+    align-content: center;
     padding-right: 20px;
     color: white;
+    font-family: roboto, sans-serif;
 }
+
+.logo-bar img {
+    padding: 20px;
+    margin-right: 100px;
+    margin-left: 100px;
+}
+
+button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 30px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
