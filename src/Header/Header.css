@@ -12,7 +12,9 @@ p {
     line-height: 1.5;
     color: #333;
     text-decoration: underline;
-
+}
+li {
+    font-size: 14px;
 }
 
 .logo-bar {
@@ -25,7 +27,6 @@ p {
 
 .nav-bar {
     background-color: #1c420c;
-    padding: 10px 20px;
     display: flex;
     justify-content: flex-end;
 }

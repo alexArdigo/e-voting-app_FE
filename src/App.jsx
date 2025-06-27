@@ -1,6 +1,5 @@
-
-import './assets/mystyle.css';
-import Header from "./componentsAPP/Header.jsx";
+import Header from "./Header/Header.jsx";
+import React from 'react';
 
 
 function App() {
