@@ -15,7 +15,8 @@ function App() {
             <BrowserRouter>
                 <UserProvider>
                     <Routes>
-                        <Route path="/" element={<VoterData/>}/>
+                        <Route path="/" element={<Home/>}/>
+                        <Route path="/voter-data" element={<VoterData/>}/>
                         <Route path="/faq" element={<Faq/>}/>
                     </Routes>
                 </UserProvider>
