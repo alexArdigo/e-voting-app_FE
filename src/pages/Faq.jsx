@@ -1,6 +1,7 @@
 import Header from "../componentsAPP/Header.jsx";
 import {useEffect, useState} from "react";
 import api from "../services/api.jsx";
+import HelpComment from "../componentsAPP/HelpComment.jsx";
 
 const Faq = () => {
 
@@ -19,6 +20,8 @@ const Faq = () => {
         fetchComments();
     }, []);
 
+    console.log(comments);
+
     return (
         <>
             <Header />
@@ -34,8 +37,8 @@ const Faq = () => {
                                     key={index}
                                     id={c.id}
                                     comment_text={c.comment}
-                                    pub_datetime={c.dateTime}
-                                    likes={c.likesCount}
+                                    pub_datetime={c.localDateTime}
+                                    likes={c.voterHashLike ? c.voterHashLike.length : 0}
                                 />
                             );
                         })}
