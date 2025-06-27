@@ -10,6 +10,7 @@ export const Header = () => {
                 <ul>
                     <li>Contacto</li>
                     <li>Ajuda</li>
+                    <li>FAQ</li>
                     <li>
                         <button>Login</button>
                     </li>
