@@ -2,7 +2,9 @@ export const Header = () => {
     return (
         <header>
             <div className="logo-bar">
-                <img src="public/images/rep_portuguesa_white.png" alt="Logo" height="100" />
+                <p>REPUBLICA PORTUGUESA</p>
+                <img src="public/images/Governo_de_Portugal_logo_grey.png" alt="Logo" height="50" />
+                <p>SITE OFFICIAL VOTO ESTATISTICAS <br/>GOVERNO REPUPLICA PORTUGUES</p>
             </div>
             <div className="nav-bar">
                 <ul>
