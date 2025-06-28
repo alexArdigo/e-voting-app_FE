@@ -1,4 +1,4 @@
-import VoterData from "./pages/VoterData.jsx";
+import VoterProfile from "./pages/VoterProfile.jsx";
 import UserProvider from "./services/UserContext.jsx";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -15,7 +15,7 @@ function App() {
                 <UserProvider>
                     <Routes>
                         <Route path="/" element={<Home/>}/>
-                        <Route path="/voter-data" element={<VoterData/>}/>
+                        <Route path="/voter-data" element={<VoterProfile/>}/>
                         <Route path="/faq" element={<Faq/>}/>
                     </Routes>
                 </UserProvider>
