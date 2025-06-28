@@ -1,11 +1,22 @@
 import React, {useState} from 'react';
 import {useUserContext} from "../services/UserContext.jsx";
+import {useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
 
 const VoterData = () => {
 
     const { user } = useUserContext();
     const [confirmed, setConfirmed] = useState(false);
 
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        if (!confirmed) {
+            toast("Por favor, confirme que os dados estão corretos.");
+            return;
+        }
+        navigate("/passos");
+    }
 
     return (
         <section className={"voter-data-container"}>
@@ -29,7 +40,7 @@ const VoterData = () => {
                         <input type="checkbox" id="dataConfirmation" name="dataConfirmation" onChange={() => setConfirmed(!confirmed)}/>
                         Verifico que os dados acima registados estão corretos
                     </label>
-                    <button className="vote-button">Prosseguir</button>
+                    <button className="vote-button" onClick={handleClick}>Prosseguir</button>
                 </div>
             </div>
         </section>
