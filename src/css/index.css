@@ -104,4 +104,38 @@ body {
     margin: 0 auto;
 }
 
+.message-box {
+    background-color: #d1ecf1;
+    padding: 40px;
+    border-radius: 8px;
+    text-align: center;
+    flex: 1;
+}
 
+.message-box img {
+    max-width: 100%;
+    height: auto;
+}
+
+.form-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 30px;
+    padding: 20px;
+}
+
+.form-section h2 {
+    font-size: 1.5rem;
+    color: #2c2c5c;
+    max-width: 400px;
+    line-height: 1.4;
+}
+
+.form-section strong {
+    color: #2563eb;
+    font-weight: 600;
+}

@@ -8,7 +8,7 @@ const AuthPage = () => {
             </div>
 
             <div className="form-section">
-                <h2>Formulário de Autenticação</h2>
+                <h2>Faça sua autenticação com a <strong>Chave Móvel Digital.</strong></h2>
 
                 <button className="vote-button">
                     Chave Móvel Digital
