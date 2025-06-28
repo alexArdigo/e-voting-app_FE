@@ -155,6 +155,17 @@ body {
     color: #2c2c5c;
 }
 
+.comment-section {
+    background-color: #1c410c;
+    border-radius: 12px;
+    padding: 40px;
+    margin: 30px auto 0;
+    width: 800px;
+    max-width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    gap: 20px;
+}
+
 .comments-list {
     display: flex;
     flex-direction: column;
@@ -186,6 +197,7 @@ body {
 
 form section {
     margin-bottom: 20px;
+    margin-top: 40px;
 }
 
 form label {

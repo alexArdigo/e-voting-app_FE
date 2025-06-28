@@ -115,7 +115,7 @@ const Faq = () => {
                             name="comentarios"
                             id="comentarios"
                             value={newComment}
-                            placeholder="Compartilhe suas expectativas, sugestões ou dúvidas sobre o festival..."
+                            placeholder="Compartilhe suas expectativas, sugestões ou dúvidas sobre a plataforma ou eleição..."
                             onChange={handleInput}
                         ></textarea>
                     </section>
