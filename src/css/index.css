@@ -155,12 +155,6 @@ body {
     color: #2c2c5c;
 }
 
-.comment-section h2 {
-    font-size: 1.5rem;
-    color: #2563eb;
-    margin-bottom: 20px;
-}
-
 .comments-list {
     display: flex;
     flex-direction: column;
@@ -168,7 +162,7 @@ body {
     margin-bottom: 40px;
 }
 
-.comments-list > div {
+.comments-list div {
     background: #f9fafb;
     border-radius: 10px;
     padding: 20px;
