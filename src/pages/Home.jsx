@@ -1,7 +1,5 @@
 const Home = () => {
 
-
-
     return (
         <main className="home-container">
             <div className="overlay">
