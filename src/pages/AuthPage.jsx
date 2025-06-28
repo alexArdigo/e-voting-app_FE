@@ -1,20 +1,25 @@
 import React from 'react';
+import Header from "../Components/Header.jsx";
 
 const AuthPage = () => {
     return (
-        <div className="auth-container">
-            <div className="message-box">
-                <img src="/images/cne-logo.jpg" alt="CNE" />
-            </div>
+        <>
+            <Header/>
+            <div className="auth-container">
+                <div className="message-box">
+                    <img src="/images/cne-logo.jpg" alt="CNE" />
+                </div>
 
-            <div className="form-section">
-                <h2>Faça sua autenticação com a <strong>Chave Móvel Digital.</strong></h2>
+                <div className="form-section">
+                    <h2>Faça sua autenticação com a <strong>Chave Móvel Digital.</strong></h2>
 
-                <button className="vote-button">
-                    Chave Móvel Digital
-                </button>
+                    <button className="vote-button">
+                        Chave Móvel Digital
+                    </button>
+                </div>
             </div>
-        </div>
+        </>
+
     );
 };
 
