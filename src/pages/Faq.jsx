@@ -76,7 +76,6 @@ const Faq = () => {
                 <h1>FAQ</h1>
 
                 <section className="comment-section">
-                    <h2>Comentários</h2>
                     <div className="comments-list">
                         {comments.map((comment) => (
                             <div key={comment.id}>
@@ -89,7 +88,7 @@ const Faq = () => {
                                 />
 
                                 {user?.role === "ADMIN" && (
-                                    <form onSubmit={(e) => handleAdminReply(e, comment.id)}>
+                                    <form onSubmit={(e) => handleAdminReply(e, comment.id)} className="admin-reply-form">
                                         <textarea
                                             value={adminAnswerTexts[comment.id] || ""}
                                             onChange={(e) =>
@@ -116,7 +115,7 @@ const Faq = () => {
                             name="comentarios"
                             id="comentarios"
                             value={newComment}
-                            placeholder="Compartilhe suas expectativas, sugestões ou dúvidas sobre o festival..."
+                            placeholder="Compartilhe suas expectativas, sugestões ou dúvidas sobre a plataforma ou eleição..."
                             onChange={handleInput}
                         ></textarea>
                     </section>
