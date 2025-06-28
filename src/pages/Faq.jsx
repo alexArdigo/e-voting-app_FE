@@ -89,7 +89,7 @@ const Faq = () => {
                                 />
 
                                 {user?.role === "ADMIN" && (
-                                    <form onSubmit={(e) => handleAdminReply(e, comment.id)}>
+                                    <form onSubmit={(e) => handleAdminReply(e, comment.id)} className="admin-reply-form">
                                         <textarea
                                             value={adminAnswerTexts[comment.id] || ""}
                                             onChange={(e) =>
