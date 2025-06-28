@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Faq from "./pages/Faq.jsx";
 import Home from "./pages/Home.jsx";
+import AuthPage from "./pages/AuthPage.jsx";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
                         <Route path="/" element={<Home/>}/>
                         <Route path="/voter-data" element={<VoterProfile/>}/>
                         <Route path="/faq" element={<Faq/>}/>
+                        <Route path="/auth" element={<AuthPage/>}/>
                     </Routes>
                 </UserProvider>
             </BrowserRouter>

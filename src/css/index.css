@@ -92,3 +92,16 @@ body {
     margin-bottom: 20px;
     cursor: pointer;
 }
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 40px;
+    gap: 60px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+
