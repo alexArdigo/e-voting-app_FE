@@ -1,27 +1,32 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useUserContext} from "../services/UserContext.jsx";
 
 const VoterData = () => {
 
     const { user } = useUserContext();
+    const [confirmed, setConfirmed] = useState(false);
+
 
     return (
         <section className={"voter-data-container"}>
 
-            <div className={"profile-icon"}></div>
-
             <div className={"voter-info"}>
-                <p><strong>Nome:</strong> {user ? `${user.firstName} ${user.lastName}` : "N/A"}</p>
-                <p><strong>Contacto telefónico:</strong> {user?.telephoneNumber}</p>
-                <p><strong>NIF:</strong> {user?.nif}</p>
-                <p><strong>Distrito:</strong> {user?.district}</p>
-                <p><strong>Concelho:</strong> {user?.municipality}</p>
-                <p><strong>Freguesia:</strong> {user?.parish}</p>
-                <p><strong>Elegível:</strong> {user?.eligible ? "Sim" : "Não"}</p>
-                <p><strong>Verificado:</strong> {user?.verified ? "Sim" : "Não"}</p>
+                <div className="info-column">
+                    <p><strong>Nome:</strong> {user ? `${user.firstName} ${user.lastName}` : "N/A"}</p>
+                    <p><strong>Contacto telefónico:</strong> {user?.telephoneNumber}</p>
+                    <p><strong>NIF:</strong> {user?.nif}</p>
+                    <p><strong>Distrito:</strong> {user?.district}</p>
+                </div>
+
+                <div className="info-column">
+                    <p><strong>Concelho:</strong> {user?.municipality}</p>
+                    <p><strong>Freguesia:</strong> {user?.parish}</p>
+                    <p><strong>Elegível:</strong> {user?.eligible ? "Sim" : "Não"}</p>
+                    <p><strong>Verificado:</strong> {user?.verified ? "Sim" : "Não"}</p>
+                </div>
                 <div className="confirmation">
                     <label>
-                        <input type="radio" id="dataConfirmation" name="dataConfirmation" />
+                        <input type="checkbox" id="dataConfirmation" name="dataConfirmation" onChange={() => setConfirmed(!confirmed)}/>
                         Verifico que os dados acima registados estão corretos
                     </label>
                     <button className="vote-button">Prosseguir</button>
