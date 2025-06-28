@@ -1,6 +1,10 @@
 import React from 'react';
+import {useUserContext} from "../services/UserContext.jsx";
 
 const VoterData = () => {
+
+    const { user } = useUserContext();
+
     return (
         <section>
             <h1>Voter Data</h1>
