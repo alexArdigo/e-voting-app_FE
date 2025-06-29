@@ -249,6 +249,7 @@ form textarea {
     max-width: 1000px;
     margin: 0 auto;
     min-height: 100vh;
+    align-items: center;
 }
 
 .steps-container h1 {
@@ -294,5 +295,10 @@ form textarea {
     right: 0;
     width: 200px;
     opacity: 0.9;
+}
+
+.button-wrapper {
+    text-align: center;
+    margin-top: 40px;
 }
 

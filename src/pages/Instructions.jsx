@@ -35,7 +35,9 @@ const Instructions = () => {
                 </div>
             </section>
 
-            <button className="vote-button" onClick={handleClick}>Prosseguir</button>
+            <div className="button-wrapper">
+                <button className="vote-button" onClick={handleClick}>Prosseguir</button>
+            </div>
 
             <img src="/images/arco.png" alt="Arco decorativo" className="corner-image"/>
         </main>
