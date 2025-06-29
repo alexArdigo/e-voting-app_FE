@@ -11,6 +11,7 @@ import ContactPage from "./pages/ContactPage.jsx";
 import VoterProfile from "./pages/VoterProfile.jsx";
 import HelpPage from "./pages/HelpPage.jsx";
 import VoteSubmitedPage from "./pages/VoteSubmitedPage.jsx";
+import ConfirmElectionPage from "./pages/ConfirmElectionPage.jsx";
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
                         <Route path="/contact" element={<ContactPage/>}/>
                         <Route path="/help" element={<HelpPage/>}/>
                         <Route path="/submitted" element={<VoteSubmitedPage/>}/>
+                        <Route path="/confirm" element={<ConfirmElectionPage/>}/>
                     </Routes>
                 </UserProvider>
             </BrowserRouter>
