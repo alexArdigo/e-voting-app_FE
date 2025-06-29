@@ -15,6 +15,11 @@ const variants = {
         border: "2px solid #ffb300",
         margin: "16px 0",
     },
+    transparent: {
+        padding: "24px",
+        borderRadius: "12px",
+        margin: "16px 0",
+    }
 };
 
 const StyledContainer = ({ children, style, className, variant = "default" }) => (
