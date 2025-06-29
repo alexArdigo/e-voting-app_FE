@@ -14,6 +14,7 @@ const variants = {
         background: "#ffe082",
         border: "2px solid #ffb300",
         margin: "16px 0",
+        width: "400px",
     },
     transparent: {
         borderRadius: "12px",

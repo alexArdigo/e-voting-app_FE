@@ -40,6 +40,13 @@ body {
     justify-content: center;
 }
 
+.dflxColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 
 .half-logo{
     position: absolute;
