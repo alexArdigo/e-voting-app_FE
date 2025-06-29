@@ -1,6 +1,14 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 
 const Instructions = () => {
+
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate("/auth");
+    }
+
     return (
         <main className="steps-container">
             <h1>Siga os seguintes passos</h1>
@@ -26,6 +34,8 @@ const Instructions = () => {
                     <p><strong>Vote e submeta o seu voto</strong></p>
                 </div>
             </section>
+
+            <button className="vote-button" onClick={handleClick}>Prosseguir</button>
 
             <img src="/images/arco.png" alt="Arco decorativo" className="corner-image"/>
         </main>
