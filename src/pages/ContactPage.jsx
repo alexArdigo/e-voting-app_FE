@@ -10,7 +10,7 @@ const ContactPage = () => {
             <MainLayout>
                 <StyledContainer variant="yellow" style={{ padding: "100px" }}>
                     <h1>Contact Us</h1>
-                    <p>If you have any questions or need assistance, please reach out to us at:</p>
+                    <p>testing123...testing 1 2 3 </p>
                 </StyledContainer>
             </MainLayout>
 
