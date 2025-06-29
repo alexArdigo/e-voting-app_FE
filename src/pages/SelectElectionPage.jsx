@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import MainLayout from "./MainLayout.jsx";
 import HalfLogo from "./HalfLogo.jsx";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api.jsx";
+import MainLayout from "../layouts/MainLayout.jsx";
 
 const SelectElectionPage = () => {
     const navigate = useNavigate();
