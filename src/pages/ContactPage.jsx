@@ -8,14 +8,13 @@ const ContactPage = () => {
     return (
 
         <>
-            <MainLayout>
-                <StyledContainer variant="leftCentered">
+            <MainLayout >
+                <StyledContainer variant="leftCentered" >
                     <h1 className="pt-sans-bold">
                         Contactos
                     </h1>
                 </StyledContainer>
                 <StyledContainer variant="transparent">
-
                         <h1> Localização: </h1>
 
                         <p>Av. D. Carlos I, 134 - 5.º

@@ -7,6 +7,11 @@ const HelpPage = () => {
     return (
         <>
             <MainLayout>
+                <StyledContainer variant="leftCentered">
+                    <h1 className="pt-sans-bold">
+                        Help
+                    </h1>
+                </StyledContainer>
                 <StyledContainer variant="transparent" style={{width: "800px"}}>
                     <h1>Eleições Presidenciais:</h1>
                     <p>

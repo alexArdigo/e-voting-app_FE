@@ -16,7 +16,6 @@ const variants = {
         margin: "16px 0",
     },
     transparent: {
-        padding: "24px",
         borderRadius: "12px",
         margin: "16px 0",
         padding: "100px",
