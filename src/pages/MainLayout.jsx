@@ -1,4 +1,4 @@
-import Header from "../Components/Header.jsx";
+import Header from "../components/common/Header.jsx";
 
 
 const MainLayout = ({ children }) => (

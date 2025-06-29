@@ -1,7 +1,7 @@
-import Header from "../components/Header.jsx";
+import Header from "../components/common/Header.jsx";
 import { useEffect, useState } from "react";
 import api from "../services/api.jsx";
-import HelpComment from "../components/HelpComment.jsx";
+import HelpComment from "../components/specific/HelpComment.jsx";
 import { toast } from "react-toastify";
 import { useUserContext } from "../services/UserContext.jsx";
 

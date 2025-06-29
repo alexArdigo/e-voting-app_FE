@@ -1,7 +1,7 @@
 import React from 'react';
 import MainLayout from "./MainLayout.jsx";
 import HalfLogo from "./HalfLogo.jsx";
-import StyledContainer from "./StyledContainer.jsx";
+import StyledContainer from "../components/specific/StyledContainer.jsx";
 import "../App.css"
 
 const ContactPage = () => {
