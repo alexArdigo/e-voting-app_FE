@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import Faq from "./pages/Faq.jsx";
 import Home from "./pages/Home.jsx";
 import AuthPage from "./pages/AuthPage.jsx";
+import Instructions from "./pages/Instructions.jsx";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
                         <Route path="/voter-data" element={<VoterProfile/>}/>
                         <Route path="/faq" element={<Faq/>}/>
                         <Route path="/auth" element={<AuthPage/>}/>
+                        <Route path="/instructions" element={<Instructions/>}/>
                     </Routes>
                 </UserProvider>
             </BrowserRouter>
