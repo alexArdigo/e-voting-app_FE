@@ -1,4 +1,4 @@
-import Header from "../components/common/Header.jsx";
+import MainLayout from "../layouts/MainLayout.jsx";
 import { useEffect, useState } from "react";
 import api from "../services/api.jsx";
 import HelpComment from "../components/specific/HelpComment.jsx";
@@ -70,9 +70,8 @@ const Faq = () => {
     };
 
     return (
-        <>
-            <Header />
-            <main className="general-container">
+        <MainLayout>
+            <div className="general-container">
                 <h1>FAQ</h1>
 
                 <section className="comment-section">
@@ -121,8 +120,8 @@ const Faq = () => {
                     </section>
                     <input type="submit" value="Enviar" className="submit-button" />
                 </form>
-            </main>
-        </>
+            </div>
+        </MainLayout>
     );
 };
 
