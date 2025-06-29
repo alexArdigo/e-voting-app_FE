@@ -8,7 +8,7 @@ const variants = {
         boxShadow: "0 2px 8px rgba(0,0,0,0.07)",
         margin: "16px 0",
     },
-    warning: {
+    yellow: {
         padding: "24px",
         borderRadius: "12px",
         background: "#ffe082",
