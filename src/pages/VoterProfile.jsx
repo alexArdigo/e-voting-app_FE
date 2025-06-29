@@ -1,13 +1,13 @@
-import Header from "../components/Header.jsx";
-import VoterData from "../components/VoterData.jsx";
+import MainLayout from "../layouts/MainLayout.jsx";
+import VoterData from "../components/specific/VoterData.jsx";
 
 const VoterProfile = () => {
 
     return (
-    <div>
-        <Header/>
-        <VoterData/>
-    </div>
-  );
+        <MainLayout>
+            <VoterData/>
+        </MainLayout>
+    );
 }
 export default VoterProfile;
+

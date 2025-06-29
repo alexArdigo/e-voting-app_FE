@@ -1,8 +1,8 @@
 import React from 'react';
-import MainLayout from "./MainLayout.jsx";
+import MainLayout from "../layouts/MainLayout.jsx";
 import HalfLogo from "./HalfLogo.jsx";
-import StyledContainer from "./StyledContainer.jsx";
-import "../App.css"
+import StyledContainer from "../components/specific/StyledContainer.jsx";
+import "../css/App.css"
 
 const ContactPage = () => {
     return (

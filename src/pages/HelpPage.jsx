@@ -1,6 +1,6 @@
 import React from 'react';
-import MainLayout from "./MainLayout.jsx";
-import StyledContainer from "./StyledContainer.jsx";
+import MainLayout from "../layouts/MainLayout.jsx";
+import StyledContainer from "../components/specific/StyledContainer.jsx";
 import HalfLogo from "./HalfLogo.jsx";
 
 const HelpPage = () => {

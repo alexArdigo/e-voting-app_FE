@@ -5,7 +5,7 @@ import Faq from "./pages/Faq.jsx";
 import Home from "./pages/Home.jsx";
 import AuthPage from "./pages/AuthPage.jsx";
 import Instructions from "./pages/Instructions.jsx";
-import "./App.css"
+import "./css/App.css"
 import HalfLogo from "./pages/HalfLogo.jsx";
 import ContactPage from "./pages/ContactPage.jsx";
 import VoterProfile from "./pages/VoterProfile.jsx";
