@@ -8,6 +8,7 @@ import {useNavigate} from "react-router-dom";
 const ConfirmElectionPage = () => {
 
     const navigate = useNavigate();
+    // const selectedElection = location.state.selectedElectionId;
 
     return (
         <>
