@@ -1,5 +1,5 @@
 import Header from "../components/Header.jsx";
-import VoterData from "../Components/VoterData.jsx";
+import VoterData from "../components/VoterData.jsx";
 
 const VoterProfile = () => {
 
