@@ -19,6 +19,8 @@ const variants = {
         padding: "24px",
         borderRadius: "12px",
         margin: "16px 0",
+        padding: "100px",
+        width:"400px",
     },
     leftCentered: {
         display: "flex",

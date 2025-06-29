@@ -9,6 +9,7 @@ import "./App.css"
 import HalfLogo from "./pages/HalfLogo.jsx";
 import ContactPage from "./pages/ContactPage.jsx";
 import VoterProfile from "./pages/VoterProfile.jsx";
+import HelpPage from "./pages/HelpPage.jsx";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
                         <Route path="/instructions" element={<Instructions/>}/>
                         <Route path="/default" element={<HalfLogo/>}/>
                         <Route path="/contact" element={<ContactPage/>}/>
+                        <Route path="/help" element={<HelpPage/>}/>
                     </Routes>
                 </UserProvider>
             </BrowserRouter>

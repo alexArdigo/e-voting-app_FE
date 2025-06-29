@@ -14,7 +14,7 @@ const ContactPage = () => {
                         Contactos
                     </h1>
                 </StyledContainer>
-                <StyledContainer variant="transparent" style={{ padding: "100px", width:"400px" }}>
+                <StyledContainer variant="transparent">
 
                         <h1> Localização: </h1>
 
