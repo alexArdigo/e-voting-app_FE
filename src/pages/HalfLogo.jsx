@@ -1,4 +1,4 @@
-import MainLayout from "./MainLayout.jsx";
+import MainLayout from "../layouts/MainLayout.jsx";
 import StyledContainer from "../components/specific/StyledContainer.jsx";
 
 
