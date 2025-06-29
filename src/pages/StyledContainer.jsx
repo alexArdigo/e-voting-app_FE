@@ -19,6 +19,11 @@ const variants = {
         padding: "24px",
         borderRadius: "12px",
         margin: "16px 0",
+    },
+    leftCentered: {
+        display: "flex",
+        alignItems: "flex-start",
+        justifyContent: "flex-start",
     }
 };
 

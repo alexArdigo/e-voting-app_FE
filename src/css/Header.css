@@ -4,13 +4,14 @@
 body{
     margin: 0;
 }
-p {
+.logo-bar p {
     font-family: 'Roboto', sans-serif;
     font-size: 13px;
     line-height: 1.5;
     color: #333;
     text-decoration: underline;
 }
+
 li {
     font-size: 14px;
 }
