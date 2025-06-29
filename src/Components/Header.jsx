@@ -16,9 +16,9 @@ export const Header = () => {
                     <li>Contacto</li>
                     <li>Ajuda</li>
                     <li><Link to="/faq">FAQ</Link></li>
-                    <li>
-                        <button>Login</button>
-                    </li>
+                    {/*<li>*/}
+                    {/*    <button>Login</button>*/}
+                    {/*</li>*/}
                 </ul>
             </div>
         </header>
