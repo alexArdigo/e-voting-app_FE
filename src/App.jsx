@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import Faq from "./pages/Faq.jsx";
 import Home from "./pages/Home.jsx";
 import "./App.css"
-import DefaultPage from "./pages/DefaultPage.jsx";
+import HalfLogo from "./pages/HalfLogo.jsx";
 
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
                         <Route path="/" element={<Home/>}/>
                         <Route path="/voter-data" element={<VoterData/>}/>
                         <Route path="/faq" element={<Faq/>}/>
-                        <Route path="/default" element={<DefaultPage/>}/>
+                        <Route path="/default" element={<HalfLogo/>}/>
                     </Routes>
                 </UserProvider>
             </BrowserRouter>
