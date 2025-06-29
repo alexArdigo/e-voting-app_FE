@@ -6,6 +6,7 @@ import Faq from "./pages/Faq.jsx";
 import Home from "./pages/Home.jsx";
 import "./App.css"
 import HalfLogo from "./pages/HalfLogo.jsx";
+import ContactPage from "./pages/ContactPage.jsx";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
                         <Route path="/voter-data" element={<VoterData/>}/>
                         <Route path="/faq" element={<Faq/>}/>
                         <Route path="/default" element={<HalfLogo/>}/>
+                        <Route path="/contact" element={<ContactPage/>}/>
                     </Routes>
                 </UserProvider>
             </BrowserRouter>

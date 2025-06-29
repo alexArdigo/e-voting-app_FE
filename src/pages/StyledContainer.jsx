@@ -2,7 +2,7 @@ import React from "react";
 
 const StyledContainer = ({ children, style, className }) => (
     <div
-        className={className}
+        className="className"
         style={{
             padding: "24px",
             borderRadius: "12px",
