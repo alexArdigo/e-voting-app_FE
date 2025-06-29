@@ -34,3 +34,11 @@ body {
     font-weight: 700;
     font-style: italic;
 }
+
+.dflx {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
