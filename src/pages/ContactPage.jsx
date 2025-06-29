@@ -9,8 +9,8 @@ const ContactPage = () => {
 
         <>
             <MainLayout >
-                <StyledContainer variant="leftCentered" >
-                    <h1 className="pt-sans-bold">
+                <StyledContainer variant="leftCentered" style={{marginTop: "110px"}}>
+                    <h1 className="pt-sans-bold" >
                         Contactos
                     </h1>
                 </StyledContainer>
