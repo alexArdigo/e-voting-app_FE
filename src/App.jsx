@@ -1,4 +1,3 @@
-import VoterData from "./pages/VoterData.jsx";
 import UserProvider from "./services/UserContext.jsx";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -9,6 +8,7 @@ import Instructions from "./pages/Instructions.jsx";
 import "./App.css"
 import HalfLogo from "./pages/HalfLogo.jsx";
 import ContactPage from "./pages/ContactPage.jsx";
+import VoterProfile from "./pages/VoterProfile.jsx";
 
 
 function App() {
