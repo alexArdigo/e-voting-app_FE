@@ -2,19 +2,21 @@ import React from 'react';
 import MainLayout from "./MainLayout.jsx";
 import StyledContainer from "./StyledContainer.jsx";
 
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useLocation} from "react-router-dom";
 
 
 const ConfirmElectionPage = () => {
 
     const navigate = useNavigate();
-    // const selectedElection = location.state.selectedElectionId;
+    const location = useLocation();
+    const selectedElectionName = location.state.selectedElectionName;
 
     return (
         <>
             <MainLayout className="dflxColumn">
                 <StyledContainer variant="yellow" style={{paddingInline: "100px", paddingBlock: "50px", margin: "100px"}}>
-                    <h1>Eleição Presidencial 2025</h1>
+                    <p>Selecionou:</p>
+                    <h1>{selectedElectionName || "Nome da eleição não disponível"}</h1>
                 </StyledContainer>
                 <StyledContainer>
                     <p>Ao clicar em “Votar” irá ser redirecionado para o seu boletim de voto eletrónico, a partir desse momentoserão  disponibilizados 5 minutos para submeter o seu voto.  </p>

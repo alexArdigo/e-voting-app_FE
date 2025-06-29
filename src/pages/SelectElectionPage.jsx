@@ -9,12 +9,17 @@ const SelectElectionPage = () => {
     const [elections, setElections] = useState([]);
     const [selectedOption, setSelectedOption] = useState("");
     const [loadingData, setLoadingData] = useState(true);
+    const [activeElection, setActiveElection] = useState([]);
+
 
     useEffect(() => {
         (async () => {
             try {
                 const response = await api.get("/elections/all");
                 setElections(response.data || []);
+                const responseActive = await api.get("/election/active");
+                setActiveElection(responseActive.data || []);
+
             } catch (e) {
                 console.error(e);
             } finally {
@@ -30,8 +35,8 @@ const SelectElectionPage = () => {
             alert("Por favor selecione uma eleição.");
             return;
         }
-
-        navigate("/confirm", { state: { selectedElectionId: selectedOption } });
+        const selectedElection = activeElection.find(e => e.id.toString() === selectedOption);
+        navigate("/confirm", { state: { selectedElectionName: selectedElection?.name } });
     };
 
     return (
@@ -43,7 +48,7 @@ const SelectElectionPage = () => {
                 <p>A carregar...</p>
             ) : (
                 <form onSubmit={handleSubmit}>
-                    {elections.map((election) => (
+                    {activeElection.map((election) => (
                         <div key={election.id}>
                             <label>
                                 <input
@@ -57,10 +62,14 @@ const SelectElectionPage = () => {
                             </label>
                         </div>
                     ))}
-
                     <button type="submit">Avançar</button>
                 </form>
             )}
+            <div>
+                {elections.map((election) => (
+                    <p key={election.id}>{election.name}</p>
+                ))}
+            </div>
         </MainLayout>
     );
 };
