@@ -13,10 +13,10 @@ const Instructions = () => {
 
     return (
         <MainLayout className="dflxColumn">
-            <StyledContainer variant="transparent">
+            <StyledContainer variant="transparent" style={{padding: "10px"}}>
                 <h1>Bem vindo à platafroma de voto .........</h1>
             </StyledContainer>
-            <StyledContainer>
+            <StyledContainer style={{width: "800px", padding: "10px"}} variant="transparent">
             <div className="steps-container">
                 <h1>Siga os seguintes passos</h1>
                 <section className="steps-list">
