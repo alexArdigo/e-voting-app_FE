@@ -1,6 +1,6 @@
 import React from 'react';
 import MainLayout from "../layouts/MainLayout.jsx";
-import HalfLogo from "./HalfLogo.jsx";
+import HalfLogo from "../components/common/HalfLogo.jsx";
 import StyledContainer from "../components/specific/StyledContainer.jsx";
 import "../css/App.css"
 
