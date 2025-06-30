@@ -311,3 +311,9 @@ form textarea {
     margin-bottom: 60px;
 }
 
+.like-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
