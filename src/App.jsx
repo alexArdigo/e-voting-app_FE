@@ -13,6 +13,7 @@ import HelpPage from "./pages/HelpPage.jsx";
 import VoteSubmitedPage from "./pages/VoteSubmitedPage.jsx";
 import ConfirmElectionPage from "./pages/ConfirmElectionPage.jsx";
 import SelectElectionPage from "./pages/SelectElectionPage.jsx";
+import BallotPage from "./pages/BallotPage.jsx";
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
                         <Route path="/submitted" element={<VoteSubmitedPage/>}/>
                         <Route path="/confirm" element={<ConfirmElectionPage/>}/>
                         <Route path="/election" element={<SelectElectionPage/>}/>
+                        <Route path="/ballot" element={<BallotPage/>}/>
                     </Routes>
                 </UserProvider>
             </BrowserRouter>
