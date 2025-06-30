@@ -242,12 +242,10 @@ body {
 form textarea {
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 8px;
     font-size: 1rem;
     resize: vertical;
     width: 100%;
     min-height: 120px;
-    border: 1px solid #d1d5db;
     border-radius: 10px;
 }
 
