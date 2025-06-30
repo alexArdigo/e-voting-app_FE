@@ -66,6 +66,7 @@ li {
     margin: 0;
     padding: 0;
     margin-right: 200px;
+    cursor: pointer;
 }
 
 .nav-bar li {
@@ -81,6 +82,7 @@ li {
     padding: 20px;
     margin-right: 100px;
     margin-left: 100px;
+    height: 50px;
 }
 
 button {
