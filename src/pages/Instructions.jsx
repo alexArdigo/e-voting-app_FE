@@ -40,6 +40,9 @@ const Instructions = () => {
                     </li>
                 </ul>
             </StyledContainer>
+            <StyledContainer variant="flex" style={{marginTop:"80px"}}>
+                <img src="/images/arrow-down.png" alt="arrow" style={{width: "100px"}}/>
+            </StyledContainer>
             <StyledContainer style={{width: "800px", padding: "10px"}} variant="transparent">
 
             <div className="steps-container">

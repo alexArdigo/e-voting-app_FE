@@ -26,7 +26,14 @@ const variants = {
         display: "flex",
         alignItems: "flex-start",
         justifyContent: "flex-start",
-    }
+    },
+    flex: {
+        padding: "25px",
+        margin: "10px 0",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+    },
 };
 
 const StyledContainer = ({ children, style, className, variant = "default" }) => (
