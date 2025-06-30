@@ -2,6 +2,7 @@ import MainLayout from "../layouts/MainLayout.jsx";
 import StyledContainer from "../components/specific/StyledContainer.jsx";
 
 
+
 const HalfLogo = ({...props }) => (
 
 
