@@ -6,7 +6,7 @@ import Home from "./pages/Home.jsx";
 import AuthPage from "./pages/AuthPage.jsx";
 import Instructions from "./pages/Instructions.jsx";
 import "./css/App.css"
-import HalfLogo from "./pages/HalfLogo.jsx";
+import HalfLogo from "./components/common/HalfLogo.jsx";
 import ContactPage from "./pages/ContactPage.jsx";
 import VoterProfile from "./pages/VoterProfile.jsx";
 import HelpPage from "./pages/HelpPage.jsx";
