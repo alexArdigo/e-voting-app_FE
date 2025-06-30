@@ -19,7 +19,7 @@ const Instructions = () => {
                 <p style={{ textAlign: "center" }}>
                     Administração Eleitoral da Secretaria-Geral do Ministério da Administração Interna compete:
                 </p>
-                <ul style={{ textAlign: "justify", marginLeft: "20px" }}>
+                <ul style={{ textAlign: "justify", marginInline: "20px" }}>
                     <li>
                         Assegurar o recenseamento eleitoral de modo automático e voluntário garantindo, a operacionalidade e atualidade do sistema de informação e gestão do recenseamento eleitoral, providenciando pela organização, manutenção e gestão da Base de Dados do Recenseamento Eleitoral;
                     </li>
