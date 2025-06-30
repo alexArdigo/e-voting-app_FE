@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import HalfLogo from "../components/common/HalfLogo.jsx";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import api from "../services/api.jsx";
 import MainLayout from "../layouts/MainLayout.jsx";
+import {toast} from "react-toastify";
 
 const SelectElectionPage = () => {
     const navigate = useNavigate();
@@ -15,7 +16,7 @@ const SelectElectionPage = () => {
     useEffect(() => {
         (async () => {
             try {
-                const response = await api.get("/elections/all");
+                const response = await api.get("/election/notactive");
                 setElections(response.data || []);
                 const responseActive = await api.get("/election/active");
                 setActiveElection(responseActive.data || []);
@@ -32,46 +33,54 @@ const SelectElectionPage = () => {
         e.preventDefault();
 
         if (!selectedOption) {
-            alert("Por favor selecione uma eleição.");
+            toast("Por favor selecione uma eleição.");
             return;
         }
         const selectedElection = activeElection.find(e => e.id.toString() === selectedOption);
-        navigate("/confirm", { state: { selectedElectionName: selectedElection?.name } });
+        navigate("/confirm", {state: {selectedElectionName: selectedElection?.name}});
     };
 
     return (
         <MainLayout>
             <HalfLogo/>
-            <h2>Selecione a eleição</h2>
+            <div className="steps-container">
+                <h1>Selecione a eleição</h1>
 
-            {loadingData ? (
-                <p>A carregar...</p>
-            ) : (
-                <form onSubmit={handleSubmit}>
-                    {activeElection.map((election) => (
-                        <div key={election.id}>
-                            <label>
-                                <input
-                                    type="radio"
-                                    name="election"
-                                    value={election.id}
-                                    checked={selectedOption === election.id.toString()}
-                                    onChange={(e) => setSelectedOption(e.target.value)}
-                                />
-                                {election.name}
-                            </label>
+                {loadingData ? (
+                    <p>A carregar...</p>
+                ) : (
+                    <form onSubmit={handleSubmit}>
+                        {activeElection.map((election) => (
+                            <div key={election.id} className={"step"}>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="election"
+                                        value={election.id}
+                                        checked={selectedOption === election.id.toString()}
+                                        onChange={(e) => setSelectedOption(e.target.value)}
+                                    />
+                                    {election.name}
+                                </label>
+                            </div>
+                        ))}
+                        <div className="button-wrapper">
+                            <button type="submit">Avançar</button>
                         </div>
-                    ))}
-                    <button type="submit">Avançar</button>
-                </form>
-            )}
-            <div>
-                {elections.map((election) => (
-                    <p key={election.id}>{election.name}</p>
-                ))}
+                    </form>
+                    )}
+                <div className={"steps-container"}>
+                    <h1>Próximas Eleições:</h1>
+                    <div className={"step"}>
+                        {elections.map((election) => (
+                            <p key={election.id}>{election.name}</p>
+                        ))}
+                    </div>
+
+                </div>
             </div>
         </MainLayout>
-    );
+);
 };
 
 export default SelectElectionPage;

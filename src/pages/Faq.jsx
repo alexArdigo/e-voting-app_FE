@@ -82,7 +82,7 @@ const Faq = () => {
                                     id={comment.id}
                                     comment_text={comment.comment}
                                     pub_datetime={comment.localDateTime}
-                                    likes={comment.voterHashLike?.length || 0}
+                                    likes={comment.voterHashLike}
                                     answer={comment.answer?.answer}
                                 />
 
