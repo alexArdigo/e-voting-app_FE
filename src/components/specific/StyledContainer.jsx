@@ -19,7 +19,7 @@ const variants = {
     transparent: {
         borderRadius: "12px",
         margin: "16px 0",
-        //padding: "100px",
+        padding: "100px",
         width:"400px",
     },
     leftCentered: {
