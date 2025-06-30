@@ -5,12 +5,15 @@ import {Link} from "react-router-dom";
 export const Header = () => {
 
     return (
-        <header>
-            <div className="logo-bar">
-                <p>REPUBLICA PORTUGUESA</p>
-                <Link to={"/"}><img src="../../../public/images/Governo_de_Portugal_logo_grey.png" alt="Logo" height="50" /></Link>
-                <p>SITE OFFICIAL VOTO ESTATISTICAS <br/>GOVERNO REPUPLICA PORTUGUES</p>
-            </div>
+        <>
+            <header>
+                <div className="logo-bar">
+                    <p>REPUBLICA PORTUGUESA</p>
+                    <Link to={"/"}><img src="../../../public/images/Governo_de_Portugal_logo_grey.png" alt="Logo"
+                                        height="50"/></Link>
+                    <p>SITE OFFICIAL VOTO ESTATISTICAS <br/>GOVERNO REPUPLICA PORTUGUES</p>
+                </div>
+            </header>
             <div className="nav-bar">
                 <ul>
                     <li>Contacto</li>
@@ -21,7 +24,7 @@ export const Header = () => {
                     {/*</li>*/}
                 </ul>
             </div>
-        </header>
+        </>
     );
 };
 

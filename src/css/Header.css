@@ -1,12 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-
 body{
     margin: 0;
 }
 .logo-bar p {
     font-family: 'Roboto', sans-serif;
-    font-size: 13px;
+    font-size: 11px;
     line-height: 1.5;
     color: #333;
     text-decoration: underline;
@@ -29,8 +28,9 @@ li {
     display: flex;
     justify-content: flex-end;
     padding: 10px;
+    position: sticky;
+    top: 0;
 }
-
 
 .nav-container {
     position: fixed;
@@ -100,3 +100,7 @@ button:hover {
     background-color: #45a049;
 }
 
+.nav-bar li a {
+    color: white;
+    text-decoration: none;
+}
