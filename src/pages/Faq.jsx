@@ -1,15 +1,15 @@
 import MainLayout from "../layouts/MainLayout.jsx";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import api from "../services/api.jsx";
 import HelpComment from "../components/specific/HelpComment.jsx";
-import {toast} from "react-toastify";
-import {useUserContext} from "../services/UserContext.jsx";
+import { toast } from "react-toastify";
+import { useUserContext } from "../services/UserContext.jsx";
 
 const Faq = () => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
     const [adminAnswerTexts, setAdminAnswerTexts] = useState({});
-    const {user} = useUserContext();
+    const { user } = useUserContext();
 
     useEffect(() => {
         async function fetchComments() {
@@ -35,7 +35,7 @@ const Faq = () => {
         try {
             await api.post(`/comment/${commentId}/answer`, form);
             toast("Comentário respondido com sucesso!");
-            setAdminAnswerTexts((prev) => ({...prev, [commentId]: ""}));
+            setAdminAnswerTexts((prev) => ({ ...prev, [commentId]: "" }));
         } catch (err) {
             toast("Erro ao responder comentário.");
         }
