@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import HalfLogo from "./HalfLogo.jsx";
+import HalfLogo from "../components/common/HalfLogo.jsx";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api.jsx";
 import MainLayout from "../layouts/MainLayout.jsx";
@@ -41,7 +41,7 @@ const SelectElectionPage = () => {
 
     return (
         <MainLayout>
-            <HalfLogo />
+            <HalfLogo/>
             <h2>Selecione a eleição</h2>
 
             {loadingData ? (
