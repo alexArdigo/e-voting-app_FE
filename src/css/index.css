@@ -252,12 +252,20 @@ form textarea {
     align-items: center;
 }
 
-.steps-container h1 {
+.steps-container h1, .steps-container h2 {
     text-align: center;
-    font-size: 2.5rem;
     margin-bottom: 50px;
     font-weight: 800;
     color: #2c2c5c;
+}
+
+.steps-container h1 {
+    font-size: 2.5rem;
+}
+
+.steps-container h2 {
+    font-size: 1.75rem;
+    color: #4b5563;
 }
 
 .steps-list {
@@ -300,5 +308,6 @@ form textarea {
 .button-wrapper {
     text-align: center;
     margin-top: 40px;
+    margin-bottom: 60px;
 }
 
