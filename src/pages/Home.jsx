@@ -1,4 +1,5 @@
 import {useNavigate} from "react-router-dom";
+import React from "react";
 
 const Home = () => {
 
@@ -10,6 +11,15 @@ const Home = () => {
                 <img src="/images/rep_portuguesa_white.png" alt="Logo República Portuguesa" className="home-logo" />
                 <button className="vote-button" onClick={() => navigate("/instructions")}>EU VOTO</button>
             </div>
+
+            <div className={"corner"}>
+                <h5>Não és um eleitor?</h5>
+                <div className={"login-button-wrapper"}>
+                    <button className={"login-button"}>Login</button>
+                </div>
+
+            </div>
+
         </main>
     );
 };

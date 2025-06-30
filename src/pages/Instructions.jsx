@@ -41,7 +41,7 @@ const Instructions = () => {
                     <button className="vote-button" onClick={handleClick}>Prosseguir</button>
                 </div>
 
-                <img src="/images/legislativas_halfLogo.png" alt="Arco decorativo" className="corner-image"/>
+                <img src="/images/legislativas_halfLogo.png" alt="Arco decorativo" className="corner"/>
             </div>
         </MainLayout>
     );

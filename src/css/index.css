@@ -297,17 +297,39 @@ form textarea {
     color: #1f2937;
 }
 
-.corner-image {
+.corner {
     position: fixed;
     bottom: 0;
     right: 0;
     width: 200px;
     opacity: 0.9;
+    color: white;
+}
+
+.corner h5 {
+    text-align: center;
+    margin: 0;
+}
+
+.login-button {
+    color: white;
+    background-color: #4C8362;
+    font-size: 0.9rem;
+    padding: 10px 10px;
+    margin: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button-wrapper {
+    text-align: center;
+    margin-top: 5px;
 }
 
 .button-wrapper {
     text-align: center;
-    margin-top: 40px;
+    margin-top: 30px;
     margin-bottom: 60px;
 }
 
