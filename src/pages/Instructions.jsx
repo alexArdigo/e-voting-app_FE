@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout.jsx";
+import StyledContainer from "../components/specific/StyledContainer.jsx";
 
 const Instructions = () => {
 
@@ -11,7 +12,11 @@ const Instructions = () => {
     }
 
     return (
-        <MainLayout>
+        <MainLayout className="dflxColumn">
+            <StyledContainer variant="transparent">
+                <h1>Bem vindo à platafroma de voto .........</h1>
+            </StyledContainer>
+            <StyledContainer>
             <div className="steps-container">
                 <h1>Siga os seguintes passos</h1>
                 <section className="steps-list">
@@ -43,6 +48,7 @@ const Instructions = () => {
 
                 <img src="/images/legislativas_halfLogo.png" alt="Arco decorativo" className="corner"/>
             </div>
+            </StyledContainer>
         </MainLayout>
     );
 };
