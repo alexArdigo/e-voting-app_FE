@@ -360,9 +360,99 @@ form textarea {
     margin-bottom: 60px;
 }
 
+.admin-answer {
+    margin-top: 12px;
+    padding: 10px 14px;
+    background-color: #e0f0ff;
+    border-left: 4px solid #2563eb;
+    border-radius: 6px;
+    font-style: italic;
+    color: #1f2937;
+}
+
+.steps-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    min-height: 100vh;
+    align-items: center;
+    text-align: center;
+    font-weight: 800;
+}
+
+.steps-container h1 {
+    color: #2c2c5c;
+}
+
+.steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 70px;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: #f3f4f6;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.step img {
+    width: 40px;
+    height: 40px;
+}
+
+.step p {
+    margin: 0;
+    font-size: 1.15rem;
+    color: #1f2937;
+}
+
+.corner {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    opacity: 0.9;
+    color: white;
+}
+
+.corner h5 {
+    text-align: center;
+    margin: 0;
+}
+
+.login-button {
+    color: white;
+    background-color: #4C8362;
+    font-size: 0.9rem;
+    padding: 10px 10px;
+    margin: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button-wrapper {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.button-wrapper {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
 .like-row {
     display: flex;
     align-items: center;
     gap: 8px;
 }
+
 
