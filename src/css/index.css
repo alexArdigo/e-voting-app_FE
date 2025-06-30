@@ -45,7 +45,7 @@ body {
 
 .faq-comment {
     background: #ffffff;
-    border-left: 4px solid #2563eb;
+    border-left: 4px solid #d8121a;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
@@ -61,6 +61,11 @@ body {
     font-size: 1.1rem;
     color: #1f2937;
     margin-bottom: 15px;
+}
+
+.faq-form button {
+    display: block;
+    margin: 0 auto;
 }
 
 .admin-answer {
