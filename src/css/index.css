@@ -190,7 +190,7 @@ body {
 }
 
 .comment-section {
-    background-color: #1c410c;
+    background-color: #ffffff;
     border-radius: 12px;
     padding: 40px;
     margin: 30px auto 0;
@@ -380,8 +380,4 @@ form label {
     font-size: 1.3rem;
     cursor: pointer;
     color: #ef4444;
-}
-
-.like-row button:hover {
-    color: #dc2626;
 }
