@@ -1,10 +1,10 @@
 :root {
-    --blue-autGov: #3C5DBC;
-    --grey-autGov: #D9D9D9;
-    --white-autGov: #FFFFFF;
-    --black-autGov: #000000;
-    --warning-autGov: #FFF0CB;
-    --bar-autGov: #DBE1F2;
+    --green-eleGov: #006600;
+    --grey-eleGov: #D9D9D9;
+    --white-eleGov: #FFFFFF;
+    --black-eleGov: #000000;
+    --warning-eleGov: #FFF0CB;
+    --button-eleGov: #4C8362;
 }
 
 body {
