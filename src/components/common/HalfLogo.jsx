@@ -7,7 +7,7 @@ const HalfLogo = ({...props }) => (
 
 
     <img
-        className="half-logo"
+        className="corner"
         src="./images/legislativas_halfLogo.png"
         alt="half-logo"
         {...props}

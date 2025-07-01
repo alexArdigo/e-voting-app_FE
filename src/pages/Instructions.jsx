@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout.jsx";
 import StyledContainer from "../components/specific/StyledContainer.jsx";
+import HalfLogo from "../components/common/HalfLogo.jsx";
 
 const Instructions = () => {
 
@@ -74,7 +75,7 @@ const Instructions = () => {
                     <button className="vote-button" onClick={handleClick}>Prosseguir</button>
                 </div>
 
-                <img src="/images/legislativas_halfLogo.png" alt="Arco decorativo" className="corner"/>
+                <HalfLogo/>
             </div>
 
             </StyledContainer>

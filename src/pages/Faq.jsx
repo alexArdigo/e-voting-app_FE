@@ -4,6 +4,7 @@ import api from "../services/api.jsx";
 import HelpComment from "../components/specific/HelpComment.jsx";
 import { toast } from "react-toastify";
 import { useUserContext } from "../services/UserContext.jsx";
+import HalfLogo from "../components/common/HalfLogo.jsx";
 
 const Faq = () => {
     const [comments, setComments] = useState([]);
@@ -116,6 +117,7 @@ const Faq = () => {
                     ></textarea>
                     <button type="submit">Enviar</button>
                 </form>
+                <HalfLogo/>
             </div>
         </MainLayout>
     );
