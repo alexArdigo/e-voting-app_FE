@@ -291,7 +291,6 @@ form label {
 .steps-container {
     max-width: 1000px;
     margin: 0 auto;
-    min-height: 100vh;
     align-items: center;
     text-align: center;
     font-weight: 800;
@@ -307,7 +306,7 @@ form label {
     gap: 30px;
     max-width: 600px;
     margin: 0 auto;
-    padding: 70px;
+    padding: 40px;
 }
 
 .step {
@@ -381,3 +380,4 @@ form label {
     cursor: pointer;
     color: #ef4444;
 }
+
