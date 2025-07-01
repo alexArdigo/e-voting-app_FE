@@ -133,7 +133,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh;
+    min-height: 60vh;
     padding: 40px;
     gap: 60px;
     max-width: 1000px;
