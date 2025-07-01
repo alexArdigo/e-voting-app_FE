@@ -1,11 +1,12 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useUserContext} from "../../services/UserContext.jsx";
 import {useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
+import api from "../../services/api";
 
 const VoterData = () => {
 
-    const { user } = useUserContext();
+    const { user, setUser } = useUserContext();
     const [confirmed, setConfirmed] = useState(false);
 
     const navigate = useNavigate();
@@ -17,6 +18,20 @@ const VoterData = () => {
         }
         navigate("/passos");
     }
+
+    const handleInfo = async () => {
+        try {
+            const {data} = await api.get("/voters/info");
+            setUser(data);
+        } catch (e) {
+            console.error("Erro ao obter informações:", e);
+            toast("Erro ao obter informações do utilizador.");
+        }
+    }
+
+    useEffect(() => {
+        handleInfo();
+    }, []);
 
     return (
         <section className={"voter-data-container"}>
