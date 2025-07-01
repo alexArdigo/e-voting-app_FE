@@ -1,5 +1,6 @@
 import React from 'react';
-import Header from "../Components/Header.jsx";
+import MainLayout from "../layouts/MainLayout.jsx";
+import {useNavigate} from "react-router-dom";
 
 const AuthPage = () => {
 
@@ -9,8 +10,7 @@ const AuthPage = () => {
     };
 
     return (
-        <>
-            <Header/>
+        <MainLayout>
             <div className="auth-container">
                 <div className="message-box">
                     <img src="/images/cne-logo.jpg" alt="CNE"/>
@@ -27,8 +27,7 @@ const AuthPage = () => {
                     </button>
                 </div>
             </div>
-        </>
-
+        </MainLayout>
     );
 };
 

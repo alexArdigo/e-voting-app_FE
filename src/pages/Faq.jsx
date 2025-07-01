@@ -1,9 +1,10 @@
-import Header from "../components/Header.jsx";
+import MainLayout from "../layouts/MainLayout.jsx";
 import { useEffect, useState } from "react";
 import api from "../services/api.jsx";
-import HelpComment from "../components/HelpComment.jsx";
+import HelpComment from "../components/specific/HelpComment.jsx";
 import { toast } from "react-toastify";
 import { useUserContext } from "../services/UserContext.jsx";
+import HalfLogo from "../components/common/HalfLogo.jsx";
 
 const Faq = () => {
     const [comments, setComments] = useState([]);
@@ -17,7 +18,7 @@ const Faq = () => {
                 const comentarios = await api.get(`/comments`);
                 setComments(comentarios.data);
             } catch (error) {
-                alert("Erro ao carregar comentários.");
+                toast("Erro ao carregar comentários.");
             }
         }
 
@@ -35,18 +36,10 @@ const Faq = () => {
         try {
             await api.post(`/comment/${commentId}/answer`, form);
             toast("Comentário respondido com sucesso!");
-
-            setAdminAnswerTexts((prev) => ({
-                ...prev,
-                [commentId]: "",
-            }));
+            setAdminAnswerTexts((prev) => ({ ...prev, [commentId]: "" }));
         } catch (err) {
             toast("Erro ao responder comentário.");
         }
-    };
-
-    const handleInput = (e) => {
-        setNewComment(e.target.value);
     };
 
     const handleSubmit = async (e) => {
@@ -58,7 +51,7 @@ const Faq = () => {
         }
 
         try {
-            let body = new FormData();
+            const body = new FormData();
             body.set("text", newComment);
             const response = await api.post(`/comment`, body);
 
@@ -70,25 +63,27 @@ const Faq = () => {
     };
 
     return (
-        <>
-            <Header />
-            <main className="general-container">
-                <h1>FAQ</h1>
+        <MainLayout>
+            <div className="general-container">
+                <h1 className="pt-sans-bold">FAQ</h1>
 
                 <section className="comment-section">
                     <div className="comments-list">
                         {comments.map((comment) => (
-                            <div key={comment.id}>
+                            <div key={comment.id} className="faq-comment">
                                 <HelpComment
                                     id={comment.id}
                                     comment_text={comment.comment}
                                     pub_datetime={comment.localDateTime}
-                                    likes={comment.voterHashLike?.length || 0}
+                                    likes={comment.voterHashLike}
                                     answer={comment.answer?.answer}
                                 />
 
                                 {user?.role === "ADMIN" && (
-                                    <form onSubmit={(e) => handleAdminReply(e, comment.id)} className="admin-reply-form">
+                                    <form
+                                        onSubmit={(e) => handleAdminReply(e, comment.id)}
+                                        className="admin-reply-form"
+                                    >
                                         <textarea
                                             value={adminAnswerTexts[comment.id] || ""}
                                             onChange={(e) =>
@@ -97,6 +92,8 @@ const Faq = () => {
                                                     [comment.id]: e.target.value,
                                                 })
                                             }
+                                            placeholder="Responder a este comentário..."
+                                            required
                                         />
                                         <button type="submit">Responder</button>
                                     </form>
@@ -106,23 +103,23 @@ const Faq = () => {
                     </div>
                 </section>
 
-                <form onSubmit={handleSubmit}>
-                    <section>
-                        <label htmlFor="comentarios">
-                            Tem mais alguma pergunta? Escreva suas dúvidas abaixo.
-                        </label>
-                        <textarea
-                            name="comentarios"
-                            id="comentarios"
-                            value={newComment}
-                            placeholder="Compartilhe suas expectativas, sugestões ou dúvidas sobre a plataforma ou eleição..."
-                            onChange={handleInput}
-                        ></textarea>
-                    </section>
-                    <input type="submit" value="Enviar" className="submit-button" />
+                <form onSubmit={handleSubmit} className="faq-form">
+                    <label htmlFor="comentarios" className="pt-sans-bold">
+                        Tem mais alguma pergunta? Escreva suas dúvidas abaixo.
+                    </label>
+                    <textarea
+                        name="comentarios"
+                        id="comentarios"
+                        value={newComment}
+                        placeholder="Compartilhe suas expectativas, sugestões ou dúvidas sobre a plataforma ou eleição..."
+                        onChange={(e) => setNewComment(e.target.value)}
+                        required
+                    ></textarea>
+                    <button type="submit">Enviar</button>
                 </form>
-            </main>
-        </>
+                <HalfLogo/>
+            </div>
+        </MainLayout>
     );
 };
 

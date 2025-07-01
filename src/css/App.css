@@ -1,0 +1,57 @@
+:root {
+    --green-eleGov: #006600;
+    --grey-eleGov: #D9D9D9;
+    --white-eleGov: #FFFFFF;
+    --black-eleGov: #000000;
+    --warning-eleGov: #FFF0CB;
+    --button-eleGov: #4C8362;
+}
+
+body {
+    font-family: 'PT Sans', sans-serif;
+}
+
+.pt-sans-regular, p, h1, h2, h3, h4, h5, h6{
+    font-family: "PT Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.pt-sans-bold {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.pt-sans-regular-italic {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.pt-sans-bold-italic {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.dflx {
+    display: flex;
+    justify-content: center;
+}
+
+.dflxColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.half-logo{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 200px;
+}
