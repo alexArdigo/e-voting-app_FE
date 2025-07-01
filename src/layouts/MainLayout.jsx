@@ -1,4 +1,5 @@
 import Header from "../components/common/Header.jsx";
+import Footer from "../components/common/Footer";
 
 
 const MainLayout = ({ children, className = "dflx", style }) => (
@@ -8,6 +9,7 @@ const MainLayout = ({ children, className = "dflx", style }) => (
             className={className}
             style={style}
         >{children}</main>
+        <Footer/>
     </>
 );
 
