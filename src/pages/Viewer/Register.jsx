@@ -51,7 +51,7 @@ const Register = () => {
         <>
             <section id="forms">
 
-                <div className="form-container">
+                <div className="user-info-container">
                     <h2>Formulário de Registo</h2>
 
 
