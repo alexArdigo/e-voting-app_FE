@@ -27,7 +27,7 @@ li {
     background-color: #264f31;
     display: flex;
     justify-content: flex-end;
-    padding: 10px;
+    padding: 20px;
     position: sticky;
     top: 0;
 }
