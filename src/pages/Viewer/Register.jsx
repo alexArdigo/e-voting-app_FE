@@ -17,7 +17,6 @@ const Register = () => {
         setInputs({...inputs, [e.target.name]: e.target.value});
     }
 
-    const contexto = useUserContext();
 
     const navigate = useNavigate();
 
