@@ -33,7 +33,7 @@ const variants = {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-    },
+    }
 };
 
 const StyledContainer = ({ children, style, className, variant = "default" }) => (
