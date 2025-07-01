@@ -17,8 +17,8 @@ const UserProvider = ( {children} ) => {
     useEffect(() => {
         (async () => {
             try {
-                let resposta = await api.get("/user/logado");
-                setUser(resposta.data);
+                /*let resposta = await api.get("/user/logado");
+                setUser(resposta.data);*/
             } catch (e) {
                 console.log("user not logged in: ", e);
             }
@@ -38,7 +38,8 @@ const UserProvider = ( {children} ) => {
 
     return (
         <UserContext.Provider value={ {user, setUser, loading, logout} }>
-            {loading ? <div>Loading</div> : children}
+            {children}
+           {/* {loading ? <div>Loading</div> : children}*/}
         </UserContext.Provider>
     );
 };
