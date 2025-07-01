@@ -24,7 +24,7 @@ li {
 }
 
 .nav-bar {
-    background-color: #1c420c;
+    background-color: #264f31;
     display: flex;
     justify-content: flex-end;
     padding: 10px;
@@ -64,24 +64,22 @@ li {
     gap: 30px;
     list-style: none;
     margin: 0;
-    padding: 0;
-    margin-right: 200px;
+    padding-right: 100px;
     cursor: pointer;
 }
 
 .nav-bar li {
-    padding: 10px;
+    margin: 10px;
     display: inline-block;
     align-content: center;
-    padding-right: 20px;
     color: white;
     font-family: roboto, sans-serif;
 }
 
 .logo-bar img {
     padding: 20px;
-    margin-right: 100px;
-    margin-left: 100px;
+    margin-right: 150px;
+    margin-left: 150px;
     height: 50px;
 }
 
@@ -96,10 +94,6 @@ button {
     cursor: pointer;
     padding: 10px 20px;
     border-radius: 30px;
-}
-
-button:hover {
-    background-color: #45a049;
 }
 
 .nav-bar li a {
