@@ -7,9 +7,9 @@ const HelpPage = () => {
     return (
         <>
             <MainLayout>
-                <StyledContainer variant="leftCentered" style={{marginTop: "110px"}}>
-                    <h1 className="pt-sans-bold">
-                        Ajuda
+                <StyledContainer variant="leftCentered" style={{marginTop: "114px"}}>
+                    <h1>
+                        Ajuda &<br/> Informações
                     </h1>
                 </StyledContainer>
 
