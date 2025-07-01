@@ -62,12 +62,12 @@ const SelectElectionPage = () => {
                                     />
                                     {election.name}
                                 </label>
-                                {selectedOption === election.id.toString() && (<button type="submit">Prosseguir</button>)}
+                                {/*{selectedOption === election.id.toString() && (<button type="submit">Prosseguir</button>)}*/}
                             </div>
                         ))}
-                        {/*<div className="button-wrapper">*/}
-                        {/*    <button type="submit">Prosseguir</button>*/}
-                        {/*</div>*/}
+                        <div className="button-wrapper">
+                            <button type="submit" disabled={!selectedOption}>Prosseguir</button>
+                        </div>
                     </form>
                     )}
                 <h1 style={{fontSize:"25px"}}>Próximas Eleições:</h1>
