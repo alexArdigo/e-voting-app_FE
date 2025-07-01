@@ -41,17 +41,17 @@ const SelectElectionPage = () => {
     };
 
     return (
-        <MainLayout>
+        <MainLayout style={{paddingBlock: "100px"}}>
             <HalfLogo/>
             <div className="steps-container">
-                <h1>Selecione a eleição</h1>
+                <h1 style={{fontSize:"25px"}}>Selecione uma eleição:</h1>
 
                 {loadingData ? (
                     <p>A carregar...</p>
                 ) : (
                     <form onSubmit={handleSubmit}>
                         {activeElection.map((election) => (
-                            <div key={election.id} className={"step"}>
+                            <div key={election.id} className={"step"} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBlock:"30px"}}>
                                 <label>
                                     <input
                                         type="radio"
@@ -62,21 +62,23 @@ const SelectElectionPage = () => {
                                     />
                                     {election.name}
                                 </label>
+                                {selectedOption === election.id.toString() && (<button type="submit">Prosseguir</button>)}
                             </div>
                         ))}
-                        <div className="button-wrapper">
-                            <button type="submit">Avançar</button>
-                        </div>
+                        {/*<div className="button-wrapper">*/}
+                        {/*    <button type="submit">Prosseguir</button>*/}
+                        {/*</div>*/}
                     </form>
                     )}
-                <div className={"steps-container"}>
-                    <h1>Próximas Eleições:</h1>
-                    <div className={"step"}>
+                <h1 style={{fontSize:"25px"}}>Próximas Eleições:</h1>
+                <div className={"steps-container"} style={{width:"1000px"}}>
+                    <section className="steps-list" style={{width:"1000px"}}>
                         {elections.map((election) => (
-                            <p key={election.id}>{election.name}</p>
+                            <div className={"step"} style={{width:"1000px"}}>
+                                <p key={election.id}> {election.name} </p>
+                            </div>
                         ))}
-                    </div>
-
+                    </section>
                 </div>
             </div>
         </MainLayout>

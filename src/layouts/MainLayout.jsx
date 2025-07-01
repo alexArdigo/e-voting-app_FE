@@ -1,10 +1,13 @@
 import Header from "../components/common/Header.jsx";
 
 
-const MainLayout = ({ children, className = "dflx" }) => (
+const MainLayout = ({ children, className = "dflx", style }) => (
     <>
         <Header/>
-        <main className={className} >{children}</main>
+        <main
+            className={className}
+            style={style}
+        >{children}</main>
     </>
 );
 

@@ -304,9 +304,6 @@ form label {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 40px;
 }
 
 .step {

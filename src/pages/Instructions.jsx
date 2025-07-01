@@ -55,7 +55,7 @@ const Instructions = () => {
 
             <div className="steps-container" >
                 <h1>Siga os seguintes passos</h1>
-                <section className="steps-list">
+                <section className="steps-list" style={{width: "600px", margin:"auto", marginBlock: "50px"}}>
                     <div className="step">
                         <img src="/images/Vector.png" alt="Entrar"/>
                         <p><strong>Entre como votante</strong></p>
