@@ -12,6 +12,7 @@ export const Header = () => {
                 <div className="logo-bar">
                     <p>REPUBLICA PORTUGUESA</p>
                     <Link to={"/"}><img src="../../../public/images/Governo_de_Portugal_logo_grey.png" alt="Logo"/></Link>
+                    <Link to={"/"}><img src="../../../public/images/SGMAI_secretaria_geral.png" style={{height:"40px"}}/></Link>
                     <p>SITE OFFICIAL VOTO ESTATISTICAS <br/>GOVERNO REPUPLICA PORTUGUES</p>
                 </div>
             </header>
