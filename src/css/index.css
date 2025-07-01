@@ -334,6 +334,7 @@ form label {
     width: 200px;
     opacity: 0.9;
     color: white;
+    z-index: 1;
 }
 
 .corner h5 {
@@ -385,6 +386,8 @@ form label {
     padding: 20px 10px;
     font-size: 14px;
     margin-top: 40px;
+    position: relative;
+    z-index: 2;
 }
 
 .footer-content {
