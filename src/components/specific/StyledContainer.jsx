@@ -36,8 +36,9 @@ const variants = {
     }
 };
 
-const StyledContainer = ({ children, style, className, variant = "default" }) => (
+const StyledContainer = ({ children, style, className, variant = "default", ref }) => (
     <div
+        ref={ref}
         className={className}
         style={{...variants[variant], ...style}}
     >

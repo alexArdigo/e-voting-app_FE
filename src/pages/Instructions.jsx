@@ -2,10 +2,18 @@ import React from 'react';
 import { useNavigate } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout.jsx";
 import StyledContainer from "../components/specific/StyledContainer.jsx";
+import { useRef } from "react";
 
 const Instructions = () => {
 
-    const navigate = useNavigate();
+    const navigate = useNavigate()
+    const stepsRef = useRef(null);
+
+    const handleScroll = () => {
+        if (stepsRef.current) {
+            stepsRef.current.scrollIntoView({ behavior: 'smooth'});
+        }
+    }
 
     const handleClick = () => {
         navigate("/auth");
@@ -41,11 +49,11 @@ const Instructions = () => {
                 </ul>
             </StyledContainer>
             <StyledContainer variant="flex" style={{marginTop:"80px"}}>
-                <img src="/images/arrow-down.png" alt="arrow" style={{width: "100px"}}/>
+                <img src="/images/arrow-down.png" alt="arrow" style={{width: "100px", cursor: "pointer"}} onClick={handleScroll} />
             </StyledContainer>
-            <StyledContainer style={{width: "800px", padding: "10px"}} variant="transparent">
+            <StyledContainer style={{width: "800px", paddingColumn: "30px"}} variant="transparent" ref={stepsRef}>
 
-            <div className="steps-container">
+            <div className="steps-container" >
                 <h1>Siga os seguintes passos</h1>
                 <section className="steps-list">
                     <div className="step">
