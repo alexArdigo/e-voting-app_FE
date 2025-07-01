@@ -34,7 +34,7 @@ const Login = () => {
     }
 
     return (
-        <div>
+        <div className="user-info-container">
             <h3>Welcome back</h3>
             <form onSubmit={handleSubmit}>
                 <input type="text" id="username" value={username} onChange={(e) => {
