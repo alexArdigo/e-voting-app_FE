@@ -16,7 +16,7 @@ const VoterData = () => {
             toast("Por favor, confirme que os dados estão corretos.");
             return;
         }
-        navigate("/passos");
+        navigate("/election");
     }
 
     const handleInfo = async () => {
