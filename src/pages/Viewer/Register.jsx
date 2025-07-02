@@ -51,11 +51,7 @@ const Register = () => {
         <div className="Viewer">
             <MainLayout>
                 <div className="user-info-container">
-                    <img
-                        src="/images/legislativas-viewer.png"
-                        alt="Register"
-                        className="register-image"
-                    />
+                    <img src="/images/legislativas-viewer.png" alt="Register" className="register-image"/>
                     <h3>Formulário de Registo</h3>
 
                     <form onSubmit={handleSubmit}>
