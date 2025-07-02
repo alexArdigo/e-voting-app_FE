@@ -24,11 +24,10 @@ const HelpComment = ({ id, comment_text, pub_datetime, likes, answer }) => {
 
         try {
             if (!liked) {
-                await api.post(`/comments/${id}/like`);
+                await api.post(`/comment/${id}/like`);
                 setLiked(true);
             } else {
-                await api.post(`/comments/${id}/dislike`);
-                setLiked(false);
+                toast("Você considerou este comentário útil.");
             }
         } catch (e) {
             toast("Ocorreu um erro ao processar o seu like.");
