@@ -51,7 +51,7 @@ const SelectElectionPage = () => {
                 ) : (
                     <form onSubmit={handleSubmit}>
                         {activeElection.map((election) => (
-                            <div key={election.id} className={"step"} style={{ display: "flex", alignItems: "center", marginBlock:"30px"}}>
+                            <div key={election.id} className={"step"} style={{marginBlock:"30px", height:"25px", width:"1000px"}}>
                                 <label>
                                     <input
                                         type="radio"
@@ -59,6 +59,7 @@ const SelectElectionPage = () => {
                                         value={election.id}
                                         checked={selectedOption === election.id.toString()}
                                         onChange={(e) => setSelectedOption(e.target.value)}
+                                        style={{ marginRight: "10px" }}
                                     />
                                     {election.name}
                                 </label>
@@ -66,7 +67,7 @@ const SelectElectionPage = () => {
                             </div>
                         ))}
                         <div className="button-wrapper">
-                            <button type="submit" disabled={!selectedOption}>Prosseguir</button>
+                            <button className="vote-button" type="submit" disabled={!selectedOption}>Prosseguir</button>
                         </div>
                     </form>
                     )}
