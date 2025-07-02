@@ -15,7 +15,7 @@ const Home = () => {
             <div className={"corner"}>
                 <h5>Não és um eleitor?</h5>
                 <div className={"login-button-wrapper"}>
-                    <button className={"login-button"}>Login</button>
+                    <button className={"login-button"} onClick={() => navigate("/login")}>Login</button>
                 </div>
 
             </div>
