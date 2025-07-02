@@ -50,7 +50,7 @@ const Login = () => {
                     }} placeholder="Palavra-passe"/>
                     <button type="submit">Entrar</button>
                     <br/>
-                    <img src="./../public/images/legislativas-viewer.png" alt="Login" className="login-image"/>
+                    <img src="/images/legislativas-viewer.png" alt="Login" className="login-image"/>
                     <p>Não tem conta? Registe-se <a style={{color: "white"}} href="/register"><strong>aqui.</strong></a>
                     </p>
                 </form>
