@@ -16,14 +16,18 @@ import SelectElectionPage from "./pages/SelectElectionPage.jsx";
 import BallotPage from "./pages/BallotPage.jsx";
 import Login from "./pages/Viewer/Login";
 import Register from "./pages/Viewer/Register";
+import Header from "./components/common/Header";
+import Footer from "./components/common/Footer";
 
 
 function App() {
 
     return (
         <>
+
             <ToastContainer/>
             <BrowserRouter>
+            <Header/>
                 <UserProvider>
                     <Routes>
                         <Route path="/" element={<Home/>}/>
@@ -42,6 +46,7 @@ function App() {
                         <Route path="/register" element={<Register/>}/>
                     </Routes>
                 </UserProvider>
+            <Footer/>
             </BrowserRouter>
         </>
     );
