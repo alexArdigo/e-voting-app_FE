@@ -29,7 +29,7 @@ const HelpComment = ({ id, comment_text, pub_datetime, likes, answer }) => {
                 setLiked(true);
                 setLikeCount(prev => prev + 1);
             } else {
-                toast("Você considerou este comentário útil.");
+                toast("Você já considerou este comentário útil.");
             }
         } catch (e) {
             toast("Ocorreu um erro ao processar o seu like.");

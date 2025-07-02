@@ -11,6 +11,8 @@ import '../css/Ballot.css';
 const BallotPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const electionId = location.state?.electionId;
+
     const [parties, setParties] = useState([]);
     const [selectedParty, setSelectedParty] = useState('');
     const [timeLeft, setTimeLeft] = useState(300);
@@ -29,8 +31,12 @@ const BallotPage = () => {
 
     useEffect(() => {
         const fetchParties = async () => {
+            if (!electionId) {
+                setLoading(false);
+                return;
+            }
             try {
-                const response = await api.get(`/elections/{id}/ballot`);
+                const response = await api.get(`/elections/${electionId}/ballot`);
                 setParties(response.data || []);
             } catch (error) {
                 console.error('Error fetching parties:', error);
@@ -45,12 +51,8 @@ const BallotPage = () => {
             }
         };
 
-        if (location.state?.electionId) {
-            fetchParties();
-        } else {
-            setLoading(false);
-        }
-    }, [location.state?.electionId]);
+        fetchParties();
+    }, [electionId]);
 
     const handleSubmit = async () => {
         if (!selectedParty) {
@@ -61,7 +63,7 @@ const BallotPage = () => {
 
         setSubmitting(true);
         try {
-            await api.post(`/elections/{id}/ballot`, { partyId: selectedParty });
+            await api.post(`/elections/${electionId}/ballot`, { partyId: selectedParty });
             toast.success('Voto submetido com sucesso!');
             navigate('/submitted', {
                 state: {
