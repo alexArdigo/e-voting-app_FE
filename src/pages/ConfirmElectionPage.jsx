@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 
 import {useNavigate, useLocation} from "react-router-dom";
@@ -31,7 +31,18 @@ const ConfirmElectionPage = () => {
                 </label>
             </StyledContainer>
             <div className={"button-wrapper"}>
-            <button className="vote-button" disabled={!confirmed} onClick={() => navigate("/ballot")}>Votar</button>
+                <button
+                    className="vote-button"
+                    onClick={() => navigate("/ballot", {
+                        state: {
+                            electionId: location.state.selectedElectionId,
+                            electionName: location.state.selectedElectionName
+                        }
+                    })}
+                >
+                    Votar
+                </button>
+
             </div>
         </MainLayout>
 

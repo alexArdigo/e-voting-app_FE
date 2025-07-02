@@ -19,7 +19,9 @@ const SelectElectionPage = () => {
                 const response = await api.get("/election/notactive");
                 setElections(response.data || []);
                 const responseActive = await api.get("/election/active");
-                setActiveElection(responseActive.data || []);
+                const active = responseActive.data;
+
+                setActiveElection(Array.isArray(active) ? active : [active]);
 
             } catch (e) {
                 console.error(e);
@@ -37,7 +39,10 @@ const SelectElectionPage = () => {
             return;
         }
         const selectedElection = activeElection.find(e => e.id.toString() === selectedOption);
-        navigate("/confirm", {state: {selectedElectionName: selectedElection?.name}});
+        navigate("/confirm", { state: {
+                selectedElectionId: selectedElection?.id,
+                selectedElectionName: selectedElection?.name
+            }});
     };
 
     return (
@@ -52,6 +57,10 @@ const SelectElectionPage = () => {
                     <form onSubmit={handleSubmit}>
                         {activeElection.map((election) => (
                             <div key={election.id} className={"step"} style={{marginBlock:"30px", height:"25px", width:"1000px"}}>
+                        {activeElection
+                            .filter(e => e && e.id && e.name)
+                            .map((election) => (
+                            <div key={election.id} className={"step"} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBlock:"30px"}}>
                                 <label>
                                     <input
                                         type="radio"
