@@ -37,7 +37,12 @@ const BallotPage = () => {
             }
             try {
                 const response = await api.get(`/elections/${electionId}/ballot`);
-                setParties(response.data || []);
+                const partiesData = response.data.map(org => ({
+                    id: org.id,
+                    name: org.organisationName,
+                    fullName: org.fullName || ''
+                }));
+                setParties(partiesData);
             } catch (error) {
                 console.error('Error fetching parties:', error);
                 toast.error('Erro ao carregar opções de voto');

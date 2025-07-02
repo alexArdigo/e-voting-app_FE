@@ -37,7 +37,10 @@ const SelectElectionPage = () => {
             return;
         }
         const selectedElection = activeElection.find(e => e.id.toString() === selectedOption);
-        navigate("/confirm", {state: {selectedElectionName: selectedElection?.name}});
+        navigate("/confirm", { state: {
+                selectedElectionId: selectedElection?.id,
+                selectedElectionName: selectedElection?.name
+            }});
     };
 
     return (
