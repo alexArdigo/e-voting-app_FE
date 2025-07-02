@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {useUserContext} from "../../services/UserContext";
 import {useNavigate} from "react-router-dom";
 import api from "../../services/api";
+import Header from "../../components/common/Header";
 
 
 const Login = () => {
@@ -26,7 +27,7 @@ const Login = () => {
             const user = response.data;
             contexto.setUser(user);
 
-            navigate("/");
+            navigate("/stats");
         } catch (e) {
             console.error("Erro ao fazer login:", e);
             alert("Credenciais inválidas ou erro no servidor.");
@@ -34,8 +35,11 @@ const Login = () => {
     }
 
     return (
+
+        <>
+            <Header/>
         <div className="user-info-container">
-            <h3>Welcome back</h3>
+            <h3>Entrar</h3>
             <form onSubmit={handleSubmit}>
                 <input type="text" id="username" value={username} onChange={(e) => {
                     setUsername(e.target.value);
@@ -45,12 +49,15 @@ const Login = () => {
                 }} placeholder="Palavra-passe"/>
                 <button type="submit">Login</button>
                 <br/>
-                <p>Não tem conta? Registe-se <strong>aqui. </strong><a style={{color: "black", fontWeight: "bold"}} href="/register">Register
-                    here</a></p>
+                <p>Não tem conta? Registe-se <a style={{color: "black"}} href="/register"><strong>aqui.</strong></a></p>
             </form>
         </div>
+
+        </>
     );
 
 }
 
 export default Login;
+
+
