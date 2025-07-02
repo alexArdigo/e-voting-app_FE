@@ -15,11 +15,11 @@ const ConfirmElectionPage = () => {
     return (
         <>
         <MainLayout className="dflxColumn">
-            <StyledContainer variant="yellow" style={{paddingInline: "100px", paddingBlock: "50px", margin: "100px"}}>
+            <StyledContainer variant="tranparent" style={{paddingBlock: "100px"}}>
                 <p>Selecionou:</p>
                 <h1>{selectedElectionName || "Nome da eleição não disponível"}</h1>
             </StyledContainer>
-            <StyledContainer>
+            <StyledContainer variant="tranparent" >
                 <p>Ao clicar em “Votar” irá ser redirecionado para o seu boletim de voto eletrónico, a partir desse
                     momentoserão disponibilizados 5 minutos para submeter o seu voto. </p>
             </StyledContainer>
