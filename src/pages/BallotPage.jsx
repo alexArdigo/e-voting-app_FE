@@ -68,7 +68,7 @@ const BallotPage = () => {
 
         setSubmitting(true);
         try {
-            await api.post(`/elections/${electionId}/ballot`, { partyId: selectedParty });
+            await api.post(`/elections/${electionId}/castVote`, { partyId: selectedParty });
             toast.success('Voto submetido com sucesso!');
             navigate('/submitted', {
                 state: {
