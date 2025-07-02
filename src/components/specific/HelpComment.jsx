@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useUserContext } from "../../services/UserContext.jsx";
 import { toast } from "react-toastify";
 import api from "../../services/api.jsx";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
 const HelpComment = ({ id, comment_text, pub_datetime, likes, answer }) => {
     const { user } = useUserContext();
@@ -43,7 +45,7 @@ const HelpComment = ({ id, comment_text, pub_datetime, likes, answer }) => {
             <div className="like-row">
                 <span>Este comentário foi útil?</span>
                 <button type="button" onClick={handleLike}>
-                    {liked ? "\u2665" : "\u2661"}
+                 {liked ? <FontAwesomeIcon icon={faThumbsUp} /> : <FontAwesomeIcon icon={faThumbsUp} style={{ color: "black" }} />}
                 </button>
                 <span>{likes.length}</span>
             </div>

@@ -367,8 +367,10 @@ form label {
 .like-row {
     display: flex;
     align-items: center;
+    justify-content: right;
     gap: 8px;
-    margin-top: 10px;
+    margin-top: 5px;
+    height: 10px;
 }
 
 .like-row button {
