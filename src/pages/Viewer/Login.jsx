@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import {useUserContext} from "../../services/UserContext";
 import {useNavigate} from "react-router-dom";
 import api from "../../services/api";
-import Header from "../../components/common/Header";
+import './viewer.css';
+import MainLayout from "../../layouts/MainLayout";
 
 
 const Login = () => {
@@ -36,24 +37,24 @@ const Login = () => {
 
     return (
 
-        <>
-            <Header/>
-        <div className="user-info-container">
-            <h3>Entrar</h3>
-            <form onSubmit={handleSubmit}>
-                <input type="text" id="username" value={username} onChange={(e) => {
-                    setUsername(e.target.value);
-                }} placeholder="Nome de utilizador"/>
-                <input type="password" id="password" value={password} onChange={(e) => {
-                    setPassword(e.target.value);
-                }} placeholder="Palavra-passe"/>
-                <button type="submit">Login</button>
-                <br/>
-                <p>Não tem conta? Registe-se <a style={{color: "black"}} href="/register"><strong>aqui.</strong></a></p>
-            </form>
-        </div>
-
-        </>
+        <MainLayout>
+            <div className="user-info-container">
+                <h3>ACESSO AO PORTAL DE UTILIZADOR</h3>
+                <form onSubmit={handleSubmit}>
+                    <input type="text" id="username" value={username} onChange={(e) => {
+                        setUsername(e.target.value);
+                    }} placeholder="Nome de utilizador"/>
+                    <input type="password" id="password" value={password} onChange={(e) => {
+                        setPassword(e.target.value);
+                    }} placeholder="Palavra-passe"/>
+                    <button type="submit">Entrar</button>
+                    <br/>
+                    <img src="./../public/images/legislativas-viewer.png" alt="Login" className="login-image"/>
+                    <p>Não tem conta? Registe-se <a style={{color: "white"}} href="/register"><strong>aqui.</strong></a>
+                    </p>
+                </form>
+            </div>
+        </MainLayout>
     );
 
 }

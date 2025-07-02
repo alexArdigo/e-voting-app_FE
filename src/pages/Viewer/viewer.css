@@ -1,0 +1,92 @@
+body {
+    background: linear-gradient(to right, #58A65B, #B9996A, #FD6564);
+
+}
+
+#root {
+    margin: 0;
+    height: 100%;
+}
+
+.footer {
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.login-image {
+    max-height: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.user-info-container h3{
+    color: white;
+    font-size: x-large;
+    text-align: center;
+    margin: 50px;
+    font-weight: bold;
+
+}
+
+.user-info-container {
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+
+}
+
+.user-info-container input,
+.user-info-container button {
+    display: block;
+    width: 300px;
+    margin: 0 auto 1rem auto;
+    box-sizing: border-box;
+}
+
+.user-info-container input[type="text"],
+.user-info-container input[type="password"] {
+    padding: 1rem;
+    border: 1px solid #333;
+    border-radius: 7px;
+    background: white;
+    font-size: 1rem;
+}
+
+.user-info-container button[type="submit"] {
+    width: 120px;
+    padding: 0.9rem;
+    background: #4a9d5f;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    border: 1px solid #333;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.user-info-container button[type="submit"]:hover {
+    background: #3d8450;
+}
+
+.user-info-container p {
+    color: white;
+    text-align: center;
+    margin: 50px;
+}
+
+.user-info-container p a {
+    text-decoration: none;
+}
+
+.register-image {
+    position: absolute;
+    display: flex;
+    right: 32%;
+    top: 30%;
+    height: 580px;
+    opacity: 0.5;
+    z-index: -1;
+}
+
