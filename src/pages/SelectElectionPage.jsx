@@ -55,26 +55,23 @@ const SelectElectionPage = () => {
                     <p>A carregar...</p>
                 ) : (
                     <form onSubmit={handleSubmit}>
-                        {activeElection.map((election) => (
-                            <div key={election.id} className={"step"} style={{marginBlock:"30px", height:"25px", width:"1000px"}}>
                         {activeElection
                             .filter(e => e && e.id && e.name)
                             .map((election) => (
-                            <div key={election.id} className={"step"} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBlock:"30px"}}>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="election"
-                                        value={election.id}
-                                        checked={selectedOption === election.id.toString()}
-                                        onChange={(e) => setSelectedOption(e.target.value)}
-                                        style={{ marginRight: "10px" }}
-                                    />
-                                    {election.name}
-                                </label>
-                                {/*{selectedOption === election.id.toString() && (<button type="submit">Prosseguir</button>)}*/}
-                            </div>
-                        ))}
+                                <div key={election.id} className={"step"} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBlock:"30px", width:"1000px" }}>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="election"
+                                            value={election.id}
+                                            checked={selectedOption === election.id.toString()}
+                                            onChange={(e) => setSelectedOption(e.target.value)}
+                                            style={{ marginRight: "10px" }}
+                                        />
+                                        {election.name}
+                                    </label>
+                                </div>
+                            ))}
                         <div className="button-wrapper">
                             <button className="vote-button" type="submit" disabled={!selectedOption}>Prosseguir</button>
                         </div>
