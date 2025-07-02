@@ -51,7 +51,7 @@ const SelectElectionPage = () => {
                 ) : (
                     <form onSubmit={handleSubmit}>
                         {activeElection.map((election) => (
-                            <div key={election.id} className={"step"} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBlock:"30px"}}>
+                            <div key={election.id} className={"step"} style={{ display: "flex", alignItems: "center", marginBlock:"30px"}}>
                                 <label>
                                     <input
                                         type="radio"
