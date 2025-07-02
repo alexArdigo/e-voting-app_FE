@@ -24,7 +24,18 @@ const ConfirmElectionPage = () => {
                     momentoserão disponibilizados 5 minutos para submeter o seu voto. </p>
             </StyledContainer>
             <div className={"button-wrapper"}>
-            <button className="vote-button" onClick={() => navigate("/ballot")}>Votar</button>
+                <button
+                    className="vote-button"
+                    onClick={() => navigate("/ballot", {
+                        state: {
+                            electionId: location.state.selectedElectionId,
+                            electionName: location.state.selectedElectionName
+                        }
+                    })}
+                >
+                    Votar
+                </button>
+
             </div>
         </MainLayout>
 
