@@ -16,6 +16,7 @@ const Instructions = () => {
     }
 
     const handleClick = () => {
+        window.scrollTo(0, 0);
         navigate("/auth");
     }
 
@@ -92,4 +93,3 @@ const Instructions = () => {
 };
 
 export default Instructions;
-

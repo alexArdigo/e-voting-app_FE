@@ -33,6 +33,15 @@ const variants = {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+    },
+    warning: {
+        padding: "10px",
+        borderRadius: "12px",
+        background: "#fff3cd",
+        border: "2px solid #ffeeba",
+        color: "#856404",
+        paddingInline: "30px",
+        width: "600px",
     }
 };
 
