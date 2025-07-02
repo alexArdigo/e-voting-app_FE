@@ -6,11 +6,16 @@ import StyledContainer from '../components/specific/StyledContainer.jsx';
 import Timer from '../components/specific/Timer.jsx';
 import BallotForm from '../components/specific/BallotForm.jsx';
 import api from '../services/api.jsx';
+import { useUserContext } from '../services/UserContext.jsx';
 import '../css/Ballot.css';
 
 const BallotPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const electionId = location.state?.electionId;
+
+    const { user } = useUserContext();
+
     const [parties, setParties] = useState([]);
     const [selectedParty, setSelectedParty] = useState('');
     const [timeLeft, setTimeLeft] = useState(300);
@@ -29,9 +34,18 @@ const BallotPage = () => {
 
     useEffect(() => {
         const fetchParties = async () => {
+            if (!electionId) {
+                setLoading(false);
+                return;
+            }
             try {
-                const response = await api.get(`/elections/{id}/ballot`);
-                setParties(response.data || []);
+                const response = await api.get(`/elections/${electionId}/ballot`);
+                const partiesData = response.data.map(org => ({
+                    id: org.id,
+                    name: org.organisationName,
+                    fullName: org.fullName || ''
+                }));
+                setParties(partiesData);
             } catch (error) {
                 console.error('Error fetching parties:', error);
                 toast.error('Erro ao carregar opções de voto');
@@ -45,23 +59,34 @@ const BallotPage = () => {
             }
         };
 
-        if (location.state?.electionId) {
-            fetchParties();
-        } else {
-            setLoading(false);
-        }
-    }, [location.state?.electionId]);
+        fetchParties();
+    }, [electionId]);
 
     const handleSubmit = async () => {
         if (!selectedParty) {
             toast.warning('Por favor, selecione uma opção antes de submeter.');
             return;
         }
+        if (!electionId) {
+            toast.error('ID da eleição não está definido.');
+            return;
+        }
+        if (!user?.nif) {
+            toast.error('NIF do eleitor não está disponível. Faça login novamente.');
+            return;
+        }
         if (submitting) return;
 
         setSubmitting(true);
         try {
-            await api.post(`/elections/{id}/ballot`, { partyId: selectedParty });
+            const voteRequest = {
+                voterNif: user.nif,
+                electionId: electionId,
+                organisationId: selectedParty,
+                municipalityName: user.municipality || null
+            };
+
+            await api.post(`/elections/${electionId}/castVote`, voteRequest);
             toast.success('Voto submetido com sucesso!');
             navigate('/submitted', {
                 state: {
