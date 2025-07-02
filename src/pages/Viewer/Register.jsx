@@ -2,6 +2,7 @@ import api from "../../services/api";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import './viewer.css';
+import MainLayout from "../../layouts/MainLayout";
 
 
 
@@ -48,9 +49,7 @@ const Register = () => {
     }
 
     return (
-        <>
-            <section id="forms">
-
+        <MainLayout>
                 <div className="user-info-container">
                     <h3>Formulário de Registo</h3>
 
@@ -71,10 +70,7 @@ const Register = () => {
                     </form>
 
                 </div>
-            </section>
-
-
-        </>
+        </MainLayout>
     )
 }
 
