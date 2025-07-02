@@ -48,30 +48,55 @@ const Register = () => {
     }
 
     return (
-        <MainLayout>
-            <div className="user-info-container">
-                <img src="./../public/images/legislativas-viewer.png" alt="Register" className="register-image"/>
+        <div className="Viewer">
+            <MainLayout>
+                <div className="user-info-container">
+                    <img
+                        src="/images/legislativas-viewer.png"
+                        alt="Register"
+                        className="register-image"
+                    />
                     <h3>Formulário de Registo</h3>
 
-
                     <form onSubmit={handleSubmit}>
-
-                        <input id="username" type="text" name="username" placeholder="Nome de utilizador"
-                               value={inputs.username}
-                               onChange={handleInputs}/>
-                        <input id="password" type="password" name="password" placeholder="Palavra-passe"
-                               value={inputs.password} onChange={handleInputs}/>
-                        <input id="name" type="text" name="name" placeholder="Nome" value={inputs.name}
-                               onChange={handleInputs}/>
-                        <input id="institutionName" type="text" name="institutionName" placeholder="Instituição"
-                               value={inputs.institutionName} onChange={handleInputs}/>
+                        <input
+                            id="username"
+                            type="text"
+                            name="username"
+                            placeholder="Nome de utilizador"
+                            value={inputs.username}
+                            onChange={handleInputs}
+                        />
+                        <input
+                            id="password"
+                            type="password"
+                            name="password"
+                            placeholder="Palavra-passe"
+                            value={inputs.password}
+                            onChange={handleInputs}
+                        />
+                        <input
+                            id="name"
+                            type="text"
+                            name="name"
+                            placeholder="Nome"
+                            value={inputs.name}
+                            onChange={handleInputs}
+                        />
+                        <input
+                            id="institutionName"
+                            type="text"
+                            name="institutionName"
+                            placeholder="Instituição"
+                            value={inputs.institutionName}
+                            onChange={handleInputs}
+                        />
 
                         <button type="submit">Registar</button>
-                        <br/>
                     </form>
-            </div>
-</MainLayout>
-)
+                </div>
+            </MainLayout>
+        </div>
+    );
 }
-
 export default Register;

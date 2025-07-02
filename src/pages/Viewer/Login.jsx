@@ -37,6 +37,7 @@ const Login = () => {
 
     return (
 
+        <body className="Viewer">
         <MainLayout>
             <div className="user-info-container">
                 <h3>ACESSO AO PORTAL DE UTILIZADOR</h3>
@@ -55,6 +56,7 @@ const Login = () => {
                 </form>
             </div>
         </MainLayout>
+        </body>
     );
 
 }
