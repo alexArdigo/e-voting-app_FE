@@ -33,7 +33,7 @@ const Register = () => {
         try {
             await api.post("/registerViewer", body);
 
-            navigate("/stats", {state: {data: inputs}});
+            navigate("/login", {state: {data: inputs}});
 
         } catch (e) {
             if (e.response?.data?.includes("exists")) {
@@ -59,7 +59,7 @@ const Register = () => {
                                onChange={handleInputs}/>
                         <input id="password" type="password" name="password" placeholder="Palavra-passe"
                                value={inputs.password} onChange={handleInputs}/>
-                        <input id="name" type="text" name="name" placeholder="Nome Completo" value={inputs.name}
+                        <input id="name" type="text" name="name" placeholder="Nome" value={inputs.name}
                                  onChange={handleInputs}/>
                         <input id="institutionName" type="text" name="institutionName" placeholder="Instituição"
                                  value={inputs.institutionName} onChange={handleInputs}/>
