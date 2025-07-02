@@ -8,6 +8,7 @@ import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 const HelpComment = ({ id, comment_text, pub_datetime, likes, answer }) => {
     const { user } = useUserContext();
     const [liked, setLiked] = useState(false);
+    const [likeCount, setLikeCount] = useState(likes.length);
 
     useEffect(() => {
         if (user) {
@@ -26,6 +27,7 @@ const HelpComment = ({ id, comment_text, pub_datetime, likes, answer }) => {
             if (!liked) {
                 await api.post(`/comment/${id}/like`);
                 setLiked(true);
+                setLikeCount(prev => prev + 1);
             } else {
                 toast("Você considerou este comentário útil.");
             }
@@ -46,7 +48,7 @@ const HelpComment = ({ id, comment_text, pub_datetime, likes, answer }) => {
                 <button type="button" onClick={handleLike}>
                  {liked ? <FontAwesomeIcon icon={faThumbsUp} /> : <FontAwesomeIcon icon={faThumbsUp} style={{ color: "black" }} />}
                 </button>
-                <span>{likes.length}</span>
+                <span>{likeCount}</span>
             </div>
 
             {answer && (
