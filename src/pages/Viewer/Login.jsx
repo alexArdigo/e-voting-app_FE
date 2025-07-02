@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {useUserContext} from "../../services/UserContext";
 import {useNavigate} from "react-router-dom";
 import api from "../../services/api";
-
 import './viewer.css';
 import MainLayout from "../../layouts/MainLayout";
 
