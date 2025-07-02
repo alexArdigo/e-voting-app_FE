@@ -1,5 +1,6 @@
 .Viewer {
     background: linear-gradient(to right, #58A65B, #B9996A, #FD6564);
+    z-index: -2;
 }
 
 #root {
@@ -81,11 +82,11 @@
 
 .register-image {
     position: absolute;
-    display: flex;
     right: 32%;
-    top: 30%;
+    top: 31%;
     height: 580px;
-    opacity: 0.5;
+    opacity: 0.7;
     z-index: -1;
+
 }
 
