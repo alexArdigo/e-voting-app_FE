@@ -19,7 +19,9 @@ const SelectElectionPage = () => {
                 const response = await api.get("/election/notactive");
                 setElections(response.data || []);
                 const responseActive = await api.get("/election/active");
-                setActiveElection(responseActive.data || []);
+                const active = responseActive.data;
+
+                setActiveElection(Array.isArray(active) ? active : [active]);
 
             } catch (e) {
                 console.error(e);
@@ -53,7 +55,9 @@ const SelectElectionPage = () => {
                     <p>A carregar...</p>
                 ) : (
                     <form onSubmit={handleSubmit}>
-                        {activeElection.map((election) => (
+                        {activeElection
+                            .filter(e => e && e.id && e.name)
+                            .map((election) => (
                             <div key={election.id} className={"step"} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBlock:"30px"}}>
                                 <label>
                                     <input

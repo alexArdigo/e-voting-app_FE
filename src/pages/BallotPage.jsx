@@ -14,7 +14,7 @@ const BallotPage = () => {
     const location = useLocation();
     const electionId = location.state?.electionId;
 
-    const { user } = useUserContext(); // pegar user do contexto
+    const { user } = useUserContext();
 
     const [parties, setParties] = useState([]);
     const [selectedParty, setSelectedParty] = useState('');

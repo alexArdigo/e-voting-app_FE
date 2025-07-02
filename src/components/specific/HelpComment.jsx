@@ -8,10 +8,10 @@ import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 const HelpComment = ({ id, comment_text, pub_datetime, likes, answer }) => {
     const { user } = useUserContext();
     const [liked, setLiked] = useState(false);
-    const [likeCount, setLikeCount] = useState(likes.length);
+    const [likeCount, setLikeCount] = useState((likes || []).length);
 
     useEffect(() => {
-        if (user) {
+        if (user && Array.isArray(likes)) {
             const hasLiked = likes.includes(user.id);
             setLiked(hasLiked);
         }
