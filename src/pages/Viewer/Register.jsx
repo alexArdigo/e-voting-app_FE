@@ -52,7 +52,7 @@ const Register = () => {
             <section id="forms">
 
                 <div className="user-info-container">
-                    <h2>Formulário de Registo</h2>
+                    <h3>Formulário de Registo</h3>
 
 
                     <form onSubmit={handleSubmit}>
@@ -66,7 +66,7 @@ const Register = () => {
                         <input id="institutionName" type="text" name="institutionName" placeholder="Instituição"
                                  value={inputs.institutionName} onChange={handleInputs}/>
 
-                        <input id="button" type="submit" value="Registar"></input><br/>
+                        <button type="submit">Registar</button><br/>
 
                     </form>
 
