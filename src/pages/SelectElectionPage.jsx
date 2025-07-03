@@ -17,7 +17,7 @@ const SelectElectionPage = () => {
         (async () => {
             try {
                 const response = await api.get("/election/notactive");
-                setElections(response.data || []);
+                setElections(Array.isArray(response.data) ? response.data : []);
                 const responseActive = await api.get("/election/active");
                 const active = responseActive.data;
 
@@ -81,8 +81,8 @@ const SelectElectionPage = () => {
                 <div className={"steps-container"} style={{width:"1000px"}}>
                     <section className="steps-list" style={{width:"1000px"}}>
                         {elections.map((election) => (
-                            <div className={"step"} style={{width:"1000px"}}>
-                                <p key={election.id}> {election.name} </p>
+                            <div className={"step"} key={election.id} style={{width:"1000px"}}>
+                                <p>{election.name}</p>
                             </div>
                         ))}
                     </section>

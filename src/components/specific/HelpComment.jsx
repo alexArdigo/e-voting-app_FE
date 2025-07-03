@@ -2,20 +2,28 @@ import { useEffect, useState } from "react";
 import { useUserContext } from "../../services/UserContext.jsx";
 import { toast } from "react-toastify";
 import api from "../../services/api.jsx";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
-const HelpComment = ({ id, comment_text, pub_datetime, likes, answer }) => {
+const HelpComment = ({ id, comment_text, pub_datetime, answer, likeCountInitial = 0 }) => {
     const { user } = useUserContext();
     const [liked, setLiked] = useState(false);
-    const [likeCount, setLikeCount] = useState((likes || []).length);
+    const [likeCount, setLikeCount] = useState(likeCountInitial);
 
     useEffect(() => {
-        if (user && Array.isArray(likes)) {
-            const hasLiked = likes.includes(user.id);
-            setLiked(hasLiked);
-        }
-    }, [user, likes]);
+        const fetchHasLiked = async () => {
+            if (user) {
+                try {
+                    const response = await api.get(`/comment/${id}/hasLiked`);
+                    setLiked(response.data);
+                } catch (error) {
+                    console.error("Erro ao verificar like:", error);
+                }
+            }
+        };
+
+        fetchHasLiked();
+    }, [user, id]);
 
     const handleLike = async () => {
         if (!user) {
@@ -27,7 +35,7 @@ const HelpComment = ({ id, comment_text, pub_datetime, likes, answer }) => {
             if (!liked) {
                 await api.post(`/comment/${id}/like`);
                 setLiked(true);
-                setLikeCount(prev => prev + 1);
+                setLikeCount((prev) => prev + 1);
             } else {
                 toast("Você já considerou este comentário útil.");
             }
@@ -46,7 +54,11 @@ const HelpComment = ({ id, comment_text, pub_datetime, likes, answer }) => {
             <div className="like-row">
                 <span>Este comentário foi útil?</span>
                 <button type="button" onClick={handleLike}>
-                 {liked ? <FontAwesomeIcon icon={faThumbsUp} /> : <FontAwesomeIcon icon={faThumbsUp} style={{ color: "black" }} />}
+                    {liked ? (
+                        <FontAwesomeIcon icon={faThumbsUp} />
+                    ) : (
+                        <FontAwesomeIcon icon={faThumbsUp} style={{ color: "black" }} />
+                    )}
                 </button>
                 <span>{likeCount}</span>
             </div>
