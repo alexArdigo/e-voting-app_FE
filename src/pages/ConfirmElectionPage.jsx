@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 import {useNavigate, useLocation} from "react-router-dom";
 import MainLayout from "../layouts/MainLayout.jsx";
 import StyledContainer from "../components/specific/StyledContainer.jsx";
+import {toast} from "react-toastify";
 
 
 const ConfirmElectionPage = () => {
@@ -12,6 +13,20 @@ const ConfirmElectionPage = () => {
     const location = useLocation();
     const selectedElectionName = location.state.selectedElectionName;
     const [confirmed, setConfirmed] = useState(false);
+
+    const handleCheckboxChange = () => {
+        if(!confirmed){
+            toast("Pfv confirme que compreende as condições para votar.");
+        }
+        else {
+            navigate("/ballot", {
+                state: {
+                    electionId: location.state.selectedElectionId,
+                    electionName: selectedElectionName
+                }
+            });
+        }
+    }
 
     return (
         <>
@@ -32,12 +47,7 @@ const ConfirmElectionPage = () => {
             <div className={"button-wrapper"} >
                 <button
                     className="vote-button"
-                    onClick={() => {confirmed && navigate("/ballot", {
-                        state: {
-                            electionId: location.state.selectedElectionId,
-                            electionName: location.state.selectedElectionName
-                        }
-                    })}}
+                    onClick={() => handleCheckboxChange()}
                 >
                     Votar
                 </button>
