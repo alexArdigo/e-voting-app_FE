@@ -21,9 +21,6 @@ export const Header = () => {
                     <li onClick={() => navigate("/contact")} >Contacto</li>
                     <li onClick={() => navigate("/help")} >Ajuda</li>
                     <li><Link to="/faq">FAQ</Link></li>
-                    {/*<li>*/}
-                    {/*    <button>Login</button>*/}
-                    {/*</li>*/}
                 </ul>
             </div>
         </>
