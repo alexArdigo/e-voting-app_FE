@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 
 import {useNavigate, useLocation} from "react-router-dom";
@@ -17,12 +17,11 @@ const ConfirmElectionPage = () => {
         <>
         <MainLayout className="dflxColumn">
             <StyledContainer variant="tranparent" style={{paddingBlock: "100px"}}>
-                <p>Selecionou:</p>
+                <p >Selecionou:</p>
                 <h1 style={{fontSize: "50px"}}>{selectedElectionName || "Nome da eleição não disponível"}</h1>
             </StyledContainer>
             <StyledContainer variant="warning" style={{width: "600px", justifyContent: "center"}} >
-                <p>Ao clicar em “Votar” irá ser redirecionado para o seu boletim de voto eletrónico, a partir desse
-                    momentoserão disponibilizados 5 minutos para submeter o seu voto. </p>
+                <p>Atenção! Ao clicar em “Votar” irá ser redirecionado para o seu boletim de voto eletrónico. Terá 5 minutos para submeter o seu voto. </p>
                 <label>
                     <div style={{display: "flex", alignItems: "center", gap: "10px"}}>
                     <input style={{padding: "10px"}} type="checkbox" id="dataConfirmation" name="dataConfirmation" onChange={() => setConfirmed(!confirmed)}/>
@@ -30,15 +29,15 @@ const ConfirmElectionPage = () => {
                     </div>
                 </label>
             </StyledContainer>
-            <div className={"button-wrapper"}>
+            <div className={"button-wrapper"} >
                 <button
                     className="vote-button"
-                    onClick={() => navigate("/ballot", {
+                    onClick={() => {confirmed && navigate("/ballot", {
                         state: {
                             electionId: location.state.selectedElectionId,
                             electionName: location.state.selectedElectionName
                         }
-                    })}
+                    })}}
                 >
                     Votar
                 </button>

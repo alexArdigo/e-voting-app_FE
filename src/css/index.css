@@ -26,6 +26,7 @@ label input,
 .home-container {
     position: relative;
     height: 100vh;
+    width: 100vw;
     background-image: url("/images/assembleia.jpg");
     background-size: cover;
     background-position: center;
@@ -135,7 +136,7 @@ label input,
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 60vh;
+    min-height: 70vh;
     padding: 40px;
     gap: 60px;
     max-width: 1000px;

@@ -1,7 +1,5 @@
-.Viewer {
+body {
     background: linear-gradient(to right, #58A65B, #B9996A, #FD6564);
-    z-index: -2;
-    min-height: 100%;
 
 }
 
