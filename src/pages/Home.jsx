@@ -12,13 +12,10 @@ const Home = () => {
                 <button className="home-button" onClick={() => navigate("/instructions")}>EU VOTO</button>
             </div>
 
-            <div className={"corner"}>
-                <h5>Não és um eleitor?</h5>
                 <div className={"login-button-wrapper"}>
+                    <h5>Não é eleitor?</h5>
                     <button className="login-button" onClick={() => navigate("/login")}>Login</button>
                 </div>
-
-            </div>
 
         </main>
     );
