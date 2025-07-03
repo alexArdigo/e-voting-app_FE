@@ -5,10 +5,10 @@ import api from "../../services/api.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
-const HelpComment = ({ id, comment_text, pub_datetime, answer, likeCountInitial = 0 }) => {
+const HelpComment = ({ id, comment_text, pub_datetime, answer, likes = [] }) => {
     const { user } = useUserContext();
     const [liked, setLiked] = useState(false);
-    const [likeCount, setLikeCount] = useState(likeCountInitial);
+    const [likeCount, setLikeCount] = useState(likes.length);
 
     useEffect(() => {
         const fetchHasLiked = async () => {
