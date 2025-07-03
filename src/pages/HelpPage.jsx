@@ -13,7 +13,7 @@ const HelpPage = () => {
                     </h1>
                 </StyledContainer>
 
-                <StyledContainer variant="transparent" style={{width: "800px"}}>
+                <StyledContainer variant="transparent" style={{width: "800px", lineHeight:"2em"}}>
                     <h1>Eleições Presidenciais:</h1>
                     <p>
                         Nas eleições presidenciais, os cidadãos escolhem quem será o Presidente da República. Cada eleitor pode votar num dos candidatos oficialmente apresentados. O Presidente é eleito por sufrágio direto e universal, e vence o candidato que obtiver mais de 50% dos votos válidos. Caso nenhum candidato alcance essa maioria absoluta na primeira volta, realiza-se uma segunda volta entre os dois mais votados. Neste sistema eletrónico, basta selecionar o seu candidato e confirmar o voto — o processo é simples, seguro e auditável.
