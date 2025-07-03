@@ -35,7 +35,7 @@ function App() {
                         <Route path="/faq" element={<Faq/>}/>
                         <Route path="/auth" element={<AuthPage/>}/>
                         <Route path="/instructions" element={<Instructions/>}/>
-                        <Route path="/default" element={<HalfLogo/>}/>
+                        {/*<Route path="/default" element={<HalfLogo/>}/>*/}
                         <Route path="/contact" element={<ContactPage/>}/>
                         <Route path="/help" element={<HelpPage/>}/>
                         <Route path="/submitted" element={<VoteSubmitedPage/>}/>
