@@ -24,8 +24,6 @@ const variants = {
     },
     leftCentered: {
         display: "flex",
-        alignItems: "flex-start",
-        justifyContent: "flex-start",
     },
     flex: {
         padding: "25px",
