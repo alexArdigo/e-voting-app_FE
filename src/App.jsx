@@ -27,8 +27,10 @@ function App() {
 
             <ToastContainer/>
             <BrowserRouter>
-            <Header/>
+            <Footer/>
                 <UserProvider>
+                    <Header/>
+
                     <Routes>
                         <Route path="/" element={<Home/>}/>
                         <Route path="/voter-data" element={<VoterProfile/>}/>
@@ -46,7 +48,6 @@ function App() {
                         <Route path="/register" element={<Register/>}/>
                     </Routes>
                 </UserProvider>
-            <Footer/>
             </BrowserRouter>
         </>
     );
