@@ -1,12 +1,11 @@
 import UserProvider from "./services/UserContext.jsx";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {ToastContainer} from 'react-toastify';
 import Faq from "./pages/Faq.jsx";
 import Home from "./pages/Home.jsx";
 import AuthPage from "./pages/AuthPage.jsx";
 import Instructions from "./pages/Instructions.jsx";
 import "./css/App.css"
-import HalfLogo from "./components/common/HalfLogo.jsx";
 import ContactPage from "./pages/ContactPage.jsx";
 import VoterProfile from "./pages/VoterProfile.jsx";
 import HelpPage from "./pages/HelpPage.jsx";
@@ -27,7 +26,6 @@ function App() {
 
             <ToastContainer/>
             <BrowserRouter>
-            <Footer/>
                 <UserProvider>
                     <Header/>
 
@@ -37,7 +35,6 @@ function App() {
                         <Route path="/faq" element={<Faq/>}/>
                         <Route path="/auth" element={<AuthPage/>}/>
                         <Route path="/instructions" element={<Instructions/>}/>
-                        {/*<Route path="/default" element={<HalfLogo/>}/>*/}
                         <Route path="/contact" element={<ContactPage/>}/>
                         <Route path="/help" element={<HelpPage/>}/>
                         <Route path="/submitted" element={<VoteSubmitedPage/>}/>
@@ -47,6 +44,8 @@ function App() {
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/register" element={<Register/>}/>
                     </Routes>
+
+                    <Footer/>
                 </UserProvider>
             </BrowserRouter>
         </>
