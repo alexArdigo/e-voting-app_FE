@@ -37,6 +37,7 @@ const Login = () => {
 
     return (
 
+        <div className="Viewer">
         <MainLayout>
             <div className="user-info-container">
                 <h3>ACESSO AO PORTAL DE UTILIZADOR</h3>
@@ -49,12 +50,13 @@ const Login = () => {
                     }} placeholder="Palavra-passe"/>
                     <button type="submit">Entrar</button>
                     <br/>
-                    <img src="./../public/images/legislativas-viewer.png" alt="Login" className="login-image"/>
+                    <img src="/images/legislativas-viewer.png" alt="Login" className="login-image"/>
                     <p>Não tem conta? Registe-se <a style={{color: "white"}} href="/register"><strong>aqui.</strong></a>
                     </p>
                 </form>
             </div>
         </MainLayout>
+        </div>
     );
 
 }

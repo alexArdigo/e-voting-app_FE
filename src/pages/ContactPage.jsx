@@ -14,7 +14,7 @@ const ContactPage = () => {
                         Contactos &<br/> Atendimento
                     </h1>
                 </StyledContainer>
-                <StyledContainer variant="transparent">
+                <StyledContainer variant="transparent" style={{width: "800px", lineHeight:"2em"}}>
                         <h1> Localização: </h1>
 
                         <p>Av. D. Carlos I, 134 - 5.º
@@ -34,7 +34,7 @@ const ContactPage = () => {
                 </StyledContainer>
 
             </MainLayout>
-            <HalfLogo></HalfLogo>
+            <HalfLogo/>
         </>
 
 

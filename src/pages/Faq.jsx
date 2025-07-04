@@ -75,7 +75,7 @@ const Faq = () => {
                                     id={comment.id}
                                     comment_text={comment.comment}
                                     pub_datetime={comment.localDateTime}
-                                    likes={comment.voterHashLike}
+                                    likes={comment.likedBy}
                                     answer={comment.answer?.answer}
                                 />
 
@@ -118,9 +118,8 @@ const Faq = () => {
                     <div className={"button-wrapper"}>
                         <button type="submit">Enviar</button>
                     </div>
-
                 </form>
-                <HalfLogo/>
+                <HalfLogo />
             </div>
         </MainLayout>
     );

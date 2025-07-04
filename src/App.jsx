@@ -6,7 +6,6 @@ import Home from "./pages/Home.jsx";
 import AuthPage from "./pages/AuthPage.jsx";
 import Instructions from "./pages/Instructions.jsx";
 import "./css/App.css"
-import HalfLogo from "./components/common/HalfLogo.jsx";
 import ContactPage from "./pages/ContactPage.jsx";
 import VoterProfile from "./pages/VoterProfile.jsx";
 import HelpPage from "./pages/HelpPage.jsx";
@@ -19,6 +18,9 @@ import Register from "./pages/Viewer/Register";
 import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
 import AuthWithToken from "./pages/AuthWithToken";
+import AdminPage from "./pages/AdminPage";
+import ChartsContainer from "./components/charts/ChartsContainer";
+import ViewerSideBar from "./pages/Viewer/ViewerSideBar";
 
 
 function App() {
@@ -36,7 +38,7 @@ function App() {
                         <Route path="/faq" element={<Faq/>}/>
                         <Route path="/auth" element={<AuthPage/>}/>
                         <Route path="/instructions" element={<Instructions/>}/>
-                        <Route path="/default" element={<HalfLogo/>}/>
+                        {/*<Route path="/default" element={<HalfLogo/>}/>*/}
                         <Route path="/contact" element={<ContactPage/>}/>
                         <Route path="/help" element={<HelpPage/>}/>
                         <Route path="/submitted" element={<VoteSubmitedPage/>}/>
@@ -45,6 +47,9 @@ function App() {
                         <Route path="/ballot" element={<BallotPage/>}/>
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/register" element={<Register/>}/>
+                        <Route path="/admin" element={<AdminPage/>}/>
+                        <Route path="/graph" element={<ChartsContainer/>}/>
+                        <Route path="/sideBar" element={<ViewerSideBar/>}/>
                         <Route path="/auth-with-token" element={<AuthWithToken/>}/>
                     </Routes>
                 </UserProvider>

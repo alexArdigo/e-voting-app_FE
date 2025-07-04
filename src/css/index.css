@@ -2,7 +2,7 @@ body, html {
     font-family: 'PT Sans', sans-serif;
     margin: 0;
     color: #1f2937;
-    min-height: 110%;
+    /*min-height: 110%;*/
 }
 
 html, body {
@@ -15,12 +15,6 @@ html, body {
     flex-direction: column;
 }
 
-.pt-sans-regular, p, h1, h2, h3, h4, h5, h6, label, label input, submit-button, button {
-    font-family: "PT Sans", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
 label,
 label input,
 .step label,
@@ -29,31 +23,15 @@ label input,
     margin: 0;
 }
 
-.pt-sans-bold {
-    font-family: "PT Sans", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-}
-
-.pt-sans-regular-italic {
-    font-family: "PT Sans", sans-serif;
-    font-weight: 400;
-    font-style: italic;
-}
-
-.pt-sans-bold-italic {
-    font-family: "PT Sans", sans-serif;
-    font-weight: 700;
-    font-style: italic;
-}
-
 .home-container {
+    position: relative;
     height: 100vh;
     width: 100vw;
     background-image: url("/images/assembleia.jpg");
     background-size: cover;
     background-position: center;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
@@ -73,8 +51,8 @@ label input,
 
 .home-button,
 .vote-button {
-    background-color: #3C5DBC;
-    border: none;
+    background-color: #4C8362;
+    /*border: none;*/
     color: white;
     text-align: center;
     text-decoration: none;
@@ -158,7 +136,7 @@ label input,
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 56vh;
+    min-height: 70vh;
     padding: 40px;
     gap: 60px;
     max-width: 1000px;
@@ -307,7 +285,7 @@ form label {
     margin-top: 12px;
     padding: 10px 14px;
     background-color: #e0f0ff;
-    border-left: 4px solid #2563eb;
+    border-left: 4px solid #006500;
     border-radius: 6px;
     font-style: italic;
     color: #1f2937;
@@ -353,41 +331,28 @@ form label {
     font-family: "PT Sans", sans-serif;
 }
 
-.corner {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    width: 200px;
-    opacity: 0.9;
-    color: white;
-    z-index: 1;
+.login-button-wrapper {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    text-align: center;
 }
 
-.corner h5 {
+.login-button-wrapper h5 {
     text-align: center;
-    margin: 0;
+    color: white;
+    margin-bottom: 7px;
 }
 
 .login-button {
     color: white;
     background-color: #4C8362;
     font-size: 0.9rem;
-    padding: 10px 10px;
     margin: 0;
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
 
-.login-button-wrapper {
-    text-align: center;
-    margin-top: 5px;
-}
-
-.button-wrapper {
-    text-align: center;
-    margin-top: 30px;
-    margin-bottom: 60px;
 }
 
 .like-row {
@@ -408,36 +373,35 @@ form label {
 }
 
 .footer {
-    background-color: #264f31;
+    background-color: var(--green-eleGov);
     color: white;
     text-align: center;
-    padding: 20px 10px;
+    padding: 5px;
     font-size: 14px;
-    margin-top: auto;
     position: relative;
-    z-index: 1000;
+    margin-top: auto;
 }
 
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
+/*.footer-content {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*    gap: 10px;*/
+/*}*/
 
-.footer-links {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+/*.footer-links {*/
+/*    display: flex;*/
+/*    gap: 20px;*/
+/*    flex-wrap: wrap;*/
+/*    justify-content: center;*/
+/*}*/
 
-.footer-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-}
+/*.footer-links a {*/
+/*    color: white;*/
+/*    text-decoration: none;*/
+/*    font-weight: 500;*/
+/*}*/
 
-.footer-links a:hover {
-    text-decoration: underline;
-}
+/*.footer-links a:hover {*/
+/*    text-decoration: underline;*/
+/*}*/
