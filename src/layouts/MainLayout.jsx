@@ -5,7 +5,7 @@ import Footer from "../components/common/Footer";
 const MainLayout = ({ children, className = "dflx", style }) => (
     <main
         className={className}
-        style={{ minHeight: "100vh", ...style }}
+        style={style}
     >
         {children}
     </main>
