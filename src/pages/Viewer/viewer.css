@@ -93,9 +93,22 @@
 }
 
 .user-side-profile p{
-    color: lightblue;
+    color: #74bfcf;
     font-family: "PT Sans", sans-serif;
     font-weight: 400;
     font-style: normal;
+}
+
+.side-bar-button {
+    background-color: #74bfcf;
+    border-radius: 5px;
+    margin: 5px;
+    margin-top: 10px;
+    width: 200px;
+}
+.side-bar-button:hover {
+    background-color: #4C8362;
+    color: white;
+    cursor: pointer;
 }
 
