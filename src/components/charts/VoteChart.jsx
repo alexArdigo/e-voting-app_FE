@@ -14,11 +14,23 @@ import api from "../../services/api";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
+
 const VoteChart = ({ electionName, electionId }) => {
     const [chartData, setChartData] = useState(null);
 
+
+    const config = {
+        indexAxis: 'y',
+        responsive: true,
+        plugins: {
+            legend: { position: 'top' },
+            title: { display: true, text: 'Distribuição de Votos por Partido' },
+
+        }
+    };
+
     useEffect(() => {
-        const fetchData = async () => {
+        const data = async () => {
             try {
                 console.log("Election ID:", electionId);
                 console.log("Election Name:", electionName);
@@ -63,13 +75,13 @@ const VoteChart = ({ electionName, electionId }) => {
                     ]
                 });
 
-            } catch (err) {
-                console.error("Erro ao carregar dados do gráfico:", err);
+            } catch (e) {
+                console.error("Erro", e);
             }
         };
 
         if (electionId) {
-            fetchData();
+            data();
         }
     }, [electionId]);
 
@@ -78,7 +90,7 @@ const VoteChart = ({ electionName, electionId }) => {
     return (
         <div style={{ width: "600px", margin: "0 auto" }}>
             <h2>Distribuição de Votos por Partido</h2>
-            <Bar data={chartData} />
+            <Bar options={config} data={chartData} />
         </div>
     );
 };
