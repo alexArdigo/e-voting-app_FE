@@ -42,7 +42,17 @@ const variants = {
         color: "#856404",
         paddingInline: "30px",
         width: "600px",
-    }
+    },
+    defaultTransparent: {
+
+    },
+    defaultContained: {
+        padding: "80px",
+        borderRadius: "12px",
+        background: "#e0f7fa",
+        boxShadow: "0 2px 8px rgba(0,0,0,0.07)",
+        minHeight: "100vh",
+    },
 };
 
 const StyledContainer = ({ children, style, className, variant = "default", ref }) => (

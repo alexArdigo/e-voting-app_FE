@@ -379,6 +379,7 @@ form label {
     padding: 5px;
     font-size: 14px;
     position: relative;
+    margin-top: auto;
 }
 
 /*.footer-content {*/

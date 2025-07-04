@@ -19,6 +19,7 @@ import Register from "./pages/Viewer/Register";
 import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
 import ChartsContainer from "./components/charts/ChartsContainer";
+import ViewerSideBar from "./pages/Viewer/ViewerSideBar";
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/register" element={<Register/>}/>
                         <Route path="/graph" element={<ChartsContainer/>}/>
+                        <Route path="/sideBar" element={<ViewerSideBar/>}/>
                     </Routes>
                 </UserProvider>
             <Footer/>
