@@ -48,7 +48,7 @@ const Register = () => {
     }
 
     return (
-        <body className="Viewer">
+        <div className="Viewer">
             <MainLayout>
                 <div className="user-info-container">
                     <img src="/images/legislativas-viewer.png" alt="Register" className="register-image"/>
@@ -92,7 +92,7 @@ const Register = () => {
                     </form>
                 </div>
             </MainLayout>
-        </body>
+        </div>
     );
 }
 export default Register;
