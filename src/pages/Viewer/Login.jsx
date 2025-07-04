@@ -37,17 +37,24 @@ const Login = () => {
 
     return (
 
-        <div className="Viewer">
+        <div className="viewer">
         <MainLayout>
             <div className="user-info-container">
                 <h3>ACESSO AO PORTAL DE UTILIZADOR</h3>
+
                 <form onSubmit={handleSubmit}>
-                    <input type="text" id="username" value={username} onChange={(e) => {
-                        setUsername(e.target.value);
+                    <input type="text"
+                           id="username"
+                           value={username}
+                           onChange={(e) => {setUsername(e.target.value);
                     }} placeholder="Nome de utilizador"/>
-                    <input type="password" id="password" value={password} onChange={(e) => {
-                        setPassword(e.target.value);
+
+                    <input type="password"
+                           id="password"
+                           value={password}
+                           onChange={(e) => {setPassword(e.target.value);
                     }} placeholder="Palavra-passe"/>
+
                     <button type="submit">Entrar</button>
                     <br/>
                     <img src="/images/legislativas-viewer.png" alt="Login" className="login-image"/>
