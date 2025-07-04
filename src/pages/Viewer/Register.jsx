@@ -7,16 +7,10 @@ import MainLayout from "../../layouts/MainLayout";
 
 const Register = () => {
 
-    const [inputs, setInputs] = useState({
-        username: "",
-        password: "",
-        name: "",
-        institutionName: ""
-    });
-
-    const handleInputs = (e) => {
-        setInputs({...inputs, [e.target.name]: e.target.value});
-    }
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
+    const [institutionName, setInstitutionName] = useState("");
 
 
     const navigate = useNavigate();
@@ -25,17 +19,18 @@ const Register = () => {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        const body = {
-            username: inputs.username,
-            password: inputs.password,
-            name: inputs.name,
-            institutionName: inputs.institutionName,
-        };
+        const body = new FormData();
+            body.set ("username", username);
+            body.set ("password", password);
+            body.set ("name", name);
+            body.set ("institutionName", institutionName);
 
         try {
-            await api.post("/registerViewer", body);
+            const response = await api.post("/registerViewer", body);
 
-            navigate("/login", {state: {data: inputs}});
+            const user = response.data;
+            
+            navigate("/login");
 
         } catch (e) {
             if (e.response?.data?.includes("exists")) {
@@ -48,7 +43,7 @@ const Register = () => {
     }
 
     return (
-        <div className="Viewer">
+        <div className="viewer">
             <MainLayout>
                 <div className="user-info-container">
                     <img src="/images/legislativas-viewer.png" alt="Register" className="register-image"/>
@@ -60,32 +55,32 @@ const Register = () => {
                             type="text"
                             name="username"
                             placeholder="Nome de utilizador"
-                            value={inputs.username}
-                            onChange={handleInputs}
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
                         />
                         <input
                             id="password"
                             type="password"
                             name="password"
                             placeholder="Palavra-passe"
-                            value={inputs.password}
-                            onChange={handleInputs}
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                         <input
                             id="name"
                             type="text"
                             name="name"
                             placeholder="Nome"
-                            value={inputs.name}
-                            onChange={handleInputs}
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                         />
                         <input
                             id="institutionName"
                             type="text"
                             name="institutionName"
                             placeholder="Instituição"
-                            value={inputs.institutionName}
-                            onChange={handleInputs}
+                            value={institutionName}
+                            onChange={(e) => setInstitutionName(e.target.value)}
                         />
 
                         <button type="submit">Registar</button>
