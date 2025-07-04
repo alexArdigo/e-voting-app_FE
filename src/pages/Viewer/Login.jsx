@@ -23,12 +23,14 @@ const Login = () => {
         body.set("password", password);
 
         try {
-            const response = await api.post("/login", body);
+            await api.post("/login", body);
+            const response = await api.get("/loggedUser");
 
+            console.log(response);
             const user = response.data;
             contexto.setUser(user);
 
-            navigate("/stats");
+            navigate("/");
         } catch (e) {
             console.error("Erro ao fazer login:", e);
             alert("Credenciais inválidas ou erro no servidor.");
