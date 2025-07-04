@@ -55,8 +55,7 @@ const SelectElectionPage = () => {
             <div className="steps-container">
                 <h1 style={{ fontSize: "25px" }}>Selecione uma eleição:</h1>
                 <h1 style={{fontSize: "25px"}}>Selecione uma eleição:</h1>
-
-               {/* {loadingData ? (
+                {loadingData ? (
                     <p>A carregar...</p>
                 ) : (
                     <form onSubmit={handleSubmit}>
