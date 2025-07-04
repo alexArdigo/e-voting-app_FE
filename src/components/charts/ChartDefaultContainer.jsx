@@ -1,4 +1,6 @@
 import React, { useRef, useEffect } from "react";
+// import ChartDataLabels from "chartjs-plugin-datalabels";
+// ChartJS.register(ChartDataLabels);
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -59,6 +61,14 @@ const ChartDefaultContainer = () => {
             type: "doughnut",
             data: graphicsData,
             options: {
+                // plugins: {
+                //     datalabels: {
+                //         color: "black",
+                //         anchor: "end",
+                //         align: "end",
+                //         formatter: (value, context) => context.chart.data.labels[context.dataIndex]
+                //     }
+                // },
                 responsive: true,
                 circumference: 180,
                 rotation: -90,
@@ -83,7 +93,7 @@ const ChartDefaultContainer = () => {
     }, []);
 
     return (
-        <div style={{ width: "600px", margin: "0 auto" }}>
+        <div style={{ width: "600px", margin: "0 auto", padding: "20px" }}>
             <h1>Gráficos de Teste</h1>
             <canvas ref={canvasRef} ></canvas>
         </div>
