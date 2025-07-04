@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import {
     getActiveElections,
     getNotActiveElections
-} from "src/services/ElectionService"
+} from "../services/ElectionService"
 
 const SelectElectionPage = () => {
     const navigate = useNavigate();
