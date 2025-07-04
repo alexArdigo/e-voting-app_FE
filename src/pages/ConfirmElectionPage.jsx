@@ -34,7 +34,7 @@ const ConfirmElectionPage = () => {
                     <img src="public/images/image 4.png"></img>
                 </div>
 
-                <StyledContainer variant="transparent" className="dflxColumn" style={{paddingRight:"400px", marginTop: "0"}}>
+                <StyledContainer variant="transparent" className="dflxColumn" style={{paddingRight:"400px", marginTop: "0", paddingTop: 0}}>
                     <StyledContainer variant="tranparent" style={{paddingBlock: "100px"}}>
                         <p>Selecionou:</p>
                         <h1 style={{fontSize: "50px"}}>{selectedElectionName || "Nome da eleição não disponível"}</h1>
