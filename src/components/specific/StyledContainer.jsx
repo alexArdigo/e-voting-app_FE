@@ -44,14 +44,16 @@ const variants = {
         width: "600px",
     },
     defaultTransparent: {
+        justifyContent: "center",
+        alignItems: "center",
 
     },
     defaultContained: {
-        padding: "80px",
+        padding: "60px",
         borderRadius: "12px",
-        background: "#e0f7fa",
-        boxShadow: "0 2px 8px rgba(0,0,0,0.07)",
-        minHeight: "100vh",
+        boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
+        margin: "70px",
+        justifyContent: "left",
     },
 };
 
