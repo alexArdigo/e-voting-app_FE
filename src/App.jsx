@@ -6,7 +6,6 @@ import Home from "./pages/Home.jsx";
 import AuthPage from "./pages/AuthPage.jsx";
 import Instructions from "./pages/Instructions.jsx";
 import "./css/App.css"
-import HalfLogo from "./components/common/HalfLogo.jsx";
 import ContactPage from "./pages/ContactPage.jsx";
 import VoterProfile from "./pages/VoterProfile.jsx";
 import HelpPage from "./pages/HelpPage.jsx";
@@ -45,7 +44,7 @@ function App() {
                         <Route path="/ballot" element={<BallotPage/>}/>
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/register" element={<Register/>}/>
-                        <Route path="/admin" element=={<AdminPage/>}/>
+                        <Route path="/admin" element={<AdminPage/>}/>
                     </Routes>
                 </UserProvider>
             <Footer/>
