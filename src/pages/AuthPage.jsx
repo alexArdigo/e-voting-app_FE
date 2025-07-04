@@ -1,12 +1,30 @@
-import React, {useRef} from 'react';
+import React from 'react';
+import api from "../services/api.jsx";
 import MainLayout from "../layouts/MainLayout.jsx";
 import {useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
+
 
 const AuthPage = () => {
 
-    // Esta call vai para um componente próprio, está aqui só para config
-    const handleCMDredirect = async () => {
-        window.location.href = 'http://localhost:8080/oauth/login'; // euvoto backend
+
+    const handleStartVoteSession = async () => {
+        const CMV_URL = "http://localhost:5174/authorization";
+
+        try {
+            const response = await api.get("/oauth/login");
+            console.log(response);
+            const {token} = response?.data;
+
+            if (!token)
+                throw new Error("Invalid response from server");
+
+
+            window.location.href = `${CMV_URL}?TOKEN=${token}`;
+        } catch (e) {
+            console.error("Error starting vote session:", e);
+            toast.error("Erro ao iniciar sessão de voto. Por favor, tente novamente.");
+        }
     };
 
     return (
@@ -21,7 +39,7 @@ const AuthPage = () => {
 
                     <button
                         className="vote-button"
-                        onClick={handleCMDredirect}
+                        onClick={handleStartVoteSession}
                     >
                         Chave Móvel Digital
                     </button>
