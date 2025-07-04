@@ -49,7 +49,7 @@ const ChartDefaultContainer = () => {
 
 
     useEffect(() => {
-        const ctx = canvasRef.current.getContext("2d");
+        const ctx = canvasRef.current.getContext("2d"); // obtém o contexto do canvas
 
         if (chartRef.current) {
             chartRef.current.destroy(); // limpa gráfico anterior, se existir
