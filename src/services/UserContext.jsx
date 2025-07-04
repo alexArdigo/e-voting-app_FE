@@ -9,6 +9,7 @@ import {toast} from "react-toastify";
 const UserContext = createContext(null);
 
 export const useUserContext = () => useContext(UserContext);
+
 const UserProvider = ( {children} ) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
