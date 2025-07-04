@@ -18,7 +18,7 @@ import Login from "./pages/Viewer/Login";
 import Register from "./pages/Viewer/Register";
 import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
-import GraphsTesting from "./components/charts/GraphsTesting";
+import ChartsContainer from "./components/charts/ChartsContainer";
 
 
 function App() {
@@ -45,7 +45,7 @@ function App() {
                         <Route path="/ballot" element={<BallotPage/>}/>
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/register" element={<Register/>}/>
-                        <Route path="/graph" element={<GraphsTesting/>}/>
+                        <Route path="/graph" element={<ChartsContainer/>}/>
                     </Routes>
                 </UserProvider>
             <Footer/>

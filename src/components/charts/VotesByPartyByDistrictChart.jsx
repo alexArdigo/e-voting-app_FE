@@ -15,7 +15,7 @@ import api from "../../services/api";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 
-const VoteChart = ({ electionName, electionId }) => {
+const VotesByPartyByDistrictChart = ({ electionName, electionId }) => {
     const [chartData, setChartData] = useState(null);
 
 
@@ -35,11 +35,11 @@ const VoteChart = ({ electionName, electionId }) => {
                 console.log("Election ID:", electionId);
                 console.log("Election Name:", electionName);
 
-                const orgResponse = await api.get("/organisations");
+                const orgResponse = await api.get("/parties");
                 const organisations = orgResponse.data;
 
                 if (!Array.isArray(organisations)) {
-                    console.error("Resposta inesperada de /organisations:", organisations);
+                    console.error("Resposta inesperada de /parties:", organisations);
                     return;
                 }
 
@@ -88,11 +88,11 @@ const VoteChart = ({ electionName, electionId }) => {
     if (!chartData) return <p>A carregar gráfico...</p>;
 
     return (
-        <div style={{ width: "600px", margin: "0 auto" }}>
+        <div>
             <h2>Distribuição de Votos por Partido</h2>
             <Bar options={config} data={chartData} />
         </div>
     );
 };
 
-export default VoteChart;
+export default VotesByPartyByDistrictChart;

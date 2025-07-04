@@ -15,7 +15,7 @@ import {
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, DoughnutController, ArcElement);
 
-const ChartDefaultContainer = () => {
+const SampleChartForTesting = () => {
     const canvasRef = useRef(null);
     const chartRef = useRef(null);
 
@@ -69,6 +69,15 @@ const ChartDefaultContainer = () => {
                 //         formatter: (value, context) => context.chart.data.labels[context.dataIndex]
                 //     }
                 // },
+                // plugins: {
+                //     legend: {
+                //         position: 'right', // OU right para exibir legenda, se for comentado a label aparece em cima por default
+                //         labels: {
+                //             boxWidth: 20,
+                //             padding: 15
+                //         }
+                //     }
+                // },
                 responsive: true,
                 circumference: 180,
                 rotation: -90,
@@ -86,18 +95,18 @@ const ChartDefaultContainer = () => {
             }
         });
 
-        // cleanup
+        // cleanup (optional mas recomendado pelo chat)
         return () => {
             if (chartRef.current) chartRef.current.destroy();
         };
     }, []);
 
     return (
-        <div style={{ width: "600px", margin: "0 auto", padding: "20px" }}>
-            <h1>Gráficos de Teste</h1>
+        <div>
+            <h2>Gráficos de Teste</h2>
             <canvas ref={canvasRef} ></canvas>
         </div>
     );
 };
 
-export default ChartDefaultContainer;
+export default SampleChartForTesting;
