@@ -18,9 +18,10 @@ import Register from "./pages/Viewer/Register";
 import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
 import AuthWithToken from "./pages/AuthWithToken";
-import AdminPage from "./pages/AdminPage";
+import AdminElection from "./components/specific/AdminElection";
 import ChartsContainer from "./components/charts/ChartsContainer";
 import ViewerSideBar from "./pages/Viewer/ViewerSideBar";
+import CreateElectionPage from "./components/specific/CreateElectionForm";
 
 
 function App() {
@@ -47,10 +48,11 @@ function App() {
                         <Route path="/ballot" element={<BallotPage/>}/>
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/register" element={<Register/>}/>
-                        <Route path="/admin" element={<AdminPage/>}/>
+                        <Route path="/admin/election" element={<AdminElection/>}/>
                         <Route path="/graph" element={<ChartsContainer/>}/>
                         <Route path="/sideBar" element={<ViewerSideBar/>}/>
                         <Route path="/auth-with-token" element={<AuthWithToken/>}/>
+                        <Route path="/admin/create-election" element={<CreateElectionPage />} />
                     </Routes>
 
                     <Footer/>
