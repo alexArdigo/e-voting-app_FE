@@ -37,21 +37,35 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Home/>}/>
                         <Route path="/instructions" element={<Instructions/>}/>
+
+                        {/* CMD Routes */}
                         <Route path="/auth" element={<AuthPage/>}/>
                         <Route path="/auth-with-token" element={<AuthWithToken/>}/>
                         <Route path="/voter-data" element={<VoterProfile/>}/>
+
+                        {/* Election and voting Routes */}
                         <Route path="/election" element={<SelectElectionPage/>}/>
                         <Route path="/confirm" element={<ConfirmElectionPage/>}/>
                         <Route path="/ballot" element={<BallotPage/>}/>
                         <Route path="/submitted" element={<VoteSubmittedPage/>}/>
+
+                        {/* Help and Contact Routes */}
                         <Route path="/help" element={<HelpPage/>}/>
                         <Route path="/contact" element={<ContactPage/>}/>
                         <Route path="/faq" element={<Faq/>}/>
+
+                        {/* Viewer Routes */}
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/register" element={<Register/>}/>
                         <Route path="/graph" element={<ChartsContainer/>}/>
                         <Route path="/sideBar" element={<ViewerSideBar/>}/>
-                        <Route path="/admin" element={<AdminPage/>}/>
+
+                        {/* Admin Routes */}
+                        <Route path="/admin" element={<AdminElection/>}/>
+                        <Route path="/create-election" element={<CreateElectionPage/>}/>
+
+
+
                     </Routes>
 
                     <Footer/>
