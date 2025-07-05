@@ -35,22 +35,22 @@ function App() {
 
                     <Routes>
                         <Route path="/" element={<Home/>}/>
-                        <Route path="/voter-data" element={<VoterProfile/>}/>
-                        <Route path="/faq" element={<Faq/>}/>
-                        <Route path="/auth" element={<AuthPage/>}/>
                         <Route path="/instructions" element={<Instructions/>}/>
-                        <Route path="/contact" element={<ContactPage/>}/>
-                        <Route path="/help" element={<HelpPage/>}/>
-                        <Route path="/submitted" element={<VoteSubmittedPage/>}/>
-                        <Route path="/confirm" element={<ConfirmElectionPage/>}/>
+                        <Route path="/auth" element={<AuthPage/>}/>
+                        <Route path="/auth-with-token" element={<AuthWithToken/>}/>
+                        <Route path="/voter-data" element={<VoterProfile/>}/>
                         <Route path="/election" element={<SelectElectionPage/>}/>
+                        <Route path="/confirm" element={<ConfirmElectionPage/>}/>
                         <Route path="/ballot" element={<BallotPage/>}/>
+                        <Route path="/submitted" element={<VoteSubmittedPage/>}/>
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/register" element={<Register/>}/>
                         <Route path="/admin" element={<AdminPage/>}/>
                         <Route path="/graph" element={<ChartsContainer/>}/>
                         <Route path="/sideBar" element={<ViewerSideBar/>}/>
-                        <Route path="/auth-with-token" element={<AuthWithToken/>}/>
+                        <Route path="/help" element={<HelpPage/>}/>
+                        <Route path="/contact" element={<ContactPage/>}/>
+                        <Route path="/faq" element={<Faq/>}/>
                     </Routes>
 
                     <Footer/>
