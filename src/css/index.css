@@ -52,7 +52,6 @@ label input,
 .home-button,
 .vote-button {
     background-color: #4C8362;
-    /*border: none;*/
     color: white;
     text-align: center;
     text-decoration: none;
@@ -344,16 +343,17 @@ form label {
     margin-bottom: 7px;
 }
 
-.login-button {
-    color: white;
-    background-color: #4C8362;
-    font-size: 0.9rem;
-    margin: 0;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+/*.login-button {*/
+/*    color: white;*/
+/*    background-color: #4C8362;*/
+/*    font-size: 0.9rem;*/
+/*    margin: 0;*/
+/*    padding: 10px;*/
+/*    border-radius: 7px;*/
+/*    cursor: pointer;*/
+/*    transition: background-color 0.3s ease;*/
 
-}
+/*}*/
 
 .like-row {
     display: flex;
