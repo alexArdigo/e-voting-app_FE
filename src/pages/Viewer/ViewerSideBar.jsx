@@ -20,7 +20,7 @@ const ViewerSideBar = () => {
 
                         </div>
                         <div className="dflxColumn" >
-                            <button className="side-bar-button"> Profile </button>
+                            {/*<button className="side-bar-button"> Edit profile </button>*/}
                             <button className="side-bar-button"> Loggout </button>
                         </div>
 
