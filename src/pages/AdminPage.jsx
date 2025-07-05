@@ -2,7 +2,7 @@ import AdminDashboard from "../components/specific/AdminDashboard";
 import { useEffect, useState } from "react";
 import { getActiveElections, getNotActiveElections } from "../services/ElectionService";
 import { toast } from "react-toastify";
-import ElectionCard from "../components/ElectionCard";
+import ElectionCard from "../components/specific/ElectionCard";
 
 const AdminPage = () => {
     const [activeElections, setActiveElections] = useState([]);
@@ -34,7 +34,7 @@ const AdminPage = () => {
         return (
             <div className="general-container">
                 <h1>Página de Administração</h1>
-                <p>Carregando dados...</p>
+                <p>A carregar os dados...</p>
             </div>
         );
     }
