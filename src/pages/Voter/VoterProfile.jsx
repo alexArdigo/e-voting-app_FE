@@ -1,5 +1,5 @@
-import MainLayout from "../layouts/MainLayout.jsx";
-import VoterData from "../components/specific/VoterData.jsx";
+import MainLayout from "../../layouts/MainLayout.jsx";
+import VoterData from "../../components/specific/VoterData.jsx";
 
 const VoterProfile = () => {
 

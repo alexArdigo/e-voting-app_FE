@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import HalfLogo from "../components/common/HalfLogo.jsx";
+import HalfLogo from "../../components/common/HalfLogo.jsx";
 import { useNavigate } from "react-router-dom";
-import MainLayout from "../layouts/MainLayout.jsx";
+import MainLayout from "../../layouts/MainLayout.jsx";
 import { toast } from "react-toastify";
 import {
     getActiveElections,
     getNotActiveElections
-} from "../services/ElectionService"
+} from "../../services/ElectionService"
 
 const SelectElectionPage = () => {
     const navigate = useNavigate();

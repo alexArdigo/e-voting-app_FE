@@ -1,10 +1,12 @@
-import MainLayout from "../layouts/MainLayout.jsx";
+import MainLayout from "../../layouts/MainLayout.jsx";
 import { useEffect, useState } from "react";
-import api from "../services/api.jsx";
-import HelpComment from "../components/specific/HelpComment.jsx";
+import api from "../../services/api.jsx";
+import HelpComment from "../../components/specific/HelpComment.jsx";
 import { toast } from "react-toastify";
-import { useUserContext } from "../services/UserContext.jsx";
-import HalfLogo from "../components/common/HalfLogo.jsx";
+import { useUserContext } from "../../services/UserContext.jsx";
+import HalfLogo from "../../components/common/HalfLogo.jsx";
+import "../../components/specific/HelpComment.css"
+
 
 const Faq = () => {
     const [comments, setComments] = useState([]);
