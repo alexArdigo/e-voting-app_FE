@@ -1,6 +1,6 @@
 import React from 'react';
-import MainLayout from "../layouts/MainLayout.jsx";
-import StyledContainer from "../components/specific/StyledContainer.jsx";
+import MainLayout from "../../layouts/MainLayout.jsx";
+import StyledContainer from "../../layouts/StyledContainer.jsx";
 
 const VoteSubmittedPage = () => {
     return (
