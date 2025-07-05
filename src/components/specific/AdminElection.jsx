@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import AdminDashboard from "../components/specific/AdminDashboard";
-import { getActiveElections, getNotActiveElections } from "../services/ElectionService";
+import AdminDashboard from "./AdminDashboard";
+import { getActiveElections, getNotActiveElections } from "../../services/ElectionService";
 import { toast } from "react-toastify";
-import ElectionCard from "../components/specific/ElectionCard";
+import ElectionCard from "./ElectionCard";
 
-const AdminPage = () => {
+const AdminElection = () => {
     const [activeElections, setActiveElections] = useState([]);
     const [notActiveElections, setNotActiveElections] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -85,4 +85,4 @@ const AdminPage = () => {
     );
 };
 
-export default AdminPage;
+export default AdminElection;
