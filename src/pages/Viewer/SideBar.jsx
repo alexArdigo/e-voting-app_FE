@@ -1,8 +1,8 @@
 import React from 'react';
 import MainLayout from "../../layouts/MainLayout";
-import StyledContainer from "../../components/specific/StyledContainer";
+import StyledContainer from "../../layouts/StyledContainer";
 
-const ViewerSideBar = () => {
+const SideBar = () => {
     return (
 
 
@@ -37,4 +37,4 @@ const ViewerSideBar = () => {
     );
 };
 
-export default ViewerSideBar;
+export default SideBar;
