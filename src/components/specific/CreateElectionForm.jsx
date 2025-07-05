@@ -61,69 +61,71 @@ const CreateElectionPage = () => {
                 <p>Preencha os dados para criar uma nova eleição no sistema.</p>
 
                 <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="name">Nome da Eleição *</label>
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            placeholder="Ex: Eleições Presidenciais 2024"
-                            required
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="description">Descrição</label>
-                        <textarea
-                            id="description"
-                            name="description"
-                            value={formData.description}
-                            onChange={handleChange}
-                            placeholder="Descrição da eleição..."
-                            rows="4"
-                        />
-                    </div>
-
-                    <div className="form-row">
+                    <div className="election-card">
                         <div className="form-group">
-                            <label htmlFor="startDate">Data de Início *</label>
+                            <label htmlFor="name">Nome da Eleição *</label>
                             <input
-                                type="datetime-local"
-                                id="startDate"
-                                name="startDate"
-                                value={formData.startDate}
+                                type="text"
+                                id="name"
+                                name="name"
+                                value={formData.name}
                                 onChange={handleChange}
+                                placeholder="Ex: Eleições Presidenciais 2024"
                                 required
                             />
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="endDate">Data de Fim *</label>
-                            <input
-                                type="datetime-local"
-                                id="endDate"
-                                name="endDate"
-                                value={formData.endDate}
+                            <label htmlFor="description">Descrição</label>
+                            <textarea
+                                id="description"
+                                name="description"
+                                value={formData.description}
                                 onChange={handleChange}
-                                required
+                                placeholder="Descrição da eleição..."
+                                rows="4"
                             />
                         </div>
-                    </div>
 
-                    <div className="form-group">
-                        <label htmlFor="electionType">Tipo de Eleição *</label>
-                        <select
-                            id="electionType"
-                            name="electionType"
-                            value={formData.electionType}
-                            onChange={handleChange}
-                            required
-                        >
-                            <option value="PRESIDENTIAL">Presidencial</option>
-                            <option value="LEGISLATIVE">Legislativa</option>
-                        </select>
+                        <div className="form-row">
+                            <div className="form-group">
+                                <label htmlFor="startDate">Data de Início *</label>
+                                <input
+                                    type="datetime-local"
+                                    id="startDate"
+                                    name="startDate"
+                                    value={formData.startDate}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="endDate">Data de Fim *</label>
+                                <input
+                                    type="datetime-local"
+                                    id="endDate"
+                                    name="endDate"
+                                    value={formData.endDate}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="electionType">Tipo de Eleição *</label>
+                            <select
+                                id="electionType"
+                                name="electionType"
+                                value={formData.electionType}
+                                onChange={handleChange}
+                                required
+                            >
+                                <option value="PRESIDENTIAL">Presidencial</option>
+                                <option value="LEGISLATIVE">Legislativa</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div className="form-actions">
