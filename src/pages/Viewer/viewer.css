@@ -95,7 +95,6 @@
     height: 573px;
     opacity: 0.6;
     z-index: -1;
-    z-index: -1;;
 }
 
 .user-side-profile p{
@@ -108,8 +107,7 @@
 .side-bar-button {
     background-color: #74bfcf;
     border-radius: 5px;
-    margin: 5px;
-    margin-top: 10px;
+    margin: 10px 5px 5px;
     width: 200px;
 }
 
