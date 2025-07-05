@@ -42,7 +42,7 @@ function App() {
                         <Route path="/instructions" element={<Instructions/>}/>
                         <Route path="/contact" element={<ContactPage/>}/>
                         <Route path="/help" element={<HelpPage/>}/>
-                        <Route path="/submitted" element={<VoteSubmitedPage/>}/>
+                        <Route path="/submitted" element={<VoteSubmittedPage/>}/>
                         <Route path="/confirm" element={<ConfirmElectionPage/>}/>
                         <Route path="/election" element={<SelectElectionPage/>}/>
                         <Route path="/ballot" element={<BallotPage/>}/>
