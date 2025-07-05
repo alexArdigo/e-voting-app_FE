@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import AdminDashboard from "/AdminDashboard";
-import { createElection } from "/src/services/ElectionService";
+import AdminDashboard from "./AdminDashboard";
+import { createElection } from "../../services/electionService";
 import { toast } from "react-toastify";
 
 const CreateElectionPage = () => {
