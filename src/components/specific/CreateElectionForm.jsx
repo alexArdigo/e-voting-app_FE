@@ -60,7 +60,7 @@ const CreateElectionPage = () => {
                 <h1>Criar Nova Eleição</h1>
                 <p>Preencha os dados para criar uma nova eleição no sistema.</p>
 
-                <form onSubmit={handleSubmit} className="create-election-form">
+                <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="name">Nome da Eleição *</label>
                         <input
