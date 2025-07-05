@@ -16,7 +16,7 @@ const ConfirmElectionPage = () => {
 
     const handleCheckboxChange = () => {
         if (!confirmed) {
-            toast("Pfv confirme que compreende as condições para votar.");
+            toast("Por favor confirme que compreende as condições para votar.");
         } else {
             navigate("/ballot", {
                 state: {
