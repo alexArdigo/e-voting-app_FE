@@ -14,7 +14,7 @@ const Home = () => {
 
                 <div className={"login-button-wrapper"}>
                     <h5>Não é eleitor?</h5>
-                    <button className="login-button" onClick={() => navigate("/login")}>Login</button>
+                    <button type="button" onClick={() => navigate("/login")}>Login</button>
                 </div>
 
         </main>

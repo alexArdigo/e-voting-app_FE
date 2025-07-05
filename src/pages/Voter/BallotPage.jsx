@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import MainLayout from '../layouts/MainLayout.jsx';
-import StyledContainer from '../components/specific/StyledContainer.jsx';
-import Timer from '../components/specific/Timer.jsx';
-import BallotForm from '../components/specific/BallotForm.jsx';
-import api from '../services/api.jsx';
-import { useUserContext } from '../services/UserContext.jsx';
-import '../css/Ballot.css';
+import MainLayout from '../../layouts/MainLayout.jsx';
+import StyledContainer from '../../layouts/StyledContainer.jsx';
+import Timer from '../../components/specific/Timer.jsx';
+import BallotForm from '../../components/specific/BallotForm.jsx';
+import api from '../../services/api.jsx';
+import { useUserContext } from '../../services/UserContext.jsx';
+import '../../components/specific/Ballot.css';
 
 const BallotPage = () => {
     const navigate = useNavigate();

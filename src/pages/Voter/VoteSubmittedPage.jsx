@@ -1,9 +1,8 @@
 import React from 'react';
-import MainLayout from "../layouts/MainLayout.jsx";
-import StyledContainer from "../components/specific/StyledContainer.jsx";
-import VotesByPartyByDistrictChart from "../components/charts/VotesByPartyByDistrictChart";
+import MainLayout from "../../layouts/MainLayout.jsx";
+import StyledContainer from "../../layouts/StyledContainer.jsx";
 
-const VoteSubmitedPage = () => {
+const VoteSubmittedPage = () => {
     return (
         <>
             <MainLayout className="dflxColumn">
@@ -19,4 +18,4 @@ const VoteSubmitedPage = () => {
     );
 };
 
-export default VoteSubmitedPage;
+export default VoteSubmittedPage;

@@ -9,6 +9,7 @@ import {toast} from "react-toastify";
 const UserContext = createContext(null);
 
 export const useUserContext = () => useContext(UserContext);
+
 const UserProvider = ( {children} ) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -20,7 +21,7 @@ const UserProvider = ( {children} ) => {
                 /*let resposta = await api.get("/user/logado");
                 setUser(resposta.data);*/
             } catch (e) {
-                console.log("user not logged in: ", e);
+                console.error("user not logged in: ", e);
             }
             setLoading(false);
         })();

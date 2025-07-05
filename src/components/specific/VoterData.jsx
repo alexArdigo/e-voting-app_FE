@@ -22,8 +22,8 @@ const VoterData = () => {
     const handleInfo = async () => {
         try {
             const {data} = await api.get("/voters");
-
             setUser(data);
+
         } catch (e) {
             console.error("Erro ao obter informações:", e);
             toast("Erro ao obter informações do utilizador.");
@@ -42,12 +42,12 @@ const VoterData = () => {
                     <p><strong>Nome:</strong> {user ? `${user.firstName} ${user.lastName}` : "N/A"}</p>
                     <p><strong>Contacto telefónico:</strong> {user?.telephoneNumber}</p>
                     <p><strong>NIF:</strong> {user?.nif}</p>
-                    <p><strong>Distrito:</strong> {user?.district}</p>
+                    <p><strong>Distrito:</strong> {user?.district?.districtName}</p>
                 </div>
 
                 <div className="info-column">
-                    <p><strong>Concelho:</strong> {user?.municipality}</p>
-                    <p><strong>Freguesia:</strong> {user?.parish}</p>
+                    <p><strong>Concelho:</strong> {user?.municipality?.municipalityName}</p>
+                    <p><strong>Freguesia:</strong> {user?.parish?.parishName}</p>
                     <p><strong>Elegível:</strong> {user?.eligible ? "Sim" : "Não"}</p>
                     <p><strong>Verificado:</strong> {user?.verified ? "Sim" : "Não"}</p>
                 </div>

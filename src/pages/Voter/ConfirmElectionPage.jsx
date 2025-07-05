@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 
 
 import {useNavigate, useLocation} from "react-router-dom";
-import MainLayout from "../layouts/MainLayout.jsx";
-import StyledContainer from "../components/specific/StyledContainer.jsx";
+import MainLayout from "../../layouts/MainLayout.jsx";
+import StyledContainer from "../../layouts/StyledContainer.jsx";
 import {toast} from "react-toastify";
 
 
@@ -16,7 +16,7 @@ const ConfirmElectionPage = () => {
 
     const handleCheckboxChange = () => {
         if (!confirmed) {
-            toast("Pfv confirme que compreende as condições para votar.");
+            toast("Por favor confirme que compreende as condições para votar.");
         } else {
             navigate("/ballot", {
                 state: {
@@ -31,7 +31,7 @@ const ConfirmElectionPage = () => {
         <>
             <MainLayout style={{justifyContent: "space-between"}}>
                 <div >
-                    <img src="public/images/image 4.png"></img>
+                    <img src="/images/Voting-election.png" alt="side-image"></img>
                 </div>
 
                 <StyledContainer variant="transparent" className="dflxColumn" style={{paddingRight:"400px", marginTop: "0", paddingTop: 0}}>

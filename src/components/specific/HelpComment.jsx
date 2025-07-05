@@ -4,6 +4,8 @@ import { toast } from "react-toastify";
 import api from "../../services/api.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import "./HelpComment.css";
+
 
 const HelpComment = ({ id, comment_text, pub_datetime, answer, likes = [] }) => {
     const { user } = useUserContext();

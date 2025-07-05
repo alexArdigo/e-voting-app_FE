@@ -21,6 +21,9 @@ li {
     justify-content: center;
     align-items: center;
     padding: 0;
+    position: relative;
+    z-index: 1;
+
 }
 
 .nav-bar {
@@ -30,6 +33,7 @@ li {
     padding: 7px;
     position: sticky;
     top: 0;
+    z-index: 2;
 }
 
 .nav-container {
@@ -43,7 +47,7 @@ li {
     padding: 10px 20px;
     justify-content: space-between;
     align-items: center;
-    z-index: 1000;
+    z-index: 1;
 }
 
 .nav-navigation {
@@ -83,7 +87,7 @@ li {
 }
 
 button {
-    background-color: #3C5DBC;
+    background-color: #4C8362;
     border: none;
     color: white;
     text-align: center;
@@ -91,9 +95,8 @@ button {
     display: inline-block;
     font-size: 16px;
     cursor: pointer;
-    padding: 10px 20px;
     border-radius: 30px;
-    margin: 40px;
+    padding: 7px 15px ;
 }
 
 button:hover {

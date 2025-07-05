@@ -1,19 +1,17 @@
-import React from 'react';
-import api from "../services/api.jsx";
-import MainLayout from "../layouts/MainLayout.jsx";
-import {useNavigate} from "react-router-dom";
+import React, {useEffect} from 'react';
+import api from "../../services/api.jsx";
+import MainLayout from "../../layouts/MainLayout.jsx";
 import {toast} from "react-toastify";
 
 
 const AuthPage = () => {
 
 
-    const handleStartVoteSession = async () => {
+    const handleStartCMDAuthentication = async () => {
         const CMV_URL = "http://localhost:5174/authorization";
 
         try {
             const response = await api.get("/oauth/login");
-            console.log(response);
             const {token} = response?.data;
 
             if (!token)
@@ -27,6 +25,14 @@ const AuthPage = () => {
         }
     };
 
+    const handleLogout = async () => {
+        const res = await api.post("/logout");
+    }
+
+    useEffect(() => {
+        handleLogout()
+    }, []);
+
     return (
         <MainLayout>
             <div className="auth-container">
@@ -39,7 +45,7 @@ const AuthPage = () => {
 
                     <button
                         className="vote-button"
-                        onClick={handleStartVoteSession}
+                        onClick={handleStartCMDAuthentication}
                     >
                         Chave Móvel Digital
                     </button>

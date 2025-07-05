@@ -1,4 +1,4 @@
-.Viewer {
+.viewer {
     background: linear-gradient(to right, #58A65B, #B9996A, #FD6564);
 }
 
@@ -27,6 +27,7 @@
     text-align: center;
     margin: 50px;
     font-weight: bold;
+    z-index: 1;
 
 }
 
@@ -34,6 +35,7 @@
     padding: 2rem;
     width: 100%;
     max-width: 400px;
+    z-index: 1;
 
 }
 
@@ -43,6 +45,7 @@
     width: 300px;
     margin: 0 auto 1rem auto;
     box-sizing: border-box;
+    z-index: 2;
 }
 
 .user-info-container input[type="text"],
@@ -52,6 +55,7 @@
     border-radius: 7px;
     background: white;
     font-size: 1rem;
+    z-index: 1;
 }
 
 .user-info-container button[type="submit"] {
@@ -64,29 +68,33 @@
     border: 1px solid #333;
     border-radius: 7px;
     cursor: pointer;
+    z-index: 1;
 }
 
 .user-info-container button[type="submit"]:hover {
     background: #3d8450;
+    z-index: 1;
 }
 
 .user-info-container p {
     color: white;
     text-align: center;
     margin: 50px;
+    z-index: 1;
 }
 
 .user-info-container p a {
     text-decoration: none;
+    z-index: 1;
 }
 
 .register-image {
     position: absolute;
     right: 32%;
-    top: 19%;
-    height: 580px;
+    top: 21%;
+    height: 573px;
     opacity: 0.6;
-    z-index: -1;;
+    z-index: -1;
 }
 
 .user-side-profile p{
@@ -99,8 +107,7 @@
 .side-bar-button {
     background-color: #74bfcf;
     border-radius: 5px;
-    margin: 5px;
-    margin-top: 10px;
+    margin: 10px 5px 5px;
     width: 200px;
 }
 

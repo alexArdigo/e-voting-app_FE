@@ -1,8 +1,8 @@
 import React, {useRef} from 'react';
 import { useNavigate } from "react-router-dom";
-import MainLayout from "../layouts/MainLayout.jsx";
-import StyledContainer from "../components/specific/StyledContainer.jsx";
-import HalfLogo from "../components/common/HalfLogo.jsx";
+import MainLayout from "../../layouts/MainLayout.jsx";
+import StyledContainer from "../../layouts/StyledContainer.jsx";
+import HalfLogo from "../../components/common/HalfLogo.jsx";
 
 const Instructions = () => {
 
