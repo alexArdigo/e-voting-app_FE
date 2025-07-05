@@ -13,7 +13,6 @@ const AuthPage = () => {
 
         try {
             const response = await api.get("/oauth/login");
-            console.log(response);
             const {token} = response?.data;
 
             if (!token)
@@ -29,7 +28,6 @@ const AuthPage = () => {
 
     const handleLogout = async () => {
         const res = await api.post("/logout");
-        console.log("res ", res);
     }
 
     useEffect(() => {

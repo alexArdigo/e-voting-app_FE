@@ -7,7 +7,6 @@ const AuthWithToken = () => {
     const navigate = useNavigate();
     const [data, setData] = useSearchParams();
 
-    console.log(data.get("TOKEN"));
     const handleAuth = async () => {
         try {
             const body = new FormData();

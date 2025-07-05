@@ -20,7 +20,7 @@ const UserProvider = ( {children} ) => {
                 /*let resposta = await api.get("/user/logado");
                 setUser(resposta.data);*/
             } catch (e) {
-                console.log("user not logged in: ", e);
+                console.error("user not logged in: ", e);
             }
             setLoading(false);
         })();

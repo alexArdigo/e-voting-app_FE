@@ -22,9 +22,8 @@ const VoterData = () => {
     const handleInfo = async () => {
         try {
             const {data} = await api.get("/voters");
-
-            console.log(data);
             setUser(data);
+
         } catch (e) {
             console.error("Erro ao obter informações:", e);
             toast("Erro ao obter informações do utilizador.");
