@@ -10,10 +10,19 @@ const ViewerSideBar = () => {
 
             <MainLayout style={{ height: "100vh", width:"100vw"}}>
                 <StyledContainer variant="DefaultTransparent" style={{minWidth:"30vw"}}>
-                    <StyledContainer variant="defaultContained" className="dflxColumn">
-                        <img src="public/images/Vector2.png" height="100px"/>
-                        <h1>Visualizador de Eleições</h1>
-                        <p>Esta página é destinada a visualização de resultados eleitorais.</p>
+                    <StyledContainer variant="defaultContained" className="dflxColumn" style={{heigth: "100px", width: "200px"}}>
+                        <img src="public/images/ProfilePic.png" height="150px"/>
+                        <div className="user-side-profile" style={{ lineHeight: 0.5 }}>
+                            <p color="green"><strong> Viwer logged in! </strong></p>
+                            <p>Last Login: 2023-10-01</p>
+                            <p >User: AnaMoura</p>
+
+
+                        </div>
+                        <div className="dflxColumn" >
+                            <button className="side-bar-button"> Profile </button>
+                            <button className="side-bar-button"> Loggout </button>
+                        </div>
 
                     </StyledContainer>
 

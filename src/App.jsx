@@ -17,6 +17,8 @@ import Login from "./pages/Viewer/Login";
 import Register from "./pages/Viewer/Register";
 import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
+import AuthWithToken from "./pages/AuthWithToken";
+import AdminPage from "./pages/AdminPage";
 import ChartsContainer from "./components/charts/ChartsContainer";
 import ViewerSideBar from "./pages/Viewer/ViewerSideBar";
 
@@ -45,8 +47,10 @@ function App() {
                         <Route path="/ballot" element={<BallotPage/>}/>
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/register" element={<Register/>}/>
+                        <Route path="/admin" element={<AdminPage/>}/>
                         <Route path="/graph" element={<ChartsContainer/>}/>
                         <Route path="/sideBar" element={<ViewerSideBar/>}/>
+                        <Route path="/auth-with-token" element={<AuthWithToken/>}/>
                     </Routes>
 
                     <Footer/>

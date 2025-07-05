@@ -15,10 +15,9 @@ const ConfirmElectionPage = () => {
     const [confirmed, setConfirmed] = useState(false);
 
     const handleCheckboxChange = () => {
-        if(!confirmed){
+        if (!confirmed) {
             toast("Pfv confirme que compreende as condições para votar.");
-        }
-        else {
+        } else {
             navigate("/ballot", {
                 state: {
                     electionId: location.state.selectedElectionId,
@@ -30,34 +29,43 @@ const ConfirmElectionPage = () => {
 
     return (
         <>
-        <MainLayout className="dflxColumn">
-            <StyledContainer variant="tranparent" style={{paddingBlock: "100px"}}>
-                <p >Selecionou:</p>
-                <h1 style={{fontSize: "50px"}}>{selectedElectionName || "Nome da eleição não disponível"}</h1>
-            </StyledContainer>
-            <StyledContainer variant="warning" style={{width: "600px", justifyContent: "center"}} >
-                <p>Atenção! Ao clicar em “Votar” irá ser redirecionado para o seu boletim de voto eletrónico. Terá 5 minutos para submeter o seu voto. </p>
-                <label>
-                    <div style={{display: "flex", alignItems: "center", gap: "10px"}}>
-                    <input style={{padding: "10px"}} type="checkbox" id="dataConfirmation" name="dataConfirmation" onChange={() => setConfirmed(!confirmed)}/>
-                    <p> Compreendo </p>
+            <MainLayout style={{justifyContent: "space-between"}}>
+                <div >
+                    <img src="public/images/image 4.png"></img>
+                </div>
+
+                <StyledContainer variant="transparent" className="dflxColumn" style={{paddingRight:"400px", marginTop: "0", paddingTop: 0}}>
+                    <StyledContainer variant="tranparent" style={{paddingBlock: "100px"}}>
+                        <p>Selecionou:</p>
+                        <h1 style={{fontSize: "50px"}}>{selectedElectionName || "Nome da eleição não disponível"}</h1>
+                    </StyledContainer>
+                    <StyledContainer variant="warning" style={{width: "600px", justifyContent: "center"}}>
+                        <p>Atenção! Ao clicar em “Votar” irá ser redirecionado para o seu boletim de voto eletrónico.
+                            Terá 5 minutos para submeter o seu voto. </p>
+                        <label>
+                            <div style={{display: "flex", alignItems: "center", gap: "10px"}}>
+                                <input style={{padding: "10px"}} type="checkbox" id="dataConfirmation"
+                                       name="dataConfirmation" onChange={() => setConfirmed(!confirmed)}/>
+                                <p> Compreendo </p>
+                            </div>
+                        </label>
+                    </StyledContainer>
+                    <div className={"button-wrapper"}>
+                        <button
+                            className="vote-button"
+                            onClick={() => handleCheckboxChange()}
+                        >
+                            Votar
+                        </button>
+
                     </div>
-                </label>
-            </StyledContainer>
-            <div className={"button-wrapper"} >
-                <button
-                    className="vote-button"
-                    onClick={() => handleCheckboxChange()}
-                >
-                    Votar
-                </button>
+                </StyledContainer>
 
-            </div>
-        </MainLayout>
+            </MainLayout>
 
-</>
-)
-    ;
+        </>
+    )
+        ;
 };
 
 export default ConfirmElectionPage;

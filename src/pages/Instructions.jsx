@@ -21,22 +21,19 @@ const Instructions = () => {
     }
 
     return (
-        <MainLayout className="dflxColumn">
+        <MainLayout className="dflxColumn" style={{ minHeight: "1900px"}}>
 
             <StyledContainer variant="default" style={{marginTop: "100px", paddingBlock:"30px", width: "1000px", justifyContent: "center", alignContent: "center", lineHeight: "2em"}}>
                 <h1 style={{ textAlign: "center" }}>Instruções para o Voto Eletrónico</h1>
                 <p style={{ textAlign: "center" }}>
                     Administração Eleitoral da Secretaria-Geral do Ministério da Administração Interna compete:
                 </p>
-                <ul style={{ textAlign: "justify", marginInline: "20px" }}>
+                <ul style={{ textAlign: "justify", marginInline: "1px" }}>
                     <li>
                         <strong>Assegurar</strong> o recenseamento eleitoral de modo automático e voluntário garantindo, a operacionalidade e atualidade do sistema de informação e gestão do recenseamento eleitoral, providenciando pela organização, manutenção e gestão da Base de Dados do Recenseamento Eleitoral;
                     </li>
                     <li>
                         <strong>Coordenar</strong> o apoio financeiro, logístico e administrativo aos órgãos da administração local no âmbito dos atos eleitorais e referendários, organizar e executar campanhas de divulgação e de esclarecimento e disponibilizar conteúdos formativos adequados à efetiva e correta participação dos eleitores, dos órgãos da administração local e dos agentes da administração eleitoral no âmbito da realização de atos eleitorais e referendários, difundindo informação pública e respetivos procedimentos sobre os mesmos;
-                    </li>
-                    <li>
-                        <strong>Elaborar e organizar</strong>, ainda, toda a documentação necessária para o apoio jurídico e de esclarecimento aos eleitores, aos agentes eleitorais e a outros intervenientes diretos nos processos eleitorais, promover campanhas mediáticas sobre o recenseamento eleitoral, as eleições e os referendos nacionais, em território nacional e no estrangeiro;
                     </li>
                     <li>
                         <strong>Tratar e enviar</strong> às entidades competentes, os elementos necessários à impressão dos boletins de voto em todas as eleições e referendos;
@@ -49,8 +46,8 @@ const Instructions = () => {
                     </li>
                 </ul>
             </StyledContainer>
-            <StyledContainer variant="flex" style={{marginTop:"80px"}}>
-                <img src="/images/arrow-down.png" alt="arrow" style={{width: "100px", cursor: "pointer"}} onClick={handleScroll} />
+            <StyledContainer variant="flex" style={{marginTop:"0"}}>
+                <img src="/images/arrow-down.png" alt="arrow" style={{width: "80px", cursor: "pointer"}} onClick={handleScroll} />
             </StyledContainer>
             <StyledContainer style={{width: "800px", paddingColumn: "30px"}} variant="transparent" ref={stepsRef}>
 
