@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import api from "../../services/api.jsx";
 import MainLayout from "../../layouts/MainLayout.jsx";
-import {useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
 
 
