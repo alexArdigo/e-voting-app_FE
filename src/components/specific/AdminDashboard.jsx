@@ -8,17 +8,17 @@ const AdminDashboard = ({ children }) => {
                 <h3>Painel de Administração</h3>
                 <ul className="admin-nav-list">
                     <li>
-                        <NavLink to="/admin/create-election" activeClassName="active-link">
+                        <NavLink to="/admin/create-election" className="active-link">
                             + Criar Nova Eleição
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/admin/election" activeClassName="active-link">
+                        <NavLink to="/admin/election" className="active-link">
                             Gerenciar Eleições
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/admin/viewers" activeClassName="active-link">
+                        <NavLink to="/admin/viewers" className="active-link">
                             Autorizações Pendentes
                         </NavLink>
                     </li>
