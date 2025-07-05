@@ -9,7 +9,7 @@ import "./css/App.css"
 import ContactPage from "./pages/ContactPage.jsx";
 import VoterProfile from "./pages/VoterProfile.jsx";
 import HelpPage from "./pages/HelpPage.jsx";
-import VoteSubmitedPage from "./pages/VoteSubmitedPage.jsx";
+import VoteSubmittedPage from "./pages/VoteSubmittedPage.jsx";
 import ConfirmElectionPage from "./pages/ConfirmElectionPage.jsx";
 import SelectElectionPage from "./pages/SelectElectionPage.jsx";
 import BallotPage from "./pages/BallotPage.jsx";
@@ -41,7 +41,7 @@ function App() {
                         <Route path="/instructions" element={<Instructions/>}/>
                         <Route path="/contact" element={<ContactPage/>}/>
                         <Route path="/help" element={<HelpPage/>}/>
-                        <Route path="/submitted" element={<VoteSubmitedPage/>}/>
+                        <Route path="/submitted" element={<VoteSubmittedPage/>}/>
                         <Route path="/confirm" element={<ConfirmElectionPage/>}/>
                         <Route path="/election" element={<SelectElectionPage/>}/>
                         <Route path="/ballot" element={<BallotPage/>}/>
