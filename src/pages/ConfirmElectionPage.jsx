@@ -31,7 +31,7 @@ const ConfirmElectionPage = () => {
         <>
             <MainLayout style={{justifyContent: "space-between"}}>
                 <div >
-                    <img src="public/images/image 4.png"></img>
+                    <img src="/images/Voting-election.png"></img>
                 </div>
 
                 <StyledContainer variant="transparent" className="dflxColumn" style={{paddingRight:"400px", marginTop: "0", paddingTop: 0}}>
