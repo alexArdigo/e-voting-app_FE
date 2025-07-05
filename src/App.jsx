@@ -21,6 +21,7 @@ import AuthWithToken from "./pages/AuthWithToken";
 import AdminPage from "./pages/AdminPage";
 import ChartsContainer from "./components/charts/ChartsContainer";
 import ViewerSideBar from "./pages/Viewer/ViewerSideBar";
+import CreateElectionPage from "./components/specific/CreateElectionForm";
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
                         <Route path="/graph" element={<ChartsContainer/>}/>
                         <Route path="/sideBar" element={<ViewerSideBar/>}/>
                         <Route path="/auth-with-token" element={<AuthWithToken/>}/>
+                        <Route path="/admin/create-election" element={<CreateElectionPage />} />
                     </Routes>
                 </UserProvider>
             <Footer/>

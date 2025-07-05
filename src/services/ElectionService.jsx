@@ -21,9 +21,15 @@ const getActiveElections = async () => {
     return Array.isArray(data) ? data : [data];
 };
 
+const createElection = async (electionData) => {
+    const response = await api.post("/elections", electionData);
+    return response.data;
+};
+
 export {
     getElection,
     getAllElections,
     getNotActiveElections,
-    getActiveElections
+    getActiveElections,
+    createElection
 };
