@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 
 
 import {useNavigate, useLocation} from "react-router-dom";
-import MainLayout from "../layouts/MainLayout.jsx";
-import StyledContainer from "../components/specific/StyledContainer.jsx";
+import MainLayout from "../../layouts/MainLayout.jsx";
+import StyledContainer from "../../layouts/StyledContainer.jsx";
 import {toast} from "react-toastify";
 
 
