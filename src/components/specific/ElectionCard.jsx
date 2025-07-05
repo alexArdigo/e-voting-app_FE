@@ -1,6 +1,6 @@
 const ElectionCard = ({ election }) => (
     <div className="election-card">
-        <h4 className="elections-title">{election.name}</h4>
+        <h3 className="elections-title">{election.name}</h3>
         <div className="election-details">
             <p><strong>Tipo:</strong> {election.type === "PRESIDENTIAL" ? "Presidencial" : "Círculo Eleitoral"}</p>
             {election.totalVotes !== undefined && (

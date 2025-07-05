@@ -1,23 +1,25 @@
 import React, {useEffect} from 'react';
 import MainLayout from "../layouts/MainLayout";
-import {useSearchParams} from "react-router-dom";
+import {replace, useNavigate, useSearchParams} from "react-router-dom";
 import api from "../services/api";
 
 const AuthWithToken = () => {
+    const navigate = useNavigate();
     const [data, setData] = useSearchParams();
 
     const handleAuth = async () => {
         try {
             const body = new FormData();
-            body.set("TOKEN", data.get("TOKEN"))
+            body.set("token", data.get("TOKEN"))
+            body.set("id", data.get("ID"))
             const response = await api.post("/oauth/auth-with-token", body);
 
             if (response.status === 200)
-                window.location.href = "http://localhost:5173/voter-data";
+                navigate("/voter-data", {replace: true});
         } catch (e) {
             console.error("Authentication failed:", e);
             // Optionally, you can redirect to an error page or show a notification
-            //window.location.href = "http://localhost:5173/error";
+            //navigate("/error", {replace: true});
         }
     }
 
