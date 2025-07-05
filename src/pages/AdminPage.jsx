@@ -1,52 +1,85 @@
-import React, { useEffect, useState } from 'react';
 import AdminDashboard from "../components/specific/AdminDashboard";
-import { getActiveElections } from "../services/ElectionService";
+import { useEffect, useState } from "react";
+import { getActiveElections, getNotActiveElections } from "../services/ElectionService";
 import { toast } from "react-toastify";
+import ElectionCard from "../components/ElectionCard";
 
 const AdminPage = () => {
     const [activeElections, setActiveElections] = useState([]);
+    const [notActiveElections, setNotActiveElections] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        (async () => {
-            try {
-                const active = await getActiveElections();
-                setActiveElections(Array.isArray(active) ? active : []);
-            } catch (error) {
-                toast.error("Erro ao buscar eleições ativas");
-            }
-        })();
+        loadElections();
     }, []);
 
+    const loadElections = async () => {
+        try {
+            setLoading(true);
+            const [active, notActive] = await Promise.all([
+                getActiveElections(),
+                getNotActiveElections()
+            ]);
+            setActiveElections(Array.isArray(active) ? active : []);
+            setNotActiveElections(Array.isArray(notActive) ? notActive : []);
+        } catch (error) {
+            console.error('Erro ao buscar eleições:', error);
+            toast.error("Erro ao buscar eleições");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    if (loading) {
+        return (
+            <div className="general-container">
+                <h1>Página de Administração</h1>
+                <p>Carregando dados...</p>
+            </div>
+        );
+    }
+
     return (
-        <div>
-            <h1>Admin Page</h1>
-            <AdminDashboard />
-            <h2>Bem-vindo à página de administração. Aqui você pode gerenciar as eleições e visualizar autorizações pendentes.</h2>
+        <div className="general-container">
+            <h1>Página de Administração</h1>
+            <p>
+                Bem-vindo à página de administração. Aqui você pode gerenciar as eleições e visualizar autorizações pendentes.
+            </p>
 
-            <div className="steps-container">
-                <p><strong>Eleições Ativas</strong></p>
+            <AdminDashboard/>
 
-                {activeElections.length > 0 ? (
-                    activeElections.map((election) => (
-                        <div className="step" key={election.id} style={{ border: "1px solid #ccc", marginBottom: "1rem", padding: "1rem" }}>
-                            <p><strong>Nome:</strong> {election.name}</p>
-                            <p><strong>Tipo:</strong> {election.type === "PRESIDENTIAL" ? "Presidencial" : "Círculo Eleitoral"}</p>
-                            <p><strong>Total de votos:</strong> {election.totalVotes ?? "N/A"}</p>
-                            <p><strong>Partidos:</strong> {election.parties?.map(p => p.name).join(", ") || "Nenhum"}</p>
+            <div className="elections-grid">
+                <div className="elections-section">
+                    <h2 className="active-elections-title">
+                        Eleições Ativas ({activeElections.length})
+                    </h2>
 
-                            {election.type === "CIRCULO_ELEITORAL" && (
-                                <>
-                                    <p><strong>Distrito:</strong> {election.districtName ?? "N/A"}</p>
-                                    <p><strong>Município:</strong> {election.municipalityName ?? "N/A"}</p>
-                                    <p><strong>Freguesia:</strong> {election.parishName ?? "N/A"}</p>
-                                    <p><strong>Nº de Mandatos:</strong> {election.seats ?? "N/A"}</p>
-                                </>
-                            )}
+                    {activeElections.length > 0 ? (
+                        <div className="election-list">
+                            {activeElections.map((election) => (
+                                <ElectionCard key={election.id} election={election} />
+                            ))}
                         </div>
-                    ))
-                ) : (
-                    <p>Nenhuma eleição ativa encontrada.</p>
-                )}
+                    ) : (
+                        <p className="no-elections-message">Nenhuma eleição ativa encontrada.</p>
+                    )}
+                </div>
+
+                <div className="elections-section">
+                    <h2 className="elections-title">
+                        Eleições Não Ativas ({notActiveElections.length})
+                    </h2>
+
+                    {notActiveElections.length > 0 ? (
+                        <div className="election-list">
+                            {notActiveElections.map((election) => (
+                                <ElectionCard key={election.id} election={election} />
+                            ))}
+                        </div>
+                    ) : (
+                        <p className="no-elections-message">Nenhuma eleição não ativa encontrada.</p>
+                    )}
+                </div>
             </div>
         </div>
     );
