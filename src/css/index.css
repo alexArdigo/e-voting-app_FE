@@ -443,25 +443,26 @@ form label {
     gap: 18px;
 }
 
-.admin-nav-list li a {
+.admin-nav-list li a,
+.admin-nav-link {
     color: #c9e3cc;
     text-decoration: none;
     font-size: 1.1rem;
-    padding:  12px 16px;
+    padding: 12px 16px;
     border-radius: 10px;
     display: block;
     font-weight: 600;
 }
 
-.admin-nav-list li a:hover {
+.admin-nav-link:hover {
     background-color: #3a6a4c;
     color: white;
-    outline: none;
 }
 
-.active-link {
+.admin-nav-link.active {
     background-color: #2a3f8c;
     color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .admin-dashboard-content {

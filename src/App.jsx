@@ -48,7 +48,7 @@ function App() {
                         <Route path="/ballot" element={<BallotPage/>}/>
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/register" element={<Register/>}/>
-                        <Route path="/admin" element={<AdminPage/>}/>
+                        <Route path="/admin/election" element={<AdminPage/>}/>
                         <Route path="/graph" element={<ChartsContainer/>}/>
                         <Route path="/sideBar" element={<ViewerSideBar/>}/>
                         <Route path="/auth-with-token" element={<AuthWithToken/>}/>
