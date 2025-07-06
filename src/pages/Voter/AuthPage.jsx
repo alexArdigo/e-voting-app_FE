@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import api from "../../services/api.jsx";
 import MainLayout from "../../layouts/MainLayout.jsx";
 import {toast} from "react-toastify";
+import HalfLogo from "../../components/common/HalfLogo";
 
 
 const AuthPage = () => {
@@ -34,7 +35,7 @@ const AuthPage = () => {
     }, []);
 
     return (
-        <MainLayout className="dflxX">
+        <MainLayout className="dflxX" style={{minHeight: "100vh"}}>
             <div className="auth-container">
                 <div className="message-box">
                     <img src="/images/cne-logo.jpg" alt="CNE"/>
@@ -47,10 +48,11 @@ const AuthPage = () => {
                         className="vote-button"
                         onClick={handleStartCMDAuthentication}
                     >
-                        Chave Móvel Digital
+                        {/*Chave Móvel Digital*/}
                     </button>
                 </div>
             </div>
+            <HalfLogo></HalfLogo>
         </MainLayout>
     );
 };

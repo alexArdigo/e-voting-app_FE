@@ -39,17 +39,15 @@
 }
 
 
-/*.vote-button {*/
-/*    background-image: url("public/images/unnamed.jpg");*/
-/*    background-size: cover;*/
-/*    background-position: center;*/
-/*    background-repeat: no-repeat;*/
-/*    color: white;*/
-/*    cursor: pointer;*/
-/*    padding: 25px 110px;*/
-/*    margin: 40px;*/
-/*    border-radius: 0;*/
-/*}*/
+.vote-button {
+    background-image: url("public/images/Chave-Movel-Digital-button.png");
+    background-size: cover;
+    background-position: center;
+    height: 60px;
+    width: 250px;
+    border-radius: 10px;
+    background-color: #2563eb;
+}
 
 .home-button {
     font-size: 1.95rem;
