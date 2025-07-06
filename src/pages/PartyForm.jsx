@@ -1,84 +1,53 @@
-import React, { useState } from 'react';
-// import your API service if available
-// import { createParty, updateParty } from '../services/PartyService';
+import React, {useReducer, useState} from 'react';
+import MainLayout from "../layouts/MainLayout";
+import PartyFormContainer from "../components/PartyFormContainer";
+import {initialInputs, inputsReducer} from "../components/PartyFormContainer/reducer";
+import {useNavigate} from "react-router-dom";
+import api from "../services/api";
 
-const initialState = {
-  name: '',
-  color: '',
-  logoUrl: '',
-  description: '',
-  // candidates: [], // Optional: implement candidate selection if needed
-};
+const PartyForm = ({party}) => {
+    const navigate = useNavigate();
+    const [form, dispatchInputs] = useReducer(inputsReducer, party || initialInputs);
 
-const PartyForm = ({ party, onSubmit }) => {
-  const [form, setForm] = useState(party || initialState);
-  const [error, setError] = useState('');
+    const handleChange = (e) => {
+        const {name, value} = e.target;
+        dispatchInputs({type: `SET_${name.toUpperCase()}`, payload: {value, error: ''}});
+    };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-  };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-    try {
-      // If you have an API, call createParty or updateParty here
-      // await (party ? updateParty(form) : createParty(form));
-      if (onSubmit) onSubmit(form);
-      alert('Party saved!');
-    } catch (err) {
-      setError('Failed to save party.');
-    }
-  };
+        try {
+            const body = new FormData();
+            body.set("name", form.name.value);
+            body.set("color", form.color.value);
+            body.set("imageURL", form.imageURL.value);
+            body.set("description", form.description.value);
 
-  return (
-    <div className="party-form-container">
-      <h2>{party ? 'Edit Party' : 'Add Party'}</h2>
-      <form onSubmit={handleSubmit} className="party-form">
-        <label>
-          Party Name:
-          <input
-            type="text"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          Color:
-          <input
-            type="color"
-            name="color"
-            value={form.color}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          Logo URL:
-          <input
-            type="text"
-            name="logoUrl"
-            value={form.logoUrl}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Description:
-          <textarea
-            name="description"
-            value={form.description}
-            onChange={handleChange}
-          />
-        </label>
-        {/* Optionally, add candidate selection here */}
-        {error && <div className="error">{error}</div>}
-        <button type="submit">{party ? 'Update' : 'Add'} Party</button>
-      </form>
-    </div>
-  );
+            const response = await api.post('/parties', body);
+            console.log("response: ", response);
+            if (response.status === 200) {
+                navigate(`/parties/${response.data?.id}`);
+            }
+        } catch (err) {
+            console.error('Failed to save party.', err)
+            setError('Failed to save party.');
+        }
+    };
+
+    return (
+        <MainLayout className="dflxColumn g20" style={{minHeight: "76vh"}}>
+            <h2>{party ? 'Editar' : 'Adicionar'} Partido</h2>
+
+            <form onSubmit={handleSubmit} className="party-form" style={{width: "50vw"}}>
+                <PartyFormContainer
+                    form={form}
+                    handleChange={handleChange}/>
+
+                <button type="submit">{'Submeter'}</button>
+            </form>
+        </MainLayout>
+    );
 };
 
 export default PartyForm;
