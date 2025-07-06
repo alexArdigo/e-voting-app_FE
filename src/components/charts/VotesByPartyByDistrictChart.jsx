@@ -16,7 +16,7 @@ import SideBar from "../../pages/Viewer/SideBar";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 
-const VotesByPartyByDistrictChart = ({ electionName, electionId }) => {
+const VotesByPartyByDistrictChart = ({ electionName }) => {
     const [chartData, setChartData] = useState(null);
     const [districts, setDistricts] = useState([]);
     const [selectedDistrict, setSelectedDistrict] = useState("");
@@ -60,8 +60,7 @@ const VotesByPartyByDistrictChart = ({ electionName, electionId }) => {
                             params: {
                                 partyName: party,
                                 districtName: selectedDistrict,
-                                year: year,
-                                electoralCircleId: electionId
+                                year: year
                             }
                         });
                         voteCounts.push(res.data);
@@ -86,10 +85,10 @@ const VotesByPartyByDistrictChart = ({ electionName, electionId }) => {
             }
         };
 
-        if (electionId) {
-            data();
-        }
-    }, [electionId, selectedDistrict, year]);
+
+        data();
+
+    }, [selectedDistrict, year]);
 
     if (!chartData) return <p>A carregar gráfico...</p>;
 
