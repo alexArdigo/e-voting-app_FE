@@ -35,7 +35,7 @@ const AuthPage = () => {
     }, []);
 
     return (
-        <MainLayout className="dflxX" style={{minHeight: "100vh"}}>
+        <MainLayout className="jcc" style={{minHeight: "90vh"}}>
             <div className="auth-container">
                 <div className="message-box">
                     <img src="/images/cne-logo.jpg" alt="CNE"/>

@@ -15,11 +15,18 @@ const UserProvider = ( {children} ) => {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
+    console.log(user);
     useEffect(() => {
         (async () => {
             try {
-                /*let resposta = await api.get("/user/logado");
-                setUser(resposta.data);*/
+                let response;
+                response = await api.get("/loggedUser");
+
+                if (!response.data) {
+                    response = await api.get("/loggedVoter");
+                }
+
+                setUser(response.data);
             } catch (e) {
                 console.error("user not logged in: ", e);
             }
@@ -32,8 +39,9 @@ const UserProvider = ( {children} ) => {
             await api.get("/logout");
             navigate("/login");
             setUser(null);
+            console.log("User logged out successfully");
         } catch (e) {
-            toast("Erro ao fazer logout");
+            console.error("Error logging out: " + e);
         }
     }
 
