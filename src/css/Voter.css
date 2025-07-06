@@ -25,8 +25,7 @@
     height: auto;
 }
 
-.home-button,
-.vote-button {
+.home-button{
     background-color: #4C8362;
     color: white;
     text-align: center;
@@ -38,6 +37,19 @@
     border-radius: 30px;
     margin: 40px;
 }
+
+
+/*.vote-button {*/
+/*    background-image: url("public/images/unnamed.jpg");*/
+/*    background-size: cover;*/
+/*    background-position: center;*/
+/*    background-repeat: no-repeat;*/
+/*    color: white;*/
+/*    cursor: pointer;*/
+/*    padding: 25px 110px;*/
+/*    margin: 40px;*/
+/*    border-radius: 0;*/
+/*}*/
 
 .home-button {
     font-size: 1.95rem;
