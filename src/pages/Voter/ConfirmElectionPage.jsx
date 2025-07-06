@@ -16,7 +16,7 @@ const ConfirmElectionPage = () => {
 
     const handleCheckboxChange = () => {
         if (!confirmed) {
-            toast("Por favor confirme que compreende as condições para votar.");
+            toast("Confirme que compreende as condições para votar.");
         } else {
             navigate("/ballot", {
                 state: {
@@ -29,18 +29,18 @@ const ConfirmElectionPage = () => {
 
     return (
         <>
-            <MainLayout style={{justifyContent: "space-between"}}>
-                <div >
-                    <img src="/images/Voting-election.png" alt="side-image"></img>
-                </div>
+            <MainLayout style={{minHeight: "100vh"}}> {/*, justifyContent: "space-between"*/}
+                {/*<div style={{justifyContent: "center", marginLeft: "500px", marginTop: "180px"}}>*/}
+                {/*    <img src="public/images/legislativas-viewer.png" alt="side-image" height="300px" ></img>*/}
+                {/*</div>*/}
 
-                <StyledContainer variant="transparent" className="dflxColumn" style={{paddingRight:"400px", marginTop: "0", paddingTop: 0}}>
-                    <StyledContainer variant="tranparent" style={{paddingBlock: "100px"}}>
+                <StyledContainer variant="transparent" className="dflxColumn" style={{padding: "140px"}}> {/*, marginRight: "300px"*/}
+                    <StyledContainer variant="tranparent" style={{width: "600px"}}>
                         <p>Selecionou:</p>
                         <h1 style={{fontSize: "50px"}}>{selectedElectionName || "Nome da eleição não disponível"}</h1>
                     </StyledContainer>
-                    <StyledContainer variant="warning" style={{width: "600px", justifyContent: "center"}}>
-                        <p>Atenção! Ao clicar em “Votar” irá ser redirecionado para o seu boletim de voto eletrónico.
+                    <StyledContainer variant="warning" style={{width: "600px"}}>
+                        <p>Atenção! Ao clicar em “Votar” será redirecionado para o seu boletim de voto eletrónico.
                             Terá 5 minutos para submeter o seu voto. </p>
                         <label>
                             <div style={{display: "flex", alignItems: "center", gap: "10px"}}>

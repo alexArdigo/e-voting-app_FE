@@ -6,7 +6,7 @@ import HalfLogo from "../../components/common/HalfLogo.jsx";
 const HelpPage = () => {
     return (
         <>
-            <MainLayout>
+            <MainLayout style={{minHeight: "100vh"}} >
                 <StyledContainer variant="leftCentered" style={{marginTop: "114px"}}>
                     <h1>
                         Ajuda &<br/> Informações

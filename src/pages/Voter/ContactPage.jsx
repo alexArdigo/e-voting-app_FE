@@ -8,7 +8,7 @@ const ContactPage = () => {
     return (
 
         <>
-            <MainLayout>
+            <MainLayout style={{minHeight: "100vh"}} >
                 <StyledContainer variant="leftCentered" style={{marginTop: "114px"}}>
                     <h1>
                         Contactos &<br/> Atendimento

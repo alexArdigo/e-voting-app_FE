@@ -40,6 +40,7 @@ const variants = {
         color: "#856404",
         paddingInline: "30px",
         width: "600px",
+        justifyContent: "center"
     },
     defaultTransparent: {
         justifyContent: "center",
