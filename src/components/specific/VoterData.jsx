@@ -22,7 +22,7 @@ const VoterData = () => {
 
     const handleInfo = async () => {
         try {
-            const {data} = await api.get("/voters");
+            const {data} = await api.get("/loggedVoter");
             setUser(data);
 
         } catch (e) {

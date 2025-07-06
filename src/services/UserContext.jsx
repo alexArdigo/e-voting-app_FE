@@ -18,8 +18,20 @@ const UserProvider = ( {children} ) => {
     useEffect(() => {
         (async () => {
             try {
-                /*let resposta = await api.get("/user/logado");
-                setUser(resposta.data);*/
+                let response;
+                response = await api.get("/loggedUser");
+
+                console.log(response.data);
+                if (!response.data) {
+                    response = await api.get("/loggedVoter");
+                    console.log(response.data);
+                }
+
+                if (!response.data)
+                    throw new Error("User not logged in");
+
+                console.log("User data: ", response.data);
+                setUser(response.data);
             } catch (e) {
                 console.error("user not logged in: ", e);
             }
@@ -32,8 +44,9 @@ const UserProvider = ( {children} ) => {
             await api.get("/logout");
             navigate("/login");
             setUser(null);
+            console.log("User logged out successfully");
         } catch (e) {
-            toast("Erro ao fazer logout");
+            console.error("Error logging out: " + e);
         }
     }
 
