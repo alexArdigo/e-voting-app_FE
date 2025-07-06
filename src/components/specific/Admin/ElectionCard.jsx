@@ -4,7 +4,7 @@ const ElectionCard = ({ election }) => (
     <div className="election-card">
         <h3 className="elections-title">{election.name}</h3>
         <div className="election-details">
-            <p><strong>Tipo:</strong> {election.type === "PRESIDENTIAL" ? "Presidencial" : "Círculo Eleitoral"}</p>
+            <p><strong>Tipo:</strong> {election.type === "PRESIDENTIAL" ? "Presidencial" : "Legislativa"}</p>
             {election.totalVotes !== undefined && (
                 <p><strong>Total de votos:</strong> {election.totalVotes}</p>
             )}
