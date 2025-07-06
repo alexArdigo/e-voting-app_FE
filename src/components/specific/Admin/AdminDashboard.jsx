@@ -10,7 +10,7 @@ const AdminDashboard = ({ children }) => {
                 <ul className="admin-nav-list">
                     <li>
                         <NavLink
-                            to="/admin/election"
+                            to="/admin"
                             className={({ isActive }) =>
                                 isActive ? "admin-nav-link active" : "admin-nav-link"
                             }
@@ -20,7 +20,7 @@ const AdminDashboard = ({ children }) => {
                     </li>
                     <li>
                         <NavLink
-                            to="/admin/create-election"
+                            to="/create-election"
                             className={({ isActive }) =>
                                 isActive ? "admin-nav-link active" : "admin-nav-link"
                             }
