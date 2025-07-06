@@ -33,7 +33,7 @@ export const Header = () => {
                             <button type="submit" onClick={logout}>Logout</button>
                         </>
                     ) : (
-                        <button type="button" onClick={() => navigate("/login")}>Login</button>
+                        <button className="loggin-header" onClick={() => navigate("/login")}>Login</button>
                     )}
                 </ul>
             </div>

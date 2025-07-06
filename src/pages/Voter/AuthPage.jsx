@@ -45,7 +45,7 @@ const AuthPage = () => {
                     <h2>Faça sua autenticação com a <strong>Chave Móvel Digital.</strong></h2>
 
                     <button
-                        className="vote-button"
+                        className="chave-movel-digital-button"
                         onClick={handleStartCMDAuthentication}
                     >
                         {/*Chave Móvel Digital*/}

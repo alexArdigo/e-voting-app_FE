@@ -25,7 +25,8 @@
     height: auto;
 }
 
-.home-button{
+.home-button,
+.vote-button {
     background-color: #4C8362;
     color: white;
     text-align: center;
@@ -39,14 +40,14 @@
 }
 
 
-.vote-button {
+.chave-movel-digital-button {
     background-image: url("public/images/Chave-Movel-Digital-button.png");
     background-size: cover;
     background-position: center;
     height: 60px;
     width: 250px;
     border-radius: 10px;
-    background-color: #2563eb;
+    background-color: #3C5DBC;
 }
 
 .home-button {
