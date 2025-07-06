@@ -35,7 +35,8 @@ const VoterData = () => {
     }, []);
 
     return (
-        <section className={"voter-data-container"}>
+        <div style={{minHeight: "100vh"}}>
+        <section className={"voter-data-container"} style={{marginTop: "130px"}}>
 
             <div className={"voter-info"}>
                 <div className="info-column">
@@ -60,6 +61,7 @@ const VoterData = () => {
                 </div>
             </div>
         </section>
+        </div>
     );
 };
 
