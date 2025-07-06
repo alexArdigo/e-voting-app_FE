@@ -22,6 +22,7 @@ import AdminElection from "./components/specific/AdminElection";
 import ChartsContainer from "./components/charts/ChartsContainer";
 import ViewerSideBar from "./pages/Viewer/ViewerSideBar";
 import CreateElectionPage from "./components/specific/CreateElectionForm";
+import PartyForm from "./pages/PartyForm";
 
 
 function App() {
@@ -48,6 +49,10 @@ function App() {
                         <Route path="/confirm" element={<ConfirmElectionPage/>}/>
                         <Route path="/ballot" element={<BallotPage/>}/>
                         <Route path="/submitted" element={<VoteSubmittedPage/>}/>
+
+                        {/* Party form */}
+                        <Route path="/party-form" element={<PartyForm/>}/>
+
 
                         {/* Help and Contact Routes */}
                         <Route path="/help" element={<HelpPage/>}/>
