@@ -114,6 +114,6 @@ button:disabled {
 }
 
 .loggin-header {
-    background-color: #4C8362;
+    background-color: var(--green-eleGov);
     font-family: 'Roboto', sans-serif;
 }
