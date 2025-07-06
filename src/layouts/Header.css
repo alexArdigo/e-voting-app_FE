@@ -11,7 +11,7 @@ body{
     text-decoration: underline;
 }
 
-li {
+li, .loggin-header {
     font-size: 14px;
 }
 
@@ -111,4 +111,9 @@ button:disabled {
 .nav-bar li a {
     color: white;
     text-decoration: none;
+}
+
+.loggin-header {
+    background-color: var(--green-eleGov);
+    font-family: 'Roboto', sans-serif;
 }

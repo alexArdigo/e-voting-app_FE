@@ -11,12 +11,14 @@ import {
     Legend
 } from "chart.js";
 import api from "../../services/api";
+import SideBar from "../../pages/Viewer/SideBar";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 
 const VotesByPartyByDistrictChart = ({ electionName, electionId }) => {
     const [chartData, setChartData] = useState(null);
+    const [districtName, setDistrictName] = useState("Aveiro");
 
 
     const config = {
@@ -38,11 +40,6 @@ const VotesByPartyByDistrictChart = ({ electionName, electionId }) => {
                 const orgResponse = await api.get("/parties");
                 const organisations = orgResponse.data;
 
-                if (!Array.isArray(organisations)) {
-                    console.error("Resposta inesperada de /parties:", organisations);
-                    return;
-                }
-
                 const partyNames = organisations.map(org => org.organisationName);
                 console.log("Partidos encontrados:", partyNames);
 
@@ -56,10 +53,8 @@ const VotesByPartyByDistrictChart = ({ electionName, electionId }) => {
                                 districtName: "Aveiro"
                             }
                         });
-                        console.log(`${party}: ${res.data} votos`);
                         voteCounts.push(res.data);
-                    } catch (err) {
-                        console.warn(`Erro ao buscar votos para ${party}:`, err.response?.data || err.message);
+                    } catch (e) {
                         voteCounts.push(0); // adiciona 0 se der erro
                     }
                 }

@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import api from "../../services/api.jsx";
 import MainLayout from "../../layouts/MainLayout.jsx";
 import {toast} from "react-toastify";
+import HalfLogo from "../../components/common/HalfLogo";
 
 
 const AuthPage = () => {
@@ -44,13 +45,14 @@ const AuthPage = () => {
                     <h2>Faça sua autenticação com a <strong>Chave Móvel Digital.</strong></h2>
 
                     <button
-                        className="vote-button"
+                        className="chave-movel-digital-button"
                         onClick={handleStartCMDAuthentication}
                     >
-                        Chave Móvel Digital
+                        {/*Chave Móvel Digital*/}
                     </button>
                 </div>
             </div>
+            <HalfLogo></HalfLogo>
         </MainLayout>
     );
 };

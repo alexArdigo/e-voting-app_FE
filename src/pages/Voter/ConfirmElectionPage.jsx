@@ -34,10 +34,10 @@ const ConfirmElectionPage = () => {
                 {/*    <img src="public/images/legislativas-viewer.png" alt="side-image" height="300px" ></img>*/}
                 {/*</div>*/}
 
-                <StyledContainer variant="transparent" className="dflxColumn" style={{padding: "140px"}}> {/*, marginRight: "300px"*/}
+                <StyledContainer variant="transparent" className="dflxColumn" style={{padding: "80px"}}> {/*, marginRight: "300px"*/}
                     <StyledContainer variant="tranparent" style={{width: "600px"}}>
                         <p>Selecionou:</p>
-                        <h1 style={{fontSize: "50px"}}>{selectedElectionName || "Nome da eleição não disponível"}</h1>
+                        <h1 style={{fontSize: "50px", padding: "30px"}}>{selectedElectionName || "Nome da eleição não disponível"}</h1>
                     </StyledContainer>
                     <StyledContainer variant="warning" style={{width: "600px"}}>
                         <p>Atenção! Ao clicar em “Votar” será redirecionado para o seu boletim de voto eletrónico.

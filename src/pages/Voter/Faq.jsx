@@ -117,8 +117,8 @@ const Faq = () => {
                         onChange={(e) => setNewComment(e.target.value)}
                         required
                     ></textarea>
-                    <div className={"button-wrapper"}>
-                        <button type="submit">Enviar</button>
+                    <div>
+                        <button className="vote-button" type="submit">Enviar</button>
                     </div>
                 </form>
                 <HalfLogo />

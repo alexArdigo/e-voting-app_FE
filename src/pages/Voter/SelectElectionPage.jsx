@@ -50,7 +50,7 @@ const SelectElectionPage = () => {
     };
 
     return (
-        <MainLayout style={{ paddingBlock: "100px" }}>
+        <MainLayout style={{ paddingBlock: "100px", minHeight: "90vh" }}>
             <HalfLogo />
             <div className="steps-container">
                 <h1 style={{fontSize: "25px"}}>Selecione uma eleição:</h1>

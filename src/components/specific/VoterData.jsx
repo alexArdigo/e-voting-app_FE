@@ -3,6 +3,7 @@ import {useUserContext} from "../../services/UserContext.jsx";
 import {useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
 import api from "../../services/api";
+import HalfLogo from "../common/HalfLogo";
 
 const VoterData = () => {
 
@@ -35,7 +36,8 @@ const VoterData = () => {
     }, []);
 
     return (
-        <section className={"voter-data-container"}>
+        <div style={{minHeight: "100vh"}}>
+        <section className={"voter-data-container"} style={{marginTop: "130px"}}>
 
             <div className={"voter-info"}>
                 <div className="info-column">
@@ -60,6 +62,9 @@ const VoterData = () => {
                 </div>
             </div>
         </section>
+            <HalfLogo></HalfLogo>
+        </div>
+
     );
 };
 

@@ -25,7 +25,8 @@
     height: auto;
 }
 
-.home-button{
+.home-button,
+.vote-button {
     background-color: #4C8362;
     color: white;
     text-align: center;
@@ -39,17 +40,15 @@
 }
 
 
-/*.vote-button {*/
-/*    background-image: url("public/images/unnamed.jpg");*/
-/*    background-size: cover;*/
-/*    background-position: center;*/
-/*    background-repeat: no-repeat;*/
-/*    color: white;*/
-/*    cursor: pointer;*/
-/*    padding: 25px 110px;*/
-/*    margin: 40px;*/
-/*    border-radius: 0;*/
-/*}*/
+.chave-movel-digital-button {
+    background-image: url("public/images/Chave-Movel-Digital-button.png");
+    background-size: cover;
+    background-position: center;
+    height: 80px;
+    width: 300px;
+    border-radius: 10px;
+    background-color: #3C5DBC;
+}
 
 .home-button {
     font-size: 1.95rem;
