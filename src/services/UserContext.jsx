@@ -15,22 +15,17 @@ const UserProvider = ( {children} ) => {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
+    console.log(user);
     useEffect(() => {
         (async () => {
             try {
                 let response;
                 response = await api.get("/loggedUser");
 
-                console.log(response.data);
                 if (!response.data) {
                     response = await api.get("/loggedVoter");
-                    console.log(response.data);
                 }
 
-                if (!response.data)
-                    throw new Error("User not logged in");
-
-                console.log("User data: ", response.data);
                 setUser(response.data);
             } catch (e) {
                 console.error("user not logged in: ", e);
