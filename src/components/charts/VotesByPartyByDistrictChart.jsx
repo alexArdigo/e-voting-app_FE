@@ -53,9 +53,8 @@ const VotesByPartyByDistrictChart = ({ electionName, electionId }) => {
                                 districtName: "Aveiro"
                             }
                         });
-                        console.log(`${party}: ${res.data} votos`);
                         voteCounts.push(res.data);
-                    } catch (err) {
+                    } catch (e) {
                         voteCounts.push(0); // adiciona 0 se der erro
                     }
                 }
