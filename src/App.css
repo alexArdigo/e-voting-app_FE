@@ -43,7 +43,11 @@ body {
 .dflxColumn {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
+
+.dflxX {
+    justify-content: center;
+}
+
 

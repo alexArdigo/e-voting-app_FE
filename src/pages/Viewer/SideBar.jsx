@@ -1,8 +1,8 @@
 import React from 'react';
 import MainLayout from "../../layouts/MainLayout";
-import StyledContainer from "../../components/specific/StyledContainer";
+import StyledContainer from "../../layouts/StyledContainer";
 
-const ViewerSideBar = () => {
+const SideBar = () => {
     return (
 
 
@@ -11,7 +11,7 @@ const ViewerSideBar = () => {
             <MainLayout style={{ height: "100vh", width:"100vw"}}>
                 <StyledContainer variant="DefaultTransparent" style={{minWidth:"30vw"}}>
                     <StyledContainer variant="defaultContained" className="dflxColumn" style={{heigth: "100px", width: "200px"}}>
-                        <img src="public/images/ProfilePic.png" height="150px"/>
+                        <img src="public/images/ProfilePic.png" height="150px" alt="Profile"/>
                         <div className="user-side-profile" style={{ lineHeight: 0.5 }}>
                             <p color="green"><strong> Viwer logged in! </strong></p>
                             <p>Last Login: 2023-10-01</p>
@@ -20,7 +20,7 @@ const ViewerSideBar = () => {
 
                         </div>
                         <div className="dflxColumn" >
-                            <button className="side-bar-button"> Profile </button>
+                            {/*<button className="side-bar-button"> Edit profile </button>*/}
                             <button className="side-bar-button"> Loggout </button>
                         </div>
 
@@ -37,4 +37,4 @@ const ViewerSideBar = () => {
     );
 };
 
-export default ViewerSideBar;
+export default SideBar;

@@ -40,6 +40,7 @@ const variants = {
         color: "#856404",
         paddingInline: "30px",
         width: "600px",
+        justifyContent: "center"
     },
     defaultTransparent: {
         justifyContent: "center",
@@ -47,10 +48,10 @@ const variants = {
 
     },
     defaultContained: {
-        padding: "60px",
+        padding: "30px",
         borderRadius: "12px",
         boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
-        margin: "70px",
+        margin: "30px",
         justifyContent: "left",
         // background: "#f5f5f5",
     },

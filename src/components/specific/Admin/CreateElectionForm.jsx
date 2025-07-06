@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import AdminDashboard from "./AdminDashboard";
-import { createElection } from "../../services/electionService";
+import { createElection } from "../../../services/ElectionService";
 import { toast } from "react-toastify";
+import "./Admin.css";
 
 const CreateElectionPage = () => {
     const [formData, setFormData] = useState({

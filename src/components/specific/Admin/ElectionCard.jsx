@@ -1,3 +1,5 @@
+import "./Admin.css"
+
 const ElectionCard = ({ election }) => (
     <div className="election-card">
         <h3 className="elections-title">{election.name}</h3>

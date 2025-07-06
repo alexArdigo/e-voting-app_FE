@@ -1,5 +1,3 @@
-import MainLayout from "../../layouts/MainLayout.jsx";
-import StyledContainer from "../specific/StyledContainer.jsx";
 import React from "react";
 
 const HalfLogo = ({ ...props }) => {

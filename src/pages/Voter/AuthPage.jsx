@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
-import api from "../services/api.jsx";
-import MainLayout from "../layouts/MainLayout.jsx";
-import {useNavigate} from "react-router-dom";
+import api from "../../services/api.jsx";
+import MainLayout from "../../layouts/MainLayout.jsx";
 import {toast} from "react-toastify";
 
 
@@ -35,7 +34,7 @@ const AuthPage = () => {
     }, []);
 
     return (
-        <MainLayout>
+        <MainLayout className="dflxX" style={{minHeight: "90vh"}}>
             <div className="auth-container">
                 <div className="message-box">
                     <img src="/images/cne-logo.jpg" alt="CNE"/>

@@ -40,7 +40,7 @@ const Login = () => {
     return (
 
         <div className="viewer">
-        <MainLayout>
+        <MainLayout style={{minHeight: "100vh"}}>
             <div className="user-info-container">
                 <h3>ACESSO AO PORTAL DE UTILIZADOR</h3>
 

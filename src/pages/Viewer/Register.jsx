@@ -44,7 +44,7 @@ const Register = () => {
 
     return (
         <div className="viewer">
-            <MainLayout>
+            <MainLayout style={{minHeight: "100vh"}}>
                 <div className="user-info-container">
                     <img src="/images/legislativas-viewer.png" alt="Register" className="register-image"/>
                     <h3>Formulário de Registo</h3>

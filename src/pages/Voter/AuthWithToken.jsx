@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
-import MainLayout from "../layouts/MainLayout";
+import MainLayout from "../../layouts/MainLayout";
 import {replace, useNavigate, useSearchParams} from "react-router-dom";
-import api from "../services/api";
+import api from "../../services/api";
 
 const AuthWithToken = () => {
     const navigate = useNavigate();
