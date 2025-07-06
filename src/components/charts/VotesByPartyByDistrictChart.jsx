@@ -18,7 +18,11 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const VotesByPartyByDistrictChart = ({ electionName, electionId }) => {
     const [chartData, setChartData] = useState(null);
-    const [districtName, setDistrictName] = useState("Aveiro");
+    const [districts, setDistricts] = useState([]);
+    const [selectedDistrict, setSelectedDistrict] = useState("");
+    const [year, setYear] = useState("2025");
+    const years = ["2021", "2022", "2023", "2024", "2025"];
+
 
 
     const config = {
@@ -34,14 +38,19 @@ const VotesByPartyByDistrictChart = ({ electionName, electionId }) => {
     useEffect(() => {
         const data = async () => {
             try {
-                console.log("Election ID:", electionId);
-                console.log("Election Name:", electionName);
 
+                //PARTIES
                 const orgResponse = await api.get("/parties");
                 const organisations = orgResponse.data;
-
                 const partyNames = organisations.map(org => org.organisationName);
                 console.log("Partidos encontrados:", partyNames);
+
+                //DISTRICTS
+                const districtResponse = await api.get("/districts");
+                const districts = districtResponse.data;
+                const districtNames = districts.map(district => district.districtName);
+                console.log("Distritos encontrados:", districtNames);
+                setDistricts(districtNames);
 
                 const voteCounts = [];
 
@@ -50,7 +59,9 @@ const VotesByPartyByDistrictChart = ({ electionName, electionId }) => {
                         const res = await api.get("/total-votes-by-party-by-district", {
                             params: {
                                 partyName: party,
-                                districtName: "Aveiro"
+                                districtName: selectedDistrict,
+                                year: year,
+                                electoralCircleId: electionId
                             }
                         });
                         voteCounts.push(res.data);
@@ -78,7 +89,7 @@ const VotesByPartyByDistrictChart = ({ electionName, electionId }) => {
         if (electionId) {
             data();
         }
-    }, [electionId]);
+    }, [electionId, selectedDistrict, year]);
 
     if (!chartData) return <p>A carregar gráfico...</p>;
 
@@ -86,6 +97,37 @@ const VotesByPartyByDistrictChart = ({ electionName, electionId }) => {
         <div>
             <h2>Distribuição de Votos por Partido</h2>
             <Bar options={config} data={chartData} />
+
+
+            <div>
+                <label htmlFor="district-select">Seleciona o ano:</label>
+                <select
+                    id="year-select"
+                    value={year}
+                    onChange={(e) => setYear(e.target.value)}>
+                    {years.map((y) => (
+                        <option key={y} value={y}>
+                            {y}
+                        </option>
+                    ))}
+                </select>
+
+            </div>
+
+
+            <div>
+                <label htmlFor="district-select">Seleciona o distrito:</label>
+                <select
+                    id="district-select"
+                    value={selectedDistrict}
+                    onChange={(e) => setSelectedDistrict(e.target.value)}>
+                    {districts.map((district) => (
+                        <option key={district} value={district}>
+                            {district}
+                        </option>
+                    ))}
+                </select>
+            </div>
         </div>
     );
 };
