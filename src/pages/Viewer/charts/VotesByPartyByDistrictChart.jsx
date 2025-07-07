@@ -10,8 +10,8 @@ import {
     Tooltip,
     Legend
 } from "chart.js";
-import api from "../../services/api";
-import SideBar from "../../pages/Viewer/SideBar";
+import api from "../../../services/api";
+import SideBar from "../SideBar";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 

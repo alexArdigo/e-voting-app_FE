@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AdminDashboard from "./AdminDashboard";
 import { createElection } from "../../../services/ElectionService";
 import { toast } from "react-toastify";
 import "./Admin.css";
 
 const CreateElectionPage = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: "",
         description: "",
@@ -37,16 +39,29 @@ const CreateElectionPage = () => {
 
         try {
             setLoading(true);
-            await createElection(formData);
-            toast.success("Eleição criada com sucesso!");
+            const result = await createElection(formData);
 
-            setFormData({
-                name: "",
-                description: "",
-                startDate: "",
-                endDate: "",
-                electionType: "PRESIDENTIAL"
-            });
+            if (result && result.name) {
+                toast.success(`Eleição "${result.name}" criada com sucesso!`);
+
+                if (formData.electionType === "LEGISLATIVE") {
+                    toast.info("Eleição legislativa criada com círculos eleitorais para todos os distritos");
+                }
+
+                setFormData({
+                    name: "",
+                    description: "",
+                    startDate: "",
+                    endDate: "",
+                    electionType: "PRESIDENTIAL"
+                });
+
+                setTimeout(() => {
+                    navigate("/admin");
+                }, 2000);
+            } else {
+                toast.error("Erro: Resposta inválida do servidor");
+            }
         } catch (error) {
             console.error('Erro ao criar eleição:', error);
             toast.error("Erro ao criar eleição. Tente novamente.");
@@ -73,6 +88,7 @@ const CreateElectionPage = () => {
                                 onChange={handleChange}
                                 placeholder="Ex: Eleições Presidenciais 2024"
                                 required
+                                maxLength={100}
                             />
                         </div>
 
@@ -85,7 +101,27 @@ const CreateElectionPage = () => {
                                 onChange={handleChange}
                                 placeholder="Descrição da eleição..."
                                 rows="4"
+                                maxLength={500}
                             />
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="electionType">Tipo de Eleição *</label>
+                            <select
+                                id="electionType"
+                                name="electionType"
+                                value={formData.electionType}
+                                onChange={handleChange}
+                                required
+                            >
+                                <option value="PRESIDENTIAL">Presidencial</option>
+                                <option value="LEGISLATIVE">Legislativa</option>
+                            </select>
+                            {formData.electionType === "LEGISLATIVE" && (
+                                <small className="form-help">
+                                    Será criada automaticamente com círculos eleitorais para todos os distritos
+                                </small>
+                            )}
                         </div>
 
                         <div className="form-row">
@@ -112,20 +148,6 @@ const CreateElectionPage = () => {
                                     required
                                 />
                             </div>
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="electionType">Tipo de Eleição *</label>
-                            <select
-                                id="electionType"
-                                name="electionType"
-                                value={formData.electionType}
-                                onChange={handleChange}
-                                required
-                            >
-                                <option value="PRESIDENTIAL">Presidencial</option>
-                                <option value="LEGISLATIVE">Legislativa</option>
-                            </select>
                         </div>
                     </div>
 

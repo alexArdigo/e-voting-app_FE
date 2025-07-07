@@ -9,7 +9,7 @@ import {
     Tooltip,
     Legend
 } from "chart.js";
-import api from "../../services/api";
+import api from "../../../services/api";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 

@@ -5,7 +5,7 @@ import Faq from "./pages/Voter/Faq.jsx";
 import Home from "./pages/Voter/Home.jsx";
 import AuthPage from "./pages/Voter/AuthPage.jsx";
 import Instructions from "./pages/Voter/Instructions.jsx";
-import "./App.css"
+import "./App.css";
 import ContactPage from "./pages/Voter/ContactPage.jsx";
 import VoterProfile from "./pages/Voter/VoterProfile.jsx";
 import HelpPage from "./pages/Voter/HelpPage.jsx";
@@ -19,7 +19,7 @@ import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
 import AuthWithToken from "./pages/Voter/AuthWithToken";
 import AdminElection from "./components/specific/Admin/AdminElection";
-import ChartsContainer from "./components/charts/ChartsContainer";
+import ChartsContainer from "./pages/Viewer/charts/ChartsContainer";
 import SideBar from "./pages/Viewer/SideBar";
 import CreateElectionPage from "./components/specific/Admin/CreateElectionForm";
 import PartyForm from "./pages/PartyForm";
@@ -29,12 +29,10 @@ function App() {
 
     return (
         <>
-
             <ToastContainer/>
             <BrowserRouter>
                 <UserProvider>
                     <Header/>
-
                     <Routes>
                         <Route path="/" element={<Home/>}/>
                         <Route path="/instructions" element={<Instructions/>}/>
@@ -69,10 +67,7 @@ function App() {
                         <Route path="/admin" element={<AdminElection/>}/>
                         <Route path="/create-election" element={<CreateElectionPage/>}/>
 
-
-
                     </Routes>
-
                     <Footer/>
                 </UserProvider>
             </BrowserRouter>
@@ -80,4 +75,4 @@ function App() {
     );
 }
 
-export default App
+export default App;
