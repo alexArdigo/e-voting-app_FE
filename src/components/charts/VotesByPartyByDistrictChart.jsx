@@ -95,7 +95,7 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
     return (
         <div>
             <h2>Distribuição de Votos por Partido</h2>
-            <Bar options={config} data={chartData} /> <p style={{color: "red"}}> <strong> FALTAM OS GLOBAIS!!!!!!!!!!!!!!!!!!!!!!!!!</strong></p>
+            <Bar options={config} data={chartData} />
 
 
             <div>
