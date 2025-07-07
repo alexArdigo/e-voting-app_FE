@@ -15,7 +15,6 @@ const UserProvider = ( {children} ) => {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
-    console.log(user);
     useEffect(() => {
         (async () => {
             try {
