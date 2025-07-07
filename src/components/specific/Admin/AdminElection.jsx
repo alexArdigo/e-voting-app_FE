@@ -4,6 +4,7 @@ import { getActiveElections, getNotActiveElections } from "../../../services/Ele
 import { toast } from "react-toastify";
 import ElectionCard from "./ElectionCard";
 import "./Admin.css";
+import EditElection from "./EditElection";
 
 const AdminElection = () => {
     const [activeElections, setActiveElections] = useState([]);
@@ -111,6 +112,13 @@ const AdminElection = () => {
                         )}
                     </div>
                 </div>
+
+                <EditElection
+                    election={editingElection}
+                    isOpen={isEditOpen}
+                    onClose={handleCloseEdit}
+                    onUpdate={handleUpdateElection}
+                />
             </div>
         </AdminDashboard>
     );
