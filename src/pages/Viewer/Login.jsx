@@ -30,7 +30,7 @@ const Login = () => {
             const user = response.data;
             contexto.setUser(user);
 
-            navigate("/");
+            navigate("/graph");
         } catch (e) {
             console.error("Erro ao fazer login:", e);
             alert("Credenciais inválidas ou erro no servidor.");
@@ -60,7 +60,7 @@ const Login = () => {
                     <button type="submit">Entrar</button>
                     <br/>
                     <img src="/images/legislativas-viewer.png" alt="Login" className="login-image"/>
-                    <p>Não tem conta? Registe-se <a style={{color: "white"}} href="/graph"><strong>aqui.</strong></a>
+                    <p>Não tem conta? Registe-se <a style={{color: "white"}} href="/register"><strong>aqui.</strong></a>
                     </p>
                 </form>
             </div>
