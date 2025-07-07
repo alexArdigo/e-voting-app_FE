@@ -46,8 +46,8 @@ body {
     align-items: center;
 }
 
-.dflxX {
-    justify-content: center;
+.dInFlex {
+    display: inline-flex;
 }
 
 .jcc {
