@@ -1,3 +1,4 @@
+
 import api from "./api.jsx";
 
 const getElection = async (election_id) => {
@@ -26,10 +27,22 @@ const createElection = async (electionData) => {
     return response.data;
 };
 
+const updateElection = async (electionId, electionData) => {
+    const response = await api.put(`/elections/${electionId}`, electionData);
+    return response.data;
+};
+
+const deleteElection = async (electionId) => {
+    const response = await api.delete(`/elections/${electionId}`);
+    return response.data;
+};
+
 export {
     getElection,
     getAllElections,
     getNotActiveElections,
     getActiveElections,
-    createElection
+    createElection,
+    updateElection,
+    deleteElection
 };

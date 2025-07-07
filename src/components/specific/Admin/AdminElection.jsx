@@ -9,6 +9,8 @@ const AdminElection = () => {
     const [activeElections, setActiveElections] = useState([]);
     const [notActiveElections, setNotActiveElections] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [editingElection, setEditingElection] = useState(null);
+    const [isEditOpen, setIsEditOpen] = useState(false);
 
     useEffect(() => {
         loadElections();
@@ -29,6 +31,24 @@ const AdminElection = () => {
         } finally {
             setLoading(false);
         }
+    };
+
+    const handleEditElection = (election) => {
+        setEditingElection(election);
+        setIsEditOpen(true);
+    };
+
+    const handleCloseEdit = () => {
+        setIsEditOpen(false);
+        setEditingElection(null);
+    };
+
+    const handleUpdateElection = () => {
+        loadElections();
+    };
+
+    const handleDeleteElection = () => {
+        loadElections();
     };
 
     if (loading) {
@@ -57,7 +77,11 @@ const AdminElection = () => {
                         {activeElections.length > 0 ? (
                             <div className="election-list">
                                 {activeElections.map((election) => (
-                                    <ElectionCard key={election.id} election={election} />
+                                    <ElectionCard
+                                        key={election.id}
+                                        election={election}
+                                        isActive={true}
+                                    />
                                 ))}
                             </div>
                         ) : (
@@ -73,7 +97,13 @@ const AdminElection = () => {
                         {notActiveElections.length > 0 ? (
                             <div className="election-list">
                                 {notActiveElections.map((election) => (
-                                    <ElectionCard key={election.id} election={election} />
+                                    <ElectionCard
+                                        key={election.id}
+                                        election={election}
+                                        isActive={false}
+                                        onEdit={handleEditElection}
+                                        onDelete={handleDeleteElection}
+                                    />
                                 ))}
                             </div>
                         ) : (
