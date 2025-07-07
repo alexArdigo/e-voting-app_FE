@@ -80,12 +80,12 @@ const BallotPage = () => {
         setSubmitting(true);
         try {
             const voteRequest = {
-                voterNif: user.nif,
-                electionId: electionId,
                 organisationId: selectedParty,
-                municipalityName: user.municipality || null
+                voterNif: user.nif,
+                municipalityName: ''
             };
 
+            console.log('Enviando voto:', voteRequest);
             await api.post(`/elections/${electionId}/castVote`, voteRequest);
             toast.success('Voto submetido com sucesso!');
             navigate('/submitted', {
