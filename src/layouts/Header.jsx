@@ -32,9 +32,8 @@ export const Header = () => {
                             <p>{user?.name}</p>
                             <button type="submit" onClick={logout}>Logout</button>
                         </>
-                    ) : (
-                        <button className="loggin-header" onClick={() => navigate("/login")}>Login</button>
-                    )}
+                    ) : null}
+                    {user?.role === "ADMIN" ? null : null}
                 </ul>
             </div>
 
