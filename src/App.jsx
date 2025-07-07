@@ -19,7 +19,7 @@ import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
 import AuthWithToken from "./pages/Voter/AuthWithToken";
 import AdminElection from "./components/specific/Admin/AdminElection";
-import ChartsContainer from "./components/charts/ChartsContainer";
+import ChartsContainer from "./pages/Viewer/charts/ChartsContainer";
 import SideBar from "./pages/Viewer/SideBar";
 import CreateElectionPage from "./components/specific/Admin/CreateElectionForm";
 import PartyForm from "./pages/PartyForm";
