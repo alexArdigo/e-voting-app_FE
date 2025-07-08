@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout.jsx";
 import StyledContainer from "../../layouts/StyledContainer.jsx";
 import HalfLogo from "../../components/common/HalfLogo.jsx";
+import {useUserContext} from "../../services/UserContext";
 
 const Instructions = () => {
-
+    const {user} = useUserContext();
     const navigate = useNavigate()
     const stepsRef = useRef(null);
 
@@ -17,7 +18,11 @@ const Instructions = () => {
 
     const handleClick = () => {
         window.scrollTo(0, 0);
-        navigate("/auth");
+        if (user.id && user.role === "VOTER") {
+           navigate("/voter-data")
+        } else {
+            navigate("/auth");
+        }
     }
 
     return (

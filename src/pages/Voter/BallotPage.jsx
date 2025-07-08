@@ -14,7 +14,7 @@ const BallotPage = () => {
     const location = useLocation();
     const electionId = location.state?.electionId;
 
-    const { user } = useUserContext();
+    const { user, logout } = useUserContext();
 
     const [parties, setParties] = useState([]);
     const [selectedParty, setSelectedParty] = useState('');
@@ -25,6 +25,7 @@ const BallotPage = () => {
     useEffect(() => {
         if (timeLeft <= 0) {
             toast.error('Tempo esgotado! Será redirecionado...');
+            logout();
             setTimeout(() => navigate('/'), 3000);
             return;
         }

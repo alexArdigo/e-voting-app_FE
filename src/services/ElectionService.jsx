@@ -22,6 +22,14 @@ const getActiveElections = async () => {
     return Array.isArray(data) ? data : [data];
 };
 
+const hasVoterVotedList = async () => {
+    const response = await api.get(`/voters/has-voted?nif=${encodeURIComponent(user?.nif || '')}`);
+    if (response.status !== 200) {
+        throw new Error("Failed to fetch voter voted list");
+    }
+    return response.data;
+};
+
 const createElection = async (electionData) => {
     const response = await api.post("/elections", electionData);
     return response.data;
@@ -42,6 +50,7 @@ export {
     getAllElections,
     getNotActiveElections,
     getActiveElections,
+    hasVoterVotedList,
     createElection,
     updateElection,
     deleteElection

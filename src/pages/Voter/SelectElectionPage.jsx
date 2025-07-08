@@ -1,19 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import HalfLogo from "../../components/common/HalfLogo.jsx";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout.jsx";
-import { toast } from "react-toastify";
+import {toast} from "react-toastify";
 import {
     getActiveElections,
-    getNotActiveElections
-} from "../../services/ElectionService"
+    getNotActiveElections, hasVoterVotedList
+} from "../../services/ElectionService";
+import {useUserContext} from "../../services/UserContext";
+import api from "../../services/api";
 
 const SelectElectionPage = () => {
     const navigate = useNavigate();
+    const {user} = useUserContext();
     const [elections, setElections] = useState([]);
     const [selectedOption, setSelectedOption] = useState("");
     const [loadingData, setLoadingData] = useState(true);
     const [activeElection, setActiveElection] = useState([]);
+    const [voterVotedList, setVoterVotedList] = useState([]);
 
     useEffect(() => {
         (async () => {
@@ -22,7 +26,12 @@ const SelectElectionPage = () => {
                 setElections(upcoming);
 
                 const active = await getActiveElections();
+                console.log("Active elections:", active);
                 setActiveElection(active);
+
+                const votedList = await hasVoterVotedList();
+                setVoterVotedList(prevState => [...prevState, ...votedList]);
+                
             } catch (e) {
                 console.error(e);
                 toast.error("Erro ao carregar eleições.");
@@ -30,6 +39,8 @@ const SelectElectionPage = () => {
                 setLoadingData(false);
             }
         })();
+
+
     }, []);
 
     const handleSubmit = (e) => {
@@ -49,9 +60,10 @@ const SelectElectionPage = () => {
         });
     };
 
+
     return (
-        <MainLayout style={{ paddingBlock: "100px", minHeight: "90vh" }}>
-            <HalfLogo />
+        <MainLayout style={{paddingBlock: "100px", minHeight: "90vh"}}>
+            <HalfLogo/>
             <div className="steps-container">
                 <h1 style={{fontSize: "25px"}}>Selecione uma eleição:</h1>
                 {loadingData ? (
@@ -66,7 +78,8 @@ const SelectElectionPage = () => {
                                     justifyContent: "space-between",
                                     alignItems: "center",
                                     marginBlock: "30px",
-                                    width: "1000px"
+                                    width: "75vw",
+                                    marginInline: "auto"
                                 }}>
                                     <label>
                                         <input
@@ -75,7 +88,8 @@ const SelectElectionPage = () => {
                                             value={election.id}
                                             checked={selectedOption === election.id.toString()}
                                             onChange={(e) => setSelectedOption(e.target.value)}
-                                            style={{ marginRight: "10px" }}
+                                            style={{marginRight: "10px"}}
+                                            disabled={voterVotedList.includes(election.id)}
                                         />
                                         {election.name}
                                     </label>
@@ -87,11 +101,11 @@ const SelectElectionPage = () => {
                     </form>
                 )}
 
-                <h1 style={{ fontSize: "25px" }}>Próximas Eleições:</h1>
-                <div className={"steps-container"} style={{ width: "1000px" }}>
-                    <section className="steps-list" style={{ width: "1000px" }}>
+                <h1 style={{fontSize: "25px"}}>Próximas Eleições:</h1>
+                <div className={"steps-container"} style={{width: "1000px"}}>
+                    <section className="steps-list" style={{width: "1000px"}}>
                         {elections.map((election) => (
-                            <div className={"step"} key={election.id} style={{ width: "1000px" }}>
+                            <div className={"step"} key={election.id} style={{width: "1000px"}}>
                                 <p>{election.name}</p>
                             </div>
                         ))}
@@ -102,4 +116,4 @@ const SelectElectionPage = () => {
     );
 };
 
-                export default SelectElectionPage;
+export default SelectElectionPage;

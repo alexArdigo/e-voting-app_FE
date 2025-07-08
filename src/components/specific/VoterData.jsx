@@ -9,7 +9,6 @@ const VoterData = () => {
 
     const { user, setUser } = useUserContext();
     const [confirmed, setConfirmed] = useState(false);
-
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -24,7 +23,7 @@ const VoterData = () => {
         try {
             const {data} = await api.get("/loggedVoter");
             setUser(data);
-
+            console.log("User data fetched successfully:", data);
         } catch (e) {
             console.error("Erro ao obter informações:", e);
             toast("Erro ao obter informações do utilizador.");

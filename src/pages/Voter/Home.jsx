@@ -1,10 +1,12 @@
 import {useNavigate} from "react-router-dom";
 import React from "react";
+import {useUserContext} from "../../services/UserContext";
 
 const Home = () => {
-
+    const {user} = useUserContext();
     const navigate = useNavigate();
 
+    console.log("User in Home: ", user);
     return (
         <main className="home-container">
             <div className="overlay">
@@ -12,10 +14,10 @@ const Home = () => {
                 <button className="home-button" onClick={() => navigate("/instructions")}>EU VOTO</button>
             </div>
 
-                <div className={"login-button-wrapper"}>
+            {user?.id ? "" : <div className={"login-button-wrapper"}>
                     <h5>Não é eleitor?</h5>
                     <button type="button" onClick={() => navigate("/login")}>Login</button>
-                </div>
+                </div>}
 
         </main>
     );
