@@ -15,17 +15,17 @@ const Faq = () => {
     const { user } = useUserContext();
 
     useEffect(() => {
-        async function fetchComments() {
-            try {
-                const comentarios = await api.get(`/comments`);
-                setComments(comentarios.data);
-            } catch (error) {
-                toast("Erro ao carregar comentários.");
-            }
-        }
-
         fetchComments();
     }, []);
+
+    const fetchComments = async () => {
+        try {
+            const comentarios = await api.get(`/comments`);
+            setComments(comentarios.data);
+        } catch (error) {
+            toast("Erro ao carregar comentários.");
+        }
+    };
 
     const handleAdminReply = async (e, commentId) => {
         e.preventDefault();
@@ -39,8 +39,22 @@ const Faq = () => {
             await api.post(`/comment/${commentId}/answer`, form);
             toast("Comentário respondido com sucesso!");
             setAdminAnswerTexts((prev) => ({ ...prev, [commentId]: "" }));
+            fetchComments();
         } catch (err) {
             toast("Erro ao responder comentário.");
+        }
+    };
+
+    const handleDeleteComment = async (commentId) => {
+        if (window.confirm("Tem certeza que deseja apagar este comentário? Esta ação não pode ser desfeita.")) {
+            try {
+                await api.delete(`/comment/${commentId}`);
+                toast("Comentário apagado com sucesso!");
+                fetchComments();
+            } catch (error) {
+                toast("Erro ao apagar comentário.");
+                console.error("Erro ao apagar comentário:", error);
+            }
         }
     };
 
@@ -82,23 +96,34 @@ const Faq = () => {
                                 />
 
                                 {user?.role === "ADMIN" && (
-                                    <form
-                                        onSubmit={(e) => handleAdminReply(e, comment.id)}
-                                        className="admin-reply-form"
-                                    >
-                                        <textarea
-                                            value={adminAnswerTexts[comment.id] || ""}
-                                            onChange={(e) =>
-                                                setAdminAnswerTexts({
-                                                    ...adminAnswerTexts,
-                                                    [comment.id]: e.target.value,
-                                                })
-                                            }
-                                            placeholder="Responder a este comentário..."
-                                            required
-                                        />
-                                        <button type="submit">Responder</button>
-                                    </form>
+                                    <div className="admin-actions">
+                                        <form
+                                            onSubmit={(e) => handleAdminReply(e, comment.id)}
+                                            className="admin-reply-form"
+                                        >
+                                            <textarea
+                                                value={adminAnswerTexts[comment.id] || ""}
+                                                onChange={(e) =>
+                                                    setAdminAnswerTexts({
+                                                        ...adminAnswerTexts,
+                                                        [comment.id]: e.target.value,
+                                                    })
+                                                }
+                                                placeholder="Responder a este comentário..."
+                                                required
+                                            />
+                                            <div className="admin-buttons">
+                                                <button type="submit">Responder</button>
+                                                <button
+                                                    type="button"
+                                                    className="delete-comment-button"
+                                                    onClick={() => handleDeleteComment(comment.id)}
+                                                >
+                                                    🗑️ Apagar
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 )}
                             </div>
                         ))}
