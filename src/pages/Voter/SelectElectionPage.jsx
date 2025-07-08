@@ -8,7 +8,6 @@ import {
     getNotActiveElections, hasVoterVotedList
 } from "../../services/ElectionService";
 import {useUserContext} from "../../services/UserContext";
-import api from "../../services/api";
 
 const SelectElectionPage = () => {
     const navigate = useNavigate();
@@ -30,17 +29,15 @@ const SelectElectionPage = () => {
                 setActiveElection(active);
 
                 const votedList = await hasVoterVotedList(user);
-                setVoterVotedList(prevState => [...prevState, ...votedList]);
-                
-            } catch (e) {
-                console.error(e);
+                setVoterVotedList(votedList);
+
+            } catch (error) {
+                console.error('Erro ao carregar eleições:', error);
                 toast.error("Erro ao carregar eleições.");
             } finally {
                 setLoadingData(false);
             }
         })();
-
-
     }, []);
 
     const handleSubmit = (e) => {
@@ -59,7 +56,6 @@ const SelectElectionPage = () => {
             }
         });
     };
-
 
     return (
         <MainLayout style={{paddingBlock: "100px", minHeight: "90vh"}}>
