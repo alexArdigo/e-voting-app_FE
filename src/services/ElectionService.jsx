@@ -6,20 +6,14 @@ const getElection = async (election_id) => {
     return response.data;
 };
 
-const getAllElections = async () => {
-    const response = await api.get("/elections");
-    return response.data;
-};
+const getElections = async (electionType, electionYear, isActive) => {
+    const params = new URLSearchParams();
+    if (electionType) params.append('electionType', electionType);
+    if (electionYear) params.append('electionYear', electionYear);
+    if (isActive !== undefined) params.append('isActive', isActive);
 
-const getNotActiveElections = async () => {
-    const response = await api.get("/election/notactive");
+    const response = await api.get(`/elections?${params}`);
     return Array.isArray(response.data) ? response.data : [];
-};
-
-const getActiveElections = async () => {
-    const response = await api.get("/election/active");
-    const data = response.data;
-    return Array.isArray(data) ? data : [data];
 };
 
 const hasVoterVotedList = async (user) => {
@@ -47,8 +41,13 @@ const deleteElection = async (electionId) => {
     return response.data;
 };
 
+const getAllElections = () => getElections();
+const getActiveElections = () => getElections(null, null, true);
+const getNotActiveElections = () => getElections(null, null, false);
+
 export {
     getElection,
+    getElections,
     getAllElections,
     getNotActiveElections,
     getActiveElections,
