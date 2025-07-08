@@ -146,7 +146,6 @@ const Faq = () => {
                         <button className="vote-button" type="submit">Enviar</button>
                     </div>
                 </form>
-                <HalfLogo />
             </div>
         </MainLayout>
     );

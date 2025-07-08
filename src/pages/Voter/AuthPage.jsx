@@ -52,7 +52,6 @@ const AuthPage = () => {
                     </button>
                 </div>
             </div>
-            <HalfLogo></HalfLogo>
         </MainLayout>
     );
 };

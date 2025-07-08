@@ -32,7 +32,6 @@ const ContactPage = () => {
 
                 </StyledContainer>
             </MainLayout>
-            <HalfLogo/>
         </>
 
 

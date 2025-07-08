@@ -80,16 +80,11 @@ const Instructions = () => {
                         <p><strong>Vote e submeta o seu voto</strong></p>
                     </div>
                 </section>
-
                 <div className="button-wrapper">
                     <button className="vote-button" onClick={handleClick}>Prosseguir</button>
                 </div>
-
-                <HalfLogo/>
             </div>
-
             </StyledContainer>
-
         </MainLayout>
     );
 };

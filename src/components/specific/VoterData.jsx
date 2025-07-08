@@ -48,7 +48,6 @@ const VoterData = () => {
                     </div>
                 </div>
             </section>
-            <HalfLogo></HalfLogo>
         </div>
 
     );

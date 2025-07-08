@@ -1,3 +1,4 @@
+import HalfLogo from "../components/common/HalfLogo";
 
 
 const MainLayout = ({ children, className = "dflx", style }) => (
@@ -5,6 +6,7 @@ const MainLayout = ({ children, className = "dflx", style }) => (
         className={className}
         style={style}
     >
+        <HalfLogo/>
         {children}
     </main>
 );

@@ -6,12 +6,17 @@ const Home = () => {
     const {user} = useUserContext();
     const navigate = useNavigate();
 
-    console.log("User in Home: ", user);
     return (
         <main className="home-container">
             <div className="overlay">
                 <img src="/images/rep_portuguesa_white.png" alt="Logo República Portuguesa" className="home-logo" />
-                <button className="home-button" onClick={() => navigate("/instructions")}>EU VOTO</button>
+                <button
+                    className="home-button"
+                    onClick={() => {
+                        window.scrollTo({top: 0, behavior: 'smooth'});
+                        navigate("/instructions")
+                    }}
+                >EU VOTO</button>
             </div>
 
             {user?.id ? "" : <div className={"login-button-wrapper"}>

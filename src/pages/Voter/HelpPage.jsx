@@ -26,8 +26,6 @@ const HelpPage = () => {
 
                 </StyledContainer>
             </MainLayout>
-            <HalfLogo/>
-
         </>
     );
 };
