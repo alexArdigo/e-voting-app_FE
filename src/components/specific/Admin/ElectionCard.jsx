@@ -21,6 +21,17 @@ const ElectionCard = ({ election, isActive = false, onEdit, onDelete }) => {
         }
     };
 
+    const getElectionTypeDisplay = (type) => {
+        switch(type) {
+            case "PRESIDENTIAL":
+                return "Presidencial";
+            case "LEGISLATIVE":
+                return "Legislativa";
+            default:
+                return type;
+        }
+    };
+
     return (
         <div className="election-card">
             <div className="election-header">
@@ -46,31 +57,32 @@ const ElectionCard = ({ election, isActive = false, onEdit, onDelete }) => {
             </div>
 
             <div className="election-details">
-                <p><strong>Tipo:</strong> {election.type === "PRESIDENTIAL" ? "Presidencial" : "Legislativa"}</p>
+                <p><strong>Tipo:</strong> {getElectionTypeDisplay(election.electionType || election.type)}</p>
+
+                {election.description && (
+                    <p><strong>Descrição:</strong> {election.description}</p>
+                )}
+
                 {election.totalVotes !== undefined && (
                     <p><strong>Total de votos:</strong> {election.totalVotes}</p>
                 )}
+
                 <p><strong>Início:</strong> {new Date(election.startDate).toLocaleString('pt-PT')}</p>
                 <p><strong>Fim:</strong> {new Date(election.endDate).toLocaleString('pt-PT')}</p>
 
-                {election.type === "CIRCULO_ELEITORAL" && (
-                    <>
-                        <p><strong>Distrito:</strong> {election.districtName ?? "N/A"}</p>
-                        <p><strong>Município:</strong> {election.municipalityName ?? "N/A"}</p>
-                        <p><strong>Freguesia:</strong> {election.parishName ?? "N/A"}</p>
-                        <p><strong>Nº de Mandatos:</strong> {election.seats ?? "N/A"}</p>
-                    </>
+                {election.organisations?.length > 0 && (
+                    <p><strong>Organizações:</strong> {election.organisations.length}</p>
                 )}
 
                 {election.parties?.length > 0 && (
                     <p><strong>Partidos:</strong> {election.parties.map(p => p.name).join(", ")}</p>
                 )}
 
-                {election.ended !== undefined && (
-                    <p><strong>Status:</strong> {election.ended ? "Finalizada" : "Não Iniciada"}</p>
-                )}
+                <p><strong>Status:</strong> {election.started ? "Iniciada" : "Não Iniciada"}</p>
+
             </div>
         </div>
     );
 };
+
 export default ElectionCard;
