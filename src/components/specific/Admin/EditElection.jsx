@@ -65,13 +65,13 @@ const EditElection = ({election, isOpen, onClose, onUpdate}) => {
 
     return (
         <div className="edit-overlay" onClick={onClose}>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} onClick={(e) => e.stopPropagation()}>
                 <div className={"edit-content-container"}>
                     <div className="edit-header">
                         <h2>Editar Eleição</h2>
                         <button className="close-button" onClick={onClose}>×</button>
                     </div>
-                    <div className="edit-content" onClick={(e) => e.stopPropagation()}>
+                    <div className="edit-content">
 
                         <div className="election-card">
                             <div className="form-group">
