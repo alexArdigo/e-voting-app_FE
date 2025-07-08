@@ -54,11 +54,20 @@
     margin-bottom: 15px;
 }
 
-.admin-reply-form {
+.admin-actions {
     margin-top: 15px;
+}
+
+.admin-reply-form {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.admin-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
 .admin-reply-form textarea,
@@ -99,6 +108,15 @@ form label {
 .submit-button:hover,
 .admin-reply-form button:hover {
     background-color: #1a1a3d;
+}
+
+.delete-comment-button {
+    background-color: #dc2626 !important;
+    color: white !important;
+}
+
+.delete-comment-button:hover {
+    background-color: #b91c1c !important;
 }
 
 .admin-answer {
