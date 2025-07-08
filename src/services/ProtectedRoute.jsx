@@ -1,16 +1,19 @@
 import {useUserContext} from "./UserContext.jsx";
-import {Navigate, Route} from "react-router-dom";
-import {toast} from "react-toastify";
+import {Navigate} from "react-router-dom";
+
 
 const ProtectedRoute = ({children}) => {
-    const contexto = useUserContext();
+    const {user, loading} = useUserContext();
 
-    if(!contexto.user) {
-        toast("Por favor, faça login.");
-        return <Navigate to="/login" replace/>;
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (!user?.id) {
+        return <Navigate to="/" replace />;
     }
 
     return children;
-}
+};
 
 export default ProtectedRoute;
