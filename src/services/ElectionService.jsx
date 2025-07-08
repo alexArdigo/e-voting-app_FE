@@ -22,8 +22,10 @@ const getActiveElections = async () => {
     return Array.isArray(data) ? data : [data];
 };
 
-const hasVoterVotedList = async () => {
-    const response = await api.get(`/voters/has-voted?nif=${encodeURIComponent(user?.nif || '')}`);
+const hasVoterVotedList = async (user) => {
+    const body = new FormData();
+    body.set("nif", user?.nif);
+    const response = await api.post(`/voters/has-voted`, body);
     if (response.status !== 200) {
         throw new Error("Failed to fetch voter voted list");
     }

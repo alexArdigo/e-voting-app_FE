@@ -3,13 +3,16 @@ import MainLayout from "../../layouts/MainLayout.jsx";
 import StyledContainer from "../../layouts/StyledContainer.jsx";
 import api from "../../services/api";
 import {useNavigate} from "react-router-dom";
+import {useUserContext} from "../../services/UserContext";
 
 const VoteSubmittedPage = () => {
+    const {setUser} = useUserContext();
     const navigate = useNavigate();
 
     const handleLogout = async () => {
         try {
             await api.get("/logout");
+            setUser(null);
             console.log("User logged out successfully");
         } catch (e) {
             console.error("Error logging out: " + e);

@@ -2,8 +2,10 @@ import React, {useEffect} from 'react';
 import MainLayout from "../../layouts/MainLayout";
 import {replace, useNavigate, useSearchParams} from "react-router-dom";
 import api from "../../services/api";
+import {useUserContext} from "../../services/UserContext";
 
 const AuthWithToken = () => {
+    const {setUser} = useUserContext();
     const navigate = useNavigate();
     const [data, setData] = useSearchParams();
 
@@ -15,11 +17,11 @@ const AuthWithToken = () => {
             const response = await api.post("/oauth/auth-with-token", body);
 
             if (response.status === 200)
+                setUser(response.data)
                 navigate("/voter-data", {replace: true});
         } catch (e) {
             console.error("Authentication failed:", e);
-            // Optionally, you can redirect to an error page or show a notification
-            //navigate("/error", {replace: true});
+
         }
     }
 

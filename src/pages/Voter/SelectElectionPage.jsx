@@ -29,7 +29,7 @@ const SelectElectionPage = () => {
                 console.log("Active elections:", active);
                 setActiveElection(active);
 
-                const votedList = await hasVoterVotedList();
+                const votedList = await hasVoterVotedList(user);
                 setVoterVotedList(prevState => [...prevState, ...votedList]);
                 
             } catch (e) {
@@ -64,7 +64,7 @@ const SelectElectionPage = () => {
     return (
         <MainLayout style={{paddingBlock: "100px", minHeight: "90vh"}}>
             <HalfLogo/>
-            <div className="steps-container">
+            <div className="steps-container" style={{width: "60vw", marginInline: "auto"}}>
                 <h1 style={{fontSize: "25px"}}>Selecione uma eleição:</h1>
                 {loadingData ? (
                     <p>A carregar...</p>
@@ -78,7 +78,7 @@ const SelectElectionPage = () => {
                                     justifyContent: "space-between",
                                     alignItems: "center",
                                     marginBlock: "30px",
-                                    width: "75vw",
+                                    width: "inherit",
                                     marginInline: "auto"
                                 }}>
                                     <label>
@@ -102,10 +102,10 @@ const SelectElectionPage = () => {
                 )}
 
                 <h1 style={{fontSize: "25px"}}>Próximas Eleições:</h1>
-                <div className={"steps-container"} style={{width: "1000px"}}>
-                    <section className="steps-list" style={{width: "1000px"}}>
+                <div className={"steps-container"} style={{width: "inherit"}}>
+                    <section className="steps-list" >
                         {elections.map((election) => (
-                            <div className={"step"} key={election.id} style={{width: "1000px"}}>
+                            <div className={"step"} key={election.id} >
                                 <p>{election.name}</p>
                             </div>
                         ))}
