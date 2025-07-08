@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+
 :root {
     --green-eleGov: #006600;
     --grey-eleGov: #D9D9D9;
@@ -11,7 +14,7 @@ body {
     font-family: 'PT Sans', sans-serif;
 }
 
-.pt-sans-regular, p, h1, h2, h3, h4, h5, h6, label, label input, button{
+.pt-sans-regular, p, h1, h2, h3, h4, h5, h6, label, label input, button {
     font-family: "PT Sans", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -35,6 +38,30 @@ body {
     font-style: italic;
 }
 
+.noto-sans-regular h1 {
+    font-family: "Noto Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
+.noto-sans-bold h1 {
+    font-family: "Noto Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
+.noto-sans-regular-italic {
+    font-family: "Noto Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: italic;
+    font-variation-settings: "wdth" 100;
+}
+
 .dflx {
     display: flex;
     justify-content: center;
@@ -52,6 +79,14 @@ body {
 
 .jcc {
     justify-content: center;
+}
+
+.jcsa {
+    justify-content: space-around;
+}
+
+.aic {
+    align-items: center;
 }
 
 .g20 {

@@ -1,4 +1,4 @@
-import "./Header.css"
+import "./Header.css";
 
 import {Link, useNavigate} from "react-router-dom";
 import {useUserContext} from "../services/UserContext.jsx";
@@ -13,15 +13,21 @@ export const Header = () => {
 
     return (
         <>
-            <header>
-                <div className="logo-bar">
-                    <p>GOVERNO DA REPÚBLICA PORTUGUESA</p>
-                    <Link to={"/"}><img src="/images/Governo_de_Portugal_logo_grey.png" alt="Logo"/></Link>
+            <header style={{height: "66px"}}>
+                <div className="dflx aic jcsa g20">
+                    <p style={{textAlign: "center"}}>GOVERNO DA<br/> REPÚBLICA PORTUGUESA</p>
+                    <Link to={"/"}><img src="/images/Governo_de_Portugal_logo_grey.png" style={{height: "30px"}}
+                                        alt="Logo"/></Link>
                     <Link to={"/"}><img src="/images/SGMAI_secretaria_geral.png" style={{height: "30px"}} alt="Logo2"/></Link>
-                    <p>SITE OFICIAL<br/>VOTO E ESTATÍSTICAS</p>
+                    <p style={{textAlign: "center"}}>SITE OFICIAL<br/>VOTO E ESTATÍSTICAS</p>
                 </div>
             </header>
-            <div className="nav-bar">
+            <div className="nav-bar aic jcsa noto-sans-regular">
+                <Link to={"/"} className={"dInFlex aic g10"}
+                      style={{color: "white", height: "40px", textDecoration: "none"}}>
+                    <img src="/public/images/logoEuVoto.png" alt="" style={{height: "inherit"}}/>
+                    <h1>EuVoto</h1>
+                </Link>
                 <ul>
                     <li onClick={() => navigate("/contact")}>Contacto</li>
                     <li onClick={() => navigate("/help")}>Ajuda</li>

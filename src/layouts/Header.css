@@ -29,8 +29,9 @@ li, .loggin-header {
 .nav-bar {
     background-color: var(--green-eleGov);
     display: flex;
-    justify-content: flex-end;
-    padding: 7px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 40px;
     position: sticky;
     top: 0;
     z-index: 2;
@@ -68,7 +69,6 @@ li, .loggin-header {
     gap: 30px;
     list-style: none;
     margin: 0;
-    padding-right: 100px;
     cursor: pointer;
 }
 
