@@ -13,7 +13,7 @@ export const Header = () => {
 
     return (
         <>
-            <header style={{height: "66px"}}>
+            <header className="the-header" style={{height: "66px"}}>
                 <div className="dflx aic jcsa g20">
                     <p style={{textAlign: "center"}}>GOVERNO DA<br/> REPÚBLICA PORTUGUESA</p>
                     <Link to={"/"}><img src="/images/Governo_de_Portugal_logo_grey.png" style={{height: "30px"}}
