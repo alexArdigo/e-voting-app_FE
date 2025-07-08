@@ -18,11 +18,12 @@ import Register from "./pages/Viewer/Register";
 import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
 import AuthWithToken from "./pages/Voter/AuthWithToken";
-import AdminElection from "./components/specific/Admin/AdminElection";
+import Admin from "./pages/Admin/Admin";
 import ChartsContainer from "./pages/Viewer/charts/ChartsContainer";
 import SideBar from "./pages/Viewer/SideBar";
 import CreateElectionPage from "./components/specific/Admin/CreateElectionForm";
 import PartyForm from "./pages/PartyForm";
+import ProtectedRoute from "./services/ProtectedRoute";
 
 
 function App() {
@@ -40,16 +41,16 @@ function App() {
                         {/* CMD Routes */}
                         <Route path="/auth" element={<AuthPage/>}/>
                         <Route path="/auth-with-token" element={<AuthWithToken/>}/>
-                        <Route path="/voter-data" element={<VoterProfile/>}/>
+                        <Route path="/voter-data" element={<ProtectedRoute><VoterProfile/></ProtectedRoute>}/>
 
                         {/* Election and voting Routes */}
-                        <Route path="/election" element={<SelectElectionPage/>}/>
-                        <Route path="/confirm" element={<ConfirmElectionPage/>}/>
-                        <Route path="/ballot" element={<BallotPage/>}/>
-                        <Route path="/submitted" element={<VoteSubmittedPage/>}/>
+                        <Route path="/election" element={<ProtectedRoute><SelectElectionPage/></ProtectedRoute>}/>
+                        <Route path="/confirm" element={<ProtectedRoute><ConfirmElectionPage/></ProtectedRoute>}/>
+                        <Route path="/ballot" element={<ProtectedRoute><BallotPage/></ProtectedRoute>}/>
+                        <Route path="/submitted" element={<ProtectedRoute><VoteSubmittedPage/></ProtectedRoute>}/>
 
                         {/* Party form */}
-                        <Route path="/party-form" element={<PartyForm/>}/>
+                        <Route path="/party-form" element={<ProtectedRoute><PartyForm/></ProtectedRoute>}/>
 
 
                         {/* Help and Contact Routes */}
@@ -60,12 +61,12 @@ function App() {
                         {/* Viewer Routes */}
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/register" element={<Register/>}/>
-                        <Route path="/graph" element={<ChartsContainer/>}/>
+                        <Route path="/graph" element={<ProtectedRoute><ChartsContainer/></ProtectedRoute>}/>
                         <Route path="/sideBar" element={<SideBar/>}/>
 
                         {/* Admin Routes */}
-                        <Route path="/admin" element={<AdminElection/>}/>
-                        <Route path="/create-election" element={<CreateElectionPage/>}/>
+                        <Route path="/admin" element={<ProtectedRoute><Admin/></ProtectedRoute>}/>
+                        <Route path="/create-election" element={<ProtectedRoute><CreateElectionPage/></ProtectedRoute>}/>
 
                     </Routes>
                     <Footer/>
