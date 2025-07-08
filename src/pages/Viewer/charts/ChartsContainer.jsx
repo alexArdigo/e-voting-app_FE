@@ -5,11 +5,13 @@ import ResultadosLegislativasGlobaisPorAno from "./ResultadosLegislativasGlobais
 
 const ChartsContainer = () => {
     return (
-        <div style={{ width: "600px", margin: "0 auto" }}>
-                <VotesByPartyByDistrictChart />
-            <SampleChartForTesting></SampleChartForTesting>
-            <ResultadosLegislativasGlobaisPorAno></ResultadosLegislativasGlobaisPorAno>
+        <div style={{margin: "0 auto", width: "800px", padding: "20px"}}>
 
+            <VotesByPartyByDistrictChart/>
+
+            <SampleChartForTesting></SampleChartForTesting>
+
+            <ResultadosLegislativasGlobaisPorAno></ResultadosLegislativasGlobaisPorAno>
 
         </div>
     );
