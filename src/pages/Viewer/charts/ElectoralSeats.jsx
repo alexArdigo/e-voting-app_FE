@@ -12,16 +12,60 @@ import {
     DoughnutController,
     ArcElement
 } from "chart.js";
+import api from "../../../services/api";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, DoughnutController, ArcElement);
 
 const ElectoralSeats = () => {
-
     const [seats, setSeats] = useState("");
     const [year, setYear] = useState("2025");
-
     const canvasRef = useRef(null);
     const chartRef = useRef(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+
+                const orgResponse = await api.get("/cleanParties");
+                const organisations = orgResponse.data;
+                const partyNames = [... new Set(organisations.map(org => org.organisationName))];
+
+                const voteCounts = [];
+
+                for (const party of partyNames) {
+                    try {
+                        const res = await api.get("/stats/year/partyName", {
+                            params: {
+                                partyName: party,
+                                year: year
+                            }
+                        });
+                        voteCounts.push(res.data);
+                    } catch (e) {
+                        voteCounts.push(0);
+                    }
+                }
+
+                setChartData({
+                    labels: partyNames,
+                    datasets: [
+                        {
+                            label: "Votos por Partido",
+                            data: voteCounts,
+                            backgroundColor: "rgba(75, 192, 192, 0.5)"
+                        }
+                    ]
+                });
+
+            } catch (e) {
+                console.error("Erro", e);
+            }
+        };
+
+        fetchData();
+    }, [year]);
+
+    if (!chartData) return <p>A carregar gráfico...</p>;
 
 
     const graphicsData = {
