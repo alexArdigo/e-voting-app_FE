@@ -18,7 +18,7 @@ const Instructions = () => {
 
     const handleClick = () => {
         window.scrollTo(0, 0);
-        if (user.id && user.role === "VOTER") {
+        if (user?.id && user?.role === "VOTER") {
            navigate("/voter-data")
         } else {
             navigate("/auth");
