@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { updateElection } from "../../../services/ElectionService";
-import { toast } from "react-toastify";
+import React, {useState, useEffect} from "react";
+import {updateElection} from "../../../services/ElectionService";
+import {toast} from "react-toastify";
 
-const EditElection = ({ election, isOpen, onClose, onUpdate }) => {
+const EditElection = ({election, isOpen, onClose, onUpdate}) => {
 
     const [formData, setFormData] = useState({
         name: "",
@@ -27,7 +27,7 @@ const EditElection = ({ election, isOpen, onClose, onUpdate }) => {
     }, [election]);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setFormData(prev => ({
             ...prev,
             [name]: value
@@ -65,80 +65,82 @@ const EditElection = ({ election, isOpen, onClose, onUpdate }) => {
 
     return (
         <div className="edit-overlay" onClick={onClose}>
-            <div className="edit-content" onClick={(e) => e.stopPropagation()}>
-                <div className="edit-header">
-                    <h2>Editar Eleição</h2>
-                    <button className="close-button" onClick={onClose}>×</button>
-                </div>
-
-                <form onSubmit={handleSubmit}>
-                    <div className="election-card">
-                        <div className="form-group">
-                            <label htmlFor="name">Nome da Eleição *</label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                required
-                                maxLength={100}
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="description">Descrição</label>
-                            <textarea
-                                id="description"
-                                name="description"
-                                value={formData.description}
-                                onChange={handleChange}
-                                rows="4"
-                                maxLength={500}
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="type">Tipo de Eleição *</label>
-                            <select
-                                id="type"
-                                name="type"
-                                value={formData.type}
-                                onChange={handleChange}
-                                required
-                            >
-                                <option value="PRESIDENTIAL">Presidencial</option>
-                                <option value="LEGISLATIVE">Legislativa</option>
-                            </select>
-                        </div>
-
-                        <div className="form-row">
-                            <div className="form-group">
-                                <label htmlFor="startDate">Data de Início *</label>
-                                <input
-                                    type="datetime-local"
-                                    id="startDate"
-                                    name="startDate"
-                                    value={formData.startDate}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <label htmlFor="endDate">Data de Fim *</label>
-                                <input
-                                    type="datetime-local"
-                                    id="endDate"
-                                    name="endDate"
-                                    value={formData.endDate}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-                        </div>
+            <form onSubmit={handleSubmit}>
+                <div className={"edit-content-container"}>
+                    <div className="edit-header">
+                        <h2>Editar Eleição</h2>
+                        <button className="close-button" onClick={onClose}>×</button>
                     </div>
+                    <div className="edit-content" onClick={(e) => e.stopPropagation()}>
 
+                        <div className="election-card">
+                            <div className="form-group">
+                                <label htmlFor="name">Nome da Eleição *</label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    required
+                                    maxLength={100}
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="description">Descrição</label>
+                                <textarea
+                                    id="description"
+                                    name="description"
+                                    value={formData.description}
+                                    onChange={handleChange}
+                                    rows="4"
+                                    maxLength={500}
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="type">Tipo de Eleição *</label>
+                                <select
+                                    id="type"
+                                    name="type"
+                                    value={formData.type}
+                                    onChange={handleChange}
+                                    required
+                                >
+                                    <option value="PRESIDENTIAL">Presidencial</option>
+                                    <option value="LEGISLATIVE">Legislativa</option>
+                                </select>
+                            </div>
+
+                            <div className="form-row">
+                                <div className="form-group">
+                                    <label htmlFor="startDate">Data de Início *</label>
+                                    <input
+                                        type="datetime-local"
+                                        id="startDate"
+                                        name="startDate"
+                                        value={formData.startDate}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="endDate">Data de Fim *</label>
+                                    <input
+                                        type="datetime-local"
+                                        id="endDate"
+                                        name="endDate"
+                                        value={formData.endDate}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                     <div className="edit-actions">
                         <button
                             type="button"
@@ -155,8 +157,8 @@ const EditElection = ({ election, isOpen, onClose, onUpdate }) => {
                             {loading ? "Atualizando..." : "Atualizar Eleição"}
                         </button>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     );
 };
