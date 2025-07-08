@@ -1,8 +1,11 @@
 import React from 'react';
 import MainLayout from "../../layouts/MainLayout";
 import StyledContainer from "../../layouts/StyledContainer";
+import {useUserContext} from "../../services/UserContext";
 
 const SideBar = () => {
+    const {user} = useUserContext();
+
     return (
 
 
