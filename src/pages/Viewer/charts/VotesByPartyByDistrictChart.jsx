@@ -104,8 +104,6 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
     return (
         <div>
             <h2>Distribuição de Votos por Partido</h2>
-            <Bar options={config} data={chartData} height={200} />
-
 
             <div>
                 <label htmlFor="year-select">Seleciona o ano:</label>
@@ -135,6 +133,7 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
                     ))}
                 </select>
             </div>
+            <Bar options={config} data={chartData} height={200} />
         </div>
     );
 };

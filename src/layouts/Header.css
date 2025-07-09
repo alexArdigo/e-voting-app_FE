@@ -13,7 +13,7 @@ body{
     margin-top: 18px;
 }
 
-li, .loggin-header {
+li {
     font-size: 14px;
 }
 
@@ -66,12 +66,13 @@ li, .loggin-header {
     align-items: center;
 }
 
-.nav-bar ul {
+.nav-bar ul{
     display: flex;
     gap: 30px;
     list-style: none;
     margin: 0;
     cursor: pointer;
+    max-height: 40px;
 }
 
 .nav-bar li {
@@ -98,7 +99,8 @@ button {
     font-size: 16px;
     cursor: pointer;
     border-radius: 30px;
-    padding: 7px 15px ;
+    margin: 0;
+    background-color: transparent;
 }
 
 button:hover {

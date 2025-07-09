@@ -81,7 +81,6 @@ const ResultadosLegislativasGlobaisPorAno = () => {
     return (
         <div>
             <h2>Distribuição de Votos por Partido (Global)</h2>
-            <Bar options={config} data={chartData} height={200} />
 
             <div>
                 <label htmlFor="year-select">Seleciona o ano:</label>
@@ -94,6 +93,7 @@ const ResultadosLegislativasGlobaisPorAno = () => {
                     ))}
                 </select>
             </div>
+            <Bar options={config} data={chartData} height={200} />
         </div>
     );
 };

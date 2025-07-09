@@ -13,67 +13,52 @@ import {
     ArcElement
 } from "chart.js";
 import api from "../../../services/api";
-
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, DoughnutController, ArcElement);
 
+
 const ElectoralSeats = () => {
-    const [seats, setSeats] = useState("");
+    const [seats, setSeats] = useState({});
     const [year, setYear] = useState("2025");
+    const years = ["2021", "2022", "2023", "2024", "2025", "2026"];
+    const yearNames = {
+        "2021": "Eleições Legislativas 2021",
+        "2022": "Eleições Legislativas 2022",
+        "2023": "Eleições Legislativas 2023",
+        "2024": "Eleições Legislativas 2024",
+        "2025": "Eleições Legislativas 2025",
+        "2026": "Eleições Legislativas 2026"
+    };
     const canvasRef = useRef(null);
     const chartRef = useRef(null);
+
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-
-                const orgResponse = await api.get("/cleanParties");
-                const organisations = orgResponse.data;
-                const partyNames = [... new Set(organisations.map(org => org.organisationName))];
-
-                const voteCounts = [];
-
-                for (const party of partyNames) {
-                    try {
-                        const res = await api.get("/stats/year/partyName", {
-                            params: {
-                                partyName: party,
-                                year: year
-                            }
-                        });
-                        voteCounts.push(res.data);
-                    } catch (e) {
-                        voteCounts.push(0);
+                const response = await api.get("/Elections/results/legislative/seats", {
+                    params: {
+                        year: year
                     }
-                }
-
-                setChartData({
-                    labels: partyNames,
-                    datasets: [
-                        {
-                            label: "Votos por Partido",
-                            data: voteCounts,
-                            backgroundColor: "rgba(75, 192, 192, 0.5)"
-                        }
-                    ]
                 });
+                setSeats(response.data);
 
-            } catch (e) {
+            }catch (e){
                 console.error("Erro", e);
             }
         };
-
         fetchData();
     }, [year]);
 
-    if (!chartData) return <p>A carregar gráfico...</p>;
+    const parties = Object.keys(seats);
+    const nrSeats = Object.values(seats);
 
 
     const graphicsData = {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: parties,
         datasets: [
             {
-                label: "Votes",
-                data: [12, 19, 3, 5, 2, 3],
+                label: "Lugares Assembleia da República",
+                data: nrSeats,
                 backgroundColor: [
                     "rgba(255, 99, 132, 0.2)",
                     "rgba(54, 162, 235, 0.2)",
@@ -99,10 +84,11 @@ const ElectoralSeats = () => {
 
 
     useEffect(() => {
+        if (!canvasRef.current || Object.keys(seats).length === 0) return;
         const ctx = canvasRef.current.getContext("2d"); // obtém o contexto do canvas
 
         if (chartRef.current) {
-            chartRef.current.destroy(); // limpa gráfico anterior, se existir
+            chartRef.current.destroy();
         }
 
         chartRef.current = new ChartJS(ctx, {
@@ -112,6 +98,12 @@ const ElectoralSeats = () => {
                 responsive: true,
                 circumference: 180,
                 rotation: -90,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: "bottom"
+                    },
+                },
                 scales: {
                     x: {
                         display: false,
@@ -130,12 +122,28 @@ const ElectoralSeats = () => {
         return () => {
             if (chartRef.current) chartRef.current.destroy();
         };
-    }, []);
+    }, [graphicsData, seats, year]);
 
     return (
         <div>
             <h2>Gráficos de Teste</h2>
-            <canvas ref={canvasRef} ></canvas>
+
+            <div style={{marginBottom: "-70px"}}>
+                <label htmlFor="year-select">Seleciona o ano: </label>
+                <select
+                    id="year-select"
+                    value={year}
+                    onChange={(e) => setYear(e.target.value)}
+                >
+                    {years.map((y) => (
+                        <option key={y} value={y}>
+                            {yearNames[y]}
+                        </option>
+                    ))}
+                </select>
+            </div>
+
+            <canvas ref={canvasRef}></canvas>
         </div>
     );
 };

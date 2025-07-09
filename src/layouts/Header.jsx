@@ -33,10 +33,11 @@ export const Header = () => {
                     <li onClick={() => navigate("/help")}>Ajuda</li>
                     <li><Link to="/faq">FAQ</Link></li>
                     {user?.username ? (
-
                         <>
-                            <p>{user?.name}</p>
-                            <button type="submit" onClick={logout}>Logout</button>
+                            <li><p style={{display: "inline", margin: 0}}>{user?.name}</p></li>
+                            <li>
+                                <button type="submit" onClick={logout}>Logout</button>
+                            </li>
                         </>
                     ) : null}
                     {user?.role === "ADMIN" ? null : null}
