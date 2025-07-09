@@ -7,10 +7,11 @@ const getElection = async (election_id) => {
 
 const getPresidentialElections = async (electionYear, isActive) => {
     const params = new URLSearchParams();
+    params.append('electionType', 'presidential');
     if (electionYear) params.append('electionYear', electionYear);
     if (isActive !== undefined) params.append('isActive', isActive);
 
-    const response = await api.get(`/elections/presidential?${params}`);
+    const response = await api.get(`/elections?${params}`);
     return Array.isArray(response.data) ? response.data : [];
 };
 
@@ -29,11 +30,12 @@ const getElections = async (electionType, electionYear, isActive) => {
     } else if (electionType === 'legislative') {
         return await getLegislativeElections(electionYear, isActive);
     } else {
-        const [presidential, legislative] = await Promise.all([
-            getPresidentialElections(electionYear, isActive),
-            getLegislativeElections(electionYear, isActive)
-        ]);
-        return [...presidential, ...legislative];
+        const params = new URLSearchParams();
+        if (electionYear) params.append('electionYear', electionYear);
+        if (isActive !== undefined) params.append('isActive', isActive);
+
+        const response = await api.get(`/elections?${params}`);
+        return Array.isArray(response.data) ? response.data : [];
     }
 };
 
