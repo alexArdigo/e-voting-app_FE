@@ -1,5 +1,8 @@
 import React, {useState, useEffect} from "react";
-import {updateElection} from "../../../services/ElectionService";
+import {
+    updatePresidentialElection,
+    updateLegislativeElection,
+} from "../../../services/ElectionService";
 import {toast} from "react-toastify";
 
 const EditElection = ({election, isOpen, onClose, onUpdate}) => {
@@ -9,7 +12,7 @@ const EditElection = ({election, isOpen, onClose, onUpdate}) => {
         description: "",
         startDate: "",
         endDate: "",
-        type: "PRESIDENTIAL"
+        electionType: "PRESIDENTIAL"
     });
 
     const [loading, setLoading] = useState(false);
@@ -21,7 +24,7 @@ const EditElection = ({election, isOpen, onClose, onUpdate}) => {
                 description: election.description || "",
                 startDate: election.startDate ? new Date(election.startDate).toISOString().slice(0, 16) : "",
                 endDate: election.endDate ? new Date(election.endDate).toISOString().slice(0, 16) : "",
-                type: election.type || "PRESIDENTIAL"
+                electionType: election.electionType || election.type || "PRESIDENTIAL"
             });
         }
     }, [election]);
@@ -49,13 +52,20 @@ const EditElection = ({election, isOpen, onClose, onUpdate}) => {
 
         try {
             setLoading(true);
-            await updateElection(election.id, formData);
+            if (election.electionType === "PRESIDENTIAL") {
+                await updatePresidentialElection(election.id, formData);
+            } else if (election.electionType === "LEGISLATIVE") {
+                await updateLegislativeElection(election.id, formData);
+            } else {
+                throw new Error("Tipo de eleição desconhecido para atualização.");
+            }
             toast.success("Eleição atualizada com sucesso!");
             onUpdate();
             onClose();
         } catch (error) {
             console.error('Erro ao atualizar eleição:', error);
-            toast.error("Erro ao atualizar eleição. Tente novamente.");
+            const errorMessage = error.response?.data || error.message || "Erro desconhecido ao atualizar eleição.";
+            toast.error(`Erro ao atualizar eleição: ${errorMessage}`);
         } finally {
             setLoading(false);
         }
@@ -100,17 +110,15 @@ const EditElection = ({election, isOpen, onClose, onUpdate}) => {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="type">Tipo de Eleição *</label>
-                                <select
-                                    id="type"
-                                    name="type"
-                                    value={formData.type}
-                                    onChange={handleChange}
-                                    required
-                                >
-                                    <option value="PRESIDENTIAL">Presidencial</option>
-                                    <option value="LEGISLATIVE">Legislativa</option>
-                                </select>
+                                <label htmlFor="electionType">Tipo de Eleição *</label>
+                                <input
+                                    type="text"
+                                    id="electionType"
+                                    name="electionType"
+                                    value={formData.electionType}
+                                    readOnly
+                                    className="read-only-input" /
+                                />
                             </div>
 
                             <div className="form-row">
