@@ -83,7 +83,7 @@ const BallotPage = () => {
             const voteRequest = {
                 organisationId: selectedParty,
                 voterNif: user.nif,
-                municipalityName: ''
+                municipalityName: user.municipality.municipalityName
             };
 
             console.log('Enviando voto:', voteRequest);
