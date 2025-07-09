@@ -26,7 +26,6 @@ import PartyForm from "./pages/PartyForm";
 import ProtectedRoute from "./services/ProtectedRoute";
 import PedingAuthorizations from "./components/specific/Admin/PedingAuthorizations";
 
-
 function App() {
 
     return (

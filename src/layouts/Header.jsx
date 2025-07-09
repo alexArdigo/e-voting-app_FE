@@ -43,7 +43,6 @@ export const Header = () => {
                     {user?.role === "ADMIN" ? null : null}
                 </ul>
             </div>
-
         </>
     );
 };

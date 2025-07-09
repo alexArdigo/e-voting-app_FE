@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import MainLayout from "../../layouts/MainLayout";
 import StyledContainer from "../../layouts/StyledContainer";
-import ChartsContainer from "./charts/ChartsContainer";
+import ChartsContainer, {charts} from "./charts/ChartsContainer";
 
 const SideBar = () => {
+
+    const [chartType, setChartType] = useState(charts[0].type);
     return (
 
 
-        <div style={{height: "100vh"}}>
+        <div style={{height: "1300px"}}>
 
             <MainLayout style={{ height: "100vh", width:"100vw", justifyContent: "space-between"}}>
                 <StyledContainer variant="DefaultTransparent" style={{margin:"20px"}}>
@@ -28,15 +30,18 @@ const SideBar = () => {
 
                 </StyledContainer>
                 <StyledContainer variant="DefaultTransparent" style={{marginTop:"20px"}}>
-                    <ChartsContainer></ChartsContainer>
+                    <ChartsContainer active={chartType}></ChartsContainer>
                 </StyledContainer>
                 <div className="graph-buttons" style={{marginRight:"60px", marginTop:"40px"}}>
-                    <button className="side-bar-button"> Votos por Partido </button><br/>
+                    {charts.map((chart, index) => {
+                        return <button className="side-bar-button" onClick={() => setChartType(chart.type)}>{chart.name}</button>
+                    })}
+                    {/*<button className="side-bar-button"> Votos por Partido </button><br/>
                     <button className="side-bar-button"> Resultados Legislativas Globais </button><br/>
                     <button className="side-bar-button"> Lugares Assembleia da República </button><br/>
-                    <button className="side-bar-button"> Votos por Partido </button><br/>
-                    <button className="side-bar-button"> Resultados Legislativas Globais </button><br/>
-                    <button className="side-bar-button"> Lugares Assembleia da República </button><br/>
+                    <button className="side-bar-button"> Votos por Partido Por Freguesia </button><br/>
+                    <button className="side-bar-button"> Resultados Presidencis Globais </button><br/>
+                    <button className="side-bar-button"> Lugares Republica Portugal </button><br/>*/}
                 </div>
             </MainLayout>
 

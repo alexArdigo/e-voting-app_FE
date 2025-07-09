@@ -18,7 +18,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend,
 
 const ElectoralSeats = () => {
     const [seats, setSeats] = useState({});
-    const [year, setYear] = useState("2025");
+    const [year, setYear] = useState("2026");
     const years = ["2021", "2022", "2023", "2024", "2025", "2026"];
     const yearNames = {
         "2021": "Eleições Legislativas 2021",
