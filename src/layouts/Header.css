@@ -100,7 +100,6 @@ button {
     cursor: pointer;
     border-radius: 30px;
     margin: 0;
-    background-color: transparent;
 }
 
 button:hover {

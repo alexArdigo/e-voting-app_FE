@@ -24,7 +24,7 @@ import SideBar from "./pages/Viewer/SideBar";
 import CreateElectionPage from "./components/specific/Admin/CreateElectionForm";
 import PartyForm from "./pages/PartyForm";
 import ProtectedRoute from "./services/ProtectedRoute";
-import PedingAuthorizations from "./components/specific/Admin/PedingAuthorizations";
+import PendingAuthorizations from "./components/specific/Admin/PendingAuthorizations";
 
 function App() {
 
@@ -67,7 +67,7 @@ function App() {
                         {/* Admin Routes */}
                         <Route path="/admin" element={<ProtectedRoute><Admin/></ProtectedRoute>}/>
                         <Route path="/create-election" element={<ProtectedRoute><CreateElectionPage/></ProtectedRoute>}/>
-                        <Route path="/admin/viewers" element={<ProtectedRoute><PedingAuthorizations/></ProtectedRoute>}/>
+                        <Route path="/admin/viewers" element={<ProtectedRoute><PendingAuthorizations/></ProtectedRoute>}/>
 
                     </Routes>
                     <Footer/>

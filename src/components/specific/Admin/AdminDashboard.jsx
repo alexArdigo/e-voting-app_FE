@@ -11,6 +11,7 @@ const AdminDashboard = ({ children }) => {
                     <li>
                         <NavLink
                             to="/admin"
+                            end={true}
                             className={({ isActive }) =>
                                 isActive ? "admin-nav-link active" : "admin-nav-link"
                             }
