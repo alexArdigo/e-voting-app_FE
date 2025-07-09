@@ -1,9 +1,12 @@
 import {useUserContext} from "./UserContext.jsx";
-import {Navigate} from "react-router-dom";
+import {Navigate, useLocation} from "react-router-dom";
 
 
 const ProtectedRoute = ({children}) => {
-    const {user, loading} = useUserContext();
+    const {user, isVoting, loading} = useUserContext();
+    const location = useLocation();
+
+
 
     if (loading) {
         return <div>Loading...</div>;
@@ -12,6 +15,15 @@ const ProtectedRoute = ({children}) => {
     if (!user?.id) {
         return <Navigate to="/" replace />;
     }
+
+    if (user?.role !== "VOTER") {
+        return <Navigate to="/unauthorized" replace />;
+    }
+
+    if (isVoting && location.pathname !== "/ballot") {
+        return <Navigate to="/ballot" replace />;
+    }
+
 
     return children;
 };

@@ -1,18 +1,18 @@
 import {createContext, useContext, useEffect, useState} from "react";
 import api from "./api.jsx";
-import { useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 import React from 'react';
 import {toast} from "react-toastify";
-
 
 const UserContext = createContext(null);
 
 export const useUserContext = () => useContext(UserContext);
 
-const UserProvider = ( {children} ) => {
+const UserProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [isVoting, setIsVoting] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -33,6 +33,21 @@ const UserProvider = ( {children} ) => {
         })();
     }, []);
 
+    useEffect(() => {
+        (async () => {
+            if (user?.id) {
+                try {
+                    const response = await api.get(`voters/${user?.id}/is-voting`);
+                    if (response.status === 200) {
+                        setIsVoting(true);
+                    }
+                } catch (e) {
+                    console.error("Error fetching user data: ", e);
+                }
+            }
+        })();
+    }, []);
+
     const logout = async () => {
         try {
             await api.get("/logout");
@@ -42,12 +57,11 @@ const UserProvider = ( {children} ) => {
         } catch (e) {
             console.error("Error logging out: " + e);
         }
-    }
+    };
 
     return (
-        <UserContext.Provider value={ {user, setUser, loading, logout} }>
-            {children}
-           {/* {loading ? <div>Loading</div> : children}*/}
+        <UserContext.Provider value={{user, setUser, loading, logout, isVoting}}>
+             {loading ? <div>Loading</div> : children}
         </UserContext.Provider>
     );
 };
