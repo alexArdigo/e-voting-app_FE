@@ -1,6 +1,7 @@
 import {useNavigate} from "react-router-dom";
 import React from "react";
 import {useUserContext} from "../../services/UserContext";
+import '../Viewer/viewer.css';
 
 const Home = () => {
     const {user} = useUserContext();
