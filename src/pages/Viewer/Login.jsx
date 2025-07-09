@@ -11,7 +11,7 @@ const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const contexto = useUserContext();
+    const {setUser} = useUserContext();
 
     const navigate = useNavigate();
 
@@ -26,9 +26,9 @@ const Login = () => {
             await api.post("/login", body);
             const response = await api.get("/loggedUser");
 
-            console.log(response);
-            const user = response.data;
-            contexto.setUser(user);
+            console.log(response.data);
+
+            setUser(response.data);
             response.data.role === "VIEWER" ? navigate("/graph") : navigate("/admin");
         } catch (e) {
             console.error("Erro ao fazer login:", e);
