@@ -11,7 +11,7 @@ import {
     Legend
 } from "chart.js";
 import api from "../../../services/api";
-import SideBar from "../SideBar";
+import Graph from "../Graph";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
