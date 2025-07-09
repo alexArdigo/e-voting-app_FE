@@ -47,12 +47,10 @@ const Admin = () => {
             }));
 
             const activeElectionsData = [
-                ...(Array.isArray(activePresidential) ? activePresidential : []),
                 ...(Array.isArray(processedActiveLegislative) ? processedActiveLegislative : [])
             ];
 
             const notActiveElectionsData = [
-                ...(Array.isArray(notActivePresidential) ? notActivePresidential : []),
                 ...(Array.isArray(processedNotActiveLegislative) ? processedNotActiveLegislative : [])
             ];
 
@@ -114,7 +112,7 @@ const Admin = () => {
                             <div className="election-list">
                                 {activeElections.map((election) => (
                                     <ElectionCard
-                                        key={election.id}
+                                        key={`${election.electionType}-${election.id}`}
                                         election={election}
                                         isActive={true}
                                     />
@@ -134,7 +132,7 @@ const Admin = () => {
                             <div className="election-list">
                                 {notActiveElections.map((election) => (
                                     <ElectionCard
-                                        key={election.id}
+                                        key={`${election.electionType}-${election.id}`}
                                         election={election}
                                         isActive={false}
                                         onEdit={handleEditElection}
