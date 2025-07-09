@@ -26,7 +26,7 @@ const Login = () => {
             await api.post("/login", body);
             const response = await api.get("/loggedUser");
 
-            console.log(response);
+            console.log(response.data);
             const user = response.data;
             contexto.setUser(user);
             response.data.role === "VIEWER" ? navigate("/graph") : navigate("/admin");
