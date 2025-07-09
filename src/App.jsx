@@ -20,7 +20,7 @@ import Footer from "./layouts/Footer";
 import AuthWithToken from "./pages/Voter/AuthWithToken";
 import Admin from "./pages/Admin/Admin";
 import ChartsContainer from "./pages/Viewer/charts/ChartsContainer";
-import SideBar from "./pages/Viewer/SideBar";
+import Graph from "./pages/Viewer/Graph";
 import CreateElectionPage from "./components/specific/Admin/CreateElectionForm";
 import PartyForm from "./pages/PartyForm";
 import ProtectedRoute from "./services/ProtectedRoute";
@@ -62,7 +62,7 @@ function App() {
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/register" element={<Register/>}/>
                         <Route path="/side-bar" element={<ProtectedRoute><ChartsContainer/></ProtectedRoute>}/>
-                        <Route path="/graph" element={<SideBar/>}/>
+                        <Route path="/graph" element={<Graph/>}/>
 
                         {/* Admin Routes */}
                         <Route path="/admin" element={<ProtectedRoute><Admin/></ProtectedRoute>}/>
