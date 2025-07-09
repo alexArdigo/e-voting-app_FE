@@ -21,7 +21,7 @@ const Graph = () => {
                     </div>
 
                     <div className={`graph-sidebar ${sidebarOpen ? "open" : "closed"}`}>
-                        <img src="public/images/ProfilePic.png" height="100px" alt="Profile" />
+                        <img src="/images/ProfilePic.png" height="100px" alt="Profile" />
 
                         <div className="side-profile">
                             <p><strong>Nome:</strong> {user?.name || "N/A"}</p>
