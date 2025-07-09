@@ -4,7 +4,7 @@ import StyledContainer from "../../../layouts/StyledContainer";
 import api from "../../../services/api";
 import { useUserContext } from "../../../services/UserContext";
 
-const PedingAuthorizations = () => {
+const PendingAuthorizations = () => {
     const [pendingUsers, setPendingUsers] = useState([]);
     const [approvedUsers, setApprovedUsers] = useState([]);
     const { user } = useUserContext();
@@ -70,4 +70,4 @@ const PedingAuthorizations = () => {
     );
 };
 
-export default PedingAuthorizations;
+export default PendingAuthorizations;

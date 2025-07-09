@@ -15,9 +15,9 @@ const ProtectedRoute = ({children}) => {
         return <Navigate to="/" replace />;
     }
 
-    // if (user?.role !== "VOTER") {
-    //     return <Navigate to="/unauthorized" replace />;
-    // }
+    //if (user?.role !== "VOTER") {
+      //  return <Navigate to="/unauthorized" replace />;
+   // }
 
     if (isVoting && location.pathname !== "/ballot") {
         return <Navigate to="/ballot" replace />;
