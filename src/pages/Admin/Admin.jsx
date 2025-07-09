@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import AdminDashboard from "../../components/specific/Admin/AdminDashboard";
-import { getActiveElections, getNotActiveElections } from "../../services/ElectionService";
+import {
+    getActivePresidentialElections,
+    getActiveLegislativeElections,
+    getPresidentialElections,
+    getLegislativeElections
+} from "../../services/ElectionService";
 import { toast } from "react-toastify";
 import ElectionCard from "../../components/specific/Admin/ElectionCard";
 import "../../components/specific/Admin/Admin.css";
@@ -20,15 +25,35 @@ const Admin = () => {
     const loadElections = async () => {
         try {
             setLoading(true);
-            const [active, notActive] = await Promise.all([
-                getActiveElections(),
-                getNotActiveElections()
+
+            const [activePresidential, activeLegislative] = await Promise.all([
+                getActivePresidentialElections(),
+                getActiveLegislativeElections()
             ]);
-            setActiveElections(Array.isArray(active) ? active : []);
-            setNotActiveElections(Array.isArray(notActive) ? notActive : []);
+
+            const [notActivePresidential, notActiveLegislative] = await Promise.all([
+                getPresidentialElections(null, false),
+                getLegislativeElections(null, false)
+            ]);
+
+            const activeElectionsData = [
+                ...(Array.isArray(activePresidential) ? activePresidential : []),
+                ...(Array.isArray(activeLegislative) ? activeLegislative : [])
+            ];
+
+            const notActiveElectionsData = [
+                ...(Array.isArray(notActivePresidential) ? notActivePresidential : []),
+                ...(Array.isArray(notActiveLegislative) ? notActiveLegislative : [])
+            ];
+
+            setActiveElections(activeElectionsData);
+            setNotActiveElections(notActiveElectionsData);
+
         } catch (error) {
             console.error('Erro ao buscar eleições:', error);
             toast.error("Erro ao buscar eleições");
+            setActiveElections([]);
+            setNotActiveElections([]);
         } finally {
             setLoading(false);
         }
@@ -66,7 +91,7 @@ const Admin = () => {
             <div className="admin-container">
                 <h1>Página de Administração</h1>
                 <p>
-                    Bem-vindo à página de administração. Aqui você pode gerenciar as eleições e visualizar autorizações pendentes.
+                    Bem-vindo à página de administração. Aqui você pode gerenciar as eleições presidenciais e legislativas.
                 </p>
 
                 <div className="elections-grid">

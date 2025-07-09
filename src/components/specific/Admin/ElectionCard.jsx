@@ -68,7 +68,11 @@ const ElectionCard = ({ election, isActive = false, onEdit, onDelete }) => {
                 )}
 
                 <p><strong>Início:</strong> {new Date(election.startDate).toLocaleString('pt-PT')}</p>
-                <p><strong>Fim:</strong> {new Date(election.endDate).toLocaleString('pt-PT')}</p>
+                <p><strong>Fim:</strong> {
+                    election.endDate
+                        ? new Date(election.endDate).toLocaleString('pt-PT')
+                        : new Date(new Date(election.startDate).getTime() + 8 * 60 * 60 * 1000).toLocaleString('pt-PT')
+                }</p>
 
                 {election.organisations?.length > 0 && (
                     <p><strong>Organizações:</strong> {election.organisations.length}</p>

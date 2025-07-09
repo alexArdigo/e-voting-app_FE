@@ -1,11 +1,12 @@
 import {useNavigate} from "react-router-dom";
 import React from "react";
 import {useUserContext} from "../../services/UserContext";
+import '../Viewer/viewer.css';
 
 const Home = () => {
     const {user} = useUserContext();
     const navigate = useNavigate();
-
+    console.log("user in home page", user);
     return (
         <main className="home-container">
             <div className="overlay">
