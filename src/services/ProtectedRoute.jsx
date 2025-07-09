@@ -7,7 +7,6 @@ const ProtectedRoute = ({children}) => {
     const location = useLocation();
 
 
-
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -23,7 +22,6 @@ const ProtectedRoute = ({children}) => {
     if (isVoting && location.pathname !== "/ballot") {
         return <Navigate to="/ballot" replace />;
     }
-
 
     return children;
 };
