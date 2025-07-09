@@ -116,8 +116,6 @@ const EditElection = ({election, isOpen, onClose, onUpdate}) => {
                                     id="electionType"
                                     name="electionType"
                                     value={formData.electionType}
-                                    readOnly
-                                    className="read-only-input" /
                                 />
                             </div>
 

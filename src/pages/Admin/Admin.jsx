@@ -36,14 +36,24 @@ const Admin = () => {
                 getLegislativeElections(null, false)
             ]);
 
+            const processedActiveLegislative = activeLegislative.map(election => ({
+                ...election,
+                electionType: "LEGISLATIVE"
+            }));
+
+            const processedNotActiveLegislative = notActiveLegislative.map(election => ({
+                ...election,
+                electionType: "LEGISLATIVE"
+            }));
+
             const activeElectionsData = [
                 ...(Array.isArray(activePresidential) ? activePresidential : []),
-                ...(Array.isArray(activeLegislative) ? activeLegislative : [])
+                ...(Array.isArray(processedActiveLegislative) ? processedActiveLegislative : [])
             ];
 
             const notActiveElectionsData = [
                 ...(Array.isArray(notActivePresidential) ? notActivePresidential : []),
-                ...(Array.isArray(notActiveLegislative) ? notActiveLegislative : [])
+                ...(Array.isArray(processedNotActiveLegislative) ? processedNotActiveLegislative : [])
             ];
 
             setActiveElections(activeElectionsData);
