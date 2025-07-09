@@ -24,6 +24,7 @@ import SideBar from "./pages/Viewer/SideBar";
 import CreateElectionPage from "./components/specific/Admin/CreateElectionForm";
 import PartyForm from "./pages/PartyForm";
 import ProtectedRoute from "./services/ProtectedRoute";
+import PedingAuthorizations from "./components/specific/Admin/PedingAuthorizations";
 
 
 function App() {
@@ -61,12 +62,13 @@ function App() {
                         {/* Viewer Routes */}
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/register" element={<Register/>}/>
-                        <Route path="/graph" element={<ProtectedRoute><ChartsContainer/></ProtectedRoute>}/>
-                        <Route path="/sideBar" element={<SideBar/>}/>
+                        <Route path="/side-bar" element={<ProtectedRoute><ChartsContainer/></ProtectedRoute>}/>
+                        <Route path="/graph" element={<SideBar/>}/>
 
                         {/* Admin Routes */}
                         <Route path="/admin" element={<ProtectedRoute><Admin/></ProtectedRoute>}/>
                         <Route path="/create-election" element={<ProtectedRoute><CreateElectionPage/></ProtectedRoute>}/>
+                        <Route path="/admin/viewers" element={<ProtectedRoute><PedingAuthorizations/></ProtectedRoute>}/>
 
                     </Routes>
                     <Footer/>
