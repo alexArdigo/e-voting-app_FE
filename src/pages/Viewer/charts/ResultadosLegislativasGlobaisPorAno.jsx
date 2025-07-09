@@ -15,8 +15,15 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const ResultadosLegislativasGlobaisPorAno = () => {
     const [chartData, setChartData] = useState(null);
-    const [year, setYear] = useState("2025");
-    const years = ["2021", "2022", "2023", "2024", "2025"];
+    const [year, setYear] = useState("");
+    const yearNames = {
+        "2021": "Eleiçoes Legislativas 2021",
+        "2022": "Eleições Legislativas 2022",
+        "2023": "Eleições Legislativas 2023",
+        "2024": "Eleições Legislativas 2024",
+        "2025": "Eleições Legislativas 2025",
+        "2026": "Eleições Legislativas 2026"
+    };
 
     const config = {
         indexAxis: 'y',
@@ -30,9 +37,9 @@ const ResultadosLegislativasGlobaisPorAno = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const orgResponse = await api.get("/parties");
+                const orgResponse = await api.get("/cleanParties");
                 const organisations = orgResponse.data;
-                const partyNames = organisations.map(org => org.organisationName);
+                const partyNames = [... new Set(organisations.map(org => org.organisationName))];
 
                 const voteCounts = [];
 
@@ -74,7 +81,6 @@ const ResultadosLegislativasGlobaisPorAno = () => {
     return (
         <div>
             <h2>Distribuição de Votos por Partido (Global)</h2>
-            <Bar options={config} data={chartData} />
 
             <div>
                 <label htmlFor="year-select">Seleciona o ano:</label>
@@ -82,11 +88,12 @@ const ResultadosLegislativasGlobaisPorAno = () => {
                     id="year-select"
                     value={year}
                     onChange={(e) => setYear(e.target.value)}>
-                    {years.map((y) => (
-                        <option key={y} value={y}>{y}</option>
+                    {Object.keys(yearNames).map((y) => (
+                        <option key={y} value={y}>{yearNames[y]}</option>
                     ))}
                 </select>
             </div>
+            <Bar options={config} data={chartData} height={200} />
         </div>
     );
 };

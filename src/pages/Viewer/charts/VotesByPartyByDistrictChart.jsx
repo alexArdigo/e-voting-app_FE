@@ -19,9 +19,17 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 const VotesByPartyByDistrictChart = ({ electionName }) => {
     const [chartData, setChartData] = useState(null);
     const [districts, setDistricts] = useState([]);
-    const [selectedDistrict, setSelectedDistrict] = useState("Aveiro");
-    const [year, setYear] = useState("2025");
-    const years = ["2021", "2022", "2023", "2024", "2025"];
+    const [selectedDistrict, setSelectedDistrict] = useState("");
+    const [year, setYear] = useState("");
+    const years = ["2021", "2022", "2023", "2024","2025", "2026"];
+    const yearNames = {
+        "2021": "Eleiçoes Legislativas 2021",
+        "2022": "Eleições Legislativas 2022",
+        "2023": "Eleições Legislativas 2023",
+        "2024": "Eleições Legislativas 2024",
+        "2025": "Eleições Legislativas 2025",
+        "2026": "Eleições Legislativas 2026"
+    };
 
 
 
@@ -40,9 +48,10 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
             try {
 
                 //PARTIES
-                const orgResponse = await api.get("/parties");
+                const orgResponse = await api.get("/cleanParties");
                 const organisations = orgResponse.data;
-                const partyNames = organisations.map(org => org.organisationName);
+                console.log("Organisations raw data:", organisations);
+                const partyNames = [... new Set(organisations.map(org => org.organisationName))]; //temporary até resolver o problema de duplicados!!
                 console.log("Partidos encontrados:", partyNames);
 
                 //DISTRICTS
@@ -65,7 +74,7 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
                         });
                         voteCounts.push(res.data);
                     } catch (e) {
-                        voteCounts.push(0); // adiciona 0 se der erro
+                        voteCounts.push(0);
                     }
                 }
 
@@ -95,22 +104,19 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
     return (
         <div>
             <h2>Distribuição de Votos por Partido</h2>
-            <Bar options={config} data={chartData} />
-
 
             <div>
-                <label htmlFor="district-select">Seleciona o ano:</label>
+                <label htmlFor="year-select">Seleciona o ano:</label>
                 <select
                     id="year-select"
                     value={year}
                     onChange={(e) => setYear(e.target.value)}>
                     {years.map((y) => (
                         <option key={y} value={y}>
-                            {y}
+                            {yearNames[y]}
                         </option>
                     ))}
                 </select>
-
             </div>
 
 
@@ -127,6 +133,7 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
                     ))}
                 </select>
             </div>
+            <Bar options={config} data={chartData} height={200} />
         </div>
     );
 };

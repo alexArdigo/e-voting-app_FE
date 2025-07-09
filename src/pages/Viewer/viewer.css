@@ -117,3 +117,8 @@
     cursor: pointer;
 }
 
+.graph-buttons button{
+    height: 40px;
+    width: 260px;
+}
+

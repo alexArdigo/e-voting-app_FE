@@ -13,7 +13,7 @@ export const Header = () => {
 
     return (
         <>
-            <header style={{height: "66px"}}>
+            <header className="the-header" style={{height: "66px"}}>
                 <div className="dflx aic jcsa g20">
                     <p style={{textAlign: "center"}}>GOVERNO DA<br/> REPÚBLICA PORTUGUESA</p>
                     <Link to={"/"}><img src="/images/Governo_de_Portugal_logo_grey.png" style={{height: "30px"}}
@@ -33,10 +33,11 @@ export const Header = () => {
                     <li onClick={() => navigate("/help")}>Ajuda</li>
                     <li><Link to="/faq">FAQ</Link></li>
                     {user?.username ? (
-
                         <>
-                            <p>{user?.name}</p>
-                            <button type="submit" onClick={logout}>Logout</button>
+                            <li><p style={{display: "inline", margin: 0}}>{user?.name}</p></li>
+                            <li>
+                                <button type="submit" onClick={logout}>Logout</button>
+                            </li>
                         </>
                     ) : null}
                     {user?.role === "ADMIN" ? null : null}
