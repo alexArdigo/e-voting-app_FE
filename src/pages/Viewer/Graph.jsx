@@ -19,7 +19,7 @@ const Graph = () => {
 
                         <img src="public/images/ProfilePic.png" height="150px" alt="Profile"/>
 
-                        <div className="user-side-profile">
+                        <div className="side-profile">
                             <p><strong> Utilizador com sessão iniciada </strong></p>
                             <p> Último acesso: {user?.lastLogin || null}</p>
                             <p> Nome: {user?.name || null}</p>
