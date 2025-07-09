@@ -12,7 +12,7 @@ export const charts = [
 
 const ChartsContainer = ({active}) => {
     return (
-        <div style={{margin: "0 auto", width: "800px", paddingTop: "0", paddingLeft: "190px", paddingRight: "190px"}}>
+        <div style={{margin: "0 auto", width: "800px", paddingTop: "50px", paddingLeft: "190px", paddingRight: "190px"}}>
             {charts.filter(chart => chart.type === active).map((chart, index) => {
                 return (
                     <div key={index} style={{marginBottom: "20px"}}>
