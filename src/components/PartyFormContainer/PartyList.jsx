@@ -1,6 +1,7 @@
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import api from "../../services/api";
+import "../specific/Admin/Admin.css"
 
 const PartyList = () => {
     const [parties, setParties] = useState([]);
