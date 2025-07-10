@@ -61,9 +61,18 @@ const castVote = async (electionId, vote) => {
 };
 
 const createElection = async (electionData) => {
-    const response = await api.post("/elections", electionData);
-    return response.data;
+    return await api.post("/elections", electionData);
+
 };
+
+const uploadCSVFile = async (body) => {
+    const response = await api.post("/elections/uploadCSV", body, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    });
+    return response.data;
+}
 
 const updatePresidentialElection = async (electionId, electionData) => {
     const response = await api.put(`/elections/presidential/${electionId}`, electionData);
@@ -110,6 +119,7 @@ export {
     getBallotByElectionId,
     castVote,
     createElection,
+    uploadCSVFile,
 
     updatePresidentialElection,
     updateLegislativeElection,

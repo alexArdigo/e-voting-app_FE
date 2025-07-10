@@ -33,7 +33,7 @@ const variants = {
     warning: {
         padding: "10px",
         borderRadius: "12px",
-        background: "#fff3cd",
+        background: "var(--warning-eleGov)",
         border: "2px solid #ffeeba",
         color: "#856404",
         paddingInline: "30px",

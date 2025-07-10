@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, {useRef, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import AdminDashboard from "./AdminDashboard";
-import { createElection } from "../../../services/ElectionService";
+import {createElection, uploadCSVFile} from "../../../services/ElectionService";
 import { toast } from "react-toastify";
 import "./Admin.css";
+import UploadCSV from "../../UploadCSV";
 
 const CreateElectionPage = () => {
     const navigate = useNavigate();
@@ -15,6 +16,7 @@ const CreateElectionPage = () => {
         electionType: "PRESIDENTIAL"
     });
     const [loading, setLoading] = useState(false);
+    const [file, setFile] = useState(null);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -45,10 +47,23 @@ const CreateElectionPage = () => {
 
         try {
             setLoading(true);
-            const result = await createElection(formData);
+            const response = await createElection(formData);
+            let csvResponse;
+            console.log(file);
+            if (response.status === 200) {
+                try {
+                    const body = new FormData();
+                    body.set("electionId", response.data.id);
+                    body.set("file", file);
+                    csvResponse = await uploadCSVFile(body);
+                    console.log('CSV upload response:', csvResponse);
+                } catch (csvError) {
+                    console.error('Erro ao fazer upload do arquivo CSV:', csvError);
+                }
+            }
 
-            if (result && result.name) {
-                toast.success(`Eleição "${result.name}" criada com sucesso!`);
+            if (response.status === 200 && csvResponse?.status === 200) {
+                toast.success(`Eleição "${response.data.name}" criada com sucesso!`);
 
                 if (formData.electionType === "LEGISLATIVE") {
                     toast.info("Eleição legislativa criada com círculos eleitorais para todos os distritos");
@@ -76,6 +91,7 @@ const CreateElectionPage = () => {
             setLoading(false);
         }
     };
+
 
     return (
         <AdminDashboard>
@@ -158,6 +174,11 @@ const CreateElectionPage = () => {
                                 </div>
                             )}
                         </div>
+                        <UploadCSV
+                            file={file}
+                            setFile={setFile}
+                            formData={formData}
+                        />
                     </div>
 
                     <div className="form-actions">

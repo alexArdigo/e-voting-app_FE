@@ -13,7 +13,7 @@
 }
 
 .comment-section {
-    background-color: #ffffff;
+    background-color: var(--white-eleGov);
     border-radius: 12px;
     padding: 40px;
     width: 800px;
