@@ -9,8 +9,19 @@ const PartyList = () => {
     useEffect(() => {
         const fetchParties = async () => {
             try {
-                const response = await api.get("/parties");
-                setParties(response.data);
+                const response = await api.get("/organisations");
+                const allParties = response.data;
+
+                const seenNames = new Set();
+                const uniqueParties = allParties.filter((party) => {
+                    if (seenNames.has(party.name)) {
+                        return false;
+                    }
+                    seenNames.add(party.name);
+                    return true;
+                });
+
+                setParties(uniqueParties);
             } catch (error) {
                 console.error("Erro ao buscar partidos", error);
             }
