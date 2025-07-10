@@ -4,6 +4,7 @@ import PartyFormContainer from "../components/PartyFormContainer";
 import {initialInputs, inputsReducer} from "../components/PartyFormContainer/reducer";
 import {useNavigate} from "react-router-dom";
 import api from "../services/api";
+import AdminDashboard from "../components/specific/Admin/AdminDashboard";
 
 function mapPartytoInputs(party) {
     return {
@@ -40,7 +41,7 @@ function mapPartytoInputs(party) {
 
 
 
-const PartyForm = ({party}) => {
+const PartyAdd = ({party}) => {
     const navigate = useNavigate();
     const [form, dispatchInputs] = useReducer(inputsReducer, party ? mapPartytoInputs(party) : initialInputs);
 
@@ -85,6 +86,7 @@ const PartyForm = ({party}) => {
     };
 
     return (
+        <AdminDashboard>
         <MainLayout className="dflxColumn g20" style={{minHeight: "76vh"}}>
             <h2>{party ? 'Editar' : 'Adicionar'} Partido</h2>
 
@@ -96,8 +98,9 @@ const PartyForm = ({party}) => {
                 <button type="submit">{'Submeter'}</button>
             </form>
         </MainLayout>
+        </AdminDashboard>
     );
 };
 
-export default PartyForm;
+export default PartyAdd;
 
