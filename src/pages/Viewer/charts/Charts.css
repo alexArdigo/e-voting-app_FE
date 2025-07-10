@@ -1,0 +1,44 @@
+.charts-container {
+    width: 700px;
+    padding-top: 50px;
+    padding-left: 30px;
+}
+
+.chart-block {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.chart-container {
+    padding: 20px;
+}
+
+.chart-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.8em;
+}
+
+.year-select-container, .district-select-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.year-select-label, .district-select-label {
+    font-weight: bold;
+}
+
+.year-select, .district-select {
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+}
+
+.chart-bar-container {
+    display: flex;
+    justify-content: center;
+}
