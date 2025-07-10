@@ -2,16 +2,25 @@ import React, {useEffect} from 'react';
 import MainLayout from "../../layouts/MainLayout.jsx";
 import StyledContainer from "../../layouts/StyledContainer.jsx";
 import api from "../../services/api";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {useUserContext} from "../../services/UserContext";
 
 const VoteSubmittedPage = () => {
-    const {setUser} = useUserContext();
+    const {user, setUser} = useUserContext();
     const navigate = useNavigate();
+    const location = useLocation();
+    const {electionId} = location.state || {};
 
     const handleLogout = async () => {
         try {
             await api.get("/logout");
+
+            if (user?.isVoting) {
+                const body = new FormData();
+                body.set("electionId", electionId);
+                body.set("voter", user?.id);
+                await api.post("/voters/stop-voting", body);
+            }
             setUser(null);
             console.log("User logged out successfully");
         } catch (e) {
