@@ -78,6 +78,27 @@
     position: relative;
 }
 
+.party-image-container {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin-right: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #f3f4f6;
+    border: 2px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.party-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
 .party-info {
     display: flex;
     flex-direction: column;
@@ -95,6 +116,15 @@
     font-size: 1rem;
     color: #6b7280;
     font-style: italic;
+}
+
+.ballot-option.selected .party-image-container {
+    border-color: #3C5DBC;
+    box-shadow: 0 0 0 3px rgba(60, 93, 188, 0.2);
+}
+
+.ballot-option.selected {
+    background: linear-gradient(135deg, #1e40af, #3C5DBC);
 }
 
 .vote-button:disabled {
@@ -126,6 +156,12 @@
     .ballot-option {
         padding: 15px;
         margin: 0 10px;
+    }
+
+    .party-image-container {
+        width: 50px;
+        height: 50px;
+        margin-right: 15px;
     }
 
     .party-abbreviation {
