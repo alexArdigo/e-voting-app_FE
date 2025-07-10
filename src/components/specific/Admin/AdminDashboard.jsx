@@ -16,7 +16,7 @@ const AdminDashboard = ({ children }) => {
                                 isActive ? "admin-nav-link active" : "admin-nav-link"
                             }
                         >
-                            Gerenciar Eleições
+                            Gerir Eleições
                         </NavLink>
                     </li>
                     <li>
@@ -37,6 +37,16 @@ const AdminDashboard = ({ children }) => {
                             }
                         >
                             Autorizações Pendentes
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/admin/edit/parties"
+                            className={({ isActive }) =>
+                                isActive ? "admin-nav-link active" : "admin-nav-link"
+                            }
+                        >
+                            Editar Partidos
                         </NavLink>
                     </li>
                 </ul>
