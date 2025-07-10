@@ -29,7 +29,7 @@ const Login = () => {
             console.log(response.data);
 
             setUser(response.data);
-            response.data.role === "VIEWER" ? navigate("/graph") : navigate("/admin");
+            response.data.role === "VIEWER" ? navigate("/profile/stats") : navigate("/admin");
         } catch (e) {
             console.error("Erro ao fazer login:", e);
             alert("Credenciais inválidas ou erro no servidor.");
