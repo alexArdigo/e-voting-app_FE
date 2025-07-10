@@ -97,35 +97,6 @@
     z-index: -1;
 }
 
-.user-side-profile p{
-    color: #74bfcf;
-    font-family: "PT Sans", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.side-bar-button {
-    background-color: #74bfcf;
-    border-radius: 5px;
-    margin: 10px 5px 5px;
-    width: 200px;
-}
-
-.side-bar-button:hover {
-    background-color: #4C8362;
-    color: white;
-    cursor: pointer;
-}
-
-.graph-buttons button{
-    height: 40px;
-    width: 260px;
-}
-
-
-
-
-
 .graph-layout {
     display: flex;
     width: 100%;
@@ -135,14 +106,14 @@
 .sidebar-toggle {
     position: absolute;
     left: 20px;
-    top: 20px;
+    top: 35px;
     font-size: 24px;
     cursor: pointer;
     z-index: 1;
 }
 
 .graph-sidebar {
-    background-color: #ddd;
+    background-color: #b5c9b5;
     height: 100%;
     transition: width 0.3s, padding 0.3s;
     display: flex;
@@ -167,31 +138,52 @@
 .side-profile {
     margin-top: 20px;
     text-align: center;
+    padding: 20px;
+}
+
+.side-profile p {
+    margin-bottom: 30px;
+    width: 200px;
+}
+
+.graph-buttons {
+    gap: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .edit {
     margin-top: auto;
     margin-bottom: 50px;
-    background-color: #f9cd7e;
-    color: black;
-    border: none;
-    padding: 13px;
-    border-radius: 7px;
+    padding: 13px 20px;
+    width: 180px;
     cursor: pointer;
 }
 
+.graph-buttons button{
+    height: 70px;
+    width: 200px;
+
+}
+
+.edit:hover, .graph-buttons button:hover {
+    transform: scale(1.1);
+    transition: all 0.2s ease-in-out;
+    background-color: #4c8362;
+}
+
+.graph-title {
+    text-align: center;
+    font-size: 17px;
+}
+
 .graph-content {
+    padding: 20px;
     overflow-y: auto;
     margin-left: 2px;
     display: flex;
     flex-direction: column;
-}
-
-.graph-buttons {
-    padding: 20px;
-    display: flex;
-    gap: 10px;
-    justify-content: flex-start;
 }
 
 .graph-charts {
