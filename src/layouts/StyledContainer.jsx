@@ -19,8 +19,6 @@ const variants = {
     transparent: {
         borderRadius: "12px",
         margin: "16px 0",
-        padding: "100px",
-        width:"400px",
     },
     leftCentered: {
         display: "flex",
@@ -52,8 +50,7 @@ const variants = {
         borderRadius: "12px",
         boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
         margin: "30px",
-        justifyContent: "left",
-        // background: "#f5f5f5",
+        justifyContent: "left"
     },
 };
 

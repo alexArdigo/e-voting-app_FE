@@ -17,7 +17,7 @@ const ResultadosLegislativasGlobaisPorAno = () => {
     const [chartData, setChartData] = useState(null);
     const [year, setYear] = useState("");
     const yearNames = {
-        "2021": "Eleiçoes Legislativas 2021",
+        "2021": "Eleições Legislativas 2021",
         "2022": "Eleições Legislativas 2022",
         "2023": "Eleições Legislativas 2023",
         "2024": "Eleições Legislativas 2024",
@@ -79,21 +79,30 @@ const ResultadosLegislativasGlobaisPorAno = () => {
     if (!chartData) return <p>A carregar gráfico...</p>;
 
     return (
-        <div>
-            <h2>Distribuição de Votos por Partido (Global)</h2>
+        <div className="chart-container">
+            <h2 className="chart-title">
+                Distribuição de Votos por Partido
+            </h2>
 
-            <div>
-                <label htmlFor="year-select">Seleciona o ano:</label>
+            <div className="year-select-container">
+                <label htmlFor="year-select" className="year-select-label">
+                    Seleciona o ano:
+                </label>
                 <select
                     id="year-select"
                     value={year}
-                    onChange={(e) => setYear(e.target.value)}>
+                    onChange={(e) => setYear(e.target.value)}
+                    className="year-select"
+                >
                     {Object.keys(yearNames).map((y) => (
                         <option key={y} value={y}>{yearNames[y]}</option>
                     ))}
                 </select>
             </div>
-            <Bar options={config} data={chartData} height={200} />
+
+            <div className="chart-bar-container">
+                <Bar options={config} data={chartData} height={200} />
+            </div>
         </div>
     );
 };

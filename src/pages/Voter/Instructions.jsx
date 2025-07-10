@@ -2,7 +2,6 @@ import React, {useRef} from 'react';
 import { useNavigate } from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout.jsx";
 import StyledContainer from "../../layouts/StyledContainer.jsx";
-import HalfLogo from "../../components/common/HalfLogo.jsx";
 import {useUserContext} from "../../services/UserContext";
 
 const Instructions = () => {
@@ -26,14 +25,14 @@ const Instructions = () => {
     }
 
     return (
-        <MainLayout className="dflxColumn" style={{ minHeight: "1900px"}}>
+        <MainLayout className="dflxColumn">
 
-            <StyledContainer variant="default" style={{marginTop: "100px", paddingBlock:"30px", width: "1000px", justifyContent: "center", alignContent: "center", lineHeight: "2em"}}>
+            <StyledContainer variant="default" style={{lineHeight: "2em"}}>
                 <h1 style={{ textAlign: "center" }}>Instruções para o Voto Eletrónico</h1>
                 <p style={{ textAlign: "center" }}>
                     Administração Eleitoral da Secretaria-Geral do Ministério da Administração Interna compete:
                 </p>
-                <ul style={{ textAlign: "justify", marginInline: "1px" }}>
+                <ul style={{ textAlign: "justify", paddingLeft: "20px"}}>
                     <li>
                         <strong>Assegurar</strong> o recenseamento eleitoral de modo automático e voluntário garantindo, a operacionalidade e atualidade do sistema de informação e gestão do recenseamento eleitoral, providenciando pela organização, manutenção e gestão da Base de Dados do Recenseamento Eleitoral;
                     </li>

@@ -14,24 +14,13 @@ const BallotPage = () => {
     const location = useLocation();
     const electionId = location.state?.electionId;
 
-    const { user, logout } = useUserContext();
+    const { user, isVoting, setIsVoting, logout } = useUserContext();
 
     const [parties, setParties] = useState([]);
     const [selectedParty, setSelectedParty] = useState('');
     const [timeLeft, setTimeLeft] = useState(300);
     const [loading, setLoading] = useState(true);
     const [submitting, setSubmitting] = useState(false);
-
-    useEffect(() => {
-        if (timeLeft <= 0) {
-            toast.error('Tempo esgotado! Será redirecionado...');
-            logout();
-            setTimeout(() => navigate('/'), 3000);
-            return;
-        }
-        const timer = setInterval(() => setTimeLeft(prev => prev - 1), 1000);
-        return () => clearInterval(timer);
-    }, [timeLeft, navigate]);
 
     useEffect(() => {
         const fetchParties = async () => {
@@ -115,7 +104,7 @@ const BallotPage = () => {
 
     return (
         <MainLayout className="dflxColumn">
-            <Timer timeLeft={timeLeft} />
+            <Timer parties={parties} timeLeft={timeLeft} setTimeLeft={setTimeLeft}/>
 
             <StyledContainer variant="yellow" style={{ marginTop: '20px' }}>
                 <h1>{location.state?.electionName || 'Eleição'}</h1>

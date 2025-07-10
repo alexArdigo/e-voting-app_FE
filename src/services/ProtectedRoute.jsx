@@ -11,16 +11,17 @@ const ProtectedRoute = ({children}) => {
         return <div>Loading...</div>;
     }
 
-    if (!user?.id) {
+    /*if (!user?.id) {
         return <Navigate to="/" replace />;
-    }
+    }*/
 
     //if (user?.role !== "VOTER") {
       //  return <Navigate to="/unauthorized" replace />;
    // }
 
-    if (isVoting && location.pathname !== "/ballot") {
-        return <Navigate to="/ballot" replace />;
+    // Prevent voter from leaving "/ballot" page if currently voting
+    if (user?.role === "VOTER" && isVoting && location.pathname !== "/ballot") {
+        return <Navigate to="/ballot" state={location.state} replace />;
     }
 
     return children;
