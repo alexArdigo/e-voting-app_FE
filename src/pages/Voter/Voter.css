@@ -2,7 +2,7 @@
 .home-container {
     position: relative;
     height: 100vh;
-    background-image: url("../../../public/images/assembleia.jpg");
+    background-image: url("/images/assembleia.jpg");
     background-size: cover;
     background-position: center;
     display: flex;
@@ -40,7 +40,7 @@
 
 
 .chave-movel-digital-button {
-    background-image: url("../../../public/images/Chave-Movel-Digital-button.png");
+    background-image: url("/images/Chave-Movel-Digital-button.png");
     background-size: cover;
     background-position: center;
     height: 80px;
