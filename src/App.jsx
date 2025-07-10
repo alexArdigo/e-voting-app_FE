@@ -33,6 +33,8 @@ function App() {
             <ToastContainer/>
             <BrowserRouter>
                 <UserProvider>
+                    <ErrorBoundary fallback={<h2>Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.</h2>}>
+
                     <Header/>
                     <Routes>
                         <Route path="/" element={<Home/>}/>
@@ -71,6 +73,7 @@ function App() {
 
                     </Routes>
                     <Footer/>
+                    </ErrorBoundary>
                 </UserProvider>
             </BrowserRouter>
         </>
