@@ -45,7 +45,12 @@ const PendingAuthorizations = () => {
 
     return (
         <AdminDashboard>
-            <StyledContainer>
+            <div className="admin-container">
+            <h1>Lista de Utilizadores a Aguardar Aprovação</h1>
+            <p>Aprove o utilizador no sistema</p>
+            </div>
+            <div className="dflx">
+            <StyledContainer style={{margin: "20px"}}>
                 <h1>Pendentes de Aprovação</h1>
                 <p>Lista de utilizadores pendentes de aprovação:</p>
                 <ul>
@@ -56,6 +61,8 @@ const PendingAuthorizations = () => {
                         </li>
                     ))}
                 </ul>
+            </StyledContainer>
+            <StyledContainer>
                 <h1>Aprovados</h1>
                 <p>Lista de utilizadores aprovados:</p>
                 <ul>
@@ -66,6 +73,7 @@ const PendingAuthorizations = () => {
                     ))}
                 </ul>
             </StyledContainer>
+            </div>
         </AdminDashboard>
     );
 };
