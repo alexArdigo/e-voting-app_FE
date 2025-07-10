@@ -60,7 +60,7 @@ const UserProvider = ({children}) => {
     };
 
     return (
-        <UserContext.Provider value={{user, setUser, loading, logout, isVoting}}>
+        <UserContext.Provider value={{user, setUser, loading, logout, isVoting, setIsVoting}}>
              {loading ? <div>Loading</div> : children}
         </UserContext.Provider>
     );
