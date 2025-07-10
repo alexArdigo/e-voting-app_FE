@@ -19,14 +19,13 @@ const VoterData = () => {
         navigate("/election");
     };
 
-
     return (
-        <div style={{minHeight: "100vh"}}>
-            <section className={"voter-data-container"} style={{marginTop: "130px"}}>
-
+        <div className={"dflxColumn"} >
+            <h1 style={{margin: 0}}>Dados do Votante</h1>
+            <section className={"voter-data-container"}>
                 <div className={"voter-info"}>
                     <div className="info-column">
-                        <p><strong>Nome:</strong> {user ? `${user.firstName} ${user.lastName}` : "N/A"}</p>
+                        <p><strong>Nome:</strong> {user ? `${user?.firstName} ${user?.lastName}` : "N/A"}</p>
                         <p><strong>Contacto telefónico:</strong> {user?.telephoneNumber}</p>
                         <p><strong>NIF:</strong> {user?.nif}</p>
                         <p><strong>Distrito:</strong> {user?.district?.districtName}</p>
@@ -38,14 +37,14 @@ const VoterData = () => {
                         <p><strong>Elegível:</strong> {user?.eligible ? "Sim" : "Não"}</p>
                         <p><strong>Verificado:</strong> {user?.verified ? "Sim" : "Não"}</p>
                     </div>
-                    <div className="confirmation">
-                        <label>
-                            <input type="checkbox" id="dataConfirmation" name="dataConfirmation"
-                                   onChange={() => setConfirmed(!confirmed)}/>
-                            Verifico que os dados acima registados estão corretos
-                        </label>
-                        <button className="vote-button" onClick={handleClick}>Prosseguir</button>
-                    </div>
+                </div>
+                <div className="confirmation">
+                    <label>
+                        <input type="checkbox" id="dataConfirmation" name="dataConfirmation"
+                               onChange={() => setConfirmed(!confirmed)}/>
+                        Verifico que os dados acima registados estão corretos
+                    </label>
+                    <button className="vote-button" onClick={handleClick}>Prosseguir</button>
                 </div>
             </section>
         </div>
