@@ -89,28 +89,6 @@ li {
     height: 30px;
 }
 
-button {
-    background-color: #4C8362;
-    border: none;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 30px;
-    margin: 0;
-}
-
-button:hover {
-    background-color: #2a3f8c;
-}
-
-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-
 .nav-bar li a {
     color: white;
     text-decoration: none;
