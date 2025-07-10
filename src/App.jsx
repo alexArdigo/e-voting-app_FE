@@ -22,7 +22,7 @@ import Admin from "./pages/Admin/Admin";
 import ChartsContainer from "./pages/Viewer/charts/ChartsContainer";
 import Graph from "./pages/Viewer/Graph";
 import CreateElectionPage from "./components/specific/Admin/CreateElectionForm";
-import PartyForm from "./pages/PartyForm";
+import PartyAdd from "./pages/PartyAdd";
 import ProtectedRoute from "./services/ProtectedRoute";
 import PendingAuthorizations from "./components/specific/Admin/PendingAuthorizations";
 import ErrorBoundary from "./components/common/ErrorBoundary";
@@ -56,7 +56,7 @@ function App() {
                             <Route path="/submitted" element={<ProtectedRoute><VoteSubmittedPage/></ProtectedRoute>}/>
 
                             {/* Party form */}
-                            <Route path="/party-form" element={<ProtectedRoute><PartyForm/></ProtectedRoute>}/>
+                            <Route path="/party-form" element={<ProtectedRoute><PartyAdd/></ProtectedRoute>}/>
 
 
                             {/* Help and Contact Routes */}
@@ -81,7 +81,7 @@ function App() {
                             <Route path="/admin/edit/parties/:id"
                                    element={<PartyEdit />} />
                             <Route path="/admin/add/party"
-                                   element={<PartyForm />} />
+                                   element={<PartyAdd />} />
 
 
 
