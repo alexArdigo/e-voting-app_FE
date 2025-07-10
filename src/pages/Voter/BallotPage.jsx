@@ -5,7 +5,7 @@ import MainLayout from '../../layouts/MainLayout.jsx';
 import StyledContainer from '../../layouts/StyledContainer.jsx';
 import Timer from '../../components/specific/Timer.jsx';
 import BallotForm from '../../components/specific/BallotForm.jsx';
-import api from '../../services/api.jsx';
+import { getBallotByElectionId, castVote } from '../../services/ElectionService.jsx';
 import { useUserContext } from '../../services/UserContext.jsx';
 import '../../components/specific/Ballot.css';
 
@@ -23,38 +23,61 @@ const BallotPage = () => {
     const [timeLeft, setTimeLeft] = useState(300);
     const [loading, setLoading] = useState(true);
     const [submitting, setSubmitting] = useState(false);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchParties = async () => {
-            if (!electionId) {
-                setLoading(false);
-                return;
-            }
-            try {
-                const response = await api.get(`/elections/${electionId}/ballot`);
-                const partiesData = response.data.map(org => ({
-                    id: org.id,
-                    name: org.name,
-                    fullName: org.name
-                }));
-                setParties(partiesData);
-            } catch (error) {
-                console.error('Error fetching parties:', error);
-                toast.error('Erro ao carregar opções de voto');
-                setParties([
-                    { id: 1, name: 'PS', fullName: 'Partido Socialista' },
-                    { id: 2, name: 'IL', fullName: 'Iniciativa Liberal' },
-                    { id: 3, name: 'BE', fullName: 'Bloco de Esquerda' }
-                ]);
-            } finally {
-                setLoading(false);
-            }
-        };
+        if (!electionId) {
+            toast.error('Eleição não selecionada. Redirecionando...');
+            navigate('/election', { replace: true });
+            return;
+        }
 
-        fetchParties();
-    }, [electionId]);
+        if (!user?.id) {
+            toast.error('Utilizador não autenticado. Redirecionando...');
+            navigate('/auth', { replace: true });
+            return;
+        }
 
-    console.log("electionId:", electionId);
+        fetchBallotData();
+    }, [electionId, user?.id, navigate]);
+
+    const fetchBallotData = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+
+            const ballotData = await getBallotByElectionId(electionId);
+
+            if (!ballotData || ballotData.length === 0) {
+                throw new Error('Nenhuma opção de voto disponível para esta eleição');
+            }
+
+            const partiesData = ballotData.map(org => ({
+                id: org.id,
+                name: org.name,
+                fullName: org.fullName || org.name,
+                acronym: org.acronym || org.name
+            }));
+
+            setParties(partiesData);
+            console.log('Opções de voto carregadas:', partiesData);
+
+        } catch (error) {
+            console.error('Erro ao carregar opções de voto:', error);
+            setError(error.message);
+
+            const fallbackParties = [
+                { id: 1, name: 'PS', fullName: 'Partido Socialista', acronym: 'PS' },
+                { id: 2, name: 'IL', fullName: 'Iniciativa Liberal', acronym: 'IL' },
+                { id: 3, name: 'BE', fullName: 'Bloco de Esquerda', acronym: 'BE' }
+            ];
+
+            setParties(fallbackParties);
+            toast.warning('Erro ao carregar dados. Usando dados de exemplo.');
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const handleSubmit = async () => {
         if (!selectedParty) {
@@ -76,31 +99,87 @@ const BallotPage = () => {
             const voteRequest = {
                 organisationId: selectedParty,
                 voterNif: user.nif,
-                municipalityName: user.municipality.municipalityName
+                municipalityName: user.municipality?.municipalityName
             };
 
             console.log('Enviando voto:', voteRequest);
-            await api.post(`/elections/${electionId}/castVote`, voteRequest);
+
+            await castVote(electionId, voteRequest);
+
             toast.success('Voto submetido com sucesso!');
+
+            localStorage.removeItem("electionId");
+            localStorage.removeItem("electionName");
+
             navigate('/submitted', {
                 state: {
+                    electionId: electionId,
                     electionName: electionName || 'Eleição',
-                    partyName: parties.find(p => p.id === selectedParty)?.name
+                    partyName: parties.find(p => p.id === selectedParty)?.name || 'Partido selecionado'
                 }
             });
+
         } catch (error) {
-            console.error('Error submitting vote:', error);
-            toast.error('Erro ao submeter voto. Tente novamente.');
+            console.error('Erro ao submeter voto:', error);
+
+            if (error.response?.status === 400) {
+                toast.error('Voto inválido. Verifique os dados e tente novamente.');
+            } else if (error.response?.status === 403) {
+                toast.error('Não tem permissão para votar nesta eleição.');
+            } else if (error.response?.status === 409) {
+                toast.error('Já votou nesta eleição.');
+            } else {
+                toast.error('Erro ao submeter voto. Tente novamente.');
+            }
         } finally {
             setSubmitting(false);
         }
+    };
+
+    const handleTimeExpired = () => {
+        toast.error('Tempo esgotado! Será redirecionado...');
+        setIsVoting(false);
+        logout();
+        setTimeout(() => navigate('/'), 3000);
     };
 
     if (loading) {
         return (
             <MainLayout className="dflxColumn">
                 <StyledContainer>
-                    <p>A carregar opções de voto...</p>
+                    <div style={{ textAlign: 'center', padding: '40px' }}>
+                        <p>A carregar opções de voto...</p>
+                        <div style={{ marginTop: '20px' }}>
+                            <div style={{
+                                width: '40px',
+                                height: '40px',
+                                border: '4px solid #f3f3f3',
+                                borderTop: '4px solid #3C5DBC',
+                                borderRadius: '50%',
+                                margin: '0 auto'
+                            }} />
+                        </div>
+                    </div>
+                </StyledContainer>
+            </MainLayout>
+        );
+    }
+
+    if (error && parties.length === 0) {
+        return (
+            <MainLayout className="dflxColumn">
+                <StyledContainer>
+                    <div style={{ textAlign: 'center', padding: '40px' }}>
+                        <h2>Erro ao carregar eleição</h2>
+                        <p>{error}</p>
+                        <button
+                            className="vote-button"
+                            onClick={() => navigate('/election')}
+                            style={{ marginTop: '20px' }}
+                        >
+                            Voltar à seleção de eleições
+                        </button>
+                    </div>
                 </StyledContainer>
             </MainLayout>
         );
@@ -108,7 +187,12 @@ const BallotPage = () => {
 
     return (
         <MainLayout className="dflxColumn">
-            <Timer parties={parties} timeLeft={timeLeft} setTimeLeft={setTimeLeft}/>
+            <Timer
+                parties={parties}
+                timeLeft={timeLeft}
+                setTimeLeft={setTimeLeft}
+                onTimeExpired={handleTimeExpired}
+            />
 
             <StyledContainer variant="yellow" style={{ marginTop: '20px' }}>
                 <h1>{electionName || 'Eleição'}</h1>
@@ -129,12 +213,25 @@ const BallotPage = () => {
                 disabled={submitting || !selectedParty}
                 style={{ marginTop: '30px' }}
             >
-                {submitting ? 'A submeter...' : 'Submeter'}
+                {submitting ? 'A submeter...' : 'Submeter Voto'}
             </button>
 
             <StyledContainer style={{ width: '500px', marginTop: '20px' }}>
-                <p><em>Selecione uma opção e clique em "Submeter" para confirmar o seu voto.</em></p>
-                <p><em>Tem {Math.floor(timeLeft / 60)}:{timeLeft % 60 < 10 ? '0' + timeLeft % 60 : timeLeft % 60} para completar a votação.</em></p>
+                <div style={{ textAlign: 'center', color: '#6b7280' }}>
+                    <p>
+                        <em>Selecione uma opção e clique em "Submeter Voto" para confirmar.</em>
+                    </p>
+                    <p>
+                        <em>
+                            Tempo restante: {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
+                        </em>
+                    </p>
+                    {selectedParty && (
+                        <p style={{ color: '#059669', fontWeight: 'bold' }}>
+                            ✓ Opção selecionada: {parties.find(p => p.id === selectedParty)?.name}
+                        </p>
+                    )}
+                </div>
             </StyledContainer>
         </MainLayout>
     );
