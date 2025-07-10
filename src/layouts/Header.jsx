@@ -25,7 +25,7 @@ export const Header = () => {
             <div className="nav-bar aic jcsa noto-sans-regular">
                 <Link to={"/"} className={"dInFlex aic g10"}
                       style={{color: "white", height: "40px", textDecoration: "none"}}>
-                    <img src="/public/images/logoEuVoto.png" alt="" style={{height: "inherit"}}/>
+                    <img src="/images/logoEuVoto.png" alt="" style={{height: "inherit"}}/>
                     <h1>EuVoto</h1>
                 </Link>
                 <ul>
@@ -34,7 +34,7 @@ export const Header = () => {
                     <li><Link to="/faq">FAQ</Link></li>
                     {user?.username ? (
                         <>
-                            <li><p style={{display: "inline", margin: 0}}>{user?.name}</p></li>
+                            <li><p style={{display: "inline", margin: 0, fontWeight: "bold"}}>{user?.name}</p></li>
                             <li>
                                 <button type="submit" onClick={logout}>Logout</button>
                             </li>
