@@ -25,6 +25,7 @@ import CreateElectionPage from "./components/specific/Admin/CreateElectionForm";
 import PartyForm from "./pages/PartyForm";
 import ProtectedRoute from "./services/ProtectedRoute";
 import PendingAuthorizations from "./components/specific/Admin/PendingAuthorizations";
+import ErrorBoundary from "./components/common/ErrorBoundary";
 
 function App() {
 
