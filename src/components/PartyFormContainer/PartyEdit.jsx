@@ -1,7 +1,8 @@
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import api from "../../services/api";
-import PartyForm from "../../pages/PartyForm";
+import PartyAdd from "../../pages/PartyAdd";
+import AdminDashboard from "../specific/Admin/AdminDashboard";
 
 const PartyEdit = () => {
     const {id} = useParams();
@@ -24,7 +25,11 @@ const PartyEdit = () => {
         return <div>Carregando dados do partido...</div>;
     }
 
-    return <PartyForm party={party}/>;
+    return (
+        <AdminDashboard>
+        <PartyAdd party={party}/>
+        </AdminDashboard>
+    );
 };
 
 export default PartyEdit;
