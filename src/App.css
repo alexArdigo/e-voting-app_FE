@@ -99,4 +99,28 @@ body {
     gap: 10px;
 }
 
+button {
+    background-color: #4C8362;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 30px;
+    margin: 0;
+    height: fit-content;
+    width: fit-content;
+}
+
+button:hover {
+    background-color: #2a3f8c;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
 
