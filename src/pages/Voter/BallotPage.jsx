@@ -55,8 +55,13 @@ const BallotPage = () => {
             const partiesData = ballotData.map(org => ({
                 id: org.id,
                 name: org.name,
-                fullName: org.fullName || org.name,
-                acronym: org.acronym || org.name
+                fullName: org.organisationName || org.name,
+               // acronym: org.name,
+                logoUrl: org.logoUrl || org.imageUrl,
+                imageUrl: org.imageUrl || org.logoUrl,
+                color: org.color,
+                description: org.description,
+                candidates: org.candidates || []
             }));
 
             setParties(partiesData);
@@ -67,9 +72,30 @@ const BallotPage = () => {
             setError(error.message);
 
             const fallbackParties = [
-                { id: 1, name: 'PS', fullName: 'Partido Socialista', acronym: 'PS' },
-                { id: 2, name: 'IL', fullName: 'Iniciativa Liberal', acronym: 'IL' },
-                { id: 3, name: 'BE', fullName: 'Bloco de Esquerda', acronym: 'BE' }
+                {
+                    id: 1,
+                    name: 'PS',
+                    fullName: 'Partido Socialista',
+                    acronym: 'PS',
+                    logoUrl: '/images/ps-logo.png',
+                    color: '#FF6B9D'
+                },
+                {
+                    id: 2,
+                    name: 'IL',
+                    fullName: 'Iniciativa Liberal',
+                    acronym: 'IL',
+                    logoUrl: '/images/il-logo.png',
+                    color: '#00D4FF'
+                },
+                {
+                    id: 3,
+                    name: 'BE',
+                    fullName: 'Bloco de Esquerda',
+                    acronym: 'BE',
+                    logoUrl: '/images/be-logo.png',
+                    color: '#8B5CF6'
+                }
             ];
 
             setParties(fallbackParties);
@@ -194,7 +220,7 @@ const BallotPage = () => {
                 onTimeExpired={handleTimeExpired}
             />
 
-            <StyledContainer variant="yellow" style={{ marginTop: '20px' }}>
+            <StyledContainer variant="yellow" style={{ marginTop: '20px', textAlign: 'center' }}>
                 <h1>{electionName || 'Eleição'}</h1>
             </StyledContainer>
 
