@@ -21,7 +21,9 @@ const PartyList = () => {
                     return true;
                 });
 
-                setParties(uniqueParties);
+                const sortedParties = uniqueParties.sort((a, b) => a.name.localeCompare(b.name));
+
+                setParties(sortedParties);
             } catch (error) {
                 console.error("Erro ao buscar partidos", error);
             }
@@ -31,17 +33,17 @@ const PartyList = () => {
     }, []);
 
     return (
-        <div className="party-list">
-            <h2>Lista de Partidos</h2>
+        <div className="party-list-container">
+            <h2 className="party-list-title">Lista de Partidos</h2>
 
             {parties.length === 0 ? (
-                <p>Não há partidos cadastrados.</p>
+                <p className="no-parties-message">Não há partidos cadastrados.</p>
             ) : (
-                <ul>
+                <ul className="party-list">
                     {parties.map((party) => (
-                        <li key={party.id} style={{ marginBottom: "10px" }}>
-                            <span style={{ marginRight: "10px" }}>{party.name}</span>
-                            <button onClick={() => navigate(`/admin/edit/parties/${party.id}`)}>
+                        <li key={party.id} className="party-list-item">
+                            <span className="party-name">{party.name}</span>
+                            <button className="edit-button" onClick={() => navigate(`/admin/edit/parties/${party.id}`)}>
                                 Editar
                             </button>
                         </li>
@@ -49,7 +51,7 @@ const PartyList = () => {
                 </ul>
             )}
 
-            <button onClick={() => navigate("/admin/add/party")} style={{ marginTop: "20px" }}>
+            <button className="add-party-button" onClick={() => navigate("/admin/add/party")}>
                 + Adicionar Partido
             </button>
         </div>
