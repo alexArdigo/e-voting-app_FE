@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {useNavigate, useLocation} from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout.jsx";
-import StyledContainer from "../../layouts/StyledContainer.jsx";
 import {toast} from "react-toastify";
 import {useUserContext} from "../../services/UserContext";
+import "../../components/specific/Confirm.css";
 
 
 const ConfirmElectionPage = () => {
@@ -11,58 +11,60 @@ const ConfirmElectionPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const selectedElectionName = location.state?.selectedElectionName;
+    const selectedElectionId = location.state?.selectedElectionId;
     const [confirmed, setConfirmed] = useState(false);
 
-    const handleStartVoting = async () => {
+    console.log("selectedElectionId: ", selectedElectionId);
+    const handleStartVoting = () => {
         if (!confirmed) {
-            toast("Confirme que compreende as condições para votar.");
-        } else {
-            setIsVoting(true);
-            navigate("/ballot", {
-                state: {
-                    electionId: location.state.selectedElectionId,
-                    electionName: selectedElectionName
-                }
-            });
+            toast.warn("Por favor, confirme que compreende as condições para votar.");
+            return;
         }
-    }
+        setIsVoting(true);
+
+        localStorage.setItem("electionId", selectedElectionId);
+        localStorage.setItem("electionName", selectedElectionName);
+
+        navigate("/ballot", {
+            state: {
+                electionId: selectedElectionId,
+                electionName: selectedElectionName
+            },
+            replace: true
+        });
+    };
 
     return (
-        <>
-            <MainLayout >
+        <MainLayout>
+            <div className="confirm-page-container">
+                <p>Você selecionou a eleição:</p>
+                <h1 className="confirm-election-name">
+                    {selectedElectionName || "Nome da eleição não disponível"}
+                </h1>
 
-                <StyledContainer variant="transparent" className="dflxColumn"> {/*, marginRight: "300px"*/}
-                    <StyledContainer variant="tranparent">
-                        <p>Selecionou:</p>
-                        <h1 style={{fontSize: "50px", padding: "30px"}}>{selectedElectionName || "Nome da eleição não disponível"}</h1>
-                    </StyledContainer>
-                    <StyledContainer variant="warning">
-                        <p>Atenção! Ao clicar em “Votar” será redirecionado para o seu boletim de voto eletrónico.
-                            Terá 5 minutos para submeter o seu voto. </p>
-                        <label>
-                            <div style={{display: "flex", alignItems: "center", gap: "10px"}}>
-                                <input style={{padding: "10px"}} type="checkbox" id="dataConfirmation"
-                                       name="dataConfirmation" onChange={() => setConfirmed(!confirmed)}/>
-                                <p> Compreendo </p>
-                            </div>
-                        </label>
-                    </StyledContainer>
-                    <div className={"button-wrapper"}>
-                        <button
-                            className="vote-button"
-                            onClick={() => handleStartVoting()}
-                        >
-                            Votar
-                        </button>
+                <div className="confirm-warning-box">
+                    <p><strong>Atenção!</strong> Ao clicar em "Votar", será redirecionado para o seu boletim de voto. Terá <strong>5 minutos</strong> para submeter o seu voto.</p>
+                </div>
 
-                    </div>
-                </StyledContainer>
+                <label className="confirm-checkbox-label">
+                    <input
+                        type="checkbox"
+                        checked={confirmed}
+                        onChange={() => setConfirmed(!confirmed)}
+                    />
+                    <span>Compreendo e desejo prosseguir.</span>
+                </label>
 
-            </MainLayout>
-
-        </>
-    )
-        ;
+                <button
+                    className="vote-button"
+                    onClick={handleStartVoting}
+                    disabled={!confirmed}
+                >
+                    Votar
+                </button>
+            </div>
+        </MainLayout>
+    );
 };
 
 export default ConfirmElectionPage;

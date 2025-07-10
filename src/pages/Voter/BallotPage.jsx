@@ -12,7 +12,9 @@ import '../../components/specific/Ballot.css';
 const BallotPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const electionId = location.state?.electionId;
+
+    const electionId = location.state?.electionId || localStorage.getItem("electionId");
+    const electionName = location.state?.electionName || localStorage.getItem("electionName");
 
     const { user, isVoting, setIsVoting, logout } = useUserContext();
 
@@ -32,8 +34,8 @@ const BallotPage = () => {
                 const response = await api.get(`/elections/${electionId}/ballot`);
                 const partiesData = response.data.map(org => ({
                     id: org.id,
-                    name: org.organisationName,
-                    fullName: org.fullName || ''
+                    name: org.name,
+                    fullName: org.name
                 }));
                 setParties(partiesData);
             } catch (error) {
@@ -51,6 +53,8 @@ const BallotPage = () => {
 
         fetchParties();
     }, [electionId]);
+
+    console.log("electionId:", electionId);
 
     const handleSubmit = async () => {
         if (!selectedParty) {
@@ -80,7 +84,7 @@ const BallotPage = () => {
             toast.success('Voto submetido com sucesso!');
             navigate('/submitted', {
                 state: {
-                    electionName: location.state?.electionName || 'Eleição',
+                    electionName: electionName || 'Eleição',
                     partyName: parties.find(p => p.id === selectedParty)?.name
                 }
             });
@@ -107,7 +111,7 @@ const BallotPage = () => {
             <Timer parties={parties} timeLeft={timeLeft} setTimeLeft={setTimeLeft}/>
 
             <StyledContainer variant="yellow" style={{ marginTop: '20px' }}>
-                <h1>{location.state?.electionName || 'Eleição'}</h1>
+                <h1>{electionName || 'Eleição'}</h1>
             </StyledContainer>
 
             <StyledContainer style={{ width: '500px', padding: '40px' }}>
