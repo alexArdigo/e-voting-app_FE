@@ -2,6 +2,7 @@ import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import api from "../../services/api";
 import "../specific/Admin/Admin.css"
+import AdminDashboard from "../specific/Admin/AdminDashboard";
 
 const PartyList = () => {
     const [parties, setParties] = useState([]);
@@ -34,6 +35,7 @@ const PartyList = () => {
     }, []);
 
     return (
+        <AdminDashboard>
         <div className="party-list-container">
             <h2 className="party-list-title">Lista de Partidos</h2>
 
@@ -56,6 +58,7 @@ const PartyList = () => {
                 + Adicionar Partido
             </button>
         </div>
+        </AdminDashboard>
     );
 };
 
