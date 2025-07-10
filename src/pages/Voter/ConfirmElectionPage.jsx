@@ -11,14 +11,20 @@ const ConfirmElectionPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const selectedElectionName = location.state?.selectedElectionName;
+    const selectedElectionId = location.state?.selectedElectionId;
     const [confirmed, setConfirmed] = useState(false);
 
+    console.log("selectedElectionId: ", selectedElectionId);
     const handleStartVoting = () => {
         if (!confirmed) {
             toast.warn("Por favor, confirme que compreende as condições para votar.");
             return;
         }
         setIsVoting(true);
+
+        localStorage.setItem("electionId", selectedElectionId);
+        localStorage.setItem("electionName", selectedElectionName);
+
         navigate("/ballot", {
             state: {
                 electionId: selectedElectionId,
