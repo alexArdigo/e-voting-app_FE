@@ -1,17 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import HalfLogo from "../../components/common/HalfLogo.jsx";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout.jsx";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import {
     getActiveElections,
-    getNotActiveElections, hasVoterVotedList
+    getNotActiveElections,
+    hasVoterVotedList
 } from "../../services/ElectionService";
-import {useUserContext} from "../../services/UserContext";
+import { useUserContext } from "../../services/UserContext";
 
 const SelectElectionPage = () => {
     const navigate = useNavigate();
-    const {user} = useUserContext();
+    const { user } = useUserContext();
     const [elections, setElections] = useState([]);
     const [selectedOption, setSelectedOption] = useState("");
     const [loadingData, setLoadingData] = useState(true);
@@ -57,16 +58,23 @@ const SelectElectionPage = () => {
         });
     };
 
+    console.log("elections:", elections);
+    console.log("voter: ", user);
+
     return (
-        <MainLayout style={{paddingBlock: "100px", minHeight: "90vh"}}>
-            <div className="steps-container" style={{width: "60vw", marginInline: "auto"}}>
-                <h1 style={{fontSize: "25px"}}>Selecione uma eleição:</h1>
+        <MainLayout style={{ paddingBlock: "100px", minHeight: "90vh" }}>
+            <div className="steps-container" style={{ width: "60vw", marginInline: "auto" }}>
+                <h1 style={{ fontSize: "25px" }}>Selecione uma eleição:</h1>
                 {loadingData ? (
                     <p>A carregar...</p>
                 ) : (
                     <form onSubmit={handleSubmit}>
                         {activeElection
-                            .filter(e => e && e.id && e.name)
+                            .filter(e =>
+                                e.electionType === 'PRESIDENTIAL' ||
+                                (e.electionType === 'LEGISLATIVE' &&
+                                    e.name.toLowerCase().includes(user.district.districtName.toLowerCase()))
+                            )
                             .map((election) => (
                                 <div key={election.id} className={"step"} style={{
                                     display: "flex",
@@ -83,7 +91,7 @@ const SelectElectionPage = () => {
                                             value={election.id}
                                             checked={selectedOption === election.id.toString()}
                                             onChange={(e) => setSelectedOption(e.target.value)}
-                                            style={{marginRight: "10px"}}
+                                            style={{ marginRight: "10px" }}
                                             disabled={voterVotedList.includes(election.id)}
                                         />
                                         {election.name}
@@ -96,14 +104,20 @@ const SelectElectionPage = () => {
                     </form>
                 )}
 
-                <h1 style={{fontSize: "25px"}}>Próximas Eleições:</h1>
-                <div className={"steps-container"} style={{width: "inherit"}}>
-                    <section className="steps-list" >
-                        {elections.map((election) => (
-                            <div className={"step"} key={election.id} >
-                                <p>{election.name}</p>
-                            </div>
-                        ))}
+                <h1 style={{ fontSize: "25px" }}>Próximas Eleições:</h1>
+                <div className={"steps-container"} style={{ width: "inherit" }}>
+                    <section className="steps-list">
+                        {elections
+                            .filter(e =>
+                                e.electionType === 'PRESIDENTIAL' ||
+                                (e.electionType === 'LEGISLATIVE' &&
+                                    e.name.toLowerCase().includes(user.district.districtName.toLowerCase()))
+                            )
+                            .map((election) => (
+                                <div className={"step"} key={election.id}>
+                                    <p>{election.name}</p>
+                                </div>
+                            ))}
                     </section>
                 </div>
             </div>

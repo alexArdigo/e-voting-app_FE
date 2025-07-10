@@ -1,5 +1,8 @@
 import React, {useState, useEffect} from "react";
-import {updateElection} from "../../../services/ElectionService";
+import {
+    updatePresidentialElection,
+    updateLegislativeElection,
+} from "../../../services/ElectionService";
 import {toast} from "react-toastify";
 
 const EditElection = ({election, isOpen, onClose, onUpdate}) => {
@@ -9,7 +12,7 @@ const EditElection = ({election, isOpen, onClose, onUpdate}) => {
         description: "",
         startDate: "",
         endDate: "",
-        type: "PRESIDENTIAL"
+        electionType: "PRESIDENTIAL"
     });
 
     const [loading, setLoading] = useState(false);
@@ -21,7 +24,7 @@ const EditElection = ({election, isOpen, onClose, onUpdate}) => {
                 description: election.description || "",
                 startDate: election.startDate ? new Date(election.startDate).toISOString().slice(0, 16) : "",
                 endDate: election.endDate ? new Date(election.endDate).toISOString().slice(0, 16) : "",
-                type: election.type || "PRESIDENTIAL"
+                electionType: election.electionType || election.type || "PRESIDENTIAL"
             });
         }
     }, [election]);
@@ -37,25 +40,43 @@ const EditElection = ({election, isOpen, onClose, onUpdate}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!formData.name || !formData.startDate || !formData.endDate) {
-            toast.error("Por favor, preencha todos os campos obrigatórios");
+        if (!formData.name || !formData.startDate) {
+            toast.error("Por favor, preencha o nome e a data de início.");
             return;
         }
 
-        if (new Date(formData.endDate) <= new Date(formData.startDate)) {
-            toast.error("A data de fim deve ser posterior à data de início");
-            return;
+        if (formData.electionType === "PRESIDENTIAL") {
+            if (!formData.endDate) {
+                toast.error("Para eleições presidenciais, a data de fim é obrigatória.");
+                return;
+            }
+            if (new Date(formData.endDate) <= new Date(formData.startDate)) {
+                toast.error("A data de fim deve ser posterior à data de início.");
+                return;
+            }
         }
 
         try {
             setLoading(true);
-            await updateElection(election.id, formData);
+            const dataToSend = { ...formData };
+            if (formData.electionType === "LEGISLATIVE") {
+                dataToSend.endDate = null;
+            }
+
+            if (election.electionType === "PRESIDENTIAL") {
+                await updatePresidentialElection(election.id, dataToSend);
+            } else if (election.electionType === "LEGISLATIVE") {
+                await updateLegislativeElection(election.id, dataToSend);
+            } else {
+                throw new Error("Tipo de eleição desconhecido para atualização.");
+            }
             toast.success("Eleição atualizada com sucesso!");
             onUpdate();
             onClose();
         } catch (error) {
             console.error('Erro ao atualizar eleição:', error);
-            toast.error("Erro ao atualizar eleição. Tente novamente.");
+            const errorMessage = error.response?.data || error.message || "Erro desconhecido ao atualizar eleição.";
+            toast.error(`Erro ao atualizar eleição: ${errorMessage}`);
         } finally {
             setLoading(false);
         }
@@ -100,17 +121,14 @@ const EditElection = ({election, isOpen, onClose, onUpdate}) => {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="type">Tipo de Eleição *</label>
-                                <select
-                                    id="type"
-                                    name="type"
-                                    value={formData.type}
-                                    onChange={handleChange}
-                                    required
-                                >
-                                    <option value="PRESIDENTIAL">Presidencial</option>
-                                    <option value="LEGISLATIVE">Legislativa</option>
-                                </select>
+                                <label htmlFor="electionType">Tipo de Eleição *</label>
+                                <input
+                                    type="text"
+                                    id="electionType"
+                                    name="electionType"
+                                    value={formData.electionType === "PRESIDENTIAL" ? "Presidencial" : "Legislativa"}
+                                    readOnly
+                                />
                             </div>
 
                             <div className="form-row">
@@ -126,17 +144,19 @@ const EditElection = ({election, isOpen, onClose, onUpdate}) => {
                                     />
                                 </div>
 
-                                <div className="form-group">
-                                    <label htmlFor="endDate">Data de Fim *</label>
-                                    <input
-                                        type="datetime-local"
-                                        id="endDate"
-                                        name="endDate"
-                                        value={formData.endDate}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </div>
+                                {formData.electionType === "PRESIDENTIAL" && (
+                                    <div className="form-group">
+                                        <label htmlFor="endDate">Data de Fim *</label>
+                                        <input
+                                            type="datetime-local"
+                                            id="endDate"
+                                            name="endDate"
+                                            value={formData.endDate}
+                                            onChange={handleChange}
+                                            required
+                                        />
+                                    </div>
+                                )}
                             </div>
                         </div>
 

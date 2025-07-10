@@ -1,17 +1,26 @@
 import React from 'react';
 import VotesByPartyByDistrictChart from "./VotesByPartyByDistrictChart";
-import SampleChartForTesting from "./SampleChartForTesting";
 import ResultadosLegislativasGlobaisPorAno from "./ResultadosLegislativasGlobaisPorAno";
 import ElectoralSeats from "./ElectoralSeats";
+import './charts.css';
 
-const ChartsContainer = () => {
+export const charts = [
+    { type: "votesByParty", name: "Votos por Partido", component: VotesByPartyByDistrictChart },
+    { type: "globalLegislativeResults", name: "Resultados Legislativas Globais", component: ResultadosLegislativasGlobaisPorAno },
+    { type: "assemblySeats", name: "Lugares Assembleia da República", component: ElectoralSeats }
+];
+
+const ChartsContainer = ({ active }) => {
     return (
-        <div style={{margin: "0 auto", width: "1000px", padding: "20px"}}>
-
-            <VotesByPartyByDistrictChart/> <br/><br/>
-            <ResultadosLegislativasGlobaisPorAno></ResultadosLegislativasGlobaisPorAno><br/><br/>
-            <ElectoralSeats></ElectoralSeats>
-
+        <div className="charts-container">
+            {charts
+                .filter(chart => chart.type === active)
+                .map((chart, index) => (
+                    <div key={index} className="chart-block">
+                        <h2 className="chart-title">{chart.name}</h2>
+                        {React.createElement(chart.component)}
+                    </div>
+                ))}
         </div>
     );
 };

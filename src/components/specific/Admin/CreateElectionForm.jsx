@@ -27,14 +27,20 @@ const CreateElectionPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!formData.name || !formData.startDate || !formData.endDate) {
-            toast.error("Por favor, preencha todos os campos obrigatórios");
+        if (!formData.name || !formData.startDate) {
+            toast.error("Por favor, preencha o nome e a data de início.");
             return;
         }
 
-        if (new Date(formData.endDate) <= new Date(formData.startDate)) {
-            toast.error("A data de fim deve ser posterior à data de início");
-            return;
+        if (formData.electionType === "PRESIDENTIAL") {
+            if (!formData.endDate) {
+                toast.error("Para eleições presidenciais, a data de fim é obrigatória.");
+                return;
+            }
+            if (new Date(formData.endDate) <= new Date(formData.startDate)) {
+                toast.error("A data de fim deve ser posterior à data de início.");
+                return;
+            }
         }
 
         try {
@@ -64,7 +70,8 @@ const CreateElectionPage = () => {
             }
         } catch (error) {
             console.error('Erro ao criar eleição:', error);
-            toast.error("Erro ao criar eleição. Tente novamente.");
+            const errorMessage = error.response?.data || error.message || "Erro ao criar eleição. Tente novamente.";
+            toast.error(errorMessage);
         } finally {
             setLoading(false);
         }
@@ -137,17 +144,19 @@ const CreateElectionPage = () => {
                                 />
                             </div>
 
-                            <div className="form-group">
-                                <label htmlFor="endDate">Data de Fim *</label>
-                                <input
-                                    type="datetime-local"
-                                    id="endDate"
-                                    name="endDate"
-                                    value={formData.endDate}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
+                            {formData.electionType === "PRESIDENTIAL" && (
+                                <div className="form-group">
+                                    <label htmlFor="endDate">Data de Fim *</label>
+                                    <input
+                                        type="datetime-local"
+                                        id="endDate"
+                                        name="endDate"
+                                        value={formData.endDate}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </div>
+                            )}
                         </div>
                     </div>
 

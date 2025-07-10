@@ -100,7 +100,6 @@ button {
     cursor: pointer;
     border-radius: 30px;
     margin: 0;
-    background-color: transparent;
 }
 
 button:hover {
@@ -120,4 +119,10 @@ button:disabled {
 .loggin-header {
     background-color: var(--green-eleGov);
     font-family: 'Roboto', sans-serif;
+}
+
+.stick {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }

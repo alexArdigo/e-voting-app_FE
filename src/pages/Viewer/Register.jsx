@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import './viewer.css';
 import MainLayout from "../../layouts/MainLayout";
+import {toast} from "react-toastify";
 
 
 const Register = () => {
@@ -29,14 +30,16 @@ const Register = () => {
             const response = await api.post("/registerViewer", body);
 
             const user = response.data;
-            
+
+            toast.success("Utilizador registado com sucesso! Aguarde aprovação.");
+
             navigate("/login");
 
         } catch (e) {
             if (e.response?.data?.includes("exists")) {
-                alert("Nome de utilizador já existe.");
+                toast.error("Nome de utilizador já existe.");
             } else {
-                alert("Erro ao registar utilizador.");
+                toast.error("Erro ao registar utilizador.");
                 console.error(e);
             }
         }

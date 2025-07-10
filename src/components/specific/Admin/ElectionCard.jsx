@@ -1,5 +1,8 @@
 import React from "react";
-import { deleteElection } from "../../../services/ElectionService";
+import {
+    deletePresidentialElection,
+    deleteLegislativeElection,
+} from "../../../services/ElectionService";
 import { toast } from "react-toastify";
 import "./Admin.css";
 
@@ -11,12 +14,20 @@ const ElectionCard = ({ election, isActive = false, onEdit, onDelete }) => {
 
         if (confirmDelete) {
             try {
-                await deleteElection(election.id);
+                if (election.electionType === "PRESIDENTIAL") {
+                    await deletePresidentialElection(election.id);
+                } else if (election.electionType === "LEGISLATIVE") {
+                    await deleteLegislativeElection(election.id);
+                } else {
+                    throw new Error("Tipo de eleição desconhecido para exclusão.");
+                }
+
                 toast.success("Eleição apagada com sucesso!");
                 onDelete();
             } catch (error) {
                 console.error('Erro ao apagar eleição:', error);
-                toast.error("Erro ao apagar eleição. Tente novamente.");
+                const errorMessage = error.response?.data || error.message || "Erro desconhecido ao apagar eleição.";
+                toast.error(`Erro ao apagar eleição: ${errorMessage}`);
             }
         }
     };
@@ -27,6 +38,8 @@ const ElectionCard = ({ election, isActive = false, onEdit, onDelete }) => {
                 return "Presidencial";
             case "LEGISLATIVE":
                 return "Legislativa";
+            case "ELECTORAL_CIRCLE":
+                return "Círculo Eleitoral";
             default:
                 return type;
         }

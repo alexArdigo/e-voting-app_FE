@@ -20,9 +20,11 @@ const UserProvider = ({children}) => {
             try {
                 let response;
                 response = await api.get("/loggedUser");
+                console.log("Response from /loggedUser: ", response?.data);
 
                 if (!response.data) {
                     response = await api.get("/loggedVoter");
+                    console.log("Response from /loggedVoter: ", response?.data);
                 }
 
                 setUser(response.data);
