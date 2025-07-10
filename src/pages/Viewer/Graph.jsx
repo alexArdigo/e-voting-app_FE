@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import StyledContainer from "../../layouts/StyledContainer";
 import "./viewer.css"
 import {useUserContext} from "../../services/UserContext";
 import MainLayout from "../../layouts/MainLayout";
@@ -21,7 +20,7 @@ const Graph = () => {
                     </div>
 
                     <div className={`graph-sidebar ${sidebarOpen ? "open" : "closed"}`}>
-                        <img src="/images/ProfilePic.png" height="100px" alt="Profile" />
+                        <img src="/images/Icon%20Viewer.jpg" height="100px" alt="Profile" />
 
                         <div className="side-profile">
                             <p><strong>Nome:</strong> {user?.name || "N/A"}</p>
@@ -37,10 +36,9 @@ const Graph = () => {
                             {charts.map((chart, index) => (
                                 <button
                                     key={index}
-                                    className="side-bar-button"
                                     onClick={() => setChartType(chart.type)}
                                 >
-                                    {chart.name}
+                                    <p className="graph-title">{chart.name}</p>
                                 </button>
                             ))}
                         </div>
