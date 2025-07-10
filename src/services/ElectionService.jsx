@@ -17,7 +17,7 @@ const getElections = async (electionType, electionYear, isActive) => {
 };
 
 const getPresidentialElections = async (electionYear, isActive) => {
-    return await getElections('presidential', electionYear, isActive);
+    return await getElections('PRESIDENTIAL', electionYear, isActive);
 };
 
 const getLegislativeElections = async (electionYear, isActive) => {
@@ -29,16 +29,57 @@ const getLegislativeElections = async (electionYear, isActive) => {
     return Array.isArray(response.data) ? response.data : [];
 };
 
+const getElectoralCircleElections = async (electionYear, isActive) => {
+    return await getElections('ELECTORAL_CIRCLE', electionYear, isActive);
+};
+
 const getLegislativeById = async (id) => {
     const response = await api.get(`/legislatives/${id}`);
     return response.data;
 };
 
-const getAllElections = () => getElections();
-const getActiveElections = () => getElections(null, null, true);
-const getNotActiveElections = () => getElections(null, null, false);
+const getAllElections = async () => {
+    try {
+        const presidentialAndCircles = await getElections();
+
+        const legislative = await getLegislativeElections();
+
+        return [...presidentialAndCircles, ...legislative];
+    } catch (error) {
+        console.error('Erro ao buscar todas as eleições:', error);
+        return [];
+    }
+};
+
+const getActiveElections = async () => {
+    try {
+        const presidentialAndCircles = await getElections(null, null, true);
+
+        const legislative = await getLegislativeElections(null, true);
+
+        return [...presidentialAndCircles, ...legislative];
+    } catch (error) {
+        console.error('Erro ao buscar eleições ativas:', error);
+        return [];
+    }
+};
+
+const getNotActiveElections = async () => {
+    try {
+        const presidentialAndCircles = await getElections(null, null, false);
+
+        const legislative = await getLegislativeElections(null, false);
+
+        return [...presidentialAndCircles, ...legislative];
+    } catch (error) {
+        console.error('Erro ao buscar eleições não ativas:', error);
+        return [];
+    }
+};
+
 const getActivePresidentialElections = () => getPresidentialElections(null, true);
 const getActiveLegislativeElections = () => getLegislativeElections(null, true);
+const getActiveElectoralCircleElections = () => getElectoralCircleElections(null, true);
 
 const hasVoterVotedList = async (user) => {
     const body = new FormData();
@@ -109,12 +150,14 @@ export {
     getElections,
     getPresidentialElections,
     getLegislativeElections,
+    getElectoralCircleElections,
     getLegislativeById,
     getAllElections,
     getActiveElections,
     getNotActiveElections,
     getActivePresidentialElections,
     getActiveLegislativeElections,
+    getActiveElectoralCircleElections,
     hasVoterVotedList,
     getBallotByElectionId,
     castVote,
