@@ -33,46 +33,49 @@ function App() {
             <ToastContainer/>
             <BrowserRouter>
                 <UserProvider>
-                    <ErrorBoundary fallback={<h2>Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.</h2>}>
+                    <ErrorBoundary
+                        fallback={<h2>Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.</h2>}>
 
-                    <Header/>
-                    <Routes>
-                        <Route path="/" element={<Home/>}/>
-                        <Route path="/instructions" element={<Instructions/>}/>
+                        <Header/>
+                        <Routes>
+                            <Route path="/" element={<Home/>}/>
+                            <Route path="/instructions" element={<Instructions/>}/>
 
-                        {/* CMD Routes */}
-                        <Route path="/auth" element={<AuthPage/>}/>
-                        <Route path="/auth-with-token" element={<AuthWithToken/>}/>
-                        <Route path="/voter-data" element={<ProtectedRoute><VoterProfile/></ProtectedRoute>}/>
+                            {/* CMD Routes */}
+                            <Route path="/auth" element={<AuthPage/>}/>
+                            <Route path="/auth-with-token" element={<AuthWithToken/>}/>
+                            <Route path="/voter-data" element={<ProtectedRoute><VoterProfile/></ProtectedRoute>}/>
 
-                        {/* Election and voting Routes */}
-                        <Route path="/election" element={<ProtectedRoute><SelectElectionPage/></ProtectedRoute>}/>
-                        <Route path="/confirm" element={<ProtectedRoute><ConfirmElectionPage/></ProtectedRoute>}/>
-                        <Route path="/ballot" element={<ProtectedRoute><BallotPage/></ProtectedRoute>}/>
-                        <Route path="/submitted" element={<ProtectedRoute><VoteSubmittedPage/></ProtectedRoute>}/>
+                            {/* Election and voting Routes */}
+                            <Route path="/election" element={<ProtectedRoute><SelectElectionPage/></ProtectedRoute>}/>
+                            <Route path="/confirm" element={<ProtectedRoute><ConfirmElectionPage/></ProtectedRoute>}/>
+                            <Route path="/ballot" element={<ProtectedRoute><BallotPage/></ProtectedRoute>}/>
+                            <Route path="/submitted" element={<ProtectedRoute><VoteSubmittedPage/></ProtectedRoute>}/>
 
-                        {/* Party form */}
-                        <Route path="/party-form" element={<ProtectedRoute><PartyForm/></ProtectedRoute>}/>
+                            {/* Party form */}
+                            <Route path="/party-form" element={<ProtectedRoute><PartyForm/></ProtectedRoute>}/>
 
 
-                        {/* Help and Contact Routes */}
-                        <Route path="/help" element={<HelpPage/>}/>
-                        <Route path="/contact" element={<ContactPage/>}/>
-                        <Route path="/faq" element={<Faq/>}/>
+                            {/* Help and Contact Routes */}
+                            <Route path="/help" element={<HelpPage/>}/>
+                            <Route path="/contact" element={<ContactPage/>}/>
+                            <Route path="/faq" element={<Faq/>}/>
 
-                        {/* Viewer Routes */}
-                        <Route path="/login" element={<Login/>}/>
-                        <Route path="/register" element={<Register/>}/>
-                        <Route path="/charts" element={<ProtectedRoute><ChartsContainer/></ProtectedRoute>}/>
-                        <Route path="/profile/stats" element={<Graph/>}/>
+                            {/* Viewer Routes */}
+                            <Route path="/login" element={<Login/>}/>
+                            <Route path="/register" element={<Register/>}/>
+                            <Route path="/charts" element={<ProtectedRoute><ChartsContainer/></ProtectedRoute>}/>
+                            <Route path="/profile/stats" element={<Graph/>}/>
 
-                        {/* Admin Routes */}
-                        <Route path="/admin" element={<ProtectedRoute><Admin/></ProtectedRoute>}/>
-                        <Route path="/create-election" element={<ProtectedRoute><CreateElectionPage/></ProtectedRoute>}/>
-                        <Route path="/admin/viewers" element={<ProtectedRoute><PendingAuthorizations/></ProtectedRoute>}/>
+                            {/* Admin Routes */}
+                            <Route path="/admin" element={<ProtectedRoute><Admin/></ProtectedRoute>}/>
+                            <Route path="/create-election"
+                                   element={<ProtectedRoute><CreateElectionPage/></ProtectedRoute>}/>
+                            <Route path="/admin/viewers"
+                                   element={<ProtectedRoute><PendingAuthorizations/></ProtectedRoute>}/>
 
-                    </Routes>
-                    <Footer/>
+                        </Routes>
+                        <Footer/>
                     </ErrorBoundary>
                 </UserProvider>
             </BrowserRouter>
