@@ -40,7 +40,7 @@ const PartyList = () => {
             <h2 className="party-list-title">Lista de Partidos</h2>
 
             {parties.length === 0 ? (
-                <p className="no-parties-message">Não há partidos cadastrados.</p>
+                <p className="no-parties-message">Não há partidos.</p>
             ) : (
                 <ul className="party-list">
                     {parties.map((party) => (
