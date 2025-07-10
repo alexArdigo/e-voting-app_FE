@@ -26,9 +26,7 @@ const PartyEdit = () => {
     }
 
     return (
-        <AdminDashboard>
         <PartyAdd party={party}/>
-        </AdminDashboard>
     );
 };
 
