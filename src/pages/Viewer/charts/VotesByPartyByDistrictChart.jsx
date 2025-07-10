@@ -23,7 +23,7 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
     const [year, setYear] = useState("");
     const years = ["2021", "2022", "2023", "2024","2025", "2026"];
     const yearNames = {
-        "2021": "Eleiçoes Legislativas 2021",
+        "2021": "Eleições Legislativas 2021",
         "2022": "Eleições Legislativas 2022",
         "2023": "Eleições Legislativas 2023",
         "2024": "Eleições Legislativas 2024",
@@ -102,15 +102,19 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
     if (!chartData) return <p>A carregar gráfico...</p>;
 
     return (
-        <div>
-            <h2>Distribuição de Votos por Partido</h2>
+        <div className="chart-container">
+            <h2 className="chart-title">Distribuição de Votos por Partido</h2>
 
-            <div>
-                <label htmlFor="year-select">Seleciona o ano:</label>
+            <div className="year-select-container">
+                <label htmlFor="year-select" className="year-select-label">
+                    Seleciona o ano:
+                </label>
                 <select
                     id="year-select"
                     value={year}
-                    onChange={(e) => setYear(e.target.value)}>
+                    onChange={(e) => setYear(e.target.value)}
+                    className="year-select"
+                >
                     {years.map((y) => (
                         <option key={y} value={y}>
                             {yearNames[y]}
@@ -119,13 +123,16 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
                 </select>
             </div>
 
-
-            <div>
-                <label htmlFor="district-select">Seleciona o distrito:</label>
+            <div className="district-select-container">
+                <label htmlFor="district-select" className="district-select-label">
+                    Seleciona o distrito:
+                </label>
                 <select
                     id="district-select"
                     value={selectedDistrict}
-                    onChange={(e) => setSelectedDistrict(e.target.value)}>
+                    onChange={(e) => setSelectedDistrict(e.target.value)}
+                    className="district-select"
+                >
                     {districts.map((district) => (
                         <option key={district} value={district}>
                             {district}
@@ -133,6 +140,7 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
                     ))}
                 </select>
             </div>
+
             <Bar options={config} data={chartData} height={200} />
         </div>
     );

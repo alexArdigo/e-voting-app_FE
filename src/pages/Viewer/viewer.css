@@ -97,32 +97,97 @@
     z-index: -1;
 }
 
-.user-side-profile p{
-    color: #74bfcf;
-    font-family: "PT Sans", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+.graph-layout {
+    display: flex;
+    width: 100%;
+    position: relative;
 }
 
-.side-bar-button {
-    background-color: #74bfcf;
-    border-radius: 5px;
-    margin: 10px 5px 5px;
+.sidebar-toggle {
+    position: absolute;
+    left: 20px;
+    top: 35px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.graph-sidebar {
+    background-color: #b5c9b5;
+    height: 100%;
+    transition: width 0.3s, padding 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 130px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.graph-sidebar.closed {
+    width: 0;
+    padding: 0;
+    visibility: hidden;
+}
+
+.graph-sidebar.open {
+    width: 0;
+    visibility: visible;
+}
+
+.side-profile {
+    margin-top: 20px;
+    text-align: center;
+    padding: 20px;
+}
+
+.side-profile p {
+    margin-bottom: 30px;
     width: 200px;
 }
 
-.side-bar-button:hover {
-    background-color: #4C8362;
-    color: white;
+.graph-buttons {
+    gap: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit {
+    margin-top: auto;
+    margin-bottom: 50px;
+    padding: 13px 20px;
+    width: 180px;
     cursor: pointer;
 }
 
 .graph-buttons button{
-    height: 40px;
-    width: 260px;
+    height: 70px;
+    width: 200px;
+
 }
 
-.side-profile {
+.edit:hover, .graph-buttons button:hover {
+    transform: scale(1.1);
+    transition: all 0.2s ease-in-out;
+    background-color: #4c8362;
+}
 
+.graph-title {
+    text-align: center;
+    font-size: 17px;
+}
+
+.graph-content {
+    padding: 20px;
+    overflow-y: auto;
+    margin-left: 2px;
+    display: flex;
+    flex-direction: column;
+}
+
+.graph-charts {
+    flex-grow: 1;
+    padding: 10px;
 }
 

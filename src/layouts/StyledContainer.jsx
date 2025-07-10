@@ -52,8 +52,7 @@ const variants = {
         borderRadius: "12px",
         boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
         margin: "30px",
-        justifyContent: "left",
-        // background: "#f5f5f5",
+        justifyContent: "left"
     },
 };
 

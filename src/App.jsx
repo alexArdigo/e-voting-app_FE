@@ -61,8 +61,8 @@ function App() {
                         {/* Viewer Routes */}
                         <Route path="/login" element={<Login/>}/>
                         <Route path="/register" element={<Register/>}/>
-                        <Route path="/side-bar" element={<ProtectedRoute><ChartsContainer/></ProtectedRoute>}/>
-                        <Route path="/graph" element={<Graph/>}/>
+                        <Route path="/charts" element={<ProtectedRoute><ChartsContainer/></ProtectedRoute>}/>
+                        <Route path="/profile/stats" element={<Graph/>}/>
 
                         {/* Admin Routes */}
                         <Route path="/admin" element={<ProtectedRoute><Admin/></ProtectedRoute>}/>
