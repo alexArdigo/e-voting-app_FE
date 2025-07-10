@@ -26,6 +26,8 @@ import PartyForm from "./pages/PartyForm";
 import ProtectedRoute from "./services/ProtectedRoute";
 import PendingAuthorizations from "./components/specific/Admin/PendingAuthorizations";
 import ErrorBoundary from "./components/common/ErrorBoundary";
+import PartyEdit from "./components/PartyFormContainer/PartyEdit";
+import PartyList from "./components/PartyFormContainer/PartyList";
 
 function App() {
 
@@ -74,6 +76,15 @@ function App() {
                                    element={<ProtectedRoute><CreateElectionPage/></ProtectedRoute>}/>
                             <Route path="/admin/viewers"
                                    element={<ProtectedRoute><PendingAuthorizations/></ProtectedRoute>}/>
+                            <Route path="/admin/edit/parties"
+                                   element={<PartyList />} />
+                            <Route path="/admin/edit/parties/:id"
+                                   element={<PartyEdit />} />
+                            <Route path="/admin/add/party"
+                                   element={<PartyForm />} />
+
+
+
 
                         </Routes>
                         <Footer/>
