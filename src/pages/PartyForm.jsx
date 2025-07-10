@@ -5,9 +5,44 @@ import {initialInputs, inputsReducer} from "../components/PartyFormContainer/red
 import {useNavigate} from "react-router-dom";
 import api from "../services/api";
 
+function mapPartytoInputs(party) {
+    return {
+        name: {
+            label: 'Nome do Partido',
+            type: 'text',
+            name: 'name',
+            value: party.name || '',
+            error: ''
+        },
+        color: {
+            label: 'Cor Oficial',
+            type: 'color',
+            name: 'color',
+            value: party.color || '#000000',
+            error: ''
+        },
+        imageURL: {
+            label: 'URL da Imagem',
+            type: 'text',
+            name: 'imageURL',
+            value: party.imageURL || '',
+            error: ''
+        },
+        description: {
+            label: 'Descrição',
+            type: 'textarea',
+            name: 'description',
+            value: party.description || '',
+            error: ''
+        }
+    }
+}
+
+
+
 const PartyForm = ({party}) => {
     const navigate = useNavigate();
-    const [form, dispatchInputs] = useReducer(inputsReducer, party || initialInputs);
+    const [form, dispatchInputs] = useReducer(inputsReducer, party ? mapPartytoInputs(party) : initialInputs);
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -18,20 +53,34 @@ const PartyForm = ({party}) => {
         e.preventDefault();
 
         try {
+            const isEditing = !!party;
+            let response;
+
+            if (isEditing) {
+                response = await api.put(`/organisations/${party.id}`, {
+                    name: form.name.value,
+                    color: form.color.value,
+                    imageURL: form.imageURL.value,
+                    description: form.description.value,
+                    electionId: party.electionId || null,
+                });
+                } else {
+
+
             const body = new FormData();
             body.set("name", form.name.value);
             body.set("color", form.color.value);
             body.set("imageURL", form.imageURL.value);
             body.set("description", form.description.value);
 
-            const response = await api.post('/parties', body);
+             response = await api.post('/parties', body);
+            }
             console.log("response: ", response);
             if (response.status === 200) {
                 navigate(`/parties/${response.data?.id}`);
             }
         } catch (err) {
             console.error('Failed to save party.', err)
-            setError('Failed to save party.');
         }
     };
 
