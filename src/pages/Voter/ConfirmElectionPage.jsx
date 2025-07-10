@@ -1,23 +1,23 @@
 import React, {useState} from 'react';
-
-
 import {useNavigate, useLocation} from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout.jsx";
 import StyledContainer from "../../layouts/StyledContainer.jsx";
 import {toast} from "react-toastify";
+import {useUserContext} from "../../services/UserContext";
 
 
 const ConfirmElectionPage = () => {
-
+    const {setIsVoting} = useUserContext();
     const navigate = useNavigate();
     const location = useLocation();
-    const selectedElectionName = location.state.selectedElectionName;
+    const selectedElectionName = location.state?.selectedElectionName;
     const [confirmed, setConfirmed] = useState(false);
 
-    const handleCheckboxChange = () => {
+    const handleStartVoting = async () => {
         if (!confirmed) {
             toast("Confirme que compreende as condições para votar.");
         } else {
+            setIsVoting(true);
             navigate("/ballot", {
                 state: {
                     electionId: location.state.selectedElectionId,
@@ -29,17 +29,14 @@ const ConfirmElectionPage = () => {
 
     return (
         <>
-            <MainLayout style={{minHeight: "100vh"}}> {/*, justifyContent: "space-between"*/}
-                {/*<div style={{justifyContent: "center", marginLeft: "500px", marginTop: "180px"}}>*/}
-                {/*    <img src="public/images/legislativas-viewer.png" alt="side-image" height="300px" ></img>*/}
-                {/*</div>*/}
+            <MainLayout >
 
-                <StyledContainer variant="transparent" className="dflxColumn" style={{padding: "80px"}}> {/*, marginRight: "300px"*/}
-                    <StyledContainer variant="tranparent" style={{width: "600px"}}>
+                <StyledContainer variant="transparent" className="dflxColumn"> {/*, marginRight: "300px"*/}
+                    <StyledContainer variant="tranparent">
                         <p>Selecionou:</p>
                         <h1 style={{fontSize: "50px", padding: "30px"}}>{selectedElectionName || "Nome da eleição não disponível"}</h1>
                     </StyledContainer>
-                    <StyledContainer variant="warning" style={{width: "600px"}}>
+                    <StyledContainer variant="warning">
                         <p>Atenção! Ao clicar em “Votar” será redirecionado para o seu boletim de voto eletrónico.
                             Terá 5 minutos para submeter o seu voto. </p>
                         <label>
@@ -53,7 +50,7 @@ const ConfirmElectionPage = () => {
                     <div className={"button-wrapper"}>
                         <button
                             className="vote-button"
-                            onClick={() => handleCheckboxChange()}
+                            onClick={() => handleStartVoting()}
                         >
                             Votar
                         </button>
