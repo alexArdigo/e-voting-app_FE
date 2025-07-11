@@ -10,7 +10,11 @@ const Home = () => {
     return (
         <main className="home-container">
             <div className="overlay">
-                <img src="/images/rep_portuguesa_white.png" alt="Logo República Portuguesa" className="home-logo" />
+                <img
+                    src="/images/rep_portuguesa_white.png"
+                    alt="Logo República Portuguesa"
+                    className="home-logo"
+                />
                 <button
                     className="home-button"
                     onClick={() => {

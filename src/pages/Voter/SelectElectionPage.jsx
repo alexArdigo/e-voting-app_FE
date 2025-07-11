@@ -26,7 +26,6 @@ const SelectElectionPage = () => {
                 setElections(upcoming);
 
                 const active = await getActiveElections();
-                console.log("Active elections:", active);
                 setActiveElection(active);
 
                 const votedList = await hasVoterVotedList(user);
@@ -58,8 +57,6 @@ const SelectElectionPage = () => {
         });
     };
 
-    console.log("elections:", elections);
-    console.log("voter: ", user);
 
     return (
         <MainLayout>
