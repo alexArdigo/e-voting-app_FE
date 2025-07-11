@@ -77,7 +77,7 @@ const PendingAuthorizations = () => {
                         placeholder="Pesquisar utilizador..."
                         value={searchTerm}
                         onChange={e => setSearchTerm(e.target.value)}
-                        style={{marginBottom: "10px", width: "100%"}}
+                        style={{marginBottom: "10px", width: "50%"}}
                     />
                     <ul className="pending-users-ul">
                         {filteredPending.map((user) => (
@@ -109,7 +109,7 @@ const PendingAuthorizations = () => {
                         placeholder="Pesquisar utilizador..."
                         value={searchTermApproved}
                         onChange={e => setSearchTermApproved(e.target.value)}
-                        style={{marginBottom: "10px", width: "100%"}}
+                        style={{marginBottom: "10px", width: "50%"}}
                     />
                     <ul className="pending-users-ul">
                         {filteredApproved.map((user) => (
