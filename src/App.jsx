@@ -28,6 +28,7 @@ import PendingAuthorizations from "./components/specific/Admin/PendingAuthorizat
 import ErrorBoundary from "./components/common/ErrorBoundary";
 import PartyEdit from "./components/PartyFormContainer/PartyEdit";
 import PartyList from "./components/PartyFormContainer/PartyList";
+import Results from "./pages/Viewer/Results";
 
 function App() {
 
@@ -69,6 +70,7 @@ function App() {
                             <Route path="/register" element={<Register/>}/>
                             <Route path="/charts" element={<ProtectedRoute><ChartsContainer/></ProtectedRoute>}/>
                             <Route path="/profile/stats" element={<Graph/>}/>
+                            <Route path="/results" element={<Results />}/>
 
                             {/* Admin Routes */}
                             <Route path="/admin" element={<ProtectedRoute><Admin/></ProtectedRoute>}/>
