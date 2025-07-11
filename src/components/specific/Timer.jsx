@@ -14,7 +14,7 @@ const Timer = ({parties, timeLeft, setTimeLeft}) => {
     const handleStartSession = async () => {
         try {
             const body = new FormData();
-            body.set("electionId", location.state?.selectedElectionId);
+            body.set("electionId", location.state?.electionId);
             body.set("voterId", user?.id);
             const response = await api.post("/voters/start-voting", body);
 
