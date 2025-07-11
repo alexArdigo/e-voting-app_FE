@@ -78,7 +78,8 @@ const PartyAdd = ({party}) => {
             }
             console.log("response: ", response);
             if (response.status === 200) {
-                navigate(`/parties/${response.data?.id}`);
+                //navigate(`/parties/${response.data?.id}`);
+                navigate("/admin/edit/parties")
             }
         } catch (err) {
             console.error('Failed to save party.', err)
