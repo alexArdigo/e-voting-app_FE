@@ -9,47 +9,50 @@ const Graph = () => {
     const [chartType, setChartType] = useState("votesByParty");
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
-
     return (
+        <>
+        <MainLayout style={{position: "relative"}}>
+            <div className="sidebar-container" style={{position: "absolute", top: 0, left: 0, zIndex: 0}}>
 
-            <MainLayout>
-                <div className="graph-layout">
-
-                    <div className="sidebar-toggle" onClick={() => setSidebarOpen(!sidebarOpen)}>
-                        ☰
-                    </div>
-
-                    <div className={`graph-sidebar ${sidebarOpen ? "open" : "closed"}`}>
-                        <img src="/images/Icon%20Viewer.jpg" height="100px" alt="Profile" />
-
-                        <div className="side-profile">
-                            <p><strong>Nome:</strong> {user?.name || "N/A"}</p>
-                            <p><strong>Instituição:</strong> {user?.institutionName || "N/A"}</p>
-                            <p><strong>Email:</strong> {user?.username || "N/A"}</p>
-                        </div>
-
-                        <button className="edit">Editar Perfil</button>
-                    </div>
-
-                    <div className="graph-content">
-                        <div className="graph-buttons">
-                            {charts.map((chart, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => setChartType(chart.type)}
-                                >
-                                    <p className="graph-title">{chart.name}</p>
-                                </button>
-                            ))}
-                        </div>
-
-                        <div className="graph-charts">
-                            <ChartsContainer active={chartType} />
-                        </div>
-                    </div>
-
+                <div className="sidebar-toggle" onClick={() => setSidebarOpen(!sidebarOpen)}>
+                    ☰
                 </div>
-            </MainLayout>
+
+                <div className={`graph-sidebar ${sidebarOpen ? "open" : "closed"}`}>
+                    <img src="/images/Icon%20Viewer.jpg" height="100px" alt="Profile"/>
+
+                    <div className="side-profile">
+                        <p><strong>Nome:</strong> {user?.name || "N/A"}</p>
+                        <p><strong>Instituição:</strong> {user?.institutionName || "N/A"}</p>
+                        <p><strong>Email:</strong> {user?.username || "N/A"}</p>
+                    </div>
+
+                    <button className="edit">Editar Perfil</button>
+                </div>
+
+            </div>
+            <div className="graph-layout">
+
+
+                <div className="graph-content">
+                    <div className="graph-buttons">
+                        {charts.map((chart, index) => (
+                            <button
+                                key={index}
+                                onClick={() => setChartType(chart.type)}
+                            >
+                                <p className="graph-title">{chart.name}</p>
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="graph-charts">
+                        <ChartsContainer active={chartType}/>
+                    </div>
+                </div>
+            </div>
+        </MainLayout>
+        </>
     );
 };
 
