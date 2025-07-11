@@ -42,10 +42,9 @@
     width: 240px;
     background-color: #4c8362;
     color: white;
-    padding: 30px 20px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
 }
 
 .admin-sidebar h3 {
