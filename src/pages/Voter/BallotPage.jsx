@@ -242,7 +242,7 @@ const BallotPage = () => {
             <button
                 className={`vote-button ${submitting ? 'submitting' : ''}`}
                 onClick={handleSubmit}
-                disabled={submitting || !selectedParty}
+                //disabled={submitting || !selectedParty}
                 style={{ marginTop: '30px' }}
             >
                 {submitting ? 'A submeter...' : 'Submeter Voto'}
