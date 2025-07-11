@@ -4,7 +4,7 @@ import {
     deleteLegislativeElection,
 } from "../../../services/ElectionService";
 import { toast } from "react-toastify";
-import "./Admin.css";
+import "../Admin.css";
 
 const ElectionCard = ({ election, isActive = false, onEdit, onDelete }) => {
     const handleDelete = async () => {

@@ -1,15 +1,16 @@
 import React, {useReducer, useState} from 'react';
-import MainLayout from "../layouts/MainLayout";
-import PartyFormContainer from "../components/PartyFormContainer";
-import {initialInputs, inputsReducer} from "../components/PartyFormContainer/reducer";
+import MainLayout from "../../../layouts/MainLayout";
+import PartyFormContainer from "./index";
+import {initialInputs, inputsReducer} from "./reducer";
 import {useNavigate} from "react-router-dom";
-import api from "../services/api";
-import AdminDashboard from "../components/specific/Admin/AdminDashboard";
+import api from "../../../services/api";
+import AdminDashboard from "../Dashboard/AdminDashboard";
+import PartyService from "../../../services/PartyService";
 
 function mapPartytoInputs(party) {
     return {
         name: {
-            label: 'Nome do Partido',
+            label: 'Nome do Partido ou Candidato',
             type: 'text',
             name: 'name',
             value: party.name || '',
@@ -26,7 +27,7 @@ function mapPartytoInputs(party) {
             label: 'URL da Imagem',
             type: 'text',
             name: 'imageURL',
-            value: party.imageURL || '',
+            value: party.logoUrl || '',
             error: ''
         },
         description: {
@@ -34,6 +35,26 @@ function mapPartytoInputs(party) {
             type: 'textarea',
             name: 'description',
             value: party.description || '',
+            error: ''
+        }
+    }
+
+}
+
+function mapUniPartyToInputs(uniparty) {
+    return {
+        name: {
+            label: 'Nome do Candidato',
+            type: 'text',
+            name: 'name',
+            value: uniparty.name || '',
+            error: ''
+        },
+        imageURL: {
+            label: 'URL da Imagem',
+            type: 'text',
+            name: 'imageURL',
+            value: uniparty.imageURL || '',
             error: ''
         }
     }
@@ -58,13 +79,16 @@ const PartyAdd = ({party}) => {
             let response;
 
             if (isEditing) {
-                response = await api.put(`/organisations/${party.id}`, {
-                    name: form.name.value,
-                    color: form.color.value,
-                    imageURL: form.imageURL.value,
-                    description: form.description.value,
-                    electionId: party.electionId || null,
-                });
+                const dto = {
+                    name: form.name?.value,
+                    color: form.color?.value,
+                    imageURL: form.imageURL?.value,
+                    description: form.description?.value,
+                    // electionId: party.electionId || null,
+                    logoUrl: form.logoUrl?.value,
+                };
+
+                response = await PartyService.updateOrganisation(party.id, dto);
                 } else {
 
 
@@ -74,11 +98,10 @@ const PartyAdd = ({party}) => {
             body.set("imageURL", form.imageURL.value);
             body.set("description", form.description.value);
 
-             response = await api.post('/parties', body);
+             response = await PartyService.createParty(body);
             }
-            console.log("response: ", response);
-            if (response.status === 200) {
-                //navigate(`/parties/${response.data?.id}`);
+
+            if (response) {
                 navigate("/admin/edit/parties")
             }
         } catch (err) {

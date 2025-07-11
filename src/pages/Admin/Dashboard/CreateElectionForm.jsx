@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import AdminDashboard from "./AdminDashboard";
 import {createElection, uploadCSVFile} from "../../../services/ElectionService";
 import { toast } from "react-toastify";
-import "./Admin.css";
-import UploadCSV from "../../UploadCSV";
+import "../Admin.css";
+import UploadCSV from "../../../components/UploadCSV";
 
 const CreateElectionPage = () => {
     const navigate = useNavigate();

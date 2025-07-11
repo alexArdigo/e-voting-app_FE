@@ -1,6 +1,6 @@
 import React from 'react';
-import FormInput from "../common/FormInput";
-import FormTextareaInput from "../common/FormInput/FormTextareaInput";
+import FormInput from "../../../components/common/FormInput";
+import FormTextareaInput from "../../../components/common/FormInput/FormTextareaInput";
 
 
 

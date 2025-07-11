@@ -56,6 +56,26 @@ const PartyService = {
         }
     },
 
+    updateOrganisation: async (organisationId, organisationData) => {
+        try {
+            const response = await api.put(`/organisations/${organisationId}`, organisationData);
+            return response.data;
+        } catch (error) {
+            console.error("Erro ao atualizar organização:", error);
+            throw error;
+        }
+    },
+
+    createParty: async (partyData) => {
+        try {
+            const response = await api.post("/parties", partyData);
+            return response.data;
+        } catch (error) {
+            console.error("Erro ao criar partido:", error);
+            throw error;
+        }
+    },
+
     getOrganisationsByElectionType: async (electionType) => {
         try {
             if (electionType === 'PRESIDENTIAL') {

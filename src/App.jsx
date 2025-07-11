@@ -21,13 +21,13 @@ import AuthWithToken from "./pages/Voter/AuthWithToken";
 import Admin from "./pages/Admin/Admin";
 import ChartsContainer from "./pages/Viewer/charts/ChartsContainer";
 import Graph from "./pages/Viewer/Graph";
-import CreateElectionPage from "./components/specific/Admin/CreateElectionForm";
-import PartyAdd from "./pages/PartyAdd";
+import CreateElectionPage from "./pages/Admin/Dashboard/CreateElectionForm";
+import PartyAdd from "./pages/Admin/PartyFormContainer/PartyAdd";
 import ProtectedRoute from "./services/ProtectedRoute";
-import PendingAuthorizations from "./components/specific/Admin/PendingAuthorizations";
+import PendingAuthorizations from "./pages/Admin/Dashboard/PendingAuthorizations";
 import ErrorBoundary from "./components/common/ErrorBoundary";
-import PartyEdit from "./components/PartyFormContainer/PartyEdit";
-import PartyList from "./components/PartyFormContainer/PartyList";
+import PartyEdit from "./pages/Admin/PartyFormContainer/PartyEdit";
+import PartyList from "./pages/Admin/PartyFormContainer/PartyList";
 import Results from "./pages/Viewer/Results";
 
 function App() {
