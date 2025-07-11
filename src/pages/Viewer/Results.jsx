@@ -3,7 +3,7 @@ import {useUserContext} from "../../services/UserContext";
 import {useNavigate} from "react-router-dom";
 import api from "../../services/api";
 import Districts from "../../components/Map/Districts";
-import Concelhos from "../../components/Map/Concelhos";
+import Municipalities from "../../components/Map/municipalities";
 import "./Results.css";
 
 export default function Results() {
@@ -94,7 +94,7 @@ export default function Results() {
                             >
                                 ← Voltar aos Distritos
                             </button>
-                            <Concelhos districtId={selectedDistrict}/>
+                            <Municipalities districtId={selectedDistrict}/>
                         </div>
                     )}
                 </div>
