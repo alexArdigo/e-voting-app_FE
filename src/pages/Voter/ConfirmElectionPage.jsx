@@ -3,7 +3,7 @@ import {useNavigate, useLocation, Navigate} from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout.jsx";
 import {toast} from "react-toastify";
 import {useUserContext} from "../../services/UserContext";
-
+import "../../components/specific/Confirm.css";
 
 const ConfirmElectionPage = () => {
     const navigate = useNavigate();
