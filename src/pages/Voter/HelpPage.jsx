@@ -2,7 +2,7 @@ import React from 'react';
 import MainLayout from "../../layouts/MainLayout.jsx";
 import StyledContainer from "../../layouts/StyledContainer.jsx";
 import HalfLogo from "../../components/common/HalfLogo.jsx";
-import Concelhos from "../../components/Map/Concelhos";
+import Municipalities from "../../components/Map/municipalities";
 
 const HelpPage = () => {
     return (
@@ -28,7 +28,7 @@ const HelpPage = () => {
                 </StyledContainer>
 
                 <div>
-                    <Concelhos/> //por favor não tirem isto antes de eu fazer a página se não fico perdido - Tiago
+                    <Municipalities/> //por favor não tirem isto antes de eu fazer a página se não fico perdido - Tiago
                 </div>
             </MainLayout>
         </>

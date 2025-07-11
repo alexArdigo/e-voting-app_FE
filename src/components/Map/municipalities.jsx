@@ -1,6 +1,6 @@
 import {useEffect, useRef} from "react";
 
-const Concelhos = (props) => {
+const Municipalities = (props) => {
     const svgRef = useRef();
 
 
@@ -1403,4 +1403,4 @@ const Concelhos = (props) => {
             </svg>
         </div>)
 }
-export default Concelhos
+export default Municipalities
