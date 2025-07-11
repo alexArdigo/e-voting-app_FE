@@ -2,7 +2,7 @@ import React from 'react';
 import MainLayout from "../../layouts/MainLayout.jsx";
 import StyledContainer from "../../layouts/StyledContainer.jsx";
 import HalfLogo from "../../components/common/HalfLogo.jsx";
-import Concelhos from "../../components/Concelhos";
+import Concelhos from "../../components/Map/Concelhos";
 
 const HelpPage = () => {
     return (
