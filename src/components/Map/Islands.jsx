@@ -43,7 +43,6 @@ const Islands = (props) => {
                       d="M732 4922c-3,-90 110,-89 112,-5 43,61 -93,180 -93,105 25,-48 -58,-57 -19,-100z"/>
             </g>
         </svg>
-
     )
 }
 export default Islands;
