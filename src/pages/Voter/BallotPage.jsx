@@ -112,8 +112,9 @@ const BallotPage = () => {
 
     const handleSubmit = async () => {
         if (!selectedParty) {
-            toast.warning('Por favor, selecione uma opção antes de submeter.');
-            return;
+            const confirmBlank = window.confirm("Confirma que deseja votar em branco?");
+            if (!confirmBlank) return;
+            setSelectedParty(-1);
         }
         if (!electionId) {
             toast.error('ID da eleição não está definido.');
@@ -128,7 +129,7 @@ const BallotPage = () => {
         setSubmitting(true);
         try {
             const voteRequest = {
-                organisationId: selectedParty,
+                organisationId: selectedParty || -1,
                 voterNif: user.nif,
                 municipalityName: user.municipality?.municipalityName
             };

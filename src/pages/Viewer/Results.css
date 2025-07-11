@@ -181,6 +181,28 @@
     background-color: #005500;
 }
 
+.map-view-toggle {
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.map-view-toggle button {
+  background: #eee;
+  color: #333;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.map-view-toggle button.active {
+  background: #3C5DBC;
+  color: #fff;
+}
+
 @media (max-width: 1024px) {
     .results-container {
         flex-direction: column;
