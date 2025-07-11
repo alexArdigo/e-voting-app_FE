@@ -60,7 +60,7 @@ const PendingAuthorizations = () => {
     useEffect(() => {
         fetchData();
         fetchApproved();
-    }, [fetchApproved()]);
+    }, []);
 
     return (
         <AdminDashboard>
