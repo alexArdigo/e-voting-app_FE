@@ -9,7 +9,7 @@ import AdminDashboard from "../components/specific/Admin/AdminDashboard";
 function mapPartytoInputs(party) {
     return {
         name: {
-            label: 'Nome do Partido',
+            label: 'Nome do Partido ou Candidato',
             type: 'text',
             name: 'name',
             value: party.name || '',
@@ -26,7 +26,7 @@ function mapPartytoInputs(party) {
             label: 'URL da Imagem',
             type: 'text',
             name: 'imageURL',
-            value: party.imageURL || '',
+            value: party.logoUrl || party.imageUrl || '',
             error: ''
         },
         description: {
