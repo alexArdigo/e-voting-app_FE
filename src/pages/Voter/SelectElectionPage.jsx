@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import {
     getActiveElections,
     getNotActiveElections,
-    hasVoterVotedList
+    voterHasVotedElectionList
 } from "../../services/ElectionService";
 import { useUserContext } from "../../services/UserContext";
 
@@ -28,7 +28,7 @@ const SelectElectionPage = () => {
                 const active = await getActiveElections();
                 setActiveElection(active);
 
-                const votedList = await hasVoterVotedList(user);
+                const votedList = await voterHasVotedElectionList(user);
                 setVoterVotedList(votedList);
 
             } catch (error) {

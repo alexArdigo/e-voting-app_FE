@@ -81,10 +81,21 @@ const getActivePresidentialElections = () => getPresidentialElections(null, true
 const getActiveLegislativeElections = () => getLegislativeElections(null, true);
 const getActiveElectoralCircleElections = () => getElectoralCircleElections(null, true);
 
-const hasVoterVotedList = async (user) => {
+const voterHasVotedElectionList = async (user) => {
     const body = new FormData();
     body.set("nif", user?.nif);
-    const response = await api.post(`/voters/has-voted`, body);
+    const response = await api.post(`/voters/has-voted-list`, body);
+    if (response.status !== 200) {
+        throw new Error("Failed to fetch voter voted list");
+    }
+    return response.data;
+};
+
+const voterHasVotedThisElection = async (electionId, voterId) => {
+    const body = new FormData();
+    body.set("electionId", electionId);
+    body.set("voterId", voterId);
+    const response = await api.post(`/voters/has-voted-election`, body);
     if (response.status !== 200) {
         throw new Error("Failed to fetch voter voted list");
     }
@@ -113,7 +124,7 @@ const uploadCSVFile = async (body) => {
         }
     });
     return response.data;
-}
+};
 
 const updatePresidentialElection = async (electionId, electionData) => {
     const response = await api.put(`/elections/presidential/${electionId}`, electionData);
@@ -158,7 +169,8 @@ export {
     getActivePresidentialElections,
     getActiveLegislativeElections,
     getActiveElectoralCircleElections,
-    hasVoterVotedList,
+    voterHasVotedElectionList,
+    voterHasVotedThisElection,
     getBallotByElectionId,
     castVote,
     createElection,

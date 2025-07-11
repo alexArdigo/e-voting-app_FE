@@ -2,25 +2,32 @@ import React, {useState} from 'react';
 import {useNavigate, useLocation, Navigate} from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout.jsx";
 import {toast} from "react-toastify";
-import "../../components/specific/Confirm.css";
+import api from "../../services/api";
 
 
 const ConfirmElectionPage = () => {
     const navigate = useNavigate();
+    const {user} = useUserContext();
     const location = useLocation();
     const selectedElectionName = location.state?.selectedElectionName;
     const selectedElectionId = location.state?.selectedElectionId;
     const [confirmed, setConfirmed] = useState(false);
 
-    const handleStartVoting = () => {
+    const handleStartVoting = async () => {
         if (!confirmed) {
             toast.warn("Por favor, confirme que compreende as condições para votar.");
             return;
         }
 
-       // localStorage.setItem("electionId", selectedElectionId);
-       // localStorage.setItem("electionName", selectedElectionName);
-        console.log(location.state);
+        try {
+            const response = await voterHasVotedThisElection(selectedElectionId, user.id);
+            if (response.data.hasVoted) {
+                toast.error("Você já votou nesta eleição.");
+                return <Navigate to="/election" replace />;
+            }
+        } catch (error) {
+            console.error("Erro ao verificar se já votou:", error);
+        }
         return navigate("/ballot", {
             state: {
                 electionId: selectedElectionId,
