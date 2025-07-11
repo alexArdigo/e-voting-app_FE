@@ -9,7 +9,7 @@ const UploadCSV = ({file, setFile, formData}) => {
 
     return (
         <div className={"dflxColumn"}>
-            <h3 style={{margin: 0, padding: 0}}>
+            <h3 style={{margin: "7px", padding: 0}}>
                 Carregar ficheiro de {formData.electionType === "PRESIDENTIAL" ? "candidatos" : "partidos"}*:
             </h3>
             <label htmlFor="ficheiro" className={"upload-button"}>Carregar</label>
@@ -20,7 +20,7 @@ const UploadCSV = ({file, setFile, formData}) => {
                 accept=".csv"
                 onChange={(e) => handleFileChange(e)}
                 hidden/>
-            <span>{file?.name || "Nenhum ficheiro selecionado"}</span>
+            <span style={{fontSize: "small", margin: "7px"}}>{file?.name || "Nenhum ficheiro selecionado"}</span>
         </div>
     );
 };
