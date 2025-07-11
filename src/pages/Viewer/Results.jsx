@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 import api from "../../services/api";
 import Districts from "../../components/Map/Districts";
 import Municipalities from "../../components/Map/municipalities";
+import Islands from "../../components/Map/Islands";
 import "./Results.css";
 
 export default function Results() {
@@ -13,6 +14,7 @@ export default function Results() {
     const [resultsData, setResultsData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [mapView, setMapView] = useState("districts"); // "districts" ou "municipalities"
 
     const [electionId, setElectionId] = useState(1);
 
@@ -82,21 +84,25 @@ export default function Results() {
 
             <div className="results-main">
                 <h1 className="results-title">Resultados legislativas</h1>
-
-                <div className="map-container">
-                    {!selectedDistrict ? (
-                        <Districts onDistrictClick={handleDistrictClick}/>
-                    ) : (
-                        <div>
-                            <button
-                                className="back-button"
-                                onClick={() => setSelectedDistrict(null)}
-                            >
-                                ← Voltar aos Distritos
-                            </button>
-                            <Municipalities districtId={selectedDistrict}/>
-                        </div>
-                    )}
+                <div className="map-view-toggle">
+                    <button
+                        onClick={() => setMapView("districts")}
+                        className={mapView === "districts" ? "active" : ""}
+                    >
+                        Ver por Distritos
+                    </button>
+                    <button
+                        onClick={() => setMapView("municipalities")}
+                        className={mapView === "municipalities" ? "active" : ""}
+                    >
+                        Ver por Municípios
+                    </button>
+                </div>
+                <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
+                    <div>
+                        {mapView === "districts" ? <Districts onDistrictClick={handleDistrictClick} /> : <Municipalities districtId={selectedDistrict} />}
+                        <Islands />
+                    </div>
                 </div>
             </div>
 
