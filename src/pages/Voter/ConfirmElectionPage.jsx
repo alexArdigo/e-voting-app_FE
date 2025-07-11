@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useNavigate, useLocation, Navigate} from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout.jsx";
 import {toast} from "react-toastify";
-import api from "../../services/api";
+import {useUserContext} from "../../services/UserContext";
 
 
 const ConfirmElectionPage = () => {
