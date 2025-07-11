@@ -13,8 +13,11 @@ const BallotPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const electionId = location.state?.electionId || localStorage.getItem("electionId");
-    const electionName = location.state?.electionName || localStorage.getItem("electionName");
+    const electionId = location.state?.electionId
+    const electionName = location.state?.electionName
+
+    console.log('Election ID:', electionId);
+    console.log('Election Name:', electionName);
 
     const { user, isVoting, setIsVoting, logout } = useUserContext();
 
@@ -24,6 +27,7 @@ const BallotPage = () => {
     const [loading, setLoading] = useState(true);
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState(null);
+
 
     useEffect(() => {
         if (!electionId) {
@@ -52,6 +56,7 @@ const BallotPage = () => {
                 throw new Error('Nenhuma opção de voto disponível para esta eleição');
             }
 
+            setIsVoting(true);
             const partiesData = ballotData.map(org => ({
                 id: org.id,
                 name: org.name,
@@ -105,11 +110,11 @@ const BallotPage = () => {
             console.log('Enviando voto:', voteRequest);
 
             await castVote(electionId, voteRequest);
-
+            setIsVoting(false)
             toast.success('Voto submetido com sucesso!');
 
-            localStorage.removeItem("electionId");
-            localStorage.removeItem("electionName");
+          //  localStorage.removeItem("electionId");
+          //  localStorage.removeItem("electionName");
 
             navigate('/submitted', {
                 state: {

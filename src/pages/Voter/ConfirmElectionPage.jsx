@@ -1,36 +1,31 @@
 import React, {useState} from 'react';
-import {useNavigate, useLocation} from "react-router-dom";
+import {useNavigate, useLocation, Navigate} from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout.jsx";
 import {toast} from "react-toastify";
-import {useUserContext} from "../../services/UserContext";
 import "../../components/specific/Confirm.css";
 
 
 const ConfirmElectionPage = () => {
-    const {setIsVoting} = useUserContext();
     const navigate = useNavigate();
     const location = useLocation();
     const selectedElectionName = location.state?.selectedElectionName;
     const selectedElectionId = location.state?.selectedElectionId;
     const [confirmed, setConfirmed] = useState(false);
 
-    console.log("selectedElectionId: ", selectedElectionId);
     const handleStartVoting = () => {
         if (!confirmed) {
             toast.warn("Por favor, confirme que compreende as condições para votar.");
             return;
         }
-        setIsVoting(true);
 
-        localStorage.setItem("electionId", selectedElectionId);
-        localStorage.setItem("electionName", selectedElectionName);
-
-        navigate("/ballot", {
+       // localStorage.setItem("electionId", selectedElectionId);
+       // localStorage.setItem("electionName", selectedElectionName);
+        console.log(location.state);
+        return navigate("/ballot", {
             state: {
                 electionId: selectedElectionId,
                 electionName: selectedElectionName
-            },
-            replace: true
+            }
         });
     };
 
