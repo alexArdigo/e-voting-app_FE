@@ -42,6 +42,7 @@ const PendingAuthorizations = () => {
         try {
             await api.post(`/approveViewer?id=${id}`);
             await fetchData();
+            await fetchApproved();
         } catch (error) {
             console.error("Erro ao aprovar utilizador:", error);
         }
@@ -52,6 +53,7 @@ const PendingAuthorizations = () => {
         try {
             await api.post(`/deleteApprovedViewer?id=${id}`);
             await fetchData();
+            await fetchApproved();
         } catch (error) {
             console.error("Erro ao deletar utilizador:", error);
         }
@@ -90,17 +92,6 @@ const PendingAuthorizations = () => {
                         ))}
                     </ul>
                 </StyledContainer>
-                {/*<StyledContainer>*/}
-                {/*    <h1>Aprovados</h1>*/}
-                {/*    <p>Lista de utilizadores aprovados:</p>*/}
-                {/*    <ul>*/}
-                {/*    {approvedUsers.map((user) => (*/}
-                {/*    <li key={user.id}>*/}
-                {/*    {user.username}*/}
-                {/*    </li>*/}
-                {/*    ))}*/}
-                {/*    </ul>*/}
-                {/*    </StyledContainer>*/}
                 <StyledContainer style={{width: "100%"}}>
                     <h1>Remover utilizador</h1>
                     <p>Lista de utilizadores aprovados:</p>
