@@ -91,7 +91,7 @@ const Faq = () => {
                                     id={comment.id}
                                     comment_text={comment.comment}
                                     pub_datetime={comment.localDateTime}
-                                    likes={comment.likedBy}
+                                    likes={comment.voterHashLike}
                                     answer={comment.answer?.answer}
                                 />
 
@@ -112,16 +112,18 @@ const Faq = () => {
                                                 placeholder="Responder a este comentário..."
                                                 required
                                             />
-                                            <div className="admin-buttons">
-                                                <button type="submit">Responder</button>
-                                                <button
-                                                    type="button"
-                                                    className="delete-comment-button"
-                                                    onClick={() => handleDeleteComment(comment.id)}
-                                                >
-                                                    🗑️ Apagar
-                                                </button>
-                                            </div>
+                                            {!comment.answer && (
+                                                <div className="admin-buttons">
+                                                    <button type="submit">Responder</button>
+                                                    <button
+                                                        type="button"
+                                                        className="delete-comment-button"
+                                                        onClick={() => handleDeleteComment(comment.id)}
+                                                    >
+                                                        🗑️ Apagar
+                                                    </button>
+                                                </div>
+                                            )}
                                         </form>
                                     </div>
                                 )}
@@ -130,6 +132,7 @@ const Faq = () => {
                     </div>
                 </section>
 
+                { user?.role !== "ADMIN" && (
                 <form onSubmit={handleSubmit} className="faq-form">
                     <label htmlFor="comentarios" className="pt-sans-bold">
                         Tem mais alguma pergunta? Escreva suas dúvidas abaixo.
@@ -146,6 +149,7 @@ const Faq = () => {
                         <button className="vote-button" type="submit">Enviar</button>
                     </div>
                 </form>
+                )}
             </div>
         </MainLayout>
     );
