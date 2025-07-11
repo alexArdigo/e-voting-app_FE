@@ -52,6 +52,7 @@ const BallotPage = () => {
                 throw new Error('Nenhuma opção de voto disponível para esta eleição');
             }
 
+            setIsVoting(true);
             const partiesData = ballotData.map(org => ({
                 id: org.id,
                 name: org.name,
@@ -107,8 +108,9 @@ const BallotPage = () => {
 
     const handleSubmit = async () => {
         if (!selectedParty) {
-            toast.warning('Por favor, selecione uma opção antes de submeter.');
-            return;
+            const confirmBlank = window.confirm("Confirma que deseja votar em branco?");
+            if (!confirmBlank) return;
+            setSelectedParty(-1);
         }
         if (!electionId) {
             toast.error('ID da eleição não está definido.');
@@ -123,7 +125,7 @@ const BallotPage = () => {
         setSubmitting(true);
         try {
             const voteRequest = {
-                organisationId: selectedParty,
+                organisationId: selectedParty || -1,
                 voterNif: user.nif,
                 municipalityName: user.municipality?.municipalityName
             };
@@ -131,7 +133,7 @@ const BallotPage = () => {
             console.log('Enviando voto:', voteRequest);
 
             await castVote(electionId, voteRequest);
-
+            setIsVoting(false)
             toast.success('Voto submetido com sucesso!');
 
             localStorage.removeItem("electionId");
