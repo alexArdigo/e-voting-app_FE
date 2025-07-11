@@ -1,8 +1,8 @@
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import api from "../../services/api";
-import PartyAdd from "../../pages/PartyAdd";
-import AdminDashboard from "../specific/Admin/AdminDashboard";
+import api from "../../../services/api";
+import PartyAdd from "./PartyAdd";
+import AdminDashboard from "../Dashboard/AdminDashboard";
 
 const PartyEdit = () => {
     const {id} = useParams();
