@@ -70,7 +70,7 @@ const SelectElectionPage = () => {
                             .filter(e =>
                                 e.electionType === 'PRESIDENTIAL' ||
                                 (e.electionType === 'LEGISLATIVE' &&
-                                    e.name.toLowerCase().includes(user.district.districtName.toLowerCase()))
+                                    e.name.toLowerCase().trim() === user.district.districtName.toLowerCase().trim())
                             )
                             .map((election) => (
                                 <div key={election.id} className={"step"} style={{
