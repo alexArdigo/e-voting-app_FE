@@ -16,6 +16,7 @@ const UserProvider = ({children}) => {
     const navigate = useNavigate();
 
     useEffect(() => {
+
         (async () => {
             try {
                 let response;
