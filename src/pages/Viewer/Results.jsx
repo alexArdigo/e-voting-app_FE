@@ -1,24 +1,156 @@
-import { useState } from "react";
+import {useState, useEffect} from "react";
+import {useUserContext} from "../../services/UserContext";
+import {useNavigate} from "react-router-dom";
+import api from "../../services/api";
 import Districts from "../../components/Map/Districts";
 import Concelhos from "../../components/Map/Concelhos";
+import "./Results.css";
 
 export default function Results() {
-  const [selectedDistrict, setSelectedDistrict] = useState(null);
+    const {user, logout} = useUserContext();
+    const navigate = useNavigate();
+    const [selectedDistrict, setSelectedDistrict] = useState(null);
+    const [resultsData, setResultsData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-  const handleDistrictClick = (districtId) => {
-    setSelectedDistrict(districtId);
-  };
+    const [electionId, setElectionId] = useState(1);
 
-  return (
-    <div>
-      <h2>Mapa dos Distritos</h2>
-      <Districts onDistrictClick={handleDistrictClick} />
-      {selectedDistrict && (
-        <>
-          <h2>Mapa dos Concelhos</h2>
-          <Concelhos districtId={selectedDistrict} />
-        </>
-      )}
-    </div>
-  );
+    useEffect(() => {
+        fetchElectionResults();
+    }, [electionId]);
+
+    const fetchElectionResults = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+            const response = await api.get(`/Elections/${electionId}/results/legislative`);
+            setResultsData(response.data);
+        } catch (err) {
+            console.error("Erro ao buscar resultados:", err);
+            setError("Erro ao carregar resultados da eleição");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleDistrictClick = (districtId) => {
+        setSelectedDistrict(districtId);
+    };
+
+    const handleLogout = () => {
+        logout();
+        navigate("/");
+    };
+
+    const formatNumber = (number) => {
+        return new Intl.NumberFormat('pt-PT').format(number);
+    };
+
+    const calculateAbstention = () => {
+        if (!resultsData) return "0%";
+        const total = resultsData.totalVotes || 0;
+        const abstention = resultsData.abstention || 0;
+        const percentage = total > 0 ? ((abstention / (total + abstention)) * 100).toFixed(2) : 0;
+        return `${percentage}%`;
+    };
+
+    return (
+        <div className="results-container">
+            <div className="results-sidebar">
+                <div className="profile-section">
+                    <div className="profile-avatar">
+                        {user?.name ? user.name.charAt(0).toUpperCase() : '?'}
+                    </div>
+
+                    <div className="profile-info">
+                        <p><strong>Nome:</strong></p>
+                        <p>{user?.name || 'N/A'}</p>
+
+                        <p><strong>Instituição:</strong></p>
+                        <p>{user?.institutionName || 'N/A'}</p>
+
+                        <p><strong>Email:</strong></p>
+                        <p>{user?.username || 'N/A'}</p>
+                    </div>
+
+                    <button className="logout-btn" onClick={handleLogout}>
+                        Logout
+                    </button>
+                </div>
+            </div>
+
+            <div className="results-main">
+                <h1 className="results-title">Resultados legislativas</h1>
+
+                <div className="map-container">
+                    {!selectedDistrict ? (
+                        <Districts onDistrictClick={handleDistrictClick}/>
+                    ) : (
+                        <div>
+                            <button
+                                className="back-button"
+                                onClick={() => setSelectedDistrict(null)}
+                            >
+                                ← Voltar aos Distritos
+                            </button>
+                            <Concelhos districtId={selectedDistrict}/>
+                        </div>
+                    )}
+                </div>
+            </div>
+
+            <div className="results-stats">
+                <h2 className="stats-title">Sondagem Geral</h2>
+
+                {loading ? (
+                    <div className="loading-container">
+                        <p>A carregar resultados...</p>
+                    </div>
+                ) : error ? (
+                    <div className="error-container">
+                        <h3>Erro</h3>
+                        <p>{error}</p>
+                        <button className="retry-button" onClick={fetchElectionResults}>
+                            Tentar novamente
+                        </button>
+                    </div>
+                ) : resultsData ? (
+                    <>
+                        <div className="stat-item">
+                            <span className="stat-label">Total de votos:</span>
+                            <span className="stat-value">
+                                {formatNumber(resultsData.totalVotes || 0)}
+                            </span>
+                        </div>
+
+                        <div className="stat-item">
+                            <span className="stat-label">Votos nulos:</span>
+                            <span className="stat-value">
+                                {formatNumber(resultsData.nullVotes || 0)}
+                            </span>
+                        </div>
+
+                        <div className="stat-item">
+                            <span className="stat-label">Votos brancos:</span>
+                            <span className="stat-value">
+                                {formatNumber(resultsData.blankVotes || 0)}
+                            </span>
+                        </div>
+
+                        <div className="stat-item">
+                            <span className="stat-label">Abstenção:</span>
+                            <span className="stat-value stat-percentage">
+                                {calculateAbstention()}
+                            </span>
+                        </div>
+                    </>
+                ) : (
+                    <div className="loading-container">
+                        <p>Nenhum resultado disponível</p>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
 }
