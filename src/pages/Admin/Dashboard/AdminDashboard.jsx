@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "./Admin.css";
+import "../Admin.css";
 
 const AdminDashboard = ({ children }) => {
     return (

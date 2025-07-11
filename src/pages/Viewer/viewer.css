@@ -95,43 +95,6 @@
     z-index: -1;
 }
 
-.graph-layout {
-    display: flex;
-    width: 100%;
-    position: relative;
-}
-
-.sidebar-toggle {
-    position: absolute;
-    left: 20px;
-    top: 35px;
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 1;
-}
-
-.graph-sidebar {
-    background-color: #b5c9b5;
-    height: 100%;
-    transition: width 0.3s, padding 0.3s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 100px 130px;
-    box-sizing: border-box;
-    position: relative;
-}
-
-.graph-sidebar.closed {
-    width: 0;
-    padding: 0;
-    visibility: hidden;
-}
-
-.graph-sidebar.open {
-    width: 0;
-    visibility: visible;
-}
 
 .side-profile {
     margin-top: 20px;
@@ -144,28 +107,70 @@
     width: 200px;
 }
 
-.graph-buttons {
-    gap: 30px;
+
+
+.graph-layout {
     display: flex;
-    justify-content: center;
+    width: 100%;
+    position: relative;
+}
+
+
+.graph-sidebar {
+    height: 100vh;
+    transition: width 0.3s, padding 0.3s;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    width: inherit;
 }
 
-.edit {
-    margin-top: auto;
-    margin-bottom: 50px;
-    padding: 13px 20px;
-    width: 180px;
+/* Estado fechado */
+.graph-sidebar.closed {
+    width: 0;
+    padding: 0;
+    visibility: hidden;
+}
+
+/* Estado aberto */
+.graph-sidebar.open {
+    visibility: visible;
+}
+
+/* Botão de toggle fixo no ecrã */
+.sidebar-toggle {
+    position: fixed;
+    left: 20px;
+    font-size: 24px;
     cursor: pointer;
+    z-index: 2;
 }
 
-.graph-buttons button{
+.graph-content {
+    margin: 0 auto;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.graph-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+
+}
+
+.graph-buttons button {
     height: 70px;
     width: 200px;
-
 }
 
-.edit:hover, .graph-buttons button:hover {
+.graph-buttons button:hover,
+.edit:hover {
     transform: scale(1.1);
     transition: all 0.2s ease-in-out;
     background-color: #4c8362;
@@ -176,12 +181,10 @@
     font-size: 17px;
 }
 
-.graph-content {
-    padding: 20px;
-    overflow-y: auto;
-    margin-left: 2px;
-    display: flex;
-    flex-direction: column;
+.edit {
+    padding: 13px 20px;
+    width: 180px;
+    cursor: pointer;
 }
 
 .graph-charts {
@@ -189,3 +192,13 @@
     padding: 10px;
 }
 
+.side-profile {
+    margin-top: 20px;
+    text-align: center;
+    padding: 20px;
+}
+
+.side-profile p {
+    margin-bottom: 30px;
+    width: 200px;
+}

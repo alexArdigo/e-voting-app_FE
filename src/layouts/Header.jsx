@@ -3,6 +3,7 @@ import "./Header.css";
 import {Link, useNavigate} from "react-router-dom";
 import {useUserContext} from "../services/UserContext.jsx";
 import React from 'react';
+import SideBar from "../components/SideBar";
 
 
 export const Header = () => {
@@ -14,7 +15,12 @@ export const Header = () => {
     return (
         <>
             <header className="the-header" style={{height: "66px"}}>
-                <div className="dflx aic jcsa g20">
+                <div className="dflx aic jcsa g20" style={{
+                    position: "relative",
+                    zIndex: 10,
+                    height: "66px",
+                    backgroundColor: "var(--white-eleGov)"
+                }}>
                     <p style={{textAlign: "center"}}>GOVERNO DA<br/> REPÚBLICA PORTUGUESA</p>
                     <Link to={"/"}><img src="/images/Governo_de_Portugal_logo_grey.png" style={{height: "30px"}}
                                         alt="Logo"/></Link>

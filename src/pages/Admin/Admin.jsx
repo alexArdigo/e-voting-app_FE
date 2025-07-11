@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import AdminDashboard from "../../components/specific/Admin/AdminDashboard";
+import AdminDashboard from "./Dashboard/AdminDashboard";
 import {
     getActivePresidentialElections,
     getActiveLegislativeElections,
@@ -7,9 +7,9 @@ import {
     getLegislativeElections
 } from "../../services/ElectionService";
 import { toast } from "react-toastify";
-import ElectionCard from "../../components/specific/Admin/ElectionCard";
-import "../../components/specific/Admin/Admin.css";
-import EditElection from "../../components/specific/Admin/EditElection";
+import ElectionCard from "./Dashboard/ElectionCard";
+import "./Admin.css";
+import EditElection from "./Dashboard/EditElection";
 
 const Admin = () => {
     const [activeElections, setActiveElections] = useState([]);
