@@ -101,8 +101,7 @@ export default function Results() {
             </div>
 
             <div className="results-stats">
-                <h2 className="stats-title">Sondagem Geral</h2>
-
+                <h2 className="stats-title">Resultados</h2>
                 {loading ? (
                     <div className="loading-container">
                         <p>A carregar resultados...</p>
