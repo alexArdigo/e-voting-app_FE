@@ -4,7 +4,7 @@ import {Navigate, useLocation} from "react-router-dom";
 
 
 const ProtectedRoute = ({children}) => {
-    const {user, isVoting, loading} = useUserContext();
+    const {loading} = useUserContext();
     const location = useLocation();
 
 
