@@ -3,6 +3,7 @@ import "./Header.css";
 import {Link, useNavigate} from "react-router-dom";
 import {useUserContext} from "../services/UserContext.jsx";
 import React from 'react';
+import SideBar from "../components/SideBar";
 
 
 export const Header = () => {
