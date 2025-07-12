@@ -42,6 +42,7 @@ const PendingAuthorizations = () => {
         try {
             await api.post(`/approveViewer?id=${id}`);
             await fetchData();
+            await fetchApproved();
         } catch (error) {
             console.error("Erro ao aprovar utilizador:", error);
         }
@@ -52,6 +53,7 @@ const PendingAuthorizations = () => {
         try {
             await api.post(`/deleteApprovedViewer?id=${id}`);
             await fetchData();
+            await fetchApproved();
         } catch (error) {
             console.error("Erro ao deletar utilizador:", error);
         }
