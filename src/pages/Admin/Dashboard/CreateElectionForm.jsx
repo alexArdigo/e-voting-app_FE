@@ -4,7 +4,7 @@ import AdminDashboard from "./AdminDashboard";
 import {createElection, uploadCSVFile} from "../../../services/ElectionService";
 import { toast } from "react-toastify";
 import "../Admin.css";
-import UploadCSV from "../../../components/UploadCSV";
+import UploadCSV from "../../../components/specific/UploadCSV";
 
 const CreateElectionPage = () => {
     const navigate = useNavigate();

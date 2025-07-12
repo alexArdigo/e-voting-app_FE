@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import "./viewer.css";
+import "./css/viewer.css";
 import MainLayout from "../../layouts/MainLayout";
 import ChartsContainer, {charts} from "./charts/ChartsContainer";
-import SideBar from "../../components/SideBar";
+import SideBar from "../../components/specific/SideBar";
 
 const Graph = () => {
     const [chartType, setChartType] = useState("votesByParty");

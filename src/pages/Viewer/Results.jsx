@@ -2,10 +2,10 @@ import {useState, useEffect} from "react";
 import {useUserContext} from "../../services/UserContext";
 import {useNavigate} from "react-router-dom";
 import api from "../../services/api";
-import Districts from "../../components/Map/Districts";
-import Municipalities from "../../components/Map/municipalities";
-import Islands from "../../components/Map/Islands";
-import "./Results.css";
+import Districts from "../../components/specific/Map/Districts";
+import Municipalities from "../../components/specific/Map/municipalities";
+import Islands from "../../components/specific/Map/Islands";
+import "./css/Results.css";
 
 export default function Results() {
     const {user, logout} = useUserContext();

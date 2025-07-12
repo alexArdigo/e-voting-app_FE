@@ -4,10 +4,10 @@ import { toast } from 'react-toastify';
 import MainLayout from '../../layouts/MainLayout.jsx';
 import StyledContainer from '../../layouts/StyledContainer.jsx';
 import Timer from '../../components/specific/Timer.jsx';
-import BallotForm from '../../components/specific/BallotForm.jsx';
+import BallotForm from '../../components/specific/Ballot/BallotForm.jsx';
 import { getBallotByElectionId, castVote } from '../../services/ElectionService.jsx';
 import { useUserContext } from '../../services/UserContext.jsx';
-import '../../components/specific/Ballot.css';
+import '../../components/specific/Ballot/Ballot.css';
 
 const BallotPage = () => {
     const navigate = useNavigate();
