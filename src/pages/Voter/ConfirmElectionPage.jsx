@@ -26,7 +26,7 @@ const ConfirmElectionPage = () => {
                 return <Navigate to="/election" replace />;
             }
         } catch (error) {
-            console.error("Erro ao verificar se já votou:", error);
+            console.error("Error in checking if user already voted:", error);
         }
         return navigate("/ballot", {
             state: {

@@ -119,11 +119,11 @@ const BallotPage = () => {
             votePartyId = -1;
         }
         if (!electionId) {
-            toast.error('ID da eleição não está definido.');
+            toast.error('Election ID not defined.');
             return;
         }
         if (!user?.nif) {
-            toast.error('NIF do eleitor não está disponível. Faça login novamente.');
+            toast.error("Voter's NIF not available. Login again.");
             return;
         }
         if (submitting) return;
