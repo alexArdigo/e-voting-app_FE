@@ -91,7 +91,7 @@ const SelectElectionPage = () => {
                                             style={{ marginRight: "10px" }}
                                             disabled={voterVotedList.includes(election.id)}
                                         />
-                                        {election.name}
+                                        {voterVotedList.includes(election.id) ? `${election.name} (Já votou)` : election.name}
                                     </label>
                                 </div>
                             ))}

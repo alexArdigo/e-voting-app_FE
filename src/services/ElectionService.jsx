@@ -83,7 +83,7 @@ const getActiveElectoralCircleElections = () => getElectoralCircleElections(null
 
 const voterHasVotedElectionList = async (user) => {
     const body = new FormData();
-    body.set("nif", user?.nif);
+    body.set("voterId", user?.id);
     const response = await api.post(`/voters/has-voted-list`, body);
     if (response.status !== 200) {
         throw new Error("Failed to fetch voter voted list");

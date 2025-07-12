@@ -3,7 +3,8 @@ import {useNavigate, useLocation, Navigate} from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout.jsx";
 import {toast} from "react-toastify";
 import {useUserContext} from "../../services/UserContext";
-import "../../components/specific/Confirm.css";
+import "../Voter/css/Confirm.css";
+import {voterHasVotedThisElection} from "../../services/ElectionService";
 
 const ConfirmElectionPage = () => {
     const navigate = useNavigate();
@@ -21,19 +22,22 @@ const ConfirmElectionPage = () => {
 
         try {
             const response = await voterHasVotedThisElection(selectedElectionId, user.id);
-            if (response.data.hasVoted) {
+            console.log("response Confirm",response.hasVoted);
+            if (response.hasVoted) {
                 toast.error("Você já votou nesta eleição.");
-                return <Navigate to="/election" replace />;
+                return navigate("/election", {replace: true});
             }
+
+            return navigate("/ballot", {
+                state: {
+                    electionId: selectedElectionId,
+                    electionName: selectedElectionName
+                }
+            });
         } catch (error) {
             console.error("Error in checking if user already voted:", error);
         }
-        return navigate("/ballot", {
-            state: {
-                electionId: selectedElectionId,
-                electionName: selectedElectionName
-            }
-        });
+
     };
 
     return (

@@ -1,7 +1,7 @@
 import {useNavigate} from "react-router-dom";
 import React from "react";
 import {useUserContext} from "../../services/UserContext";
-import '../Viewer/viewer.css';
+import '../Viewer/css/viewer.css';
 
 const Home = () => {
     const {user} = useUserContext();
@@ -19,15 +19,23 @@ const Home = () => {
                     className="home-button"
                     onClick={() => {
                         window.scrollTo({top: 0, behavior: 'smooth'});
-                        navigate("/instructions")
+                        navigate("/instructions");
                     }}
-                >EU VOTO</button>
+                >EU VOTO
+                </button>
             </div>
 
             {user?.id ? "" : <div className={"login-button-wrapper"}>
-                    <h5>Não é eleitor?</h5>
-                    <button type="button" onClick={() => navigate("/login")}>Login</button>
-                </div>}
+                <h5>Não é eleitor?</h5>
+                <button
+                    type="button"
+                    onClick={() => {
+                        window.scrollTo({top: 0, behavior: 'smooth'});
+                        navigate("/login");
+                    }}
+                >Login
+                </button>
+            </div>}
 
         </main>
     );
