@@ -24,23 +24,19 @@ const ProfileEditor = ({ currentImage, onSave }) => {
         loadProfileImage();
     }, []);
 
-    const loadProfileeImage = async () => {
 
-        try{
-            const response = await api.get('/profile-image', {
+    const loadProfileImage = async () => {
+        try {
+            const response = await axios.get('http://localhost:3306/profile-image', {
                 responseType: 'blob',
                 timeout: 10000
-            } );
-
-            console.log("imagem carregada com sucesso");
-            const imageBlob = response.data();
+            });
+            const imageBlob = response.data;
             const imageUrl = URL.createObjectURL(imageBlob);
-
             setProfileImageUrl(imageUrl);
             setSelectedImage(imageUrl);
             onSave(imageUrl);
-
-        }catch(error){
+        } catch (error) {
             console.error('Erro ao carregar imagem:', error);
 
             setProfileImageUrl(currentImage);
@@ -76,7 +72,7 @@ const ProfileEditor = ({ currentImage, onSave }) => {
             const formData = new FormData();
             formData.append('file', file);
 
-            const response = await api.post('/upload-image', formData, {
+            const response = await axios.post('http://localhost:8080/upload-image', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
