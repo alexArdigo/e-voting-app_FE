@@ -16,9 +16,6 @@ const BallotPage = () => {
     const electionId = location.state?.electionId
     const electionName = location.state?.electionName
 
-    console.log('Election ID:', electionId);
-    console.log('Election Name:', electionName);
-
     const { user, isVoting, setIsVoting, logout } = useUserContext();
 
     const [parties, setParties] = useState([]);
@@ -70,7 +67,7 @@ const BallotPage = () => {
             }));
 
             setParties(partiesData);
-            console.log('Opções de voto carregadas:', partiesData);
+
 
         } catch (error) {
             console.error('Erro ao carregar opções de voto:', error);
@@ -135,8 +132,6 @@ const BallotPage = () => {
                 voterNif: user.nif,
                 municipalityName: user.municipality?.municipalityName
             };
-
-            console.log('Enviando voto:', voteRequest);
 
             await castVote(electionId, voteRequest);
             setIsVoting(false)
