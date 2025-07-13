@@ -1,8 +1,8 @@
 import React, {useRef, useState} from "react";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import AdminDashboard from "./AdminDashboard";
 import {createElection, uploadCSVFile} from "../../../services/ElectionService";
-import { toast } from "react-toastify";
+import {toast} from "react-toastify";
 import "../Admin.css";
 import UploadCSV from "../../../components/specific/UploadCSV";
 
@@ -19,7 +19,7 @@ const CreateElectionPage = () => {
     const [file, setFile] = useState(null);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setFormData(prev => ({
             ...prev,
             [name]: value
@@ -34,15 +34,13 @@ const CreateElectionPage = () => {
             return;
         }
 
-        if (formData.electionType === "PRESIDENTIAL") {
-            if (!formData.endDate) {
-                toast.error("Para eleições presidenciais, a data de fim é obrigatória.");
-                return;
-            }
-            if (new Date(formData.endDate) <= new Date(formData.startDate)) {
-                toast.error("A data de fim deve ser posterior à data de início.");
-                return;
-            }
+        if (!formData.endDate) {
+            toast.error("A data de fim é obrigatória.");
+            return;
+        }
+        if (new Date(formData.endDate) <= new Date(formData.startDate)) {
+            toast.error("A data de fim deve ser posterior à data de início.");
+            return;
         }
 
         try {
@@ -160,19 +158,17 @@ const CreateElectionPage = () => {
                                 />
                             </div>
 
-                            {formData.electionType === "PRESIDENTIAL" && (
-                                <div className="form-group">
-                                    <label htmlFor="endDate">Data de Fim *</label>
-                                    <input
-                                        type="datetime-local"
-                                        id="endDate"
-                                        name="endDate"
-                                        value={formData.endDate}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </div>
-                            )}
+                            <div className="form-group">
+                                <label htmlFor="endDate">Data de Fim *</label>
+                                <input
+                                    type="datetime-local"
+                                    id="endDate"
+                                    name="endDate"
+                                    value={formData.endDate}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
                         </div>
                         <UploadCSV
                             file={file}
