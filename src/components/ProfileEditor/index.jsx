@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImages, faTimes } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
+import api from "../../services/api";
 import "./ProfileEditor.css";
 
 
@@ -24,10 +24,9 @@ const ProfileEditor = ({ currentImage, onSave }) => {
         loadProfileImage();
     }, []);
 
-
     const loadProfileImage = async () => {
         try {
-            const response = await axios.get('http://localhost:3306/profile-image', {
+            const response = await api.get('/profile-image', {
                 responseType: 'blob',
                 timeout: 10000
             });
@@ -37,12 +36,17 @@ const ProfileEditor = ({ currentImage, onSave }) => {
             setSelectedImage(imageUrl);
             onSave(imageUrl);
         } catch (error) {
-            console.error('Erro ao carregar imagem:', error);
-
-            setProfileImageUrl(currentImage);
+            if (error.response && error.response.status === 404) {
+                setProfileImageUrl('/images/avatar.png');
+                setSelectedImage('/images/avatar.png');
+                onSave('/images/avatar.png');
+            } else if (error.response && error.response.status === 401) {
+                setUploadError('Não autenticado. Faça login novamente.');
+            } else {
+                setUploadError('Erro ao carregar imagem de perfil.');
+            }
         }
     }
-
 
     const handleSave = () => {
         onSave(selectedImage);
@@ -67,19 +71,15 @@ const ProfileEditor = ({ currentImage, onSave }) => {
         setUploadError("");
 
         try {
-            console.log('=== INICIANDO UPLOAD ===');
-
             const formData = new FormData();
             formData.append('file', file);
 
-            const response = await axios.post('http://localhost:8080/upload-image', formData, {
+            await api.post('/upload-image', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
                 timeout: 30000
             });
-
-            console.log('Upload concluído:', response.data);
 
             setTimeout(async () => {
                 await loadProfileImage();
@@ -87,7 +87,6 @@ const ProfileEditor = ({ currentImage, onSave }) => {
             }, 1000);
 
         } catch (error) {
-            console.error('Erro no upload:', error);
 
             if (error.response) {
                 const status = error.response.status;
