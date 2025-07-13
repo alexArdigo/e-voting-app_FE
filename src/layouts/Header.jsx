@@ -40,10 +40,12 @@ export const Header = () => {
                     {user?.username ? (
                         <>
                             <li>
-                                <Link to={"/admin"}>
-                                    <p style={{display: "inline", margin: 0, fontWeight: "bold"}}>{user.username}</p>
+                                <Link to={user.role === "ADMIN" ? "/admin" : "/profile/stats"}>
+                                    <p style={{display: "inline", margin: 0, fontWeight: "bold"}}>
+                                        {user.username}
+                                    </p>
                                 </Link>
-                                </li>
+                            </li>
                             <li>
                                 <button type="submit" onClick={logout}>Logout</button>
                             </li>
