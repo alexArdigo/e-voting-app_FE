@@ -15,13 +15,13 @@ const BallotOption = ({party, isSelected, onSelect}) => {
                 onChange={() => onSelect(party.id)}
             />
             <label htmlFor={`party-${party.id}`} className="ballot-label">
-                {/* <div className="party-image-container">
+               <div className="party-image-container">
                     <img
                         src={party.logoUrl}
                         alt={`Logo ${party.name}`}
                         className="party-image"
                     />
-                </div> */}
+                </div>
 
                 <div className="party-info">
                     <span className="party-abbreviation">{party.name}</span>
