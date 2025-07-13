@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import AdminDashboard from "./Dashboard/AdminDashboard";
+import AdminDashboard from "./AdminDashboard";
 import {
     getActivePresidentialElections,
     getActiveLegislativeElections,
     getPresidentialElections,
     getLegislativeElections
-} from "../../services/ElectionService";
+} from "../../../services/ElectionService";
 import { toast } from "react-toastify";
-import ElectionCard from "./Dashboard/ElectionCard";
-import "./Admin.css";
-import EditElection from "./Dashboard/EditElection";
+import ElectionCard from "./ElectionCard";
+import "../Admin.css";
+import EditElection from "./EditElection";
 
 const Admin = () => {
     const [activeElections, setActiveElections] = useState([]);
