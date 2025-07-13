@@ -8,7 +8,8 @@ const imageOptions = [
     "https://play-lh.googleusercontent.com/JZYM9BfoFZxY-NYrjmQr6BPpireEvDvcVliADoG-XpESbjQC3tu170Qjb-wgdWGwfUC3=s188-rw",
     "https://upload.wikimedia.org/wikipedia/commons/7/7b/Logo_impresa.gif",
     "https://eco.imgix.net/uploads/2017/06/cropped-mediacapital.png?w=372&q=60&auto=compress,format",
-    "https://apradiodifusao.pt/wp-content/uploads/2025/04/imagem-2.jpg"
+    "https://apradiodifusao.pt/wp-content/uploads/2025/04/imagem-2.jpg",
+    "https://cdn-icons-png.flaticon.com/512/10109/10109817.png"
 ];
 
 const ProfileEditor = ({ currentImage, onSave }) => {

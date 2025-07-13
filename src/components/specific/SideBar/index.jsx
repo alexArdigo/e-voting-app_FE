@@ -3,7 +3,7 @@ import {useUserContext} from "../../../services/UserContext";
 import ProfileEditor from "../../ProfileEditor";
 
 const SideBar = () => {
-    const {user} = useUserContext();
+    const {user, setUser} = useUserContext();
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
 
@@ -45,13 +45,13 @@ const SideBar = () => {
                             currentImage={user?.profilePicture || "https://cdn-icons-png.flaticon.com/512/10109/10109817.png"}
                             onSave={async (newImage) => {
                                 try {
-                                    const response = await fetch(`http://localhost:8080/${user?.id}/profilePicture`, {
+                                    const response = await fetch(`http://localhost:8080/${user?.id}/updateProfilePicture`, {
                                         method: "PUT",
                                         headers: { "Content-Type": "application/json" },
                                         body: JSON.stringify({ profilePicture: newImage }),
                                     });
                                     if (!response.ok) throw new Error("Erro ao atualizar a imagem");
-                                    window.location.reload();
+                                    setUser({ ...user, profilePicture: newImage });
                                 } catch (error) {
                                     console.error(error);
                                 }
@@ -62,6 +62,7 @@ const SideBar = () => {
                             <p><strong>Nome:</strong> {user?.name || "N/A"}</p>
                             <p><strong>Instituição:</strong> {user?.institutionName || "N/A"}</p>
                             <p><strong>Email:</strong> {user?.username || "N/A"}</p>
+                            <p><strong>Último acesso:</strong> {user?.lastLogin || "N/A"}</p>
                         </div>
 
                         <button className="edit">Editar Perfil</button>
