@@ -107,7 +107,6 @@ const Admin = () => {
     }
 
     return (
-        <AdminDashboard>
             <div className="admin-container">
                 <h1>Página de Administração</h1>
                 <p>
@@ -165,7 +164,6 @@ const Admin = () => {
                     onUpdate={handleUpdateElection}
                 />
             </div>
-        </AdminDashboard>
     );
 };
 

@@ -35,7 +35,6 @@ const PartyList = () => {
     }, []);
 
     return (
-        <AdminDashboard>
         <div className="party-list-container">
             <h2 className="party-list-title">Lista de Partidos</h2>
 
@@ -58,7 +57,6 @@ const PartyList = () => {
                 + Adicionar Partido
             </button>
         </div>
-        </AdminDashboard>
     );
 };
 

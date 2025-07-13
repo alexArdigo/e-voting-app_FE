@@ -89,12 +89,17 @@ const CreateElectionPage = () => {
     };
 
     return (
-        <AdminDashboard>
             <div className="admin-container">
                 <h1>Criar Nova Eleição</h1>
                 <p>Preencha os dados para criar uma nova eleição no sistema.</p>
 
-                <form onSubmit={handleSubmit}>
+                <form
+                    onSubmit={handleSubmit}
+                    className={"dflxColumn"}
+                    style={{
+                        width: "inherit",
+
+                }}>
                     <div className="election-card">
                         <div className="form-group">
                             <label htmlFor="name">Nome da Eleição *</label>
@@ -120,6 +125,7 @@ const CreateElectionPage = () => {
                                 placeholder="Descrição da eleição..."
                                 rows="4"
                                 maxLength={500}
+                                style={{width: "initial"}}
                             />
                         </div>
 
@@ -185,7 +191,6 @@ const CreateElectionPage = () => {
                     </div>
                 </form>
             </div>
-        </AdminDashboard>
     );
 };
 
