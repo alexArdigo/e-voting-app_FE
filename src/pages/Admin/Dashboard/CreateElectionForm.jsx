@@ -47,7 +47,6 @@ const CreateElectionPage = () => {
             setLoading(true);
             const response = await createElection(formData);
             let csvResponse;
-            console.log(file);
             if (response.status === 200) {
                 try {
                     const body = new FormData();
@@ -82,14 +81,12 @@ const CreateElectionPage = () => {
                 toast.error("Erro: Resposta inválida do servidor");
             }
         } catch (error) {
-            console.error('Erro ao criar eleição:', error);
             const errorMessage = error.response?.data || error.message || "Erro ao criar eleição. Tente novamente.";
             toast.error(errorMessage);
         } finally {
             setLoading(false);
         }
     };
-
 
     return (
         <AdminDashboard>
