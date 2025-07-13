@@ -80,9 +80,6 @@ const ResultadosLegislativasGlobaisPorAno = () => {
 
     return (
         <div className="chart-container">
-            <h2 className="chart-title">
-                Distribuição de Votos por Partido
-            </h2>
 
             <div className="year-select-container">
                 <label htmlFor="year-select" className="year-select-label">

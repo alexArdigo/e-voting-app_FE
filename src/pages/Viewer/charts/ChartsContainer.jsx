@@ -5,7 +5,7 @@ import ElectoralSeats from "./ElectoralSeats";
 import './charts.css';
 
 export const charts = [
-    { type: "votesByParty", name: "Votos por Partido", component: VotesByPartyByDistrictChart },
+    { type: "votesByParty", name: "Votos por Partido e Distrito", component: VotesByPartyByDistrictChart },
     { type: "globalLegislativeResults", name: "Resultados Legislativas Globais", component: ResultadosLegislativasGlobaisPorAno },
     { type: "assemblySeats", name: "Lugares Assembleia da República", component: ElectoralSeats }
 ];

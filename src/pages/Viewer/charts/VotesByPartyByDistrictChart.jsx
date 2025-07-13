@@ -82,7 +82,7 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
                     labels: partyNames,
                     datasets: [
                         {
-                            label: "Votos por Partido",
+                            label: "Votos por Partido e Distrito",
                             data: voteCounts,
                             backgroundColor: "rgba(75, 192, 192, 0.5)"
                         }
@@ -103,7 +103,6 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
 
     return (
         <div className="chart-container">
-            <h2 className="chart-title">Distribuição de Votos por Partido</h2>
 
             <div className="year-select-container">
                 <label htmlFor="year-select" className="year-select-label">
