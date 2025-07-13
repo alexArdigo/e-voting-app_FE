@@ -33,6 +33,11 @@ const HelpComment = ({ id, comment_text, pub_datetime, answer, likes = [] }) => 
             return;
         }
 
+        if (user.role !== "VOTER") {
+            toast("Apenas eleitores podem considerar comentários úteis.");
+            return;
+        }
+
         try {
             if (!liked) {
                 await api.post(`/comment/${id}/like`);
