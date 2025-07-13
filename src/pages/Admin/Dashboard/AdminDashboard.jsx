@@ -3,7 +3,6 @@ import {Outlet} from "react-router-dom";
 import "../Admin.css";
 import api from "../../../services/api";
 import AdminSideBar from "./AdminSideBar";
-import Admin from "./Admin";
 
 const AdminDashboard = () => {
     const [hasPendingViewer, setHasPendingViewer] = useState([]);
