@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import AdminDashboard from "../AdminDashboard";
 import PendingAuthContainer from "./PendingAuthContainer";
 import {fetchApproved, fetchData, handleApprove, handleRemove} from "./PendingAuthService";
+import {useOutletContext} from "react-router-dom";
 
 const PendingAuthorizations = () => {
+    const {setHasPendingViewer} = useOutletContext();
     const [pendingUsers, setPendingUsers] = useState([]);
     const [approvedUsers, setApprovedUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
@@ -19,8 +20,10 @@ const PendingAuthorizations = () => {
 
     const fetch = async () => {
         try {
-            setPendingUsers(await fetchData());
+            const data = await fetchData();
+            setPendingUsers(data);
             setApprovedUsers(await fetchApproved());
+            setHasPendingViewer(data)
         } catch (e) {
             console.error("Error fetching pending and approved users", e);
         }

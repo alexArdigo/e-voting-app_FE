@@ -49,7 +49,6 @@ export const Header = () => {
                             </li>
                         </>
                     ) : null}
-                    {user?.role === "ADMIN" ? null : null}
                 </ul>
             </div>
         </>

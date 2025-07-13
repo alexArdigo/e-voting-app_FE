@@ -1,15 +1,12 @@
 import React, {useEffect, useState} from "react";
-import {NavLink, Outlet} from "react-router-dom";
+import {Outlet} from "react-router-dom";
 import "../Admin.css";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBell} from "@fortawesome/free-solid-svg-icons";
 import api from "../../../services/api";
-import SideBar from "../../../components/specific/SideBar";
 import AdminSideBar from "./AdminSideBar";
-import Admin from "../Admin";
+import Admin from "./Admin";
 
-const AdminDashboard = ({children, pendingUsers}) => {
-    const [hasPendingViewer, setHasPendingViewer] = useState(pendingUsers?.length || []);
+const AdminDashboard = () => {
+    const [hasPendingViewer, setHasPendingViewer] = useState([]);
 
     const fetchPendingViewers = async () => {
         try {
@@ -22,14 +19,14 @@ const AdminDashboard = ({children, pendingUsers}) => {
 
     useEffect(() => {
         fetchPendingViewers();
-    }, [pendingUsers]);
+    }, []);
 
     return (
         <main className="admin-dashboard-container">
             <AdminSideBar hasPendingViewer={hasPendingViewer} />
 
             <section className="admin-dashboard-content">
-                <Outlet />
+                <Outlet context={setHasPendingViewer} />
             </section>
         </main>
     );

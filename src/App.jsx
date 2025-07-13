@@ -18,7 +18,7 @@ import Register from "./pages/Viewer/Register";
 import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
 import AuthWithToken from "./pages/Voter/AuthWithToken";
-import Admin from "./pages/Admin/Admin";
+import Admin from "./pages/Admin/Dashboard/Admin";
 import ChartsContainer from "./pages/Viewer/charts/ChartsContainer";
 import Graph from "./pages/Viewer/Graph";
 import CreateElectionPage from "./pages/Admin/Dashboard/CreateElectionForm";
