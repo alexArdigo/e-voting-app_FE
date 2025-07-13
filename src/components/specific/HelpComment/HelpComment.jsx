@@ -14,7 +14,7 @@ const HelpComment = ({ id, comment_text, pub_datetime, answer, likes = [] }) => 
 
     useEffect(() => {
         const fetchHasLiked = async () => {
-            if (user && user.role !== "ADMIN") {
+            if (user && user.role === "VOTER") {
                 try {
                     const response = await api.get(`/comment/${id}/hasLiked`);
                     setLiked(response.data);

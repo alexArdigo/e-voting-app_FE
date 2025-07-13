@@ -95,7 +95,7 @@ const Faq = () => {
                                     answer={comment.answer?.answer}
                                 />
 
-                                {user?.role === "ADMIN" && (
+                                {(user?.role === "ADMIN" && comment.answer === null) && (
                                     <div className="admin-actions">
                                         <form
                                             onSubmit={(e) => handleAdminReply(e, comment.id)}

@@ -234,6 +234,22 @@
     width: inherit;
 }
 
+.cancel-button {
+    background-color: transparent;
+    color: black;
+    font-size: 1rem;
+    padding: 10px 30px;
+    border: 2px solid #a13636;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.cancel-button:hover {
+    background-color: #a13636;
+    color: white;
+}
+
 .submit-button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
