@@ -25,7 +25,7 @@ const Graph = () => {
                         </div>
 
                         <div className="graph-charts">
-                            <ChartsContainer active={chartType}/>
+                            {/*<ChartsContainer active={chartType}/>*/}
                         </div>
                     </div>
                 </div>
