@@ -1,0 +1,25 @@
+import React from 'react';
+
+const PendingAuthCard = ({obj, className, handleOnClick, action}) => {
+    console.log("here too too");
+    return (
+        <li style={{
+            display: "flex",
+            width: "inherit",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "nowrap",
+            gap: 10
+        }}>
+            <p>
+                {obj.username}
+            </p>
+            <button
+                className={className}
+                onClick={() => handleOnClick(obj.id)}> {action}
+            </button>
+        </li>
+    );
+};
+
+export default PendingAuthCard;

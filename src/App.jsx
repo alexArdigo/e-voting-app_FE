@@ -24,7 +24,7 @@ import Graph from "./pages/Viewer/Graph";
 import CreateElectionPage from "./pages/Admin/Dashboard/CreateElectionForm";
 import PartyAdd from "./pages/Admin/PartyFormContainer/PartyAdd";
 import ProtectedRoute from "./services/ProtectedRoute";
-import PendingAuthorizations from "./pages/Admin/Dashboard/PendingAuthorizations";
+import PendingAuthorizations from "./pages/Admin/Dashboard/PendingAuthorizations/PendingAuthorizations";
 import ErrorBoundary from "./components/common/ErrorBoundary";
 import PartyEdit from "./pages/Admin/PartyFormContainer/PartyEdit";
 import PartyList from "./pages/Admin/PartyFormContainer/PartyList";
