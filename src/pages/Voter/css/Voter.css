@@ -249,3 +249,8 @@
     color: #1f2937;
     font-family: "PT Sans", sans-serif;
 }
+
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+}
