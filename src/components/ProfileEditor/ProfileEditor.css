@@ -1,7 +1,17 @@
-.rounded-profile-image {
-    height: 100px;
+
+.profile-image-container {
+    height: 150px;
+    width: 150px;
     border-radius: 50%;
-    margin-bottom: 10px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.rounded-profile-image {
+    height: 60%;
 }
 
 .edit-pic {

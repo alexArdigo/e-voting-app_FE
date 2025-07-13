@@ -1,8 +1,8 @@
-import api from "../../services/api";
+import api from "../services/api";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
-import './css/viewer.css';
-import MainLayout from "../../layouts/MainLayout";
+import './Viewer/css/Viewer.css';
+import MainLayout from "../layouts/MainLayout";
 import {toast} from "react-toastify";
 
 

@@ -1,15 +1,13 @@
 import React, {useState} from "react";
-import "./css/viewer.css";
+import "./css/Viewer.css";
 import MainLayout from "../../layouts/MainLayout";
 import ChartsContainer, {charts} from "./charts/ChartsContainer";
-import SideBar from "../../components/specific/SideBar";
 
-const Graph = () => {
+const Viewer = () => {
     const [chartType, setChartType] = useState("votesByParty");
 
     return (
         <div className={"dflx"}>
-            <SideBar />
             <MainLayout >
                 <div className="graph-layout">
                     <div className="graph-content">
@@ -25,7 +23,7 @@ const Graph = () => {
                         </div>
 
                         <div className="graph-charts">
-                            {/*<ChartsContainer active={chartType}/>*/}
+                            <ChartsContainer active={chartType}/>
                         </div>
                     </div>
                 </div>
@@ -34,4 +32,4 @@ const Graph = () => {
     );
 };
 
-export default Graph;
+export default Viewer;

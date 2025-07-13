@@ -8,7 +8,7 @@ import Islands from "../../components/specific/Map/Islands";
 import "./css/Results.css";
 
 export default function Results() {
-    const {user, logout} = useUserContext();
+    const {logout} = useUserContext();
     const navigate = useNavigate();
     const [selectedDistrict, setSelectedDistrict] = useState(null);
     const [resultsData, setResultsData] = useState(null);
@@ -59,29 +59,6 @@ export default function Results() {
 
     return (
         <div className="results-container">
-            <div className="results-sidebar">
-                <div className="profile-section">
-                    <div className="profile-avatar">
-                        {user?.name ? user.name.charAt(0).toUpperCase() : '?'}
-                    </div>
-
-                    <div className="profile-info">
-                        <p><strong>Nome:</strong></p>
-                        <p>{user?.name || 'N/A'}</p>
-
-                        <p><strong>Instituição:</strong></p>
-                        <p>{user?.institutionName || 'N/A'}</p>
-
-                        <p><strong>Email:</strong></p>
-                        <p>{user?.username || 'N/A'}</p>
-                    </div>
-
-                    <button className="logout-btn" onClick={handleLogout}>
-                        Logout
-                    </button>
-                </div>
-            </div>
-
             <div className="results-main">
                 <h1 className="results-title">Resultados legislativas</h1>
                 <div className="map-view-toggle">

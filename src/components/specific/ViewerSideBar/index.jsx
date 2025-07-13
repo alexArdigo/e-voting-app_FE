@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useUserContext} from "../../../services/UserContext";
 import ProfileEditor from "../../ProfileEditor";
 
-const SideBar = () => {
+const ViewerSideBar = () => {
     const {user, setUser} = useUserContext();
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -75,4 +75,4 @@ const SideBar = () => {
     );
 };
 
-export default SideBar;
+export default ViewerSideBar;

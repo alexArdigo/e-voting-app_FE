@@ -13,7 +13,7 @@ import api from "../../../services/api";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const ResultadosLegislativasGlobaisPorAno = () => {
+const GlobalLegislativeResultsPerYear = () => {
     const [chartData, setChartData] = useState(null);
     const [year, setYear] = useState("");
     const yearNames = {
@@ -107,4 +107,4 @@ const ResultadosLegislativasGlobaisPorAno = () => {
     );
 };
 
-export default ResultadosLegislativasGlobaisPorAno;
+export default GlobalLegislativeResultsPerYear;

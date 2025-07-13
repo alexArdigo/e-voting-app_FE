@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImages, faTimes } from "@fortawesome/free-solid-svg-icons";
+import React, {useState} from "react";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faImages, faTimes} from "@fortawesome/free-solid-svg-icons";
 import "./ProfileEditor.css";
 
 
@@ -12,7 +12,7 @@ const imageOptions = [
     "https://cdn-icons-png.flaticon.com/512/10109/10109817.png"
 ];
 
-const ProfileEditor = ({ currentImage, onSave }) => {
+const ProfileEditor = ({currentImage, onSave}) => {
     const [showPopup, setShowPopup] = useState(false);
     const [selectedImage, setSelectedImage] = useState(currentImage);
 
@@ -23,7 +23,9 @@ const ProfileEditor = ({ currentImage, onSave }) => {
 
     return (
         <div className="profile-picture-editor">
-            <img src={currentImage} alt="Profile" className="rounded-profile-image" />
+            <div className="profile-image-container">
+                <img src={currentImage} alt="Profile" className="rounded-profile-image"/>
+            </div>
             <button className="edit-pic" onClick={() => setShowPopup(true)}>
                 <FontAwesomeIcon icon={faImages}/>
             </button>
@@ -32,11 +34,11 @@ const ProfileEditor = ({ currentImage, onSave }) => {
                 <div className="popup-overlay">
                     <div className="popup-content">
                         <button className="close-button" onClick={() => setShowPopup(false)}>
-                            <FontAwesomeIcon icon={faTimes} />
+                            <FontAwesomeIcon icon={faTimes}/>
                         </button>
                         <h3>Escolher nova imagem</h3>
                         <div className="image-gallery">
-                            {imageOptions.map((img, value ) => (
+                            {imageOptions.map((img, value) => (
                                 <img
                                     key={value}
                                     src={img}
