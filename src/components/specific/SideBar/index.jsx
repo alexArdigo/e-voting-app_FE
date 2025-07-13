@@ -43,19 +43,18 @@ const SideBar = () => {
 
                         <ProfileEditor
                             currentImage={user?.profilePicture || "https://cdn-icons-png.flaticon.com/512/10109/10109817.png"}
-                            onSave={(newImage) => {
-                                fetch(`http://localhost:8080/users/${user?.id}/profilePicture`, {
-                                    method: "PUT",
-                                    headers: {
-                                        "Content-Type": "application/x-www-form-urlencoded"
-                                    },
-                                    body: new URLSearchParams({ profilePicture: newImage })
-                                })
-                                    .then(response => {
-                                        if (!response.ok) throw new Error("Erro ao atualizar a imagem");
-                                        window.location.reload();
-                                    })
-                                    .catch(error => console.error(error));
+                            onSave={async (newImage) => {
+                                try {
+                                    const response = await fetch(`http://localhost:8080/${user?.id}/profilePicture`, {
+                                        method: "PUT",
+                                        headers: { "Content-Type": "application/json" },
+                                        body: JSON.stringify({ profilePicture: newImage }),
+                                    });
+                                    if (!response.ok) throw new Error("Erro ao atualizar a imagem");
+                                    window.location.reload();
+                                } catch (error) {
+                                    console.error(error);
+                                }
                             }}
                         />
 
