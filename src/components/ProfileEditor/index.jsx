@@ -32,7 +32,7 @@ const ProfileEditor = ({ currentImage, onSave }) => {
         const formData = new FormData();
         formData.append("file", file);
         try {
-            await axios.post("/upload-image", formData, {
+            await axios.post("http://localhost:3306/upload-image", formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
             fetchProfileImage();
@@ -46,7 +46,7 @@ const ProfileEditor = ({ currentImage, onSave }) => {
 
     const fetchProfileImage = async () => {
         try {
-            const res = await axios.get("/profile-image", { responseType: "arraybuffer" });
+            const res = await axios.get("http://localhost:3306/profile-image", { responseType: "arraybuffer" });
             const base64 = btoa(
                 new Uint8Array(res.data).reduce((data, byte) => data + String.fromCharCode(byte), "")
             );
