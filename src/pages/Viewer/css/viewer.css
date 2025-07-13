@@ -196,7 +196,46 @@
     padding: 20px;
 }
 
-.side-profile p {
-    margin-bottom: 30px;
-    width: 200px;
+
+.side-profile label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.side-profile input {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 5px;
+}
+
+.side-profile .save,
+.side-profile .cancel {
+    padding: 10px 15px;
+    margin: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.side-profile .save {
+    background-color: darkblue;
+    color: white;
+}
+
+.side-profile .save:hover {
+    background-color: #0056b3;
+}
+
+.side-profile .cancel {
+    background-color: #ccc;
+    color: #333;
+}
+
+.side-profile .cancel:hover {
+    background-color: #bbb;
 }
