@@ -46,42 +46,65 @@ const CreateElectionPage = () => {
         try {
             setLoading(true);
             const response = await createElection(formData);
-            let csvResponse;
-            if (response.status === 200) {
-                try {
-                    const body = new FormData();
-                    body.set("electionId", response.data.id);
-                    body.set("file", file);
-                    csvResponse = await uploadCSVFile(body);
-                    console.log('CSV upload response:', csvResponse);
-                } catch (csvError) {
-                    console.error('Erro ao fazer upload do arquivo CSV:', csvError);
+
+            if (response.status === 200 || response.status === 201) {
+                let csvSuccess = true;
+
+                if (file) {
+                    try {
+                        const body = new FormData();
+                        body.set("electionId", response.data.id);
+                        body.set("file", file);
+                        const csvResponse = await uploadCSVFile(body);
+                        console.log('CSV upload response:', csvResponse);
+
+                        csvSuccess = csvResponse?.status === 200 ||
+                            csvResponse?.status === 201 ||
+                            (typeof csvResponse === 'string' && csvResponse.includes('successfully')) ||
+                            (csvResponse?.data && typeof csvResponse.data === 'string' && csvResponse.data.includes('successfully'));
+
+                        if (!csvSuccess) {
+                            toast.error("Eleição criada, mas houve erro no upload do arquivo CSV.");
+                        }
+                    } catch (csvError) {
+                        console.error('Erro ao fazer upload do arquivo CSV:', csvError);
+                        toast.error("Eleição criada, mas houve erro no upload do arquivo CSV.");
+                        csvSuccess = false;
+                    }
                 }
-            }
 
-            if (response.status === 200 && csvResponse?.status === 200) {
-                toast.success(`Eleição "${response.data.name}" criada com sucesso!`);
+                if (csvSuccess) {
+                    toast.success(`Eleição "${response.data.name}" criada com sucesso!`);
 
-                if (formData.electionType === "LEGISLATIVE") {
-                    toast.info("Eleição legislativa criada com círculos eleitorais para todos os distritos");
+                    if (formData.electionType === "LEGISLATIVE") {
+                        toast.info("Eleição legislativa criada com círculos eleitorais para todos os distritos");
+                    }
+
+                    setFormData({
+                        name: "",
+                        description: "",
+                        startDate: "",
+                        endDate: "",
+                        electionType: "PRESIDENTIAL"
+                    });
+
+                    setTimeout(() => {
+                        navigate("/admin");
+                    }, 2000);
+                } else {
+                    setTimeout(() => {
+                        navigate("/admin");
+                    }, 3000);
                 }
-
-                setFormData({
-                    name: "",
-                    description: "",
-                    startDate: "",
-                    endDate: "",
-                    electionType: "PRESIDENTIAL"
-                });
-
-                setTimeout(() => {
-                    navigate("/admin");
-                }, 2000);
             } else {
-                toast.error("Erro: Resposta inválida do servidor");
+                toast.error("Erro ao criar eleição. Tente novamente.");
             }
         } catch (error) {
-            const errorMessage = error.response?.data || error.message || "Erro ao criar eleição. Tente novamente.";
+            console.error('Erro ao criar eleição:', error);
+            const errorMessage = error.response?.data?.message ||
+                error.response?.data ||
+                error.message ||
+                "Erro ao criar eleição. Tente novamente.";
             toast.error(errorMessage);
         } finally {
             setLoading(false);
