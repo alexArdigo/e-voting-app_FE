@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImages, faTimes } from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faImages, faTimes} from "@fortawesome/free-solid-svg-icons";
 import api from "../../services/api";
 import "./ProfileEditor.css";
-
 
 const imageOptions = [
     "https://play-lh.googleusercontent.com/JZYM9BfoFZxY-NYrjmQr6BPpireEvDvcVliADoG-XpESbjQC3tu170Qjb-wgdWGwfUC3=s188-rw",
@@ -13,7 +12,7 @@ const imageOptions = [
     "https://cdn-icons-png.flaticon.com/512/10109/10109817.png"
 ];
 
-const ProfileEditor = ({ currentImage, onSave }) => {
+const ProfileEditor = ({currentImage, onSave}) => {
     const [showPopup, setShowPopup] = useState(false);
     const [selectedImage, setSelectedImage] = useState(currentImage);
     const [uploading, setUploading] = useState(false);
@@ -26,23 +25,33 @@ const ProfileEditor = ({ currentImage, onSave }) => {
 
     const loadProfileImage = async () => {
         try {
+            console.log("Tentando carregar imagem de perfil...");
             const response = await api.get('/profile-image', {
                 responseType: 'blob',
                 timeout: 10000
             });
-            const imageBlob = response.data;
-            const imageUrl = URL.createObjectURL(imageBlob);
-            setProfileImageUrl(imageUrl);
-            setSelectedImage(imageUrl);
-            onSave(imageUrl);
+
+            if (response.data && response.data.size > 0) {
+                const imageBlob = response.data;
+                const imageUrl = URL.createObjectURL(imageBlob);
+                setProfileImageUrl(imageUrl);
+                setSelectedImage(imageUrl);
+                onSave(imageUrl);
+            }
         } catch (error) {
-            if (error.response && error.response.status === 404) {
+
+            if (error.response?.status === 404) {
+
                 setProfileImageUrl('/images/avatar.png');
                 setSelectedImage('/images/avatar.png');
                 onSave('/images/avatar.png');
-            } else if (error.response && error.response.status === 401) {
+
+            } else if (error.response?.status === 401) {
                 setUploadError('Não autenticado. Faça login novamente.');
+            } else if (error.response?.status === 403) {
+                setUploadError('Apenas viewers podem ter imagens de perfil.');
             } else {
+                console.error("Erro inesperado:", error);
                 setUploadError('Erro ao carregar imagem de perfil.');
             }
         }
@@ -74,7 +83,8 @@ const ProfileEditor = ({ currentImage, onSave }) => {
             const formData = new FormData();
             formData.append('file', file);
 
-            await api.post('/upload-image', formData, {
+
+            const response = await api.post('/upload-image', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -87,22 +97,33 @@ const ProfileEditor = ({ currentImage, onSave }) => {
             }, 1000);
 
         } catch (error) {
+            console.error("Erro no upload:", error);
 
             if (error.response) {
                 const status = error.response.status;
                 const data = error.response.data;
 
-                if (status === 401) {
-                    setUploadError("Não autorizado. Faça login novamente.");
-                } else if (status === 400) {
-                    setUploadError(`Erro: ${data || "Dados inválidos"}`);
-                } else if (status === 413) {
-                    setUploadError("Ficheiro demasiado grande.");
-                } else {
-                    setUploadError(`Erro do servidor: ${data || status}`);
+                switch (status) {
+                    case 400:
+                        setUploadError(`Erro: ${data || "Dados inválidos"}`);
+                        break;
+                    case 401:
+                        setUploadError("Não autenticado. Faça login novamente.");
+                        break;
+                    case 403:
+                        setUploadError("Não tem permissão para fazer upload de imagens.");
+                        break;
+                    case 413:
+                        setUploadError("Ficheiro demasiado grande.");
+                        break;
+                    case 500:
+                        setUploadError("Erro interno do servidor.");
+                        break;
+                    default:
+                        setUploadError(`Erro do servidor: ${data || status}`);
                 }
             } else if (error.request) {
-                setUploadError("Erro de conexão. Verifica se o servidor está a correr.");
+                setUploadError("Erro de conexão. Verifique se o servidor está a correr.");
             } else {
                 setUploadError("Erro inesperado ao fazer upload da imagem.");
             }
@@ -113,7 +134,7 @@ const ProfileEditor = ({ currentImage, onSave }) => {
 
     return (
         <div className="profile-picture-editor">
-            <img src={currentImage} alt="Profile" className="rounded-profile-image" />
+            <img src={profileImageUrl || currentImage} alt="Profile" className="rounded-profile-image"/>
             <button className="edit-pic" onClick={() => setShowPopup(true)}>
                 <FontAwesomeIcon icon={faImages}/>
             </button>
@@ -122,25 +143,33 @@ const ProfileEditor = ({ currentImage, onSave }) => {
                 <div className="popup-overlay">
                     <div className="popup-content">
                         <button className="close-button" onClick={() => setShowPopup(false)}>
-                            <FontAwesomeIcon icon={faTimes} />
+                            <FontAwesomeIcon icon={faTimes}/>
                         </button>
                         <h3>Escolher nova imagem</h3>
                         <div className="image-gallery">
-                            {imageOptions.map((img, value ) => (
+                            {imageOptions.map((img, index) => (
                                 <img
-                                    key={value}
+                                    key={index}
                                     src={img}
                                     className={`gallery-image ${selectedImage === img ? "selected" : ""}`}
                                     onClick={() => setSelectedImage(img)}
-                                    alt={`Option ${value}`}
+                                    alt={`Option ${index}`}
                                 />
                             ))}
                         </div>
                         <h4>Ou faça upload da sua imagem:</h4>
-                        <input type="file" accept="image/*" onChange={handleFileChange} disabled={uploading} />
-                        {uploadError && <div className="error-message">{uploadError}</div>}
-                        {uploading && <div>Enviando imagem...</div>}
-                        <button className="save-button" onClick={handleSave}>Guardar</button>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleFileChange}
+                            disabled={uploading}
+                        />
+                        {uploadError && <div className="error-message"
+                                             style={{color: 'red', marginTop: '10px'}}>{uploadError}</div>}
+                        {uploading && <div style={{color: 'blue', marginTop: '10px'}}>Enviando imagem...</div>}
+                        <button className="save-button" onClick={handleSave} disabled={uploading}>
+                            {uploading ? 'A enviar...' : 'Guardar'}
+                        </button>
                     </div>
                 </div>
             )}
