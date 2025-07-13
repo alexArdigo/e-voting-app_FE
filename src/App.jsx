@@ -29,6 +29,7 @@ import ErrorBoundary from "./components/common/ErrorBoundary";
 import PartyEdit from "./pages/Admin/PartyFormContainer/PartyEdit";
 import PartyList from "./pages/Admin/PartyFormContainer/PartyList";
 import Results from "./pages/Viewer/Results";
+import AdminDashboard from "./pages/Admin/Dashboard/AdminDashboard";
 
 function App() {
 
@@ -73,17 +74,14 @@ function App() {
                             <Route path="/results" element={<Results />}/>
 
                             {/* Admin Routes */}
-                            <Route path="/admin" element={<ProtectedRoute><Admin/></ProtectedRoute>}/>
-                            <Route path="/create-election"
-                                   element={<ProtectedRoute><CreateElectionPage/></ProtectedRoute>}/>
-                            <Route path="/admin/viewers"
-                                   element={<ProtectedRoute><PendingAuthorizations/></ProtectedRoute>}/>
-                            <Route path="/admin/edit/parties"
-                                   element={<PartyList />} />
-                            <Route path="/admin/edit/parties/:id"
-                                   element={<PartyEdit />} />
-                            <Route path="/admin/add/party"
-                                   element={<PartyAdd />} />
+                            <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>}>
+                                <Route index element={<Admin />} />
+                                <Route path="create-election" element={<CreateElectionPage />} />
+                                <Route path="viewers" element={<PendingAuthorizations />} />
+                                <Route path="edit/parties" element={<PartyList />} />
+                                <Route path="edit/parties/:id" element={<PartyEdit />} />
+                                <Route path="add/party" element={<PartyAdd />} />
+                            </Route>
 
 
 

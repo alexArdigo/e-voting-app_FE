@@ -110,7 +110,6 @@ const PartyAdd = ({party}) => {
     };
 
     return (
-        <AdminDashboard>
         <MainLayout className="dflxColumn g20" style={{minHeight: "76vh"}}>
             <h2>{party ? 'Editar' : 'Adicionar'} Partido</h2>
 
@@ -122,7 +121,6 @@ const PartyAdd = ({party}) => {
                 <button type="submit">{'Submeter'}</button>
             </form>
         </MainLayout>
-        </AdminDashboard>
     );
 };
 

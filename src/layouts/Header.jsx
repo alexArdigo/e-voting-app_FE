@@ -3,7 +3,6 @@ import "./Header.css";
 import {Link, useNavigate} from "react-router-dom";
 import {useUserContext} from "../services/UserContext.jsx";
 import React from 'react';
-import SideBar from "../components/specific/SideBar";
 
 
 export const Header = () => {
@@ -40,7 +39,11 @@ export const Header = () => {
                     <li><Link to="/faq">FAQ</Link></li>
                     {user?.username ? (
                         <>
-                            <li><p style={{display: "inline", margin: 0, fontWeight: "bold"}}>{user?.name}</p></li>
+                            <li>
+                                <Link to={"/admin"}>
+                                    <p style={{display: "inline", margin: 0, fontWeight: "bold"}}>{user.username}</p>
+                                </Link>
+                                </li>
                             <li>
                                 <button type="submit" onClick={logout}>Logout</button>
                             </li>

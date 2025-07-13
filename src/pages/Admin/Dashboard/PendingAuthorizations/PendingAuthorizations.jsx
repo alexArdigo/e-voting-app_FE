@@ -64,7 +64,7 @@ const PendingAuthorizations = () => {
 
 
     return (
-        <AdminDashboard pendingUsers={pendingUsers}>
+        <div >
             <div className="admin-container">
                 <h1>Lista de Utilizadores a Aguardar Aprovação</h1>
                 <p>Aprove o utilizador no sistema</p>
@@ -86,7 +86,7 @@ const PendingAuthorizations = () => {
                     handleOnClick={onRemove}
                 />
             </div>
-        </AdminDashboard>
+        </div>
     );
 };
 
