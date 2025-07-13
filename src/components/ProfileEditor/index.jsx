@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImages, faTimes } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
@@ -18,6 +18,35 @@ const ProfileEditor = ({ currentImage, onSave }) => {
     const [selectedImage, setSelectedImage] = useState(currentImage);
     const [uploading, setUploading] = useState(false);
     const [uploadError, setUploadError] = useState("");
+    const [profileImageUrl, setProfileImageUrl] = useState(currentImage);
+
+    useEffect(() => {
+        loadProfileImage();
+    }, []);
+
+    const loadProfileeImage = async () => {
+
+        try{
+            const response = await api.get('/profile-image', {
+                responseType: 'blob',
+                timeout: 10000
+            } );
+
+            console.log("imagem carregada com sucesso");
+            const imageBlob = response.data();
+            const imageUrl = URL.createObjectURL(imageBlob);
+
+            setProfileImageUrl(imageUrl);
+            setSelectedImage(imageUrl);
+            onSave(imageUrl);
+
+        }catch(error){
+            console.error('Erro ao carregar imagem:', error);
+
+            setProfileImageUrl(currentImage);
+        }
+    }
+
 
     const handleSave = () => {
         onSave(selectedImage);
@@ -27,34 +56,63 @@ const ProfileEditor = ({ currentImage, onSave }) => {
     const handleFileChange = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
+
+        if (!file.type.startsWith('image/')) {
+            setUploadError("Por favor selecione apenas ficheiros de imagem.");
+            return;
+        }
+
+        if (file.size > 5 * 1024 * 1024) {
+            setUploadError("A imagem deve ter menos de 5MB.");
+            return;
+        }
+
         setUploading(true);
         setUploadError("");
-        const formData = new FormData();
-        formData.append("file", file);
+
         try {
-            await axios.post("http://localhost:3306/upload-image", formData, {
-                headers: { "Content-Type": "multipart/form-data" },
+            console.log('=== INICIANDO UPLOAD ===');
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            const response = await api.post('/upload-image', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+                timeout: 30000
             });
-            fetchProfileImage();
-            setShowPopup(false);
-        } catch (err) {
-            setUploadError("Erro ao fazer upload da imagem.");
+
+            console.log('Upload concluído:', response.data);
+
+            setTimeout(async () => {
+                await loadProfileImage();
+                setShowPopup(false);
+            }, 1000);
+
+        } catch (error) {
+            console.error('Erro no upload:', error);
+
+            if (error.response) {
+                const status = error.response.status;
+                const data = error.response.data;
+
+                if (status === 401) {
+                    setUploadError("Não autorizado. Faça login novamente.");
+                } else if (status === 400) {
+                    setUploadError(`Erro: ${data || "Dados inválidos"}`);
+                } else if (status === 413) {
+                    setUploadError("Ficheiro demasiado grande.");
+                } else {
+                    setUploadError(`Erro do servidor: ${data || status}`);
+                }
+            } else if (error.request) {
+                setUploadError("Erro de conexão. Verifica se o servidor está a correr.");
+            } else {
+                setUploadError("Erro inesperado ao fazer upload da imagem.");
+            }
         } finally {
             setUploading(false);
-        }
-    };
-
-    const fetchProfileImage = async () => {
-        try {
-            const res = await axios.get("http://localhost:3306/profile-image", { responseType: "arraybuffer" });
-            const base64 = btoa(
-                new Uint8Array(res.data).reduce((data, byte) => data + String.fromCharCode(byte), "")
-            );
-            const imageUrl = `data:image/jpeg;base64,${base64}`;
-            setSelectedImage(imageUrl);
-            onSave(imageUrl);
-        } catch (err) {
-            setUploadError("Erro ao carregar imagem de perfil.");
         }
     };
 
