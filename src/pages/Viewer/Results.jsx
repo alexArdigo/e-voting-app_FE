@@ -78,7 +78,6 @@ export default function Results() {
                 <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
                     <div>
                         {mapView === "districts" ? <LegislativeResultsMap electionId={electionId} /> : <Municipalities districtId={selectedDistrict} />}
-                        <Islands />
                     </div>
                 </div>
             </div>

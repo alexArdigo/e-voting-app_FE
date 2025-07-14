@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from "react";
 import Districts from "./Districts";
 import api from "../../../services/api";
+import Islands from "./Islands";
 
 const LegislativeResultsMap = ({electionId}) => {
     const [districtColors, setDistrictColors] = useState({});
+    const [islandColors, setIslandColors] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     console.log("heloo")
@@ -87,7 +89,7 @@ const LegislativeResultsMap = ({electionId}) => {
                 console.log("Cores finais ilhas:", islandsColors);
 
                 setDistrictColors(continentColors);
-               // setIslandColors(islandsColors);
+               setIslandColors(islandsColors);
 
             } catch (err) {
                 console.error("Erro ao carregar resultados:", err);
@@ -103,7 +105,12 @@ const LegislativeResultsMap = ({electionId}) => {
     if (loading) return <div>A carregar mapa...</div>;
     if (error) return <div>{error}</div>;
 
-    return <Districts districtColors={districtColors}/>;
+    return (
+        <>
+            <Districts districtColors={districtColors}/>
+            <Islands districtColors={islandColors}/>
+        </>
+    )
 };
 
 export default LegislativeResultsMap;
