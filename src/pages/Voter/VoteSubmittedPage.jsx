@@ -10,7 +10,7 @@ const VoteSubmittedPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const {electionId, electionName, partyName} = location.state || {};
-    const [countdown, setCountdown] = useState(30);
+    const [countdown, setCountdown] = useState(10);
     const [showSuccess, setShowSuccess] = useState(false);
 
     const handleLogout = async () => {
@@ -43,7 +43,7 @@ const VoteSubmittedPage = () => {
 
         const logoutTimer = setTimeout(() => {
             handleLogout();
-        }, 2000);
+        }, 10000);
 
         return () => clearTimeout(logoutTimer);
     }, []);
