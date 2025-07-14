@@ -24,6 +24,7 @@ const SelectElectionPage = () => {
     const [activeElection, setActiveElection] = useState([]);
     const [voterVotedList, setVoterVotedList] = useState([]);
 
+
     useEffect(() => {
         (async () => {
             try {
