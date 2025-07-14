@@ -12,9 +12,9 @@ const ProtectedRoute = ({children}) => {
         return <div>Loading...</div>;
     }
 
-    if (!user?.id)
-        return <Navigate to={"/"} replace={true}/>
-
+    if (!user?.id) {
+        return <Navigate to="/" replace={true} state={{ from: location }} />;
+    }
 
     return cloneElement(children, {
         locationState: location.state
