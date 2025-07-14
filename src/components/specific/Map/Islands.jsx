@@ -17,8 +17,8 @@ const Islands = (props) => {
                 const path = svgRef.current.querySelector(`path[data-z="${zone_id}"]`);
                 if (path) {
                     path.setAttribute("fill", color);
-                    path.setAttribute("stroke", "#ffffff");
-                    path.setAttribute("stroke-width", "2");
+                    path.setAttribute("stroke", "#000000");
+                    path.setAttribute("stroke-width", "20");
                 } else {
                     console.warn(`Path não encontrado para zona ID: ${zone_id}`);
                 }
