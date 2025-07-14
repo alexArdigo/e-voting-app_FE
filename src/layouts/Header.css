@@ -105,3 +105,14 @@ li {
     top: 0;
     z-index: 1000;
 }
+
+.header-button {
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.header-button :hover {
+    background-color: #4a9d5f;
+}
