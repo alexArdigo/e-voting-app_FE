@@ -8,7 +8,7 @@ const LegislativeResultsMap = ({electionId}) => {
     const [islandColors, setIslandColors] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
-    console.log("heloo")
+
     const districtMapping = {
         "Viana do Castelo": "31",
         "Braga": "32",
