@@ -6,7 +6,7 @@ const LegislativeResultsMap = ({electionId}) => {
     const [districtColors, setDistrictColors] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
-
+    console.log("heloo")
     const districtMapping = {
         "Viana do Castelo": "31",
         "Braga": "32",
@@ -41,7 +41,7 @@ const LegislativeResultsMap = ({electionId}) => {
             setError("");
 
             try {
-                const {data} = await api.get(`/Elections/${electionId}/results/legislative`);
+                const {data} = await api.get(`/Elections/${1}/results/legislative`);
 
                 console.log("Dados recebidos da API:", data);
 
@@ -57,6 +57,7 @@ const LegislativeResultsMap = ({electionId}) => {
                     }
 
                     const sorted = [...district.results].sort((a, b) => b.votes - a.votes);
+                    console.log("sorted ",sorted);
                     const winner = sorted[0];
 
                     console.log(`Vencedor em ${district.districtName}:`, winner);
