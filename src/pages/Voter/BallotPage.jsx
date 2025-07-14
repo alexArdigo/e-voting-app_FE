@@ -16,9 +16,6 @@ const BallotPage = () => {
     const electionId = location.state?.electionId
     const electionName = location.state?.electionName
 
-    console.log('Election ID:', electionId);
-    console.log('Election Name:', electionName);
-
     const { user, isVoting, setIsVoting, logout } = useUserContext();
 
     const [parties, setParties] = useState([]);
