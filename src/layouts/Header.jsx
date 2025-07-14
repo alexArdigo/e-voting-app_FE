@@ -20,10 +20,13 @@ export const Header = () => {
                     height: "66px",
                     backgroundColor: "var(--white-eleGov)"
                 }}>
-                    <p style={{textAlign: "center"}}>GOVERNO DA<br/> REPÚBLICA PORTUGUESA</p>
-                    <Link to={"/"}><img src="/images/Governo_de_Portugal_logo_grey.png" style={{height: "30px"}}
-                                        alt="Logo"/></Link>
-                    <Link to={"/"}><img src="/images/SGMAI_secretaria_geral.png" style={{height: "30px"}} alt="Logo2"/></Link>
+                    <p style={{textAlign: "center"}}>REPÚBLICA <br/> PORTUGUESA</p>
+                    <a href="https://www.portugal.gov.pt/pt/gc25" target="_blank" rel="noreferrer">
+                        <img src="/images/Governo_de_Portugal_logo_grey.png" style={{ height: "30px" }} alt="Logo do Governo de Portugal"/>
+                    </a>
+                    <a href="https://www.sg.mai.gov.pt/Paginas/default.aspx" target="_blank" rel="noreferrer">
+                        <img src="/images/SGMAI_secretaria_geral.png" style={{height: "30px"}} alt="Logo2"/>
+                    </a>
                     <p style={{textAlign: "center"}}>SITE OFICIAL<br/>VOTO E ESTATÍSTICAS</p>
                 </div>
             </header>
