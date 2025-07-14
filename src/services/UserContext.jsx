@@ -4,12 +4,14 @@ import {useNavigate} from "react-router-dom";
 
 import React from 'react';
 import {toast} from "react-toastify";
+import {useScrollRestoration} from "../hooks/useScrollRestoration";
 
 const UserContext = createContext(null);
 
 export const useUserContext = () => useContext(UserContext);
 
 const UserProvider = ({children}) => {
+    useScrollRestoration();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [isVoting, setIsVoting] = useState(false);
@@ -50,7 +52,7 @@ const UserProvider = ({children}) => {
             await api.get("/logout");
             navigate("/login");
             setUser(null);
-            console.log("User logged out successfully");
+
         } catch (e) {
             console.error("Error logging out: " + e);
         }

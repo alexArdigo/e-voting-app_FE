@@ -1,7 +1,7 @@
 import React from 'react';
 
 const PendingAuthCard = ({obj, className, handleOnClick, action}) => {
-    console.log("here too too");
+
     return (
         <li style={{
             display: "flex",

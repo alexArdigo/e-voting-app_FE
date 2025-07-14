@@ -40,10 +40,8 @@ export const Header = () => {
                     {user?.username ? (
                         <>
                             <li>
-                                <Link to={user.role === "ADMIN" ? "/admin" : "/profile/stats"}>
-                                    <p style={{display: "inline", margin: 0, fontWeight: "bold"}}>
-                                        {user.username}
-                                    </p>
+                                <Link to={user.role === "ADMIN" ? "/admin" : "/viewer"}>
+                                    <p style={{display: "inline", margin: 0, fontWeight: "bold"}}>{user.username}</p>
                                 </Link>
                             </li>
                             <li>

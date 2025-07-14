@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {useUserContext} from "../../services/UserContext";
+import {useUserContext} from "../services/UserContext";
 import {useNavigate} from "react-router-dom";
-import api from "../../services/api";
-import './css/viewer.css';
-import MainLayout from "../../layouts/MainLayout";
+import api from "../services/api";
+import './Viewer/css/Viewer.css';
+import MainLayout from "../layouts/MainLayout";
 import {toast} from "react-toastify";
 
 
@@ -27,7 +27,7 @@ const Login = () => {
             await api.post("/login", body);
             const response = await api.get("/loggedUser");
             setUser(response.data);
-            response.data.role === "VIEWER" ? navigate("/profile/stats") : navigate("/admin");
+            navigate(response.data.role === "VIEWER" ? "/viewer" : "/admin")
         } catch (e) {
             console.error("Erro ao fazer login:", e);
             toast.error("Credenciais inválidas ou erro no servidor.");
@@ -61,7 +61,7 @@ const Login = () => {
                         <button type="submit">Entrar</button>
                         <br/>
                         <img src="/images/legislativas-viewer.png" alt="Login" className="login-image"/>
-                        <p>Não tem conta? Registe-se <a style={{color: "white"}} href="/register"><strong>aqui.</strong></a>
+                        <p>Não tem conta? Registe-se <a style={{color: "white"}} href="/src/pages/Register"><strong>aqui.</strong></a>
                         </p>
                     </form>
                 </div>

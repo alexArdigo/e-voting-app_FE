@@ -126,7 +126,6 @@ const ElectoralSeats = () => {
 
     return (
         <div className="chart-container">
-            <h2 className="chart-title">Gráficos de Teste</h2>
 
             <div className="year-select-container">
                 <label htmlFor="year-select" className="year-select-label">

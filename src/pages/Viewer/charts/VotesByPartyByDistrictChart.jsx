@@ -11,7 +11,7 @@ import {
     Legend
 } from "chart.js";
 import api from "../../../services/api";
-import Graph from "../Graph";
+import Viewer from "../Viewer";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -20,7 +20,7 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
     const [chartData, setChartData] = useState(null);
     const [districts, setDistricts] = useState([]);
     const [selectedDistrict, setSelectedDistrict] = useState("");
-    const [year, setYear] = useState("");
+    const [year, setYear] = useState("2021");
     const years = ["2021", "2022", "2023", "2024","2025", "2026"];
     const yearNames = {
         "2021": "Eleições Legislativas 2021",
@@ -50,15 +50,15 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
                 //PARTIES
                 const orgResponse = await api.get("/cleanParties");
                 const organisations = orgResponse.data;
-                console.log("Organisations raw data:", organisations);
+
                 const partyNames = [... new Set(organisations.map(org => org.organisationName))]; //temporary até resolver o problema de duplicados!!
-                console.log("Partidos encontrados:", partyNames);
+
 
                 //DISTRICTS
                 const districtResponse = await api.get("/districts");
                 const districts = districtResponse.data;
                 const districtNames = districts.map(district => district.districtName);
-                console.log("Distritos encontrados:", districtNames);
+
                 setDistricts(districtNames);
 
                 const voteCounts = [];
@@ -82,7 +82,7 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
                     labels: partyNames,
                     datasets: [
                         {
-                            label: "Votos por Partido",
+                            label: "Votos por Partido e Distrito",
                             data: voteCounts,
                             backgroundColor: "rgba(75, 192, 192, 0.5)"
                         }
@@ -94,7 +94,6 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
             }
         };
 
-
         data();
 
     }, [selectedDistrict, year]);
@@ -103,7 +102,6 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
 
     return (
         <div className="chart-container">
-            <h2 className="chart-title">Distribuição de Votos por Partido</h2>
 
             <div className="year-select-container">
                 <label htmlFor="year-select" className="year-select-label">

@@ -56,7 +56,6 @@ const CreateElectionPage = () => {
                         body.set("electionId", response.data.id);
                         body.set("file", file);
                         const csvResponse = await uploadCSVFile(body);
-                        console.log('CSV upload response:', csvResponse);
 
                         csvSuccess = csvResponse?.status === 200 ||
                             csvResponse?.status === 201 ||
