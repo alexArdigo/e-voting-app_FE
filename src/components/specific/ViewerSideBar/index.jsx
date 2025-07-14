@@ -4,7 +4,7 @@ import ProfileEditor from "../../ProfileEditor";
 import {toast} from "react-toastify";
 import axios from "axios";
 
-const SideBar = () => {
+const ViewerSideBar = () => {
     const {user, setUser} = useUserContext();
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [editing, setEditing] = useState(false);
@@ -125,4 +125,4 @@ const SideBar = () => {
     );
 };
 
-export default SideBar;
+export default ViewerSideBar;

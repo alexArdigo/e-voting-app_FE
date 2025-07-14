@@ -1,5 +1,5 @@
 import UserProvider from "./services/UserContext.jsx";
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {ToastContainer} from 'react-toastify';
 import Faq from "./pages/Voter/Faq.jsx";
 import Home from "./pages/Voter/Home.jsx";
@@ -13,14 +13,14 @@ import VoteSubmittedPage from "./pages/Voter/VoteSubmittedPage.jsx";
 import ConfirmElectionPage from "./pages/Voter/ConfirmElectionPage.jsx";
 import SelectElectionPage from "./pages/Voter/SelectElectionPage.jsx";
 import BallotPage from "./pages/Voter/BallotPage.jsx";
-import Login from "./pages/Viewer/Login";
-import Register from "./pages/Viewer/Register";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
 import AuthWithToken from "./pages/Voter/AuthWithToken";
 import Admin from "./pages/Admin/Dashboard/Admin";
 import ChartsContainer from "./pages/Viewer/charts/ChartsContainer";
-import Graph from "./pages/Viewer/Graph";
+import Viewer from "./pages/Viewer/Viewer";
 import CreateElectionPage from "./pages/Admin/Dashboard/CreateElectionForm";
 import PartyAdd from "./pages/Admin/PartyFormContainer/PartyAdd";
 import ProtectedRoute from "./services/ProtectedRoute";
@@ -30,6 +30,7 @@ import PartyEdit from "./pages/Admin/PartyFormContainer/PartyEdit";
 import PartyList from "./pages/Admin/PartyFormContainer/PartyList";
 import Results from "./pages/Viewer/Results";
 import AdminDashboard from "./pages/Admin/Dashboard/AdminDashboard";
+import ViewerDashboard from "./pages/Viewer/ViewerDashboard";
 
 function App() {
 
@@ -66,24 +67,26 @@ function App() {
                             <Route path="/contact" element={<ContactPage/>}/>
                             <Route path="/faq" element={<Faq/>}/>
 
-                            {/* Viewer Routes */}
+
+                            {/* User Auth */}
                             <Route path="/login" element={<Login/>}/>
                             <Route path="/register" element={<Register/>}/>
-                            <Route path="/charts" element={<ProtectedRoute><ChartsContainer/></ProtectedRoute>}/>
-                            <Route path="/profile/stats" element={<Graph/>}/>
-                            <Route path="/results" element={<Results />}/>
 
-                            {/* Admin Routes */}
-                            <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>}>
-                                <Route index element={<Admin />} />
-                                <Route path="create-election" element={<CreateElectionPage />} />
-                                <Route path="viewers" element={<PendingAuthorizations />} />
-                                <Route path="edit/parties" element={<PartyList />} />
-                                <Route path="edit/parties/:id" element={<PartyEdit />} />
-                                <Route path="add/party" element={<PartyAdd />} />
+                            {/* Viewer Routes */}
+                            <Route path="/viewer" element={<ProtectedRoute><ViewerDashboard/></ProtectedRoute>}>
+                                <Route index element={<Viewer/>}/>
+                                <Route path="charts" element={<ChartsContainer/>}/>
                             </Route>
 
-
+                            {/* Admin Routes */}
+                            <Route path="/admin" element={<ProtectedRoute><AdminDashboard/></ProtectedRoute>}>
+                                <Route index element={<Admin/>}/>
+                                <Route path="create-election" element={<CreateElectionPage/>}/>
+                                <Route path="viewers" element={<PendingAuthorizations/>}/>
+                                <Route path="edit/parties" element={<PartyList/>}/>
+                                <Route path="edit/parties/:id" element={<PartyEdit/>}/>
+                                <Route path="add/party" element={<PartyAdd/>}/>
+                            </Route>
 
 
                         </Routes>

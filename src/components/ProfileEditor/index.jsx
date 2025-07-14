@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faImages, faTimes} from "@fortawesome/free-solid-svg-icons";
-import api from "../../services/api";
 import "./ProfileEditor.css";
 
 const imageOptions = [
@@ -134,7 +133,9 @@ const ProfileEditor = ({currentImage, onSave}) => {
 
     return (
         <div className="profile-picture-editor">
-            <img src={profileImageUrl || currentImage} alt="Profile" className="rounded-profile-image"/>
+            <div className="profile-image-container">
+                <img src={currentImage} alt="Profile" className="rounded-profile-image"/>
+            </div>
             <button className="edit-pic" onClick={() => setShowPopup(true)}>
                 <FontAwesomeIcon icon={faImages}/>
             </button>
@@ -147,7 +148,7 @@ const ProfileEditor = ({currentImage, onSave}) => {
                         </button>
                         <h3>Escolher nova imagem</h3>
                         <div className="image-gallery">
-                            {imageOptions.map((img, index) => (
+                            {imageOptions.map((img, value) => (
                                 <img
                                     key={index}
                                     src={img}

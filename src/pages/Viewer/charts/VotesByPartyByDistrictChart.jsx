@@ -11,7 +11,7 @@ import {
     Legend
 } from "chart.js";
 import api from "../../../services/api";
-import Graph from "../Graph";
+import Viewer from "../Viewer";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -50,15 +50,15 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
                 //PARTIES
                 const orgResponse = await api.get("/cleanParties");
                 const organisations = orgResponse.data;
-                console.log("Organisations raw data:", organisations);
+
                 const partyNames = [... new Set(organisations.map(org => org.organisationName))]; //temporary até resolver o problema de duplicados!!
-                console.log("Partidos encontrados:", partyNames);
+
 
                 //DISTRICTS
                 const districtResponse = await api.get("/districts");
                 const districts = districtResponse.data;
                 const districtNames = districts.map(district => district.districtName);
-                console.log("Distritos encontrados:", districtNames);
+
                 setDistricts(districtNames);
 
                 const voteCounts = [];

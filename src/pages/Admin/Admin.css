@@ -30,7 +30,7 @@
     margin-bottom: 20px;
 }
 
-.admin-dashboard-container {
+.admin-dashboard-container, .viewer-dashboard-container {
     display: flex;
     margin: 0;
     background-color: #f9fafb;
@@ -94,7 +94,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.admin-dashboard-content {
+.admin-dashboard-content, .viewer-dashboard-content {
     flex-grow: 1;
     padding: 30px 40px;
     color: #2c2c5c;

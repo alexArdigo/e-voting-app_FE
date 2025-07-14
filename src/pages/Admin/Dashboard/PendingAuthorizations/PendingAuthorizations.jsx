@@ -4,7 +4,7 @@ import {fetchApproved, fetchData, handleApprove, handleRemove} from "./PendingAu
 import {useOutletContext} from "react-router-dom";
 
 const PendingAuthorizations = () => {
-    const {setHasPendingViewer} = useOutletContext();
+    const setHasPendingViewer = useOutletContext();
     const [pendingUsers, setPendingUsers] = useState([]);
     const [approvedUsers, setApprovedUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
