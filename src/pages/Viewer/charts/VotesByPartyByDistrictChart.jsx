@@ -55,6 +55,7 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
                     setSelectedDistrict(districtNames[0]);
                 }
 
+
                 //LEGISLATIVES
                 const legislativeResponse = await api.get("/elections/legislative");
                 const legislatives = legislativeResponse.data;
@@ -70,11 +71,13 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
 
                 setYears(legislativeYears);
                 setYearNames(legislativeName);
+
                 if (!year && legislativeYears.length > 0) {
                     setYear(legislativeYears[0]);
                 }
 
 
+                if (!year) return;
                 const voteCounts = [];
 
                 for (const party of partyNames) {
