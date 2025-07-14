@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import api from "../../services/api";
 import Districts from "./Districts";
+import api from "../../../services/api";
 
 const LegislativeResultsMap = ({electionId}) => {
     const [districtColors, setDistrictColors] = useState({});
@@ -41,15 +41,15 @@ const LegislativeResultsMap = ({electionId}) => {
             setError("");
 
             try {
-                const {data} = await api.get(`/Elections/${1}/results/legislative`);
+                const {data} = await api.get(`/Elections/${electionId}/results/legislative`);
 
-                console.log("Dados recebidos da API:", data);
+            //    console.log("Dados recebidos da API:", data);
 
                 const continentColors = {};
                 const islandsColors = {};
 
                 data.forEach((district) => {
-                    console.log("Processando distrito:", district);
+                  //  console.log("Processando distrito:", district);
 
                     if (!district.results || district.results.length === 0) {
                         console.warn(`Distrito ${district.districtName} sem resultados`);
@@ -57,16 +57,15 @@ const LegislativeResultsMap = ({electionId}) => {
                     }
 
                     const sorted = [...district.results].sort((a, b) => b.votes - a.votes);
-                    console.log("sorted ",sorted);
                     const winner = sorted[0];
 
-                    console.log(`Vencedor em ${district.districtName}:`, winner);
+                //    console.log(`Vencedor em ${district.districtName}:`, winner);
 
 
                     const svgId = districtMapping[district.districtName];
                     if (svgId && winner.color) {
                         continentColors[svgId] = winner.color;
-                        console.log(`Cor aplicada ao continente: ${svgId} = ${winner.color}`);
+                //        console.log(`Cor aplicada ao continente: ${svgId} = ${winner.color}`);
                     }
 
 
@@ -76,19 +75,19 @@ const LegislativeResultsMap = ({electionId}) => {
                         islandPaths.forEach(pathId => {
                             islandsColors[pathId] = winner.color;
                         });
-                        console.log(`Cor aplicada às ilhas ${district.districtName}:`, islandPaths, "=", winner.color);
+              //          console.log(`Cor aplicada às ilhas ${district.districtName}:`, islandPaths, "=", winner.color);
                     }
 
                     if (!svgId && !islandPaths) {
-                        console.warn(`Não foi possível mapear distrito: ${district.districtName}`);
+             //           console.warn(`Não foi possível mapear distrito: ${district.districtName}`);
                     }
                 });
 
-                console.log("Cores finais continente:", continentColors);
-                console.log("Cores finais ilhas:", islandsColors);
+           //     console.log("Cores finais continente:", continentColors);
+           //     console.log("Cores finais ilhas:", islandsColors);
 
                 setDistrictColors(continentColors);
-                setIslandColors(islandsColors);
+               // setIslandColors(islandsColors);
 
             } catch (err) {
                 console.error("Erro ao carregar resultados:", err);

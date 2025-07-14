@@ -3,10 +3,9 @@ import { useEffect, useRef } from "react";
 const Districts = (props) => {
     const { districtColors = {} } = props;
     const svgRef = useRef();
-
+    console.log("districts", districtColors);
     useEffect(() => {
-        if (svgRef.current && districtColors) {
-
+        if (districtColors) {
             const allPaths = svgRef.current.querySelectorAll('path[data-z]');
             allPaths.forEach(path => {
                 path.setAttribute("fill", "#e0e0e0");
@@ -26,7 +25,7 @@ const Districts = (props) => {
     }, [districtColors]);
 
     return(
-        <svg width="375" height="550" viewBox="0 0 12969 26674">
+        <svg ref={svgRef} width="375" height="550" viewBox="0 0 12969 26674">
             <path data-z="31" className="z z31"
                   d="M5329 1730c-66-17-64 0-92 15l-110 113c-121 4-292 156-324 162-42-3-181 2-190-1l-63-42-153 42c-101 28-190 153-246 162-51-1-120-63-171 40-4 70-22 172-11 235-20 5-54 13-72 31l-21 36c-2 67 22 43 26 107l-40 111-33 28-36-11-62-98c-65-6-65 3-114 40-67-40-52-40-108-46l-17-34-39 18 1 73c-47-2-31 4-66-28-40 2-230 40-268 53l-15 35c-82 42-170 47-257 69l-98-359-131-228-34-128 2-264 32-98-32-131 32-97 196-262 229-98 33-163 130-98 196-98 65-196 196-98 196 33 65-131 164-32 261 32 196-65 130 33 33-98 294-196 196-98 32 98-32 131 65 228 98-65h131l98 32 32 98v131l-65 98-98 33-33 98-98 65-32 98-98 65-33 98-33 131 196 196v195z"/>
             <path data-z="32" className="z z32"

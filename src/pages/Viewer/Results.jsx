@@ -2,7 +2,7 @@ import {useState, useEffect} from "react";
 import {useUserContext} from "../../services/UserContext";
 import {useNavigate} from "react-router-dom";
 import api from "../../services/api";
-import Districts from "../../components/specific/Map/Districts";
+import LegislativeResultsMap from "../../components/specific/Map/LegislativeResultsMap";
 import Municipalities from "../../components/specific/Map/municipalities";
 import Islands from "../../components/specific/Map/Islands";
 import "./css/Results.css";
@@ -77,7 +77,7 @@ export default function Results() {
                 </div>
                 <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
                     <div>
-                        {mapView === "districts" ? <Districts onDistrictClick={handleDistrictClick} /> : <Municipalities districtId={selectedDistrict} />}
+                        {mapView === "districts" ? <LegislativeResultsMap electionId={electionId} /> : <Municipalities districtId={selectedDistrict} />}
                         <Islands />
                     </div>
                 </div>
