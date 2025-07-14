@@ -8,7 +8,7 @@ const Viewer = () => {
 
     return (
         <div className={"dflx"}>
-            <MainLayout >
+            <MainLayout>
                 <div className="graph-layout">
                     <div className="graph-content">
                         <div className="graph-buttons">
