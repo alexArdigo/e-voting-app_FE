@@ -8,8 +8,8 @@ const ContactPage = () => {
     return (
 
         <>
-            <MainLayout style={{minHeight: "100vh"}} >
-                <StyledContainer variant="leftCentered">
+            <MainLayout style={{minHeight: "100vh"}} className="dflx">
+                <StyledContainer variant="leftCentered" style={{marginBlock:"10px", marginRight:"50px"}}>
                     <h1>
                         Contactos &<br/> Atendimento
                     </h1>
