@@ -1,20 +1,18 @@
 import {useState, useEffect} from "react";
-import {useUserContext} from "../../services/UserContext";
-import {useNavigate} from "react-router-dom";
+
 import api from "../../services/api";
-import Districts from "../../components/specific/Map/Districts";
+import LegislativeResultsMap from "../../components/specific/Map/LegislativeResultsMap";
 import Municipalities from "../../components/specific/Map/municipalities";
-import Islands from "../../components/specific/Map/Islands";
+
 import "./css/Results.css";
 
 export default function Results() {
-    const {logout} = useUserContext();
-    const navigate = useNavigate();
+
     const [selectedDistrict, setSelectedDistrict] = useState(null);
     const [resultsData, setResultsData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [mapView, setMapView] = useState("districts"); // "districts" ou "municipalities"
+    const [mapView, setMapView] = useState("districts");
 
     const [electionId, setElectionId] = useState(1);
 
@@ -36,14 +34,6 @@ export default function Results() {
         }
     };
 
-    const handleDistrictClick = (districtId) => {
-        setSelectedDistrict(districtId);
-    };
-
-    const handleLogout = () => {
-        logout();
-        navigate("/");
-    };
 
     const formatNumber = (number) => {
         return new Intl.NumberFormat('pt-PT').format(number);
@@ -53,7 +43,7 @@ export default function Results() {
         if (!resultsData) return "0%";
         const total = resultsData.totalVotes || 0;
         const abstention = resultsData.abstention || 0;
-        const percentage = total > 0 ? ((abstention / (total + abstention)) * 100).toFixed(2) : 0;
+        const percentage = total > 2500 ? ((abstention / (total + abstention)) * 100).toFixed(2) : 0;
         return `${percentage}%`;
     };
 
@@ -77,8 +67,7 @@ export default function Results() {
                 </div>
                 <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
                     <div>
-                        {mapView === "districts" ? <Districts onDistrictClick={handleDistrictClick} /> : <Municipalities districtId={selectedDistrict} />}
-                        <Islands />
+                        {mapView === "districts" ? <LegislativeResultsMap electionId={electionId} /> : <Municipalities districtId={selectedDistrict} />}
                     </div>
                 </div>
             </div>
@@ -103,13 +92,6 @@ export default function Results() {
                             <span className="stat-label">Total de votos:</span>
                             <span className="stat-value">
                                 {formatNumber(resultsData.totalVotes || 0)}
-                            </span>
-                        </div>
-
-                        <div className="stat-item">
-                            <span className="stat-label">Votos nulos:</span>
-                            <span className="stat-value">
-                                {formatNumber(resultsData.nullVotes || 0)}
                             </span>
                         </div>
 

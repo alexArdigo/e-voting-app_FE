@@ -1,19 +1,33 @@
 import {useEffect, useRef} from "react";
 
 const Islands = (props) => {
+    const { islandColors = {} } = props;
     const svgRef = useRef();
 
 
     useEffect(() => {
-        if (svgRef.current) {
-            const zone_id = 367; //lagos
-            const path = svgRef.current.querySelector(`path[data-z="${zone_id}"]`);
-            path.setAttribute("fill", "red");
+        if (islandColors) {
+
+            const allPaths = svgRef.current.querySelectorAll('path[data-z]');
+            allPaths.forEach(path => {
+                path.setAttribute("fill", "#e0e0e0");
+            });
+
+            Object.entries(islandColors).forEach(([zone_id, color]) => {
+                const path = svgRef.current.querySelector(`path[data-z="${zone_id}"]`);
+                if (path) {
+                    path.setAttribute("fill", color);
+                    path.setAttribute("stroke", "#ffffff");
+                    path.setAttribute("stroke-width", "2");
+                } else {
+                    console.warn(`Path não encontrado para zona ID: ${zone_id}`);
+                }
+            });
         }
-    }, [svgRef.current]);
+    }, [islandColors]);
 
     return (
-        <svg width="250" height="500" viewBox="0 0 6063 8673">
+        <svg ref={svgRef} width="250" height="500" viewBox="0 0 6063 8673">
             <g id="A01-Madeira">
                 <path data-z="377" className="z z377"
                       d="M2678 2423c-32,21 -75,48 -106,44 -37,45 -118,-59 -159,-60 -173,-7 -314,-106 -466,-172 -81,23 -118,-34 -180,-82 -96,-84 -218,-128 -323,-197 -106,-105 -154,-244 -210,-379 -48,-92 130,-140 176,-222 86,-155 261,-66 324,63 29,89 136,54 155,101 58,41 144,37 213,67 92,-18 151,-32 263,-101 129,28 202,-2 302,-15 99,-39 247,134 258,161 17,65 87,80 133,136 15,86 334,75 391,147 398,-5 42,46 -76,107 -20,62 -65,116 -96,181 -74,5 -132,69 -130,138 -30,29 -75,68 -109,98 -43,24 -120,31 -173,-4 -58,-11 -130,-34 -187,-11z"/>
