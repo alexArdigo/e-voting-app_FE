@@ -22,16 +22,13 @@ const VoteSubmittedPage = () => {
 
                 try {
                     await api.post("/voters/stop-voting", body);
-                    console.log("Voting process stopped successfully");
                     setIsVoting(false);
                 } catch (stopVotingError) {
-                    console.error("Error stopping voting process:", stopVotingError);
                 }
             }
 
             await api.get("/logout");
             setUser(null);
-            console.log("User logged out successfully");
 
         } catch (error) {
             console.error("Error during logout process:", error);

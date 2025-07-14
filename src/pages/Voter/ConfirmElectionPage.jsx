@@ -22,7 +22,7 @@ const ConfirmElectionPage = () => {
 
         try {
             const response = await voterHasVotedThisElection(selectedElectionId, user.id);
-            console.log("response Confirm",response.hasVoted);
+
             if (response.hasVoted) {
                 toast.error("Você já votou nesta eleição.");
                 return navigate("/election", {replace: true});

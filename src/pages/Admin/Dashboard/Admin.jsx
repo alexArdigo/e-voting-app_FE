@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
-import AdminDashboard from "./AdminDashboard";
+import React, {useEffect, useState} from "react";
 import {
-    getActivePresidentialElections,
     getActiveLegislativeElections,
-    getPresidentialElections,
-    getLegislativeElections
+    getActivePresidentialElections,
+    getLegislativeElections,
+    getPresidentialElections
 } from "../../../services/ElectionService";
-import { toast } from "react-toastify";
+import {toast} from "react-toastify";
 import ElectionCard from "./ElectionCard";
 import "../Admin.css";
 import EditElection from "./EditElection";
@@ -107,63 +106,63 @@ const Admin = () => {
     }
 
     return (
-            <div className="admin-container">
-                <h1>Página de Administração</h1>
-                <p>
-                    Bem-vindo à página de administração. Aqui você pode gerenciar as eleições presidenciais e legislativas.
-                </p>
+        <div className="admin-container">
+            <h1>Página de Administração</h1>
+            <p>
+                Bem-vindo à página de administração. Aqui você pode gerenciar as eleições presidenciais e legislativas.
+            </p>
 
-                <div className="elections-grid">
-                    <div className="elections-section">
-                        <h2 className="active-elections-title">
-                            Eleições Ativas ({activeElections.length})
-                        </h2>
+            <div className="elections-grid">
+                <div className="elections-section">
+                    <h2 className="active-elections-title">
+                        Eleições Ativas ({activeElections.length})
+                    </h2>
 
-                        {activeElections.length > 0 ? (
-                            <div className="election-list">
-                                {activeElections.map((election) => (
-                                    <ElectionCard
-                                        key={`${election.electionType}-${election.id}`}
-                                        election={election}
-                                        isActive={true}
-                                    />
-                                ))}
-                            </div>
-                        ) : (
-                            <p className="no-elections-message">Nenhuma eleição ativa encontrada.</p>
-                        )}
-                    </div>
-
-                    <div className="elections-section">
-                        <h2 className="elections-title">
-                            Eleições Não Ativas ({notActiveElections.length})
-                        </h2>
-
-                        {notActiveElections.length > 0 ? (
-                            <div className="election-list">
-                                {notActiveElections.map((election) => (
-                                    <ElectionCard
-                                        key={`${election.electionType}-${election.id}`}
-                                        election={election}
-                                        isActive={false}
-                                        onEdit={handleEditElection}
-                                        onDelete={handleDeleteElection}
-                                    />
-                                ))}
-                            </div>
-                        ) : (
-                            <p className="no-elections-message">Nenhuma eleição não ativa encontrada.</p>
-                        )}
-                    </div>
+                    {activeElections.length > 0 ? (
+                        <div className="election-list">
+                            {activeElections.map((election) => (
+                                <ElectionCard
+                                    key={`${election.electionType}-${election.id}`}
+                                    election={election}
+                                    isActive={true}
+                                />
+                            ))}
+                        </div>
+                    ) : (
+                        <p className="no-elections-message">Nenhuma eleição ativa encontrada.</p>
+                    )}
                 </div>
 
-                <EditElection
-                    election={editingElection}
-                    isOpen={isEditOpen}
-                    onClose={handleCloseEdit}
-                    onUpdate={handleUpdateElection}
-                />
+                <div className="elections-section">
+                    <h2 className="elections-title">
+                        Eleições Não Ativas ({notActiveElections.length})
+                    </h2>
+
+                    {notActiveElections.length > 0 ? (
+                        <div className="election-list">
+                            {notActiveElections.map((election) => (
+                                <ElectionCard
+                                    key={`${election.electionType}-${election.id}`}
+                                    election={election}
+                                    isActive={false}
+                                    onEdit={handleEditElection}
+                                    onDelete={handleDeleteElection}
+                                />
+                            ))}
+                        </div>
+                    ) : (
+                        <p className="no-elections-message">Nenhuma eleição não ativa encontrada.</p>
+                    )}
+                </div>
             </div>
+
+            <EditElection
+                election={editingElection}
+                isOpen={isEditOpen}
+                onClose={handleCloseEdit}
+                onUpdate={handleUpdateElection}
+            />
+        </div>
     );
 };
 
