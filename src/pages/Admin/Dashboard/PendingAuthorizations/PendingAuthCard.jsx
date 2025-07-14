@@ -5,7 +5,7 @@ const PendingAuthCard = ({obj, className, handleOnClick, action}) => {
     return (
         <li style={{
             display: "flex",
-            width: "inherit",
+            width: "280px",
             justifyContent: "space-between",
             alignItems: "center",
             flexWrap: "nowrap",
