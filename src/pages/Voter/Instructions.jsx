@@ -27,7 +27,7 @@ const Instructions = () => {
     return (
         <MainLayout className="dflxColumn">
 
-            <StyledContainer variant="default" style={{lineHeight: "2em"}}>
+            <StyledContainer variant="default" style={{lineHeight: "2em", paddingRight:"50px", width: "900px"}}>
                 <h1 style={{ textAlign: "center" }}>Instruções para o Voto Eletrónico</h1>
                 <p style={{ textAlign: "center" }}>
                     Administração Eleitoral da Secretaria-Geral do Ministério da Administração Interna compete:
@@ -53,7 +53,7 @@ const Instructions = () => {
             <StyledContainer variant="flex" style={{marginTop:"0"}}>
                 <img src="/images/arrow-down.png" alt="arrow" style={{width: "80px", cursor: "pointer"}} onClick={handleScroll} />
             </StyledContainer>
-            <StyledContainer style={{width: "800px", paddingColumn: "30px"}} variant="transparent" ref={stepsRef}>
+            <StyledContainer style={{width: "800px", paddingTop: "80px"}} variant="transparent" ref={stepsRef}>
 
             <div className="steps-container" >
                 <h1>Siga os seguintes passos</h1>
