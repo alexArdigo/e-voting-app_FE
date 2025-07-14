@@ -22,7 +22,7 @@ export const Header = () => {
             case "VIEWER":
                 return "/viewer";
             default:
-                return "/home";
+                return "/";
         }
     };
 
