@@ -148,13 +148,8 @@ const Faq = () => {
                                 onChange={(e) => setNewComment(e.target.value)}
                                 required
                             ></textarea>
-                            <div>
-                                <button
-                                    className="vote-button"
-                                    type="submit"
-                                    style={{margin: 0}}
-                                >Enviar
-                                </button>
+                            <div className={"button-wrapper"}>
+                                <button className="vote-button" type="submit">Enviar</button>
                             </div>
                         </form>
                     )}
