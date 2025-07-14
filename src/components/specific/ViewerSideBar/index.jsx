@@ -109,7 +109,7 @@ const ViewerSideBar = () => {
                         <div className="side-profile">
                             <p><strong>Nome:</strong> {user?.name || "N/A"}</p>
                             <p><strong>Instituição:</strong> {user?.institutionName || "N/A"}</p>
-                            <p><strong>Email:</strong> {user?.username || "N/A"}</p>
+                            <p><strong>Nome de Utilizador:</strong> {user?.username || "N/A"}</p>
                             <p><strong>Último acesso:</strong> {user?.lastLogin || "N/A"}</p>
                             <button className="edit" onClick={() => setEditing(true)} >Editar Perfil</button>
                         </div>
