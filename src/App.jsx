@@ -24,6 +24,8 @@ import Viewer from "./pages/Viewer/Viewer";
 import CreateElectionPage from "./pages/Admin/Dashboard/CreateElectionForm";
 import PartyAdd from "./pages/Admin/PartyFormContainer/PartyAdd";
 import ProtectedRoute from "./services/ProtectedRoute";
+import AdminRoute from "./services/AdminRoute";
+import ViewerRoute from "./services/ViewerRoute";
 import PendingAuthorizations from "./pages/Admin/Dashboard/PendingAuthorizations/PendingAuthorizations";
 import ErrorBoundary from "./components/common/ErrorBoundary";
 import PartyEdit from "./pages/Admin/PartyFormContainer/PartyEdit";
@@ -73,13 +75,13 @@ function App() {
                             <Route path="/register" element={<Register/>}/>
 
                             {/* Viewer Routes */}
-                            <Route path="/viewer" element={<ProtectedRoute><ViewerDashboard/></ProtectedRoute>}>
+                            <Route path="/viewer" element={<ViewerRoute><ViewerDashboard/></ViewerRoute>}>
                                 <Route index element={<Viewer/>}/>
                                 <Route path="charts" element={<ChartsContainer/>}/>
                             </Route>
 
                             {/* Admin Routes */}
-                            <Route path="/admin" element={<ProtectedRoute><AdminDashboard/></ProtectedRoute>}>
+                            <Route path="/admin" element={<AdminRoute><AdminDashboard/></AdminRoute>}>
                                 <Route index element={<Admin/>}/>
                                 <Route path="create-election" element={<CreateElectionPage/>}/>
                                 <Route path="viewers" element={<PendingAuthorizations/>}/>
