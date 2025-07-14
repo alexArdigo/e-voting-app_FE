@@ -53,7 +53,7 @@ export default function Results() {
         if (!resultsData) return "0%";
         const total = resultsData.totalVotes || 0;
         const abstention = resultsData.abstention || 0;
-        const percentage = total > 0 ? ((abstention / (total + abstention)) * 100).toFixed(2) : 0;
+        const percentage = total > 2500 ? ((abstention / (total + abstention)) * 100).toFixed(2) : 0;
         return `${percentage}%`;
     };
 

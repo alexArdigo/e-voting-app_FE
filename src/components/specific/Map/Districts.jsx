@@ -1,16 +1,19 @@
 import {useEffect, useRef} from "react";
 
 const Districts = (props) => {
+    const { districtColors = {} } = props;
     const svgRef = useRef();
 
-
     useEffect(() => {
-        if (svgRef.current) {
-            const zone_id = 367; //lagos
-            const path = svgRef.current.querySelector(`path[data-z="${zone_id}"]`);
-            path.setAttribute("fill", "red");
+        if (svgRef.current && districtColors) {
+            Object.entries(districtColors).forEach(([zone_id, color]) => {
+                const path = svgRef.current.querySelector(`path[data-z="${zone_id}"]`);
+                if (path) {
+                    path.setAttribute("fill", color);
+                }
+            });
         }
-    }, [svgRef.current]);
+    }, [districtColors]);
 
     return(
         <svg width="375" height="550" viewBox="0 0 12969 26674">
