@@ -18,16 +18,9 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend,
 
 const ElectoralSeats = () => {
     const [seats, setSeats] = useState({});
-    const [year, setYear] = useState("2026");
-    const years = ["2021", "2022", "2023", "2024", "2025", "2026"];
-    const yearNames = {
-        "2021": "Eleições Legislativas 2021",
-        "2022": "Eleições Legislativas 2022",
-        "2023": "Eleições Legislativas 2023",
-        "2024": "Eleições Legislativas 2024",
-        "2025": "Eleições Legislativas 2025",
-        "2026": "Eleições Legislativas 2026"
-    };
+    const [year, setYear] = useState("");
+    const [years, setYears] = useState([]);
+    const [yearNames, setYearNames] = useState({});
     const canvasRef = useRef(null);
     const chartRef = useRef(null);
 
@@ -35,6 +28,31 @@ const ElectoralSeats = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+
+                const legislativeResponse = await api.get("/elections/legislative");
+                const legislatives = legislativeResponse.data;
+
+                const legislativeName = {};
+                const legislativeYears = [];
+
+                legislatives.forEach(legislative => {
+                    const year = legislative.startDate.slice(0, 4);
+                    legislativeYears.push(year);
+                    legislativeName[year] = legislative.name;
+                });
+
+                setYears(legislativeYears);
+                setYearNames(legislativeName);
+
+                if (!year && legislativeYears.length > 0) {
+                    setYear(legislativeYears[0]);
+                }
+
+
+                if (!year) return;
+
+
+
                 const response = await api.get("/Elections/results/legislative/seats", {
                     params: {
                         year: year
@@ -85,7 +103,7 @@ const ElectoralSeats = () => {
 
     useEffect(() => {
         if (!canvasRef.current || Object.keys(seats).length === 0) return;
-        const ctx = canvasRef.current.getContext("2d"); // obtém o contexto do canvas
+        const ctx = canvasRef.current.getContext("2d");
 
         if (chartRef.current) {
             chartRef.current.destroy();
@@ -118,7 +136,6 @@ const ElectoralSeats = () => {
             }
         });
 
-        // cleanup (optional mas recomendado pelo chat)
         return () => {
             if (chartRef.current) chartRef.current.destroy();
         };
