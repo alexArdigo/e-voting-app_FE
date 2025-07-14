@@ -19,7 +19,7 @@ const ChartsContainer = ({ active }) => {
                 .map((chart, index) => (
                     <div key={index} className="chart-block">
                         <h2 className="chart-title">{chart.name}</h2>
-                        {/*{React.createElement(chart.mapComp)}*/}
+                        {React.createElement(chart.mapComp)}
                         {React.createElement(chart.chartComp)}
                     </div>
                 ))}
