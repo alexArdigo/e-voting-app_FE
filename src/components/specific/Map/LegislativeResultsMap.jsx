@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import api from "../../services/api";
 import Districts from "./Districts";
 
-const LegislativeResultsMap = ({ electionId }) => {
+const LegislativeResultsMap = ({electionId}) => {
     const [districtColors, setDistrictColors] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
@@ -39,12 +39,13 @@ const LegislativeResultsMap = ({ electionId }) => {
 
             try {
 
-                const { data } = await api.get(`/Elections/${electionId}/results/legislative`);
+                const {data} = await api.get(`/Elections/${electionId}/results/legislative`);
 
                 const colors = {};
 
                 data.forEach((district) => {
                     if (!district.results || district.results.length === 0) return;
+
 
                     const sorted = [...district.results].sort((a, b) => b.votes - a.votes);
                     const winner = sorted[0];
@@ -74,7 +75,7 @@ const LegislativeResultsMap = ({ electionId }) => {
     if (loading) return <div>A carregar mapa...</div>;
     if (error) return <div>{error}</div>;
 
-    return <Districts districtColors={districtColors} />;
+    return <Districts districtColors={districtColors}/>;
 };
 
 export default LegislativeResultsMap;
