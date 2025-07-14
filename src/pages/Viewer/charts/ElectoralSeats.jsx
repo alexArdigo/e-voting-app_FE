@@ -142,10 +142,9 @@ const ElectoralSeats = () => {
     }, [graphicsData, seats, year]);
 
     return (
-        <div className="chart-container">
-
-            <div className="year-select-container">
-                <label htmlFor="year-select" className="year-select-label">
+        <div className="chart-container" style={{width:"800px", margin:"auto"}}>
+            <div className="year-select-container" style={{marginBottom: "-30px"}}>
+                <label htmlFor="year-select" className="year-select-label" >
                     Seleciona o ano:
                 </label>
                 <select
