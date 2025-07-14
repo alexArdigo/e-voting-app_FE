@@ -38,13 +38,15 @@
 
 
 .chave-movel-digital-button {
-    background-image: url("/images/Chave-Movel-Digital-button.png");
-    background-size: cover;
+    background-image: url("/images/CMD.png");
+    background-size: contain;
+    background-repeat: no-repeat;
     background-position: center;
-    height: 80px;
-    width: 300px;
+    height: 60px;
+    width: 350px;
     border-radius: 10px;
     background-color: #3C5DBC;
+    padding-block: 20px;
 }
 
 .home-button {
@@ -107,7 +109,7 @@
 }
 
 .voter-info strong {
-    color: #2563eb;
+    color: #2c2c5c;
     display: block;
     margin-bottom: 5px;
 }
@@ -251,4 +253,9 @@
 .button-wrapper {
     display: flex;
     justify-content: center;
+}
+
+button.selected {
+    background-color: #4C8362; /* ou a cor desejada */
+    color: white;
 }

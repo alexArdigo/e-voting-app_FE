@@ -6,13 +6,12 @@
 }
 
 .timer {
-    background-color: #2c2c5c;
+    background-color: #3C5DBC;
+    border-color: chocolate;
     color: white;
-    padding: 15px 25px;
+    padding: 10px 20px;
     border-radius: 12px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     text-align: center;
     min-width: 120px;
     transition: all 0.3s ease;
@@ -121,10 +120,6 @@
 .ballot-option.selected .party-image-container {
     border-color: #3C5DBC;
     box-shadow: 0 0 0 3px rgba(60, 93, 188, 0.2);
-}
-
-.ballot-option.selected {
-    background: linear-gradient(135deg, #1e40af, #3C5DBC);
 }
 
 .vote-button:disabled {

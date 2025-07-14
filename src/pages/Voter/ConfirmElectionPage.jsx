@@ -42,7 +42,7 @@ const ConfirmElectionPage = () => {
 
     return (
         <MainLayout>
-            <div className="confirm-page-container">
+            <div className="confirm-page-container" style={{minHeight: "70vh"}}>
                 <p>Você selecionou a eleição:</p>
                 <h1 className="confirm-election-name">
                     {selectedElectionName || "Nome da eleição não disponível"}

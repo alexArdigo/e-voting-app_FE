@@ -4,6 +4,7 @@ import api from "../../services/api";
 import {useUserContext} from "../../services/UserContext";
 import {useLocation, useNavigate} from "react-router-dom";
 import useIsTabActive from "../../hooks/useIsTabActive";
+import StyledContainer from "../../layouts/StyledContainer";
 
 const Timer = ({parties, timeLeft, setTimeLeft}) => {
     const {user, isVoting, setIsVoting, logout} = useUserContext();

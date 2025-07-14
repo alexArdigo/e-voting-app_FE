@@ -35,7 +35,7 @@ const AuthPage = () => {
     }, []);
 
     return (
-        <MainLayout className="jcc" style={{minHeight: "90vh"}}>
+        <MainLayout className="jcc" style={{minHeight: "80vh"}}>
             <div className="auth-container">
                 <div className="message-box">
                     <img src="/images/cne-logo.jpg" alt="CNE"/>
@@ -48,7 +48,6 @@ const AuthPage = () => {
                         className="chave-movel-digital-button"
                         onClick={handleStartCMDAuthentication}
                     >
-                        {/*Chave Móvel Digital*/}
                     </button>
                 </div>
             </div>

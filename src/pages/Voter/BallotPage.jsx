@@ -223,11 +223,11 @@ const BallotPage = () => {
                 onTimeExpired={handleTimeExpired}
             />
 
-            <StyledContainer variant="yellow" style={{ marginTop: '20px', textAlign: 'center' }}>
-                <h1>{electionName || 'Eleição'}</h1>
-            </StyledContainer>
+            {/*<StyledContainer variant="transparent" style={{ marginTop: '20px', textAlign: 'center' }}>*/}
+            {/*    <h1>{electionName || 'Eleição'}</h1>*/}
+            {/*</StyledContainer>*/}
 
-            <StyledContainer style={{ width: '500px', padding: '40px' }}>
+            <StyledContainer style={{ width: '800px', padding: '40px', margin: '20px auto' }}>
                 <h2>Selecione a sua opção:</h2>
                 <BallotForm
                     parties={parties}
