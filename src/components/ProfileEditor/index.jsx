@@ -37,15 +37,18 @@ const ProfileEditor = ({currentImage, onSave}) => {
                         </button>
                         <h3>Escolher nova imagem</h3>
                         <div className="image-gallery">
-                            {imageOptions.map((img, value) => (
-                                <img
-                                    key={index}
-                                    src={img}
-                                    className={`gallery-image ${selectedImage === img ? "selected" : ""}`}
-                                    onClick={() => setSelectedImage(img)}
-                                    alt={`Option ${index}`}
-                                />
-                            ))}
+                            {imageOptions.map((img, value) => {
+                                console.log("image", img);
+                                return (
+                                    <img
+                                        key={value}
+                                        src={img}
+                                        className={`gallery-image ${selectedImage === img ? "selected" : ""}`}
+                                        onClick={() => setSelectedImage(img)}
+                                        alt={`Option ${value}`}
+                                    />
+                                );
+                            })}
                         </div>
                         <button className="save-button" onClick={handleSave}>Guardar</button>
                     </div>

@@ -20,7 +20,7 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
     const [chartData, setChartData] = useState(null);
     const [districts, setDistricts] = useState([]);
     const [selectedDistrict, setSelectedDistrict] = useState("");
-    const [year, setYear] = useState("");
+    const [year, setYear] = useState("2021");
     const years = ["2021", "2022", "2023", "2024","2025", "2026"];
     const yearNames = {
         "2021": "Eleições Legislativas 2021",
@@ -93,7 +93,6 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
                 console.error("Erro", e);
             }
         };
-
 
         data();
 
