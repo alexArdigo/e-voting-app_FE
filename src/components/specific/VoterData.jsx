@@ -34,8 +34,8 @@ const VoterData = () => {
                     <div className="info-column">
                         <p><strong>Concelho:</strong> {user?.municipality?.municipalityName}</p>
                         <p><strong>Freguesia:</strong> {user?.parish?.parishName}</p>
-                        <p><strong>Elegível:</strong> {user?.eligible ? "Sim" : "Não"}</p>
-                        <p><strong>Verificado:</strong> {user?.verified ? "Sim" : "Não"}</p>
+                        <p><strong>Elegível:</strong> Sim</p>
+                        <p><strong>Verificado:</strong> Sim</p>
                     </div>
                 </div>
                 <div className="confirmation">
