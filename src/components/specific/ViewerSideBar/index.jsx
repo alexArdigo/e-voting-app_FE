@@ -41,7 +41,7 @@ const ViewerSideBar = () => {
 
     return (
         <div className="sidebar-container" style={{
-            width: sidebarOpen ? "25vw" : "0",
+            width: sidebarOpen ? "20vw" : "0",
             transition: "width 0.3s, padding 0.3s",
             backgroundColor: "rgb(181, 201, 181)"
         }}>
