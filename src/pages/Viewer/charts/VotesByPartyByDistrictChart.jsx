@@ -20,8 +20,7 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
     const [chartData, setChartData] = useState(null);
     const [districts, setDistricts] = useState([]);
     const [selectedDistrict, setSelectedDistrict] = useState("");
-    const [year, setYear] = useState("2021");
-    // const useParams = Viewer.useParams();
+    const [year, setYear] = useState("");
     const [years, setYears] = useState([]);
     const [yearNames, setYearNames] = useState({});
 
@@ -51,26 +50,34 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
                 const districtResponse = await api.get("/districts");
                 const districts = districtResponse.data;
                 const districtNames = districts.map(district => district.districtName);
+                setDistricts(districtNames);
+                if (!selectedDistrict && districtNames.length > 0) {
+                    setSelectedDistrict(districtNames[0]);
+                }
+
 
                 //LEGISLATIVES
                 const legislativeResponse = await api.get("/elections/legislative");
                 const legislatives = legislativeResponse.data;
-                const legislativeNames = legislatives.map(legislative => legislative.name);
-                /////////////////////
-                const legislativeYears = legislatives.map(legislative => legislative.startDate); //é um local date time
+
+                const legislativeName = {};
+                const legislativeYears = [];
+
+                legislatives.forEach(legislative => {
+                    const year = legislative.startDate.slice(0, 4);
+                    legislativeYears.push(year);
+                    legislativeName[year] = legislative.name;
+                });
+
                 setYears(legislativeYears);
-                setYearNames(legislativeNames);
+                setYearNames(legislativeName);
 
-                // const yearNamesObj = {};
-                // legislatives.forEach(legislative => {
-                //     const year = legislative.startDate.slice(0, 4);
-                //     yearNamesObj[year] = legislative.name;
-                // });
-                // setYearNames(yearNamesObj);
+                if (!year && legislativeYears.length > 0) {
+                    setYear(legislativeYears[0]);
+                }
 
 
-                setDistricts(districtNames);
-
+                if (!year) return;
                 const voteCounts = [];
 
                 for (const party of partyNames) {

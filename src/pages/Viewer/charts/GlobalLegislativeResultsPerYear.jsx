@@ -15,15 +15,10 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const GlobalLegislativeResultsPerYear = () => {
     const [chartData, setChartData] = useState(null);
+
     const [year, setYear] = useState("");
-    const yearNames = {
-        "2021": "Eleições Legislativas 2021",
-        "2022": "Eleições Legislativas 2022",
-        "2023": "Eleições Legislativas 2023",
-        "2024": "Eleições Legislativas 2024",
-        "2025": "Eleições Legislativas 2025",
-        "2026": "Eleições Legislativas 2026"
-    };
+    const [years, setYears] = useState([]);
+    const [yearNames, setYearNames] = useState({});
 
     const config = {
         indexAxis: 'y',
@@ -41,7 +36,32 @@ const GlobalLegislativeResultsPerYear = () => {
                 const organisations = orgResponse.data;
                 const partyNames = [... new Set(organisations.map(org => org.organisationName))];
 
+
+
+                //LEGISLATIVES YEARS
+                const legislativeResponse = await api.get("/elections/legislative");
+                const legislatives = legislativeResponse.data;
+
+                const legislativeName = {};
+                const legislativeYears = [];
+
+                legislatives.forEach(legislative => {
+                    const year = legislative.startDate.slice(0, 4);
+                    legislativeYears.push(year);
+                    legislativeName[year] = legislative.name;
+                });
+
+                setYears(legislativeYears);
+                setYearNames(legislativeName);
+
+                if (!year && legislativeYears.length > 0) {
+                    setYear(legislativeYears[0]);
+                }
+
+                if (!year) return;
                 const voteCounts = [];
+
+
 
                 for (const party of partyNames) {
                     try {
