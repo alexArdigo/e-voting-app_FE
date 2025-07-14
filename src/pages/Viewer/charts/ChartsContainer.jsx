@@ -8,7 +8,7 @@ import Districts from "../../../components/specific/Map/Districts";
 
 export const charts = [
     { type: "votesByParty", name: "Votos por Partido", component: VotesByPartyByDistrictChart },
-    { type: "results", name: "Resultados Legislativas Globais", component: Results },
+    { type: "results", name: "Mapa de Resultados Legislativas Globais", component: Results },
     { type: "globalLegislativeResults", name: "Resultados Legislativas Globais", component: GlobalLegislativeResultsPerYear },
     { type: "assemblySeats", name: "Lugares Assembleia da República", component: ElectoralSeats }
 ];
