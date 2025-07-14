@@ -42,11 +42,12 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    height: 60px;
-    width: 350px;
-    border-radius: 10px;
+    height: 50px;
+    width: 320px;
+    border-radius: 2px;
     background-color: #3C5DBC;
-    padding-block: 20px;
+    padding: 30px 24px;
+    box-sizing: border-box;
 }
 
 .home-button {
@@ -133,7 +134,7 @@
 .auth-container {
     display: flex;
     align-items: center;
-    min-height: 70vh;
+    min-height: 65vh;
     padding: 40px;
     gap: 60px;
     max-width: 1000px;
