@@ -5,8 +5,21 @@ import concelhosZonas from "./data/concelhos_zonas.json";
 
 const LegislativeResultsMap = ({ electionId }) => {
     const [districtColors, setDistrictColors] = useState({});
+    const [electoralCircleIds, setElectoralCircleIds] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+
+    useEffect(() => {
+        const fetchElectoralCircleIds = async () => {
+            try {
+                const { data } = await api.get(`/elections/legislative/${electionId}electoral-circle`);
+                setElectoralCircleIds(data);
+            } catch (err) {
+                setError("Erro ao carregar círculos eleitorais.");
+            }
+        };
+        if (electionId) fetchElectoralCircleIds();
+    }, [electionId]);
 
     useEffect(() => {
         const fetchResults = async () => {
@@ -41,4 +54,3 @@ const LegislativeResultsMap = ({ electionId }) => {
 };
 
 export default LegislativeResultsMap;
-
