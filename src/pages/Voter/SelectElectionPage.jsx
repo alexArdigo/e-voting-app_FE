@@ -60,7 +60,7 @@ const SelectElectionPage = () => {
 
     return (
         <MainLayout>
-            <div className="steps-container" style={{width: "60vw", marginInline: "auto"}}>
+            <div className="steps-container" style={{width: "60vw", marginInline: "auto", minHeight: "100vh"}}>
                 <h1 style={{fontSize: "25px"}}>Selecione uma eleição:</h1>
                 {loadingData ? (
                     <p>A carregar...</p>
