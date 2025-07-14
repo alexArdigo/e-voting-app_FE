@@ -8,6 +8,8 @@ import Results from "../Results";
 export const charts = [
     { type: "votesByParty", name: "Votos por Partido", mapComp: Results, chartComp: VotesByPartyByDistrictChart },
     { type: "globalLegislativeResults", name: "Resultados Legislativas Globais", mapComp: Results, chartComp: GlobalLegislativeResultsPerYear },
+    { type: "globalLegislativeResults", name: "Resultados Legislativas Globais", mapComp: Results, chartComp: GlobalLegislativeResultsPerYear },
+    { type: "globalLegislativeResults", name: "Resultados Legislativas Globais", mapComp: Results, chartComp: GlobalLegislativeResultsPerYear },
     { type: "assemblySeats", name: "Lugares Assembleia da República", mapComp: Results, chartComp: ElectoralSeats }
 ];
 

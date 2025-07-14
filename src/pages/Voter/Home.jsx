@@ -17,6 +17,7 @@ const Home = () => {
                 />
                 <button
                     className="home-button"
+                    style={{marginBlock:"-30px"}}
                     onClick={() => {
                         window.scrollTo({top: 0, behavior: 'smooth'});
                         navigate("/instructions");
@@ -28,7 +29,7 @@ const Home = () => {
             {user?.id ? "" : <div className={"login-button-wrapper"}>
                 <h5>Não é eleitor?</h5>
                 <button
-                    type="button"
+                    className="header-button"
                     onClick={() => {
                         window.scrollTo({top: 0, behavior: 'smooth'});
                         navigate("/login");
