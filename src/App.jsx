@@ -30,7 +30,6 @@ import PendingAuthorizations from "./pages/Admin/Dashboard/PendingAuthorizations
 import ErrorBoundary from "./components/common/ErrorBoundary";
 import PartyEdit from "./pages/Admin/PartyFormContainer/PartyEdit";
 import PartyList from "./pages/Admin/PartyFormContainer/PartyList";
-import Results from "./pages/Viewer/Results";
 import AdminDashboard from "./pages/Admin/Dashboard/AdminDashboard";
 import ViewerDashboard from "./pages/Viewer/ViewerDashboard";
 
@@ -61,7 +60,6 @@ function App() {
                             <Route path="/submitted" element={<ProtectedRoute><VoteSubmittedPage/></ProtectedRoute>}/>
 
                             {/* Party form */}
-                            <Route path="/party-form" element={<ProtectedRoute><PartyAdd/></ProtectedRoute>}/>
 
 
                             {/* Help and Contact Routes */}
@@ -88,6 +86,7 @@ function App() {
                                 <Route path="edit/parties" element={<PartyList/>}/>
                                 <Route path="edit/parties/:id" element={<PartyEdit/>}/>
                                 <Route path="add/party" element={<PartyAdd/>}/>
+                                <Route path="party-form" element={<PartyAdd/>}/>
                             </Route>
 
 

@@ -52,18 +52,7 @@ export default function Results() {
             <div className="results-main">
                 <h1 className="results-title">Resultados legislativas</h1>
                 <div className="map-view-toggle">
-                    <button
-                        onClick={() => setMapView("districts")}
-                        className={mapView === "districts" ? "active" : ""}
-                    >
-                        Ver por Distritos
-                    </button>
-                    <button
-                        onClick={() => setMapView("municipalities")}
-                        className={mapView === "municipalities" ? "active" : ""}
-                    >
-                        Ver por Municípios
-                    </button>
+
                 </div>
                 <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
                     <div>

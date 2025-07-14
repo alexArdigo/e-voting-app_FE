@@ -6,11 +6,10 @@ import './charts.css';
 import Results from "../Results";
 
 export const charts = [
-    { type: "votesByParty", name: "Votos por Partido", mapComp: Results, chartComp: VotesByPartyByDistrictChart },
-    { type: "globalLegislativeResults", name: "Resultados Legislativas Globais", mapComp: Results, chartComp: GlobalLegislativeResultsPerYear },
-    { type: "globalLegislativeResults", name: "Resultados Legislativas Globais", mapComp: Results, chartComp: GlobalLegislativeResultsPerYear },
-    { type: "globalLegislativeResults", name: "Resultados Legislativas Globais", mapComp: Results, chartComp: GlobalLegislativeResultsPerYear },
-    { type: "assemblySeats", name: "Lugares Assembleia da República", mapComp: Results, chartComp: ElectoralSeats }
+    { type: "votesByParty", name: "Votos por Partido", component: VotesByPartyByDistrictChart },
+    { type: "results", name: "Resultados Legislativas Globais", component: Results },
+    { type: "globalLegislativeResults", name: "Resultados Legislativas Globais", component: GlobalLegislativeResultsPerYear },
+    { type: "assemblySeats", name: "Lugares Assembleia da República", component: ElectoralSeats }
 ];
 
 const ChartsContainer = ({ active }) => {
@@ -21,8 +20,7 @@ const ChartsContainer = ({ active }) => {
                 .map((chart, index) => (
                     <div key={index} className="chart-block">
                         <h2 className="chart-title">{chart.name}</h2>
-                        {React.createElement(chart.mapComp)}
-                        {React.createElement(chart.chartComp)}
+                        {React.createElement(chart.component)}
                     </div>
                 ))}
         </div>

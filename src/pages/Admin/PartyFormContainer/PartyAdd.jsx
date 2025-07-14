@@ -1,10 +1,8 @@
-import React, {useReducer, useState} from 'react';
+import React, {useReducer} from 'react';
 import MainLayout from "../../../layouts/MainLayout";
 import PartyFormContainer from "./index";
 import {initialInputs, inputsReducer} from "./reducer";
 import {useNavigate} from "react-router-dom";
-import api from "../../../services/api";
-import AdminDashboard from "../Dashboard/AdminDashboard";
 import PartyService from "../../../services/PartyService";
 
 function mapPartytoInputs(party) {

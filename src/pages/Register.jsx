@@ -6,8 +6,6 @@ import MainLayout from "../layouts/MainLayout";
 import {toast} from "react-toastify";
 
 
-
-
 const Register = () => {
 
     const [username, setUsername] = useState("");
