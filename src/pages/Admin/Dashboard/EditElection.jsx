@@ -58,7 +58,7 @@ const EditElection = ({election, isOpen, onClose, onUpdate}) => {
 
         try {
             setLoading(true);
-            const dataToSend = { ...formData };
+            const dataToSend = {...formData};
             if (formData.electionType === "LEGISLATIVE") {
                 dataToSend.endDate = null;
             }
@@ -144,19 +144,17 @@ const EditElection = ({election, isOpen, onClose, onUpdate}) => {
                                     />
                                 </div>
 
-                                {formData.electionType === "PRESIDENTIAL" && (
-                                    <div className="form-group">
-                                        <label htmlFor="endDate">Data de Fim *</label>
-                                        <input
-                                            type="datetime-local"
-                                            id="endDate"
-                                            name="endDate"
-                                            value={formData.endDate}
-                                            onChange={handleChange}
-                                            required
-                                        />
-                                    </div>
-                                )}
+                                <div className="form-group">
+                                    <label htmlFor="endDate">Data de Fim *</label>
+                                    <input
+                                        type="datetime-local"
+                                        id="endDate"
+                                        name="endDate"
+                                        value={formData.endDate}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </div>
                             </div>
                         </div>
 
