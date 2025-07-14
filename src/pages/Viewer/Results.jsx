@@ -107,13 +107,6 @@ export default function Results() {
                         </div>
 
                         <div className="stat-item">
-                            <span className="stat-label">Votos nulos:</span>
-                            <span className="stat-value">
-                                {formatNumber(resultsData.nullVotes || 0)}
-                            </span>
-                        </div>
-
-                        <div className="stat-item">
                             <span className="stat-label">Votos brancos:</span>
                             <span className="stat-value">
                                 {formatNumber(resultsData.blankVotes || 0)}
