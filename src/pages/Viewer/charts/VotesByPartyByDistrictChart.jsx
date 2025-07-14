@@ -21,16 +21,9 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
     const [districts, setDistricts] = useState([]);
     const [selectedDistrict, setSelectedDistrict] = useState("");
     const [year, setYear] = useState("2021");
-    const years = ["2021", "2022", "2023", "2024","2025", "2026"];
-    const yearNames = {
-        "2021": "Eleições Legislativas 2021",
-        "2022": "Eleições Legislativas 2022",
-        "2023": "Eleições Legislativas 2023",
-        "2024": "Eleições Legislativas 2024",
-        "2025": "Eleições Legislativas 2025",
-        "2026": "Eleições Legislativas 2026"
-    };
-
+    // const useParams = Viewer.useParams();
+    const [years, setYears] = useState([]);
+    const [yearNames, setYearNames] = useState({});
 
 
     const config = {
@@ -58,6 +51,23 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
                 const districtResponse = await api.get("/districts");
                 const districts = districtResponse.data;
                 const districtNames = districts.map(district => district.districtName);
+
+                //LEGISLATIVES
+                const legislativeResponse = await api.get("/elections/legislative");
+                const legislatives = legislativeResponse.data;
+                const legislativeNames = legislatives.map(legislative => legislative.name);
+                /////////////////////
+                const legislativeYears = legislatives.map(legislative => legislative.startDate); //é um local date time
+                setYears(legislativeYears);
+                setYearNames(legislativeNames);
+
+                // const yearNamesObj = {};
+                // legislatives.forEach(legislative => {
+                //     const year = legislative.startDate.slice(0, 4);
+                //     yearNamesObj[year] = legislative.name;
+                // });
+                // setYearNames(yearNamesObj);
+
 
                 setDistricts(districtNames);
 
