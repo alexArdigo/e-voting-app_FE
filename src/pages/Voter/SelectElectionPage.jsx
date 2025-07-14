@@ -10,6 +10,11 @@ import {
 } from "../../services/ElectionService";
 import { useUserContext } from "../../services/UserContext";
 
+const matchDistrict = (electionName, districtName) => {
+    if (!electionName || !districtName) return false;
+    return electionName.split(' - ').pop().toLowerCase() === districtName.toLowerCase();
+};
+
 const SelectElectionPage = () => {
     const navigate = useNavigate();
     const { user } = useUserContext();
@@ -57,7 +62,6 @@ const SelectElectionPage = () => {
         });
     };
 
-
     return (
         <MainLayout>
             <div className="steps-container" style={{width: "60vw", marginInline: "auto", minHeight: "100vh"}}>
@@ -70,7 +74,7 @@ const SelectElectionPage = () => {
                             .filter(e =>
                                 e.electionType === 'PRESIDENTIAL' ||
                                 (e.electionType === 'LEGISLATIVE' &&
-                                    e.name.toLowerCase().trim() === user.district.districtName.toLowerCase().trim())
+                                    matchDistrict(e.name, user.district.districtName))
                             )
                             .map((election) => (
                                 <div key={election.id} className={"step"} style={{
@@ -108,7 +112,7 @@ const SelectElectionPage = () => {
                             .filter(e =>
                                 e.electionType === 'PRESIDENTIAL' ||
                                 (e.electionType === 'LEGISLATIVE' &&
-                                    e.name.toLowerCase().includes(user.district.districtName.toLowerCase()))
+                                    matchDistrict(e.name, user.district.districtName))
                             )
                             .map((election) => (
                                 <div className={"step"} key={election.id}>

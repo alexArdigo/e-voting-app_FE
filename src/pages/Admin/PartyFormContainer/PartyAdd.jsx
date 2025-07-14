@@ -118,7 +118,9 @@ const PartyAdd = ({party}) => {
                     form={form}
                     handleChange={handleChange}/>
 
+                <div className={"button-wrapper"}>
                 <button type="submit">{'Submeter'}</button>
+                </div>
             </form>
         </MainLayout>
     );

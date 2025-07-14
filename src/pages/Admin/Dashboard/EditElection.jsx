@@ -59,9 +59,6 @@ const EditElection = ({election, isOpen, onClose, onUpdate}) => {
         try {
             setLoading(true);
             const dataToSend = {...formData};
-            if (formData.electionType === "LEGISLATIVE") {
-                dataToSend.endDate = null;
-            }
 
             if (election.electionType === "PRESIDENTIAL") {
                 await updatePresidentialElection(election.id, dataToSend);

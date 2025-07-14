@@ -62,7 +62,9 @@ const VoteSubmittedPage = () => {
         return () => clearInterval(timer);
     }, [showSuccess, navigate]);
 
-    const handleManualRedirect = () => {
+    const handleManualRedirect = async () => {
+        await api.get("/logout");
+        setUser(null);
         navigate("/", {replace: true});
     };
 
