@@ -108,7 +108,7 @@ const LegislativeResultsMap = ({electionId}) => {
     return (
         <>
             <Districts districtColors={districtColors}/>
-            <Islands districtColors={islandColors}/>
+            <Islands islandColors={islandColors}/>
         </>
     )
 };

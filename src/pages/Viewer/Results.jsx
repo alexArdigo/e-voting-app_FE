@@ -1,20 +1,18 @@
 import {useState, useEffect} from "react";
-import {useUserContext} from "../../services/UserContext";
-import {useNavigate} from "react-router-dom";
+
 import api from "../../services/api";
 import LegislativeResultsMap from "../../components/specific/Map/LegislativeResultsMap";
 import Municipalities from "../../components/specific/Map/municipalities";
-import Islands from "../../components/specific/Map/Islands";
+
 import "./css/Results.css";
 
 export default function Results() {
-    const {logout} = useUserContext();
-    const navigate = useNavigate();
+
     const [selectedDistrict, setSelectedDistrict] = useState(null);
     const [resultsData, setResultsData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [mapView, setMapView] = useState("districts"); // "districts" ou "municipalities"
+    const [mapView, setMapView] = useState("districts");
 
     const [electionId, setElectionId] = useState(1);
 
@@ -36,14 +34,6 @@ export default function Results() {
         }
     };
 
-    const handleDistrictClick = (districtId) => {
-        setSelectedDistrict(districtId);
-    };
-
-    const handleLogout = () => {
-        logout();
-        navigate("/");
-    };
 
     const formatNumber = (number) => {
         return new Intl.NumberFormat('pt-PT').format(number);

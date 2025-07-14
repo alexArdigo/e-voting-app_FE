@@ -1,19 +1,19 @@
 import {useEffect, useRef} from "react";
 
 const Islands = (props) => {
-    const { districtColors = {} } = props;
+    const { islandColors = {} } = props;
     const svgRef = useRef();
 
 
     useEffect(() => {
-        if (districtColors) {
+        if (islandColors) {
 
             const allPaths = svgRef.current.querySelectorAll('path[data-z]');
             allPaths.forEach(path => {
                 path.setAttribute("fill", "#e0e0e0");
             });
 
-            Object.entries(districtColors).forEach(([zone_id, color]) => {
+            Object.entries(islandColors).forEach(([zone_id, color]) => {
                 const path = svgRef.current.querySelector(`path[data-z="${zone_id}"]`);
                 if (path) {
                     path.setAttribute("fill", color);
@@ -24,7 +24,7 @@ const Islands = (props) => {
                 }
             });
         }
-    }, [districtColors]);
+    }, [islandColors]);
 
     return (
         <svg ref={svgRef} width="250" height="500" viewBox="0 0 6063 8673">
