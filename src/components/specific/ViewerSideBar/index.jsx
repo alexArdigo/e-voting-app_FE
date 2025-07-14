@@ -32,7 +32,7 @@ const ViewerSideBar = () => {
             toast.success("Perfil atualizado com sucesso!");
         } catch (error) {
             console.error("Erro ao atualizar perfil:", error);
-            toast.error("Erro ao atualizar perfil.");
+            toast.error("Nome de utilizador já existe ou erro ao atualizar perfil.");
         }
     };
 
@@ -98,7 +98,7 @@ const ViewerSideBar = () => {
                                 <label><strong>Instituição:</strong>
                                     <input type="text" value={editedInstitution} onChange={(e) => setEditedInstitution(e.target.value)} />
                                 </label>
-                                <label><strong>Email (Username):</strong>
+                                <label><strong>Username:</strong>
                                     <input type="text" value={editedUsername} onChange={(e) => setEditedUsername(e.target.value)} />
                                 </label>
                                 <button className="save" onClick={handleSave}>Guardar</button>
