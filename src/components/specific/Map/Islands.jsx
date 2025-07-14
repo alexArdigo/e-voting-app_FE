@@ -1,16 +1,30 @@
 import {useEffect, useRef} from "react";
 
 const Islands = (props) => {
+    const { districtColors = {} } = props;
     const svgRef = useRef();
 
 
     useEffect(() => {
-        if (svgRef.current) {
-            const zone_id = 367; //lagos
-            const path = svgRef.current.querySelector(`path[data-z="${zone_id}"]`);
-            path.setAttribute("fill", "red");
+        if (svgRef.current && districtColors) {
+
+            const allPaths = svgRef.current.querySelectorAll('path[data-z]');
+            allPaths.forEach(path => {
+                path.setAttribute("fill", "#e0e0e0");
+            });
+
+            Object.entries(districtColors).forEach(([zone_id, color]) => {
+                const path = svgRef.current.querySelector(`path[data-z="${zone_id}"]`);
+                if (path) {
+                    path.setAttribute("fill", color);
+                    path.setAttribute("stroke", "#ffffff");
+                    path.setAttribute("stroke-width", "2");
+                } else {
+                    console.warn(`Path não encontrado para zona ID: ${zone_id}`);
+                }
+            });
         }
-    }, [svgRef.current]);
+    }, [districtColors]);
 
     return (
         <svg width="250" height="500" viewBox="0 0 6063 8673">
