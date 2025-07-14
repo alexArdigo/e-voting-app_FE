@@ -3,8 +3,8 @@ import {useUserContext} from "./UserContext.jsx";
 import {Navigate, useLocation} from "react-router-dom";
 
 
-const ProtectedRoute = ({children}) => {
-    const {user, loading} = useUserContext();
+const AdminRoute = ({children}) => {
+    const {user, loading, isAdmin} = useUserContext();
     const location = useLocation();
 
 
@@ -16,9 +16,13 @@ const ProtectedRoute = ({children}) => {
         return <Navigate to="/" replace={true} state={{ from: location }} />;
     }
 
+    if (!isAdmin()) {
+        return <Navigate to="/" replace={true} state={{ from: location }} />;
+    }
+
     return cloneElement(children, {
         locationState: location.state
     });
 };
 
-export default ProtectedRoute;
+export default AdminRoute;

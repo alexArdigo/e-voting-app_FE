@@ -58,9 +58,33 @@ const UserProvider = ({children}) => {
         }
     };
 
+    const hasRole = (role) => {
+        if (!user) return false;
+
+        if (user.role) {
+            return user.role === role;
+        }
+
+        return false;
+    };
+
+    const isAdmin = () => hasRole('ADMIN');
+
+    const isViewer = () => hasRole('VIEWER');
+
     return (
-        <UserContext.Provider value={{user, setUser, loading, logout, isVoting, setIsVoting}}>
-             {loading ? <div>Loading</div> : children}
+        <UserContext.Provider value={{
+            user,
+            setUser,
+            loading,
+            logout,
+            isVoting,
+            setIsVoting,
+            hasRole,
+            isAdmin,
+            isViewer
+        }}>
+            {loading ? <div>Loading</div> : children}
         </UserContext.Provider>
     );
 };

@@ -3,8 +3,8 @@ import {useUserContext} from "./UserContext.jsx";
 import {Navigate, useLocation} from "react-router-dom";
 
 
-const ProtectedRoute = ({children}) => {
-    const {user, loading} = useUserContext();
+const ViewerRoute = ({children}) => {
+    const {user, loading, isViewer} = useUserContext();
     const location = useLocation();
 
 
@@ -16,9 +16,13 @@ const ProtectedRoute = ({children}) => {
         return <Navigate to="/" replace={true} state={{ from: location }} />;
     }
 
+    if (!isViewer()) {
+        return <Navigate to="/" replace={true} state={{ from: location }} />;
+    }
+
     return cloneElement(children, {
         locationState: location.state
     });
 };
 
-export default ProtectedRoute;
+export default ViewerRoute;
