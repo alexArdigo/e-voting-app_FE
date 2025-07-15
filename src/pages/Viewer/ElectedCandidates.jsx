@@ -59,7 +59,6 @@ export default function ElectedCandidates() {
         return new Intl.NumberFormat('pt-PT').format(number);
     };
 
-    // Agrupar candidatos por partido
     const groupedByParty = electedCandidatesData.reduce((acc, candidate) => {
         const party = candidate.organisationName;
         if (!acc[party]) {
@@ -69,7 +68,6 @@ export default function ElectedCandidates() {
         return acc;
     }, {});
 
-    // Agrupar candidatos por distrito
     const groupedByDistrict = electedCandidatesData.reduce((acc, candidate) => {
         const district = candidate.districtName;
         if (!acc[district]) {
@@ -113,7 +111,6 @@ export default function ElectedCandidates() {
                     </div>
                 ) : (
                     <div className="candidates-content">
-                        {/* Lista por distrito */}
                         <div className="district-section">
                             <h2>Candidatos por Distrito</h2>
                             {Object.keys(groupedByDistrict).length > 0 ? (
