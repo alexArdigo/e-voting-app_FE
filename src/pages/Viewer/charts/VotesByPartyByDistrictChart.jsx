@@ -11,7 +11,6 @@ import {
     Legend
 } from "chart.js";
 import api from "../../../services/api";
-import Viewer from "../Viewer";
 import {getLegislativeElections} from "../../../services/ElectionService";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);

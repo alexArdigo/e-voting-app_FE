@@ -13,6 +13,7 @@ import {
     ArcElement
 } from "chart.js";
 import api from "../../../services/api";
+import {getLegislativeElections} from "../../../services/ElectionService";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, DoughnutController, ArcElement);
 
 
@@ -29,8 +30,7 @@ const ElectoralSeats = () => {
         const fetchData = async () => {
             try {
 
-                const legislativeResponse = await api.get("/elections/legislative");
-                const legislatives = legislativeResponse.data;
+                const legislatives = await getLegislativeElections(null, false);
 
                 const legislativeName = {};
                 const legislativeYears = [];

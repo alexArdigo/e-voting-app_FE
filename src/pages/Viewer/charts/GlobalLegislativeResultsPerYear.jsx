@@ -10,6 +10,7 @@ import {
     Legend
 } from "chart.js";
 import api from "../../../services/api";
+import {getLegislativeElections} from "../../../services/ElectionService";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -39,8 +40,7 @@ const GlobalLegislativeResultsPerYear = () => {
 
 
                 //LEGISLATIVES YEARS
-                const legislativeResponse = await api.get("/elections/legislative");
-                const legislatives = legislativeResponse.data;
+                const legislatives = await getLegislativeElections(null, false);
 
                 const legislativeName = {};
                 const legislativeYears = [];
