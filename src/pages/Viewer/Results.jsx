@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 
 import { useElections } from "../../hooks/useElections";
 import { useLegislativeResults } from "../../hooks/useLegislativeResults";
+import { useVoteCalculations } from "../../hooks/useVoteCalculations";
 import LegislativeResultsMap from "../../components/specific/Map/LegislativeResultsMap";
 import Municipalities from "../../components/specific/Map/municipalities";
 
@@ -12,6 +13,7 @@ export default function Results() {
     const [selectedDistrict, setSelectedDistrict] = useState(null);
     const { allLegisElections, loading: electionsLoading, error: electionsError } = useElections();
     const { resultsData, partyWins, loading, error, fetchLegislativeResults } = useLegislativeResults();
+    const { calculateAbstention, calculateBlankVotesPercentage } = useVoteCalculations();
     const [mapView, setMapView] = useState("districts");
     const [electionId, setElectionId] = useState(1);
 
@@ -21,23 +23,6 @@ export default function Results() {
 
     const formatNumber = (number) => {
         return new Intl.NumberFormat('pt-PT').format(number);
-    };
-
-    const calculateAbstention = () => {
-        if (!resultsData) return "0%";
-        const total = resultsData?.totalVotes || 0;
-        const abstention = resultsData?.abstention || 0;
-        const percentage = total > 2500 ? ((abstention / (total + abstention)) * 100).toFixed(2) : 0;
-        return `${percentage}%`;
-    };
-
-    const calculateBlankVotesPercentage = () => {
-        if (!resultsData) return "0%";
-        const total = resultsData?.totalVotes || 0;
-        const blankVotes = resultsData?.blankVotes || 0;
-        if (total === 0) return "0%";
-        const percentage = ((blankVotes / total) * 100).toFixed(2);
-        return `${percentage}%`;
     };
 
     return (
@@ -93,14 +78,14 @@ export default function Results() {
                         <div className="stat-item">
                             <span className="stat-label">Votos brancos:</span>
                             <span className="stat-value">
-                                {formatNumber(resultsData.blankVotes || 0)} ({calculateBlankVotesPercentage()})
+                                {formatNumber(resultsData.blankVotes || 0)} ({calculateBlankVotesPercentage(resultsData)})
                             </span>
                         </div>
 
                         <div className="stat-item">
                             <span className="stat-label">Abstenção:</span>
                             <span className="stat-value stat-percentage">
-                                {calculateAbstention()}
+                                {calculateAbstention(resultsData)}
                             </span>
                         </div>
 
