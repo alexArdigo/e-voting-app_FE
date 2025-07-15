@@ -16,10 +16,12 @@ export default function Results() {
     const [mapView, setMapView] = useState("districts");
 
     const [electionId, setElectionId] = useState(1);
+    const [partyWins, setPartyWins] = useState([]);
 
     useEffect(() => {
         fetchAllNonActiveLegislativeElections();
         fetchElectionResults();
+        fetchLegislativeResults();
     }, [electionId]);
 
     const fetchAllNonActiveLegislativeElections = async () => {
@@ -51,6 +53,38 @@ export default function Results() {
         }
     };
 
+    const fetchLegislativeResults = async () => {
+        try {
+            const {data} = await api.get(`/Elections/${electionId}/results/legislative`);
+
+            const wins = [];
+
+            data.forEach((district) => {
+
+                if (!district.results || district.results.length === 0) {
+                    console.warn(`Distrito ${district.districtName} sem resultados`);
+                    return;
+                }
+
+                const sorted = [...district.results].sort((a, b) => b.votes - a.votes);
+                const winner = sorted[0];
+
+                if (winner.color) {
+                    wins.push({
+                        district: district.districtName,
+                        party: winner.organisationName || 'Partido Desconhecido',
+                        color: winner.color,
+                        votes: winner.votes
+                    });
+                } else {
+                }
+            });
+
+            setPartyWins(wins);
+        } catch (err) {
+            console.error("Erro ao buscar vencedores por distrito:", err);
+        }
+    };
 
     const formatNumber = (number) => {
         return new Intl.NumberFormat('pt-PT').format(number);
@@ -126,6 +160,29 @@ export default function Results() {
                             <span className="stat-value stat-percentage">
                                 {calculateAbstention()}
                             </span>
+                        </div>
+
+                        <div className="party-wins-section">
+                            <h3 className="party-wins-title">Partidos Vencedores por Distrito</h3>
+                            <div className="party-wins-list">
+                                {partyWins.length > 0 ? (
+                                    partyWins.map((win, index) => (
+                                        <div key={index} className="party-win-item">
+                                            <div
+                                                className="party-color"
+                                                style={{backgroundColor: win.color}}
+                                            ></div>
+                                            <span className="party-name">{win.party}</span>
+                                            <span className="district-name">{win.district}</span>
+                                            <span className="vote-count">{formatNumber(win.votes)} votos</span>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <div className="loading-container">
+                                        <p>Nenhum dado de partidos vencedores disponível</p>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </>
                 ) : (
