@@ -49,7 +49,11 @@ const ConfirmElectionPage = () => {
                 </h1>
 
                 <div className="confirm-warning-box">
-                    <p><strong>Atenção!</strong> Ao clicar em "Votar", será redirecionado para o seu boletim de voto. Terá <strong>5 minutos</strong> para submeter o seu voto.</p>
+                    <p>
+                        <strong>Atenção!</strong> Ao clicar em "Votar", será redirecionado para o seu boletim de voto.
+                        Após essa página, não poderá terminar a sua sessão e terá <strong>5 minutos</strong> para submeter o seu voto.
+                        Caso não o faça, o seu voto será considerado nulo/branco.
+                    </p>
                 </div>
 
                 <label className="confirm-checkbox-label">
