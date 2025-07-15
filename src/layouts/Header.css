@@ -27,7 +27,7 @@ li {
     height: 1px;
     width: 0;
     background: #fff;
-    transition: width 0.3s;
+    transition: width 0.5s;
     bottom: -4px;
 
 }
