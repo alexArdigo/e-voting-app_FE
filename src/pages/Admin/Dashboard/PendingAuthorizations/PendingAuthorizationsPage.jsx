@@ -68,12 +68,13 @@ const PendingAuthorizationsPage = () => {
         <>
             <div className="admin-container">
                 <h1>Lista de Utilizadores a Aguardar Aprovação</h1>
-                <p>Aprove o utilizador no sistema</p>
             </div>
             <div className="dflx">
-                <StyledContainer style={{width: "20vw", marginRight: "50px"}}>
-                    <h1>Pendentes de Aprovação</h1>
+                <StyledContainer variant="transparent" style={{width: "20vw", marginRight: "50px"}}>
+                    <div className="admin-container">
+                    <h2>Pendentes de Aprovação</h2>
                     <p>Lista de utilizadores pendentes de aprovação:</p>
+                    </div>
                     <input
                         type="text"
                         placeholder="Pesquisar utilizador..."
@@ -92,9 +93,11 @@ const PendingAuthorizationsPage = () => {
                         ))}
                     </ul>
                 </StyledContainer>
-                <StyledContainer style={{width: "20vw"}}>
-                    <h1>Remover utilizador</h1>
+                <StyledContainer variant="transparent" style={{width: "20vw"}}>
+                    <div className="admin-container">
+                    <h2>Remover utilizador</h2>
                     <p>Lista de utilizadores aprovados:</p>
+                    </div>
                     <input
                         type="text"
                         placeholder="Pesquisar utilizador..."
