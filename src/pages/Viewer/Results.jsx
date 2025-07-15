@@ -41,13 +41,30 @@ export default function Results() {
                                 return <option key={election.id} value={election.id}>{election.name}</option>
                             })
                         }
-
                     </select>
                 </div>
+
+                <div className="view-toggle-buttons">
+                    <button
+                        className={`view-toggle-btn ${mapView === "districts" ? "active" : ""}`}
+                        onClick={() => setMapView("districts")}
+                    >
+                        Mapa por Distritos
+                    </button>
+                    <button
+                        className={`view-toggle-btn ${mapView === "municipalities" ? "active" : ""}`}
+                        onClick={() => setMapView("municipalities")}
+                    >
+                        Mapa por Municípios
+                    </button>
+                </div>
+
                 <div style={{display: 'flex', gap: '2rem', alignItems: 'flex-start'}}>
                     <div>
-                        {mapView === "districts" ? <LegislativeResultsMap electionId={electionId}/> :
-                            <Municipalities districtId={selectedDistrict}/>}
+                        {mapView === "districts" ?
+                            <LegislativeResultsMap electionId={electionId}/> :
+                            <Municipalities districtId={selectedDistrict}/>
+                        }
                     </div>
                 </div>
             </div>

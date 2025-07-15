@@ -298,6 +298,38 @@
     flex-shrink: 0;
 }
 
+.view-toggle-buttons {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    justify-content: center;
+}
+
+.view-toggle-btn {
+    background: #f0f0f0;
+    color: #333;
+    border: 2px solid #ddd;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 160px;
+}
+
+.view-toggle-btn:hover {
+    background: #e0e0e0;
+    border-color: #bbb;
+}
+
+.view-toggle-btn.active {
+    background: #3C5DBC;
+    color: white;
+    border-color: #3C5DBC;
+    font-weight: 600;
+}
+
 @media (max-width: 1024px) {
     .results-container {
         flex-direction: column;
