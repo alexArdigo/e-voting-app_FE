@@ -1,6 +1,6 @@
 import "./Header.css";
 
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import {useUserContext} from "../services/UserContext.jsx";
 import React from 'react';
 
@@ -8,7 +8,7 @@ import React from 'react';
 export const Header = () => {
 
     const navigate = useNavigate();
-
+    const location = useLocation()
     const {user, logout} = useUserContext();
 
     const getLogoRoute = () => {
@@ -61,7 +61,7 @@ export const Header = () => {
                     <li onClick={() => navigate("/contact")}>Contacto</li>
                     <li onClick={() => navigate("/help")}>Ajuda</li>
                     <li><Link to="/faq">FAQ</Link></li>
-                    {user?.username ? (
+                    {user && location.pathname !== "/ballot"? (
                         <>
                             <li>
                                 <Link to={user.role === "ADMIN" ? "/admin" : "/viewer"}>
