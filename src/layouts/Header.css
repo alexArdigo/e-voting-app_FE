@@ -28,13 +28,13 @@ li {
     width: 0;
     background: #fff;
     transition: width 0.5s;
-    bottom: -4px;
+    bottom: -2px;
 
 }
 
 .nav-bar li:hover::after {
     width: 100%;
-    bottom: -4px;
+    bottom: -2px;
 }
 
 .logo-bar {
