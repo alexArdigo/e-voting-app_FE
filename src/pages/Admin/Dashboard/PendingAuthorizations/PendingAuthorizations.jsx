@@ -3,7 +3,7 @@
 // import {fetchApproved, fetchData, handleApprove, handleRemove} from "./PendingAuthService";
 // import {useOutletContext} from "react-router-dom";
 //
-// const PendingAuthorizationsOriginal = () => {
+// const PendingAuthorizationsPage = () => {
 //     const setHasPendingViewer = useOutletContext();
 //     const [pendingUsers, setPendingUsers] = useState([]);
 //     const [approvedUsers, setApprovedUsers] = useState([]);
@@ -93,4 +93,4 @@
 //     );
 // };
 //
-// export default PendingAuthorizationsOriginal;
+// export default PendingAuthorizationsPage;

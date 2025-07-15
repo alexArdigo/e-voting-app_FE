@@ -36,9 +36,6 @@ const ViewerSideBar = () => {
         }
     };
 
-
-
-
     return (
         <div className="sidebar-container" style={{
             width: sidebarOpen ? "20vw" : "0",

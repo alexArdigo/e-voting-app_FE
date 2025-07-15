@@ -372,7 +372,8 @@
     border-radius: 8px;
     background-color: #fafafa;
     transition: background-color 0.2s;
-    font-size: 20px;
+    font-size: 16px;
+    border: 1px solid #ddd;
 }
 
 .button-pending-list-remove {

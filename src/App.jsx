@@ -31,7 +31,7 @@ import PartyEdit from "./pages/Admin/PartyFormContainer/PartyEdit";
 import PartyList from "./pages/Admin/PartyFormContainer/PartyList";
 import AdminDashboard from "./pages/Admin/Dashboard/AdminDashboard";
 import ViewerDashboard from "./pages/Viewer/ViewerDashboard";
-import PendingAuthorizationsOriginal from "./pages/Admin/Dashboard/PendingAuthorizations/PendingAuthorizationsOriginal";
+import PendingAuthorizationsPage from "./pages/Admin/Dashboard/PendingAuthorizations/PendingAuthorizationsPage";
 
 function App() {
 
@@ -82,7 +82,7 @@ function App() {
                             <Route path="/admin" element={<AdminRoute><AdminDashboard/></AdminRoute>}>
                                 <Route index element={<Admin/>}/>
                                 <Route path="create-election" element={<CreateElectionPage/>}/>
-                                <Route path="viewers" element={<PendingAuthorizationsOriginal/>}/>
+                                <Route path="viewers" element={<PendingAuthorizationsPage/>}/>
                                 <Route path="edit/parties" element={<PartyList/>}/>
                                 <Route path="edit/parties/:id" element={<PartyEdit/>}/>
                                 <Route path="add/party" element={<PartyAdd/>}/>

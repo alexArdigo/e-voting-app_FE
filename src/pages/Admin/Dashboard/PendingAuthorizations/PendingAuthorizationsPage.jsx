@@ -4,7 +4,7 @@ import {useUserContext} from "../../../../services/UserContext";
 import StyledContainer from "../../../../layouts/StyledContainer";
 import api from "../../../../services/api";
 
-const PendingAuthorizationsOriginal = () => {
+const PendingAuthorizationsPage = () => {
     const [pendingUsers, setPendingUsers] = useState([]);
     const [approvedUsers, setApprovedUsers] = useState([]);
     const {user} = useUserContext();
@@ -71,7 +71,7 @@ const PendingAuthorizationsOriginal = () => {
                 <p>Aprove o utilizador no sistema</p>
             </div>
             <div className="dflx">
-                <StyledContainer style={{width: "100%", marginRight: "50px"}}>
+                <StyledContainer style={{width: "20vw", marginRight: "50px"}}>
                     <h1>Pendentes de Aprovação</h1>
                     <p>Lista de utilizadores pendentes de aprovação:</p>
                     <input
@@ -92,7 +92,7 @@ const PendingAuthorizationsOriginal = () => {
                         ))}
                     </ul>
                 </StyledContainer>
-                <StyledContainer style={{width: "100%"}}>
+                <StyledContainer style={{width: "20vw"}}>
                     <h1>Remover utilizador</h1>
                     <p>Lista de utilizadores aprovados:</p>
                     <input
@@ -118,4 +118,4 @@ const PendingAuthorizationsOriginal = () => {
     );
 };
 
-export default PendingAuthorizationsOriginal;
+export default PendingAuthorizationsPage;
