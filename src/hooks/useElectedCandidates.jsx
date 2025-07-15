@@ -12,8 +12,6 @@ export const useElectedCandidates = () => {
             setError(null);
             const {data} = await api.get(`/Elections/${electionId}/results/legislative`);
 
-            console.log("Dados da API para candidatos eleitos:", data);
-
             const allElectedCandidates = [];
 
             data.forEach((district) => {
@@ -35,7 +33,6 @@ export const useElectedCandidates = () => {
                 });
             });
 
-            console.log("Candidatos eleitos processados:", allElectedCandidates);
             setElectedCandidatesData(allElectedCandidates);
 
         } catch (err) {
