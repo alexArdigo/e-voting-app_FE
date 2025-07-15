@@ -156,6 +156,13 @@ const deleteElectoralCircle = async (circleId) => {
     return response.data;
 };
 
+const getTotalVotesByElection = async (electionId) => {
+    const response = await api.get(`/total-votes-by-election`, {
+        params: { electionId }
+    });
+    return response.data;
+};
+
 export {
     getElection,
     getElections,
@@ -183,4 +190,5 @@ export {
     deletePresidentialElection,
     deleteLegislativeElection,
     deleteElectoralCircle,
+    getTotalVotesByElection
 };

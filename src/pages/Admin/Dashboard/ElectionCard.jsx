@@ -1,12 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
     deletePresidentialElection,
     deleteLegislativeElection,
+    getTotalVotesByElection,
 } from "../../../services/ElectionService";
 import { toast } from "react-toastify";
 import "../Admin.css";
 
 const ElectionCard = ({ election, isActive = false, onEdit, onDelete }) => {
+    const [hasVotes, setHasVotes] = useState(false);
+    const [votesLoading, setVotesLoading] = useState(true);
+
+    useEffect(() => {
+        const checkVotes = async () => {
+            try {
+                setVotesLoading(true);
+                const totalVotes = await getTotalVotesByElection(election.id);
+                setHasVotes(totalVotes > 0);
+            } catch (error) {
+                console.error('Erro ao verificar votos:', error);
+                setHasVotes(false);
+            } finally {
+                setVotesLoading(false);
+            }
+        };
+
+        checkVotes();
+    }, [election.id]);
     const handleDelete = async () => {
         const confirmDelete = window.confirm(
             `Tem certeza que deseja apagar a eleição "${election.name}"? Esta ação não pode ser desfeita.`
@@ -45,11 +65,13 @@ const ElectionCard = ({ election, isActive = false, onEdit, onDelete }) => {
         }
     };
 
+    const canEdit = !isActive && !hasVotes && !votesLoading;
+
     return (
         <div className="election-card">
             <div className="election-header">
                 <h3 className="elections-title">{election.name}</h3>
-                {!isActive && (
+                {canEdit && (
                     <div className="election-actions">
                         <button
                             className="edit-button"
