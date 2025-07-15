@@ -1,57 +1,16 @@
 import {useEffect, useState} from "react";
-import api from "../../services/api";
 import { useElections } from "../../hooks/useElections";
+import { useElectedCandidates } from "../../hooks/useFetchElectedCandidates";
 import "./css/ElectedCandidates.css";
 
 export default function ElectedCandidates() {
     const { allLegisElections, loading: electionsLoading, error: electionsError } = useElections();
-    const [electedCandidatesData, setElectedCandidatesData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const { electedCandidatesData, loading, error, fetchElectedCandidates } = useElectedCandidates();
     const [electionId, setElectionId] = useState(1);
 
     useEffect(() => {
-        fetchElectedCandidates();
-    }, [electionId]);
-
-    const fetchElectedCandidates = async () => {
-        try {
-            setLoading(true);
-            setError(null);
-            const {data} = await api.get(`/Elections/${electionId}/results/legislative`);
-
-
-            const allElectedCandidates = [];
-
-            data.forEach((district) => {
-                if (!district.results || district.results.length === 0) {
-                    console.warn(`Distrito ${district.districtName} sem resultados`);
-                    return;
-                }
-
-                district.results.forEach((organisation) => {
-                    if (organisation.electedCandidates && organisation.electedCandidates.length > 0) {
-                        organisation.electedCandidates.forEach((candidate) => {
-                            allElectedCandidates.push({
-                                candidateName: candidate,
-                                organisationName: organisation.organisationName,
-                                districtName: district.districtName,
-                                votes: organisation.votes || 0
-                            });
-                        });
-                    }
-                });
-            });
-
-            setElectedCandidatesData(allElectedCandidates);
-
-        } catch (err) {
-            console.error("Erro ao buscar candidatos eleitos:", err);
-            setError("Erro ao buscar candidatos eleitos");
-        } finally {
-            setLoading(false);
-        }
-    };
+        fetchElectedCandidates(electionId);
+    }, [electionId, fetchElectedCandidates]);
 
     const formatNumber = (number) => {
         return new Intl.NumberFormat('pt-PT').format(number);
