@@ -11,6 +11,7 @@ import {
     Legend
 } from "chart.js";
 import api from "../../../services/api";
+import StyledContainer from "../../../layouts/StyledContainer";
 
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -118,6 +119,7 @@ const VotesByPartyByDistrictChart = () => {
     if (!chartData) return <p>A carregar gráfico...</p>;
 
     return (
+        <StyledContainer>
         <div className="chart-container">
 
             <div className="year-select-container">
@@ -158,6 +160,7 @@ const VotesByPartyByDistrictChart = () => {
 
             <Bar options={config} data={chartData} height={200} />
         </div>
+        </StyledContainer>
     );
 };
 

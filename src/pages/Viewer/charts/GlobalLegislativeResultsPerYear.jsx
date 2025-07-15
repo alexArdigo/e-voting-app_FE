@@ -11,6 +11,7 @@ import {
 } from "chart.js";
 import api from "../../../services/api";
 import {getLegislativeElections} from "../../../services/ElectionService";
+import StyledContainer from "../../../layouts/StyledContainer";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -99,6 +100,7 @@ const GlobalLegislativeResultsPerYear = () => {
     if (!chartData) return <p>A carregar gráfico...</p>;
 
     return (
+        <StyledContainer>
         <div className="chart-container">
 
             <div className="year-select-container">
@@ -121,6 +123,7 @@ const GlobalLegislativeResultsPerYear = () => {
                 <Bar options={config} data={chartData} height={200} />
             </div>
         </div>
+        </StyledContainer>
     );
 };
 
