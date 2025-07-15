@@ -15,6 +15,27 @@ body{
 li {
     font-size: 14px;
 }
+.nav-bar li {
+    position: relative;
+}
+
+.nav-bar li::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    height: 1px;
+    width: 0;
+    background: #fff;
+    transition: width 0.3s;
+    bottom: -4px;
+
+}
+
+.nav-bar li:hover::after {
+    width: 100%;
+    bottom: -4px;
+}
 
 .logo-bar {
     background-color: white;
