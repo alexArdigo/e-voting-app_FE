@@ -100,7 +100,6 @@ const GlobalLegislativeResultsPerYear = () => {
     if (!chartData) return <p>A carregar gráfico...</p>;
 
     return (
-        <StyledContainer>
         <div className="chart-container">
 
             <div className="year-select-container">
@@ -123,7 +122,6 @@ const GlobalLegislativeResultsPerYear = () => {
                 <Bar options={config} data={chartData} height={200} />
             </div>
         </div>
-        </StyledContainer>
     );
 };
 
