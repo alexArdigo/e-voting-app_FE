@@ -7,7 +7,7 @@ import useIsTabActive from "../../hooks/useIsTabActive";
 import StyledContainer from "../../layouts/StyledContainer";
 
 const Timer = ({parties, timeLeft, setTimeLeft}) => {
-    const {user, isVoting, setIsVoting, logout} = useUserContext();
+    const {user, votingSession, setVotingSession, logout} = useUserContext();
     const isTabActive = useIsTabActive();
     const navigate = useNavigate();
     const location = useLocation();
@@ -37,7 +37,10 @@ const Timer = ({parties, timeLeft, setTimeLeft}) => {
     useEffect(() => {
         if (timeLeft <= 0) {
             toast.error('Tempo esgotado! Será redirecionado...');
-            setIsVoting(false);
+            setVotingSession({
+                electionId: null,
+                isVoting: false
+            });
 
             logout();
             setTimeout(() => navigate('/'), 3000);

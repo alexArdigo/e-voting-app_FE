@@ -10,7 +10,6 @@ export const useElectedCandidates = () => {
         try {
             setLoading(true);
             setError(null);
-            console.log(`A buscar candidatos eleitos para eleição ID: ${electionId}`);
 
             const {data} = await api.get(`/Elections/${electionId}/results/legislative`);
 
@@ -37,7 +36,6 @@ export const useElectedCandidates = () => {
             });
 
             setElectedCandidatesData(allElectedCandidates);
-            console.log(`Candidatos eleitos carregados: ${allElectedCandidates.length} candidatos`);
 
         } catch (err) {
             console.error("Erro ao buscar candidatos eleitos:", err);

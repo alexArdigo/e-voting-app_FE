@@ -12,13 +12,12 @@ const matchDistrict = (electionName, districtName) => {
 
 const SelectElectionPage = () => {
     const navigate = useNavigate();
-    const {user, isVoting} = useUserContext();
+    const {user, votingSession} = useUserContext();
     const [elections, setElections] = useState([]);
     const [selectedOption, setSelectedOption] = useState("");
     const [loadingData, setLoadingData] = useState(true);
     const [activeElection, setActiveElection] = useState([]);
     const [voterVotedList, setVoterVotedList] = useState([]);
-    console.log("isvoting",isVoting)
 
     useEffect(() => {
         (async () => {
@@ -89,9 +88,9 @@ const SelectElectionPage = () => {
                                             checked={selectedOption === election.id.toString()}
                                             onChange={(e) => setSelectedOption(e.target.value)}
                                             style={{marginRight: "10px"}}
-                                            disabled={!isVoting && voterVotedList.includes(election.id)}
+                                            disabled={!votingSession.isVoting && voterVotedList.includes(election.id)}
                                         />
-                                        {!isVoting && voterVotedList.includes(election.id) ? `${election.name} (Já votou)` : election.name}
+                                        {!votingSession.isVoting && voterVotedList.includes(election.id) ? `${election.name} (Já votou)` : election.name}
                                     </label>
                                 </div>
                             ))}

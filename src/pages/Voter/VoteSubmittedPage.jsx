@@ -6,7 +6,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 import {useUserContext} from "../../services/UserContext";
 
 const VoteSubmittedPage = () => {
-    const {user, setUser, setIsVoting} = useUserContext();
+    const {user, setUser, setVotingSession, logout} = useUserContext();
     const navigate = useNavigate();
     const location = useLocation();
     const {electionId, electionName, partyName} = location.state || {};
@@ -22,13 +22,16 @@ const VoteSubmittedPage = () => {
 
                 try {
                     await api.post("/voters/stop-voting", body);
-                    setIsVoting(false);
+                    setVotingSession({
+                        electionId: null
+                    });
                 } catch (stopVotingError) {
+                    console.error("Error stopping voting session:", stopVotingError);
                 }
             }
 
-            await api.get("/logout");
             setUser(null);
+            logout();
 
         } catch (error) {
             console.error("Error during logout process:", error);
@@ -52,7 +55,7 @@ const VoteSubmittedPage = () => {
             setCountdown(prev => {
                 if (prev <= 1) {
                     clearInterval(timer);
-                    navigate("/", {replace: true});
+
                     return 0;
                 }
                 return prev - 1;
@@ -76,10 +79,6 @@ const VoteSubmittedPage = () => {
 
     return (
         <MainLayout className="dflxColumn">
-            <StyledContainer variant="yellow" style={{marginTop: '20px', textAlign: 'center'}}>
-                <h1>{electionName || 'Eleição'}</h1>
-            </StyledContainer>
-
             <StyledContainer style={{
                 width: '600px',
                 padding: '40px',

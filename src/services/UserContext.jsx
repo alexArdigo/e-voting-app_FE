@@ -1,6 +1,6 @@
 import {createContext, useContext, useEffect, useState} from "react";
 import api from "./api.jsx";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 import React from 'react';
 import {toast} from "react-toastify";
@@ -14,8 +14,12 @@ const UserProvider = ({children}) => {
     useScrollRestoration();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [isVoting, setIsVoting] = useState(false);
+    const [votingSession, setVotingSession] = useState({
+        electionId: null,
+        isVoting: false,
+    });
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
 
@@ -34,23 +38,35 @@ const UserProvider = ({children}) => {
 
     useEffect(() => {
         (async () => {
-            if (user?.id) {
+            if (user?.id && location.pathname !== "/submitted" && location.pathname !== "/ballot") {
                 try {
-                    const response = await api.get(`voters/${user?.id}/is-voting`);
+                    const response = await api.get(`voters/${user?.id}/voting-status`);
+
                     if (response.status === 200) {
-                        setIsVoting(true);
+                        setVotingSession(response.data);
                     }
+
+                    if (response.data && response.data.isVoting && votingSession.electionId === response.data.electionId) {
+                        navigate("/ballot", {
+                            state: {
+                                electionId: response.data.electionId,
+                                electionName: response.data.electionName
+                            },
+                            replace: true
+                        });
+                    }
+
                 } catch (e) {
                     console.error("Error fetching user data: ", e);
                 }
             }
         })();
-    }, []);
+    }, [user, location.pathname]);
+
 
     const logout = async () => {
         try {
             await api.get("/logout");
-            navigate("/login");
             setUser(null);
 
         } catch (e) {
@@ -78,8 +94,8 @@ const UserProvider = ({children}) => {
             setUser,
             loading,
             logout,
-            isVoting,
-            setIsVoting,
+            votingSession,
+            setVotingSession,
             hasRole,
             isAdmin,
             isViewer

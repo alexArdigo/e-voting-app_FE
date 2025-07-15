@@ -12,7 +12,6 @@ export const usePresidentialResults = () => {
             setError(null);
             const { data } = await api.get(`/elections/${electionId}/results/presidential`);
 
-            console.log("Dados dos resultados presidenciais:", data);
             setPresidentialResultsData(data);
 
         } catch (err) {
