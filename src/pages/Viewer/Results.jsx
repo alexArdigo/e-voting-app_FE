@@ -144,7 +144,6 @@ export default function Results() {
                             </span>
                         </div>
 
-                        {/* Nova secção de partidos vencedores */}
                         <div className="party-wins-section">
                             <h3 className="party-wins-title">Partidos Vencedores por Distrito</h3>
                             <div className="party-wins-list">
