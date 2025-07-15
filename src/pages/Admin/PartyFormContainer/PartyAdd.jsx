@@ -73,10 +73,6 @@ const PartyAdd = ({party}) => {
         e.preventDefault();
 
         try {
-            const isEditing = !!party;
-            let response;
-
-            if (isEditing) {
                 const dto = {
                     name: form.name?.value,
                     color: form.color?.value,
@@ -85,18 +81,8 @@ const PartyAdd = ({party}) => {
                     logoUrl: form.logoUrl?.value,
                 };
 
-                response = await PartyService.updateOrganisation(party.id, dto);
-                } else {
+               const response = await PartyService.updateOrganisation(party.id, dto);
 
-
-            const body = new FormData();
-            body.set("name", form.name.value);
-            body.set("color", form.color.value);
-            body.set("imageURL", form.imageURL.value);
-            body.set("description", form.description.value);
-
-             response = await PartyService.createParty(body);
-            }
 
             if (response) {
                 navigate("/admin/edit/parties")
