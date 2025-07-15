@@ -18,7 +18,7 @@ const SelectElectionPage = () => {
     const [loadingData, setLoadingData] = useState(true);
     const [activeElection, setActiveElection] = useState([]);
     const [voterVotedList, setVoterVotedList] = useState([]);
-
+    console.log("isvoting",isVoting)
 
     useEffect(() => {
         (async () => {
@@ -89,7 +89,7 @@ const SelectElectionPage = () => {
                                             checked={selectedOption === election.id.toString()}
                                             onChange={(e) => setSelectedOption(e.target.value)}
                                             style={{marginRight: "10px"}}
-                                            disabled={voterVotedList.includes(election.id)}
+                                            disabled={!isVoting && voterVotedList.includes(election.id)}
                                         />
                                         {!isVoting && voterVotedList.includes(election.id) ? `${election.name} (Já votou)` : election.name}
                                     </label>
