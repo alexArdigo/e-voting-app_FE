@@ -80,7 +80,7 @@ const Instructions = () => {
                     </div>
                 </section>
                 <div className="button-wrapper">
-                    <button className="vote-button" onClick={handleClick}>Prosseguir</button>
+                    <button className="vote-button" onClick={handleClick} style={{margin:"0"}}>Prosseguir</button>
                 </div>
             </div>
             </StyledContainer>
