@@ -43,7 +43,7 @@ export default function Results() {
         try {
             setLoading(true);
             setError(null);
-            const response = await api.get(`/elections/${electionId}/results/legislative`);
+            const response = await api.get(`/Elections/${electionId}/results/legislative`);
             setResultsData(response.data);
         } catch (err) {
             console.error("Error in fetching election results:", err);

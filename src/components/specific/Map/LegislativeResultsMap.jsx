@@ -80,7 +80,7 @@ const LegislativeResultsMap = ({electionId}) => {
 
 
                 setDistrictColors(continentColors);
-               setIslandColors(islandsColors);
+                setIslandColors(islandsColors);
 
             } catch (err) {
                 console.error("Erro ao carregar resultados:", err);
@@ -102,6 +102,6 @@ const LegislativeResultsMap = ({electionId}) => {
             <Islands islandColors={islandColors}/>
         </>
     )
-};
+}
 
 export default LegislativeResultsMap;
