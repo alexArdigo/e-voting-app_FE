@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 
-import api from "../../services/api";
 import { useElections } from "../../hooks/useElections";
+import { useLegislativeResults } from "../../hooks/useLegislativeResults";
 import LegislativeResultsMap from "../../components/specific/Map/LegislativeResultsMap";
 import Municipalities from "../../components/specific/Map/municipalities";
 
@@ -11,76 +11,13 @@ export default function Results() {
 
     const [selectedDistrict, setSelectedDistrict] = useState(null);
     const { allLegisElections, loading: electionsLoading, error: electionsError } = useElections();
-    const [resultsData, setResultsData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const { resultsData, partyWins, loading, error, fetchLegislativeResults } = useLegislativeResults();
     const [mapView, setMapView] = useState("districts");
-
     const [electionId, setElectionId] = useState(1);
-    const [partyWins, setPartyWins] = useState([]);
 
     useEffect(() => {
-        fetchLegislativeResults();
+        fetchLegislativeResults(electionId);
     }, [electionId]);
-
-
-    const fetchLegislativeResults = async () => {
-        try {
-            setLoading(true);
-            setError(null);
-            const {data} = await api.get(`/Elections/${electionId}/results/legislative`);
-
-            const wins = [];
-            let totalVotes = 0;
-            let blankVotes = 0;
-            let abstention = 0;
-
-            data.forEach((district) => {
-                console.log("Dados do distrito:", district);
-
-                if (!district.results || district.results.length === 0) {
-                    console.warn(`Distrito ${district.districtName} sem resultados`);
-                    return;
-                }
-
-                if (district.totalVotes) {
-                    totalVotes += district.totalVotes;
-                }
-                if (district.blankVotes) {
-                    blankVotes += district.blankVotes;
-                    console.log(`Distrito ${district.districtName} - blankVotes: ${district.blankVotes}`);
-                }
-                if (district.abstention) {
-                    abstention += district.abstention;
-                }
-
-                const sorted = [...district.results].sort((a, b) => b.votes - a.votes);
-                const winner = sorted[0];
-
-                if (winner.color) {
-                    wins.push({
-                        district: district.districtName,
-                        party: winner.organisationName || 'Partido Desconhecido',
-                        color: winner.color,
-                        votes: winner.votes
-                    });
-                } else {
-                }
-            });
-
-            setPartyWins(wins);
-            setResultsData({
-                totalVotes,
-                blankVotes,
-                abstention
-            });
-        } catch (err) {
-            console.error("Erro ao buscar vencedores por distrito:", err);
-            setError("Erro ao buscar resultados");
-        } finally {
-            setLoading(false);
-        }
-    };
 
     const formatNumber = (number) => {
         return new Intl.NumberFormat('pt-PT').format(number);
@@ -140,7 +77,7 @@ export default function Results() {
                     <div className="error-container">
                         <h3>Erro</h3>
                         <p>{error}</p>
-                        <button className="retry-button" onClick={fetchLegislativeResults}>
+                        <button className="retry-button" onClick={() => fetchLegislativeResults(electionId)}>
                             Tentar novamente
                         </button>
                     </div>
