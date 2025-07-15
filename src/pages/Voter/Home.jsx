@@ -34,7 +34,7 @@ const Home = () => {
                         window.scrollTo({top: 0, behavior: 'smooth'});
                         navigate("/login");
                     }}
-                >Login
+                >Entrar
                 </button>
             </div>}
 

@@ -68,7 +68,7 @@ export const Header = () => {
                                     <p style={{display: "inline", margin: 0, fontWeight: "bold"}}>{user.username}</p>
                                 </Link>
                             </li>
-                            <button className="header-button" type="submit" onClick={logout}>Logout</button>
+                            <button className="header-button" type="submit" onClick={logout}>Sair</button>
                         </>
                     ) : null}
                 </ul>

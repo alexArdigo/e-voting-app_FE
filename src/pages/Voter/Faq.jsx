@@ -22,7 +22,7 @@ const Faq = () => {
             const comentarios = await api.get(`/comments`);
             setComments(comentarios.data);
         } catch (error) {
-            toast("Erro ao carregar comentários.");
+            toast.warn("Erro ao carregar comentários.");
         }
     };
 
@@ -36,11 +36,11 @@ const Faq = () => {
 
         try {
             await api.post(`/comment/${commentId}/answer`, form);
-            toast("Comentário respondido com sucesso!");
+            toast.success("Comentário respondido com sucesso!");
             setAdminAnswerTexts((prev) => ({...prev, [commentId]: ""}));
             fetchComments();
         } catch (err) {
-            toast("Erro ao responder comentário.");
+            toast.warn("Erro ao responder comentário.");
         }
     };
 
@@ -48,11 +48,10 @@ const Faq = () => {
         if (window.confirm("Tem certeza que deseja apagar este comentário? Esta ação não pode ser desfeita.")) {
             try {
                 await api.delete(`/comment/${commentId}`);
-                toast("Comentário apagado com sucesso!");
+                toast.success("Comentário apagado com sucesso!");
                 fetchComments();
             } catch (error) {
-                toast("Erro ao apagar comentário.");
-                console.error("Erro ao apagar comentário:", error);
+                toast.warn("Erro ao apagar comentário.");
             }
         }
     };
@@ -61,7 +60,7 @@ const Faq = () => {
         e.preventDefault();
 
         if (!newComment.trim()) {
-            toast("Comentário não pode estar vazio.");
+            toast.warn("Comentário não pode estar vazio.");
             return;
         }
 
@@ -73,7 +72,7 @@ const Faq = () => {
             setComments([...comments, response.data]);
             setNewComment("");
         } catch (e) {
-            toast("Erro ao adicionar um comentário.");
+            toast.warn("Erro ao adicionar um comentário.");
         }
     };
 

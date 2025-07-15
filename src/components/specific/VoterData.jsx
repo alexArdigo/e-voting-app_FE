@@ -13,7 +13,7 @@ const VoterData = () => {
 
     const handleClick = () => {
         if (!confirmed) {
-            toast("Por favor, confirme que os dados estão corretos.");
+            toast.warn("Por favor, confirme que os dados estão corretos.");
             return;
         }
         navigate("/election");
