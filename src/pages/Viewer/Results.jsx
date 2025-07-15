@@ -174,7 +174,6 @@ export default function Results() {
                                             ></div>
                                             <span className="party-name">{win.party}</span>
                                             <span className="district-name">{win.district}</span>
-                                            <span className="vote-count">{formatNumber(win.votes)} votos</span>
                                         </div>
                                     ))
                                 ) : (
