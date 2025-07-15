@@ -355,6 +355,83 @@
 }
 
 
+.election-winner-section {
+    margin-bottom: 40px;
+}
+
+.election-winner-card {
+    background: #f8f9fa;
+    color: #333;
+    padding: 30px;
+    border-radius: 12px;
+    border: 2px solid #28a745;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.election-winner-card::before {
+    content: none;
+}
+
+.election-winner-section h2 {
+    color: #28a745;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.election-winner-name {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.election-winner-party {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #666;
+    font-weight: 500;
+}
+
+.election-winner-stats {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #28a745;
+    font-weight: 600;
+}
+
+.election-winner-stats strong {
+    font-weight: 700;
+}
+
+
+.candidate-summary-card:first-child {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    transform: none;
+    position: relative;
+}
+
+.candidate-summary-card:first-child::before {
+    content: none;
+}
+
+.candidate-summary-card:first-child .candidate-summary-name,
+.candidate-summary-card:first-child .candidate-summary-party,
+.candidate-summary-card:first-child .candidate-summary-stats {
+    color: white;
+}
+
+
+.candidate-summary-card:first-child .candidate-image {
+    border: 4px solid #ffd700;
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+}
+
 @media (max-width: 768px) {
     .elected-candidates-main {
         padding: 20px;

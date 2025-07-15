@@ -6,7 +6,8 @@ import "./css/ElectedCandidates.css";
 export default function ElectedPresidential() {
     const { allPresidentialElections, loading: electionsLoading, error: electionsError } = usePresidentialElections();
     const { presidentialResultsData, loading, error, fetchPresidentialResults } = usePresidentialResults();
-    const [electedCandidatesData, setElectedCandidatesData] = useState([]);
+    const [electionWinner, setElectionWinner] = useState(null);
+    const [candidatesData, setCandidatesData] = useState([]);
     const [electionId, setElectionId] = useState(1);
 
     useEffect(() => {
@@ -30,7 +31,8 @@ export default function ElectedPresidential() {
     }, [presidentialResultsData]);
 
     const processPresidentialResults = () => {
-        const allElectedCandidates = [];
+
+        const candidateVotes = {};
 
         presidentialResultsData.forEach((district) => {
             if (!district.results || district.results.length === 0) {
@@ -38,54 +40,46 @@ export default function ElectedPresidential() {
                 return;
             }
 
-            const sortedResults = [...district.results].sort((a, b) => b.votes - a.votes);
-            const winner = sortedResults[0];
+            district.results.forEach((candidate) => {
+                const candidateName = candidate.candidateName || candidate.organisationName;
+                const organisationName = candidate.organisationName || 'Independente';
 
-            if (winner) {
-                allElectedCandidates.push({
-                    candidateName: winner.candidateName || winner.organisationName,
-                    organisationName: winner.organisationName || 'Independente',
+                if (!candidateVotes[candidateName]) {
+                    candidateVotes[candidateName] = {
+                        candidateName: candidateName,
+                        organisationName: organisationName,
+                        totalVotes: 0,
+                        districtResults: []
+                    };
+                }
+
+                candidateVotes[candidateName].totalVotes += candidate.votes || 0;
+                candidateVotes[candidateName].districtResults.push({
                     districtName: district.districtName,
-                    votes: winner.votes || 0,
-                    percentage: district.totalVotes ? ((winner.votes / district.totalVotes) * 100).toFixed(2) : 0
+                    votes: candidate.votes || 0,
+                    percentage: district.totalVotes ? ((candidate.votes / district.totalVotes) * 100).toFixed(2) : 0
                 });
-            }
+            });
         });
 
-        setElectedCandidatesData(allElectedCandidates);
+
+        const candidatesArray = Object.values(candidateVotes).sort((a, b) => b.totalVotes - a.totalVotes);
+
+        const totalVotes = candidatesArray.reduce((sum, candidate) => sum + candidate.totalVotes, 0);
+        candidatesArray.forEach(candidate => {
+            candidate.totalPercentage = totalVotes > 0 ? ((candidate.totalVotes / totalVotes) * 100).toFixed(2) : 0;
+        });
+
+        setCandidatesData(candidatesArray);
+
+        if (candidatesArray.length > 0) {
+            setElectionWinner(candidatesArray[0]);
+        }
     };
 
     const formatNumber = (number) => {
         return new Intl.NumberFormat('pt-PT').format(number);
     };
-
-    const groupedByCandidate = electedCandidatesData.reduce((acc, result) => {
-        const candidate = result.candidateName;
-        if (!acc[candidate]) {
-            acc[candidate] = {
-                candidateName: candidate,
-                organisationName: result.organisationName,
-                districts: [],
-                totalVotes: 0
-            };
-        }
-        acc[candidate].districts.push({
-            districtName: result.districtName,
-            votes: result.votes,
-            percentage: result.percentage
-        });
-        acc[candidate].totalVotes += result.votes;
-        return acc;
-    }, {});
-
-    const groupedByDistrict = electedCandidatesData.reduce((acc, result) => {
-        const district = result.districtName;
-        if (!acc[district]) {
-            acc[district] = [];
-        }
-        acc[district].push(result);
-        return acc;
-    }, {});
 
     if (electionsLoading) {
         return (
@@ -144,19 +138,19 @@ export default function ElectedPresidential() {
                     <div className="candidates-content">
                         <div className="candidate-summary-section">
                             <h2>Resumo dos Candidatos</h2>
-                            {Object.keys(groupedByCandidate).length > 0 ? (
+                            {candidatesData.length > 0 ? (
                                 <div className="candidates-summary">
-                                    {Object.entries(groupedByCandidate)
-                                        .sort(([,a], [,b]) => b.totalVotes - a.totalVotes)
-                                        .map(([candidateName, candidateData]) => (
-                                        <div key={candidateName} className="candidate-summary-card">
-                                            <h3 className="candidate-summary-name">{candidateData.candidateName}</h3>
-                                            <p className="candidate-summary-party">{candidateData.organisationName}</p>
+                                    {candidatesData
+                                        .sort((a, b) => b.totalVotes - a.totalVotes)
+                                        .map((candidate) => (
+                                        <div key={candidate.candidateName} className="candidate-summary-card">
+                                            <h3 className="candidate-summary-name">{candidate.candidateName}</h3>
+                                            <p className="candidate-summary-party">{candidate.organisationName}</p>
                                             <p className="candidate-summary-stats">
-                                                <strong>Total de votos:</strong> {formatNumber(candidateData.totalVotes)}
+                                                <strong>Total de votos:</strong> {formatNumber(candidate.totalVotes)}
                                             </p>
                                             <p className="candidate-summary-stats">
-                                                <strong>Distritos vencidos:</strong> {candidateData.districts.length}
+                                                <strong>Percentagem do total:</strong> {candidate.totalPercentage}%
                                             </p>
                                         </div>
                                     ))}
@@ -168,32 +162,21 @@ export default function ElectedPresidential() {
                             )}
                         </div>
 
-                        {/* Resultados por Distrito */}
-                        <div className="district-section">
-                            <h2>Vencedores por Distrito</h2>
-                            {Object.keys(groupedByDistrict).length > 0 ? (
-                                Object.entries(groupedByDistrict).map(([district, results]) => (
-                                    <div key={district} className="district-group">
-                                        <h3 className="district-name">
-                                            {district}
-                                        </h3>
-                                        <div className="candidates-list">
-                                            {results.map((result, index) => (
-                                                <div key={index} className="candidate-item presidential-result">
-                                                    <span className="candidate-name">{result.candidateName}</span>
-                                                    <span className="candidate-party">{result.organisationName}</span>
-                                                    <span className="candidate-votes">{formatNumber(result.votes)} votos ({result.percentage}%)</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                ))
-                            ) : (
-                                <div className="no-data">
-                                    <p>Nenhum resultado encontrado</p>
+                        {electionWinner && (
+                            <div className="election-winner-section">
+                                <h2>Vencedor da Eleição</h2>
+                                <div className="election-winner-card">
+                                    <h3 className="election-winner-name">{electionWinner.candidateName}</h3>
+                                    <p className="election-winner-party">{electionWinner.organisationName}</p>
+                                    <p className="election-winner-stats">
+                                        <strong>Total de votos:</strong> {formatNumber(electionWinner.totalVotes)}
+                                    </p>
+                                    <p className="election-winner-stats">
+                                        <strong>Percentagem do total:</strong> {electionWinner.totalPercentage}%
+                                    </p>
                                 </div>
-                            )}
-                        </div>
+                            </div>
+                        )}
                     </div>
                 )}
             </div>
