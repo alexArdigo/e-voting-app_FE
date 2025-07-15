@@ -11,7 +11,7 @@ const PartyList = () => {
     useEffect(() => {
         const fetchParties = async () => {
             try {
-                const response = await api.get("/organisations");
+                const response = await api.get("/parties");
                 const allParties = response.data;
 
                 const seenNames = new Set();

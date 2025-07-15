@@ -8,7 +8,7 @@ import PartyService from "../../../services/PartyService";
 function mapPartytoInputs(party) {
     return {
         name: {
-            label: 'Nome do Partido ou Candidato',
+            label: 'Nome do Partido',
             type: 'text',
             name: 'name',
             value: party.name || '',
@@ -82,7 +82,6 @@ const PartyAdd = ({party}) => {
                     color: form.color?.value,
                     imageURL: form.imageURL?.value,
                     description: form.description?.value,
-                    // electionId: party.electionId || null,
                     logoUrl: form.logoUrl?.value,
                 };
 
