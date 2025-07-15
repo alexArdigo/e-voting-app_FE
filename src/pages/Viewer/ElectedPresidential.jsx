@@ -24,15 +24,18 @@ export default function ElectedPresidential() {
     }, [electionId]);
 
     useEffect(() => {
-        if (presidentialResultsData && presidentialResultsData.length > 0) {
-            processPresidentialResults();
+        if (presidentialResultsData && presidentialResultsData.results && presidentialResultsData.results.length > 0) {
+            processPresidentialResults(presidentialResultsData.results);
+        } else {
+            setCandidatesData([]);
+            setElectionWinner(null);
         }
     }, [presidentialResultsData]);
 
-    const processPresidentialResults = () => {
+    const processPresidentialResults = (resultsArray) => {
         const candidateVotes = {};
 
-        presidentialResultsData.forEach((candidate) => {
+        resultsArray.forEach((candidate) => {
             const candidateName = candidate.candidateName || candidate.organisationName;
             const organisationName = candidate.organisationName || 'Independente';
 
