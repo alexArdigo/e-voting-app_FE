@@ -105,7 +105,7 @@ export default function ElectedCandidates() {
                     <div className="error-container">
                         <h3>Erro</h3>
                         <p>{error}</p>
-                        <button className="retry-button" onClick={fetchElectedCandidates}>
+                        <button className="retry-button" onClick={() => fetchElectedCandidates(electionId)}>
                             Tentar novamente
                         </button>
                     </div>
@@ -124,9 +124,6 @@ export default function ElectedCandidates() {
                                                 <div key={index} className="candidate-item">
                                                     <span className="candidate-name">{candidate.candidateName}</span>
                                                     <span className="candidate-party">{candidate.organisationName}</span>
-                                                    <span className="candidate-votes">
-                                                        {formatNumber(candidate.votes)} votos
-                                                    </span>
                                                 </div>
                                             ))}
                                         </div>
