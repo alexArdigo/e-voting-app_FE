@@ -1,14 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import HalfLogo from "../../components/common/HalfLogo.jsx";
-import { useNavigate } from "react-router-dom";
+import React, {useEffect, useState} from 'react';
+import {useNavigate} from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout.jsx";
-import { toast } from "react-toastify";
-import {
-    getActiveElections,
-    getNotActiveElections,
-    voterHasVotedElectionList
-} from "../../services/ElectionService";
-import { useUserContext } from "../../services/UserContext";
+import {toast} from "react-toastify";
+import {getActiveElections, getNotActiveElections, voterHasVotedElectionList} from "../../services/ElectionService";
+import {useUserContext} from "../../services/UserContext";
 
 const matchDistrict = (electionName, districtName) => {
     if (!electionName || !districtName) return false;
@@ -17,7 +12,7 @@ const matchDistrict = (electionName, districtName) => {
 
 const SelectElectionPage = () => {
     const navigate = useNavigate();
-    const { user } = useUserContext();
+    const {user, isVoting} = useUserContext();
     const [elections, setElections] = useState([]);
     const [selectedOption, setSelectedOption] = useState("");
     const [loadingData, setLoadingData] = useState(true);
@@ -93,10 +88,10 @@ const SelectElectionPage = () => {
                                             value={election.id}
                                             checked={selectedOption === election.id.toString()}
                                             onChange={(e) => setSelectedOption(e.target.value)}
-                                            style={{ marginRight: "10px" }}
+                                            style={{marginRight: "10px"}}
                                             disabled={voterVotedList.includes(election.id)}
                                         />
-                                        {voterVotedList.includes(election.id) ? `${election.name} (Já votou)` : election.name}
+                                        {!isVoting && voterVotedList.includes(election.id) ? `${election.name} (Já votou)` : election.name}
                                     </label>
                                 </div>
                             ))}
@@ -106,8 +101,8 @@ const SelectElectionPage = () => {
                     </form>
                 )}
 
-                <h1 style={{ fontSize: "25px" }}>Próximas Eleições:</h1>
-                <div className={"steps-container"} style={{ width: "inherit" }}>
+                <h1 style={{fontSize: "25px"}}>Próximas Eleições:</h1>
+                <div className={"steps-container"} style={{width: "inherit"}}>
                     <section className="steps-list">
                         {elections
                             .filter(e =>

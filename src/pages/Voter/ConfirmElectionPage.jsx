@@ -8,7 +8,7 @@ import {voterHasVotedThisElection} from "../../services/ElectionService";
 
 const ConfirmElectionPage = () => {
     const navigate = useNavigate();
-    const {user} = useUserContext();
+    const {user, isVoting} = useUserContext();
     const location = useLocation();
     const selectedElectionName = location.state?.selectedElectionName;
     const selectedElectionId = location.state?.selectedElectionId;
@@ -21,11 +21,14 @@ const ConfirmElectionPage = () => {
         }
 
         try {
-            const response = await voterHasVotedThisElection(selectedElectionId, user.id);
 
-            if (response.hasVoted) {
-                toast.error("Você já votou nesta eleição.");
-                return navigate("/election", {replace: true});
+            if (!isVoting) {
+                const response = await voterHasVotedThisElection(selectedElectionId, user.id);
+
+                if (response.hasVoted) {
+                    toast.error("Você já votou nesta eleição.");
+                    return navigate("/election", {replace: true});
+                }
             }
 
             return navigate("/ballot", {
@@ -49,11 +52,7 @@ const ConfirmElectionPage = () => {
                 </h1>
 
                 <div className="confirm-warning-box">
-                    <p>
-                        <strong>Atenção!</strong> Ao clicar em "Votar", será redirecionado para o seu boletim de voto.
-                        Após essa página, não poderá terminar a sua sessão e terá <strong>5 minutos</strong> para submeter o seu voto.
-                        Caso não o faça, o seu voto será considerado nulo/branco.
-                    </p>
+                    <p><strong>Atenção!</strong> Ao clicar em "Votar", será redirecionado para o seu boletim de voto. Terá <strong>5 minutos</strong> para submeter o seu voto.</p>
                 </div>
 
                 <label className="confirm-checkbox-label">
