@@ -108,6 +108,15 @@ export default function Results() {
         return `${percentage}%`;
     };
 
+    const calculateBlankVotesPercentage = () => {
+        if (!resultsData) return "0%";
+        const total = resultsData?.totalVotes || 0;
+        const blankVotes = resultsData?.blankVotes || 0;
+        if (total === 0) return "0%";
+        const percentage = ((blankVotes / total) * 100).toFixed(2);
+        return `${percentage}%`;
+    };
+
     return (
         <div className="results-container">
             <div className="results-main">
@@ -161,7 +170,7 @@ export default function Results() {
                         <div className="stat-item">
                             <span className="stat-label">Votos brancos:</span>
                             <span className="stat-value">
-                                {formatNumber(resultsData.blankVotes || 0)}
+                                {formatNumber(resultsData.blankVotes || 0)} ({calculateBlankVotesPercentage()})
                             </span>
                         </div>
 
