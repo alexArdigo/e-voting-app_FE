@@ -118,7 +118,8 @@ const VotesByPartyByDistrictChart = () => {
     if (!chartData) return <p>A carregar gráfico...</p>;
 
     return (
-        <div className="chart-container">
+        <div className="elected-candidates-container">
+            <div className="elected-candidates-main">
 
             <div className="year-select-container">
                 <label htmlFor="year-select" className="year-select-label">
@@ -156,7 +157,8 @@ const VotesByPartyByDistrictChart = () => {
                 </select>
             </div>
 
-            <Bar options={config} data={chartData} height={200} />
+            <Bar options={config} data={chartData} height={250} />
+        </div>
         </div>
     );
 };
