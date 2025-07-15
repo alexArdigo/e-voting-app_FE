@@ -8,13 +8,12 @@ export default function ElectedPresidential() {
     const { presidentialResultsData, loading, error, fetchPresidentialResults } = usePresidentialResults();
     const [electionWinner, setElectionWinner] = useState(null);
     const [candidatesData, setCandidatesData] = useState([]);
-    const [electionId, setElectionId] = useState(1);
+    const [electionId, setElectionId] = useState(null);
 
     useEffect(() => {
         if (allPresidentialElections.length > 0) {
             const firstElectionId = allPresidentialElections[0].id;
             setElectionId(firstElectionId);
-            fetchPresidentialResults(firstElectionId);
         }
     }, [allPresidentialElections]);
 
@@ -31,47 +30,30 @@ export default function ElectedPresidential() {
     }, [presidentialResultsData]);
 
     const processPresidentialResults = () => {
-
         const candidateVotes = {};
 
-        presidentialResultsData.forEach((district) => {
-            if (!district.results || district.results.length === 0) {
-                console.warn(`Distrito ${district.districtName} sem resultados`);
-                return;
+        presidentialResultsData.forEach((candidate) => {
+            const candidateName = candidate.candidateName || candidate.organisationName;
+            const organisationName = candidate.organisationName || 'Independente';
+
+            if (!candidateVotes[candidateName]) {
+                candidateVotes[candidateName] = {
+                    candidateName: candidateName,
+                    organisationName: organisationName,
+                    totalVotes: 0
+                };
             }
 
-            district.results.forEach((candidate) => {
-                const candidateName = candidate.candidateName || candidate.organisationName;
-                const organisationName = candidate.organisationName || 'Independente';
-
-                if (!candidateVotes[candidateName]) {
-                    candidateVotes[candidateName] = {
-                        candidateName: candidateName,
-                        organisationName: organisationName,
-                        totalVotes: 0,
-                        districtResults: []
-                    };
-                }
-
-                candidateVotes[candidateName].totalVotes += candidate.votes || 0;
-                candidateVotes[candidateName].districtResults.push({
-                    districtName: district.districtName,
-                    votes: candidate.votes || 0,
-                    percentage: district.totalVotes ? ((candidate.votes / district.totalVotes) * 100).toFixed(2) : 0
-                });
-            });
+            candidateVotes[candidateName].totalVotes += candidate.votes || 0;
         });
 
-
         const candidatesArray = Object.values(candidateVotes).sort((a, b) => b.totalVotes - a.totalVotes);
-
         const totalVotes = candidatesArray.reduce((sum, candidate) => sum + candidate.totalVotes, 0);
         candidatesArray.forEach(candidate => {
             candidate.totalPercentage = totalVotes > 0 ? ((candidate.totalVotes / totalVotes) * 100).toFixed(2) : 0;
         });
 
         setCandidatesData(candidatesArray);
-
         if (candidatesArray.length > 0) {
             setElectionWinner(candidatesArray[0]);
         }
