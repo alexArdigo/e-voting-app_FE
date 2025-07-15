@@ -53,9 +53,6 @@ const PartyList = () => {
                 </ul>
             )}
 
-            <button className="add-party-button" onClick={() => navigate("/admin/add/party")}>
-                + Adicionar Partido
-            </button>
         </div>
     );
 };
