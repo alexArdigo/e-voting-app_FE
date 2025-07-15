@@ -20,7 +20,6 @@ export default function ElectedCandidates() {
             setError(null);
             const {data} = await api.get(`/Elections/${electionId}/results/legislative`);
 
-            console.log("Dados da API para candidatos eleitos:", data);
 
             const allElectedCandidates = [];
 
@@ -44,7 +43,6 @@ export default function ElectedCandidates() {
                 });
             });
 
-            console.log("Candidatos eleitos processados:", allElectedCandidates);
             setElectedCandidatesData(allElectedCandidates);
 
         } catch (err) {
@@ -80,7 +78,7 @@ export default function ElectedCandidates() {
     return (
         <div className="elected-candidates-container">
             <div className="elected-candidates-main">
-                <h1 className="elected-candidates-title">Candidatos Eleitos</h1>
+                <h1 className="elected-candidates-title">Candidatos Eleitos para a Assembleia</h1>
 
                 <div className="election-selector">
                     <select
