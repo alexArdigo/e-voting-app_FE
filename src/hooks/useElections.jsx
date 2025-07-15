@@ -10,11 +10,15 @@ export const useElections = () => {
         try {
             setLoading(true);
             setError(null);
-            const response = await api.get(`/elections/legislative`);
+            const response = await api.get(`/elections/legislative`, {
+                params: {
+                    isActive: false
+                }
+            });
             setAllLegisElections(response.data);
         } catch (err) {
-            console.error("Error in fetching elections", err);
-            setError("Error in fetching elections");
+            console.error("Error in fetching non-active elections", err);
+            setError("Error in fetching non-active elections");
         } finally {
             setLoading(false);
         }

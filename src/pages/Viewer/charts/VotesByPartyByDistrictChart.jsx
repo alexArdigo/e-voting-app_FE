@@ -12,6 +12,7 @@ import {
 } from "chart.js";
 import api from "../../../services/api";
 import Viewer from "../Viewer";
+import {getLegislativeElections} from "../../../services/ElectionService";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -57,8 +58,7 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
 
 
                 //LEGISLATIVES
-                const legislativeResponse = await api.get("/elections/legislative");
-                const legislatives = legislativeResponse.data;
+                const legislatives = await getLegislativeElections(null, false);
 
                 const legislativeName = {};
                 const legislativeYears = [];
