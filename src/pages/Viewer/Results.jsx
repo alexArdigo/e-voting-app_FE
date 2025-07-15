@@ -20,7 +20,6 @@ export default function Results() {
 
     useEffect(() => {
         fetchAllNonActiveLegislativeElections();
-        fetchElectionResults();
         fetchLegislativeResults();
     }, [electionId]);
 
@@ -39,22 +38,10 @@ export default function Results() {
         }
     };
 
-    const fetchElectionResults = async () => {
+    const fetchLegislativeResults = async () => {
         try {
             setLoading(true);
             setError(null);
-            const response = await api.get(`/Elections/${electionId}/results/legislative`);
-            setResultsData(response.data);
-        } catch (err) {
-            console.error("Error in fetching election results:", err);
-            setError("Error in fetching election results");
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const fetchLegislativeResults = async () => {
-        try {
             const {data} = await api.get(`/Elections/${electionId}/results/legislative`);
 
             const wins = [];
@@ -101,6 +88,9 @@ export default function Results() {
             });
         } catch (err) {
             console.error("Erro ao buscar vencedores por distrito:", err);
+            setError("Erro ao buscar resultados");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -153,7 +143,7 @@ export default function Results() {
                     <div className="error-container">
                         <h3>Erro</h3>
                         <p>{error}</p>
-                        <button className="retry-button" onClick={fetchElectionResults}>
+                        <button className="retry-button" onClick={fetchLegislativeResults}>
                             Tentar novamente
                         </button>
                     </div>
