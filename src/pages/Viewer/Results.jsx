@@ -50,6 +50,7 @@ export default function Results() {
             let abstention = 0;
 
             data.forEach((district) => {
+                console.log("Dados do distrito:", district);
 
                 if (!district.results || district.results.length === 0) {
                     console.warn(`Distrito ${district.districtName} sem resultados`);
@@ -61,6 +62,7 @@ export default function Results() {
                 }
                 if (district.blankVotes) {
                     blankVotes += district.blankVotes;
+                    console.log(`Distrito ${district.districtName} - blankVotes: ${district.blankVotes}`);
                 }
                 if (district.abstention) {
                     abstention += district.abstention;
