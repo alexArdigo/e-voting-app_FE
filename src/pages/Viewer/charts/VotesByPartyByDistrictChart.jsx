@@ -11,12 +11,12 @@ import {
     Legend
 } from "chart.js";
 import api from "../../../services/api";
-import {getLegislativeElections} from "../../../services/ElectionService";
+
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 
-const VotesByPartyByDistrictChart = ({ electionName }) => {
+const VotesByPartyByDistrictChart = () => {
     const [chartData, setChartData] = useState(null);
     const [districts, setDistricts] = useState([]);
     const [selectedDistrict, setSelectedDistrict] = useState("");
@@ -43,7 +43,7 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
                 const orgResponse = await api.get("/cleanParties");
                 const organisations = orgResponse.data;
 
-                const partyNames = [... new Set(organisations.map(org => org.organisationName))]; //temporary até resolver o problema de duplicados!!
+                const partyNames = [... new Set(organisations.map(org => org.name))];
 
 
                 //DISTRICTS
@@ -57,7 +57,8 @@ const VotesByPartyByDistrictChart = ({ electionName }) => {
 
 
                 //LEGISLATIVES
-                const legislatives = await getLegislativeElections(null, false);
+                const legislativeResponse = await api.get("/elections/legislative");
+                const legislatives = legislativeResponse.data;
 
                 const legislativeName = {};
                 const legislativeYears = [];
