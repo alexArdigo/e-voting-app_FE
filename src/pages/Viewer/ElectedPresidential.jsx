@@ -1,14 +1,15 @@
 import {useEffect, useState} from "react";
-import { usePresidentialElections } from "../../hooks/usePresidentialElections";
-import { usePresidentialResults } from "../../hooks/usePresidentialResults";
+import {usePresidentialElections} from "../../hooks/usePresidentialElections";
+import {usePresidentialResults} from "../../hooks/usePresidentialResults";
+import {usePresidentialResultsProcessor} from "../../hooks/usePresidentialResultsProcessor";
 import "./css/ElectedCandidates.css";
 
 export default function ElectedPresidential() {
-    const { allPresidentialElections, loading: electionsLoading, error: electionsError } = usePresidentialElections();
-    const { presidentialResultsData, loading, error, fetchPresidentialResults } = usePresidentialResults();
-    const [electionWinner, setElectionWinner] = useState(null);
-    const [candidatesData, setCandidatesData] = useState([]);
+    const {allPresidentialElections, loading: electionsLoading, error: electionsError} = usePresidentialElections();
+    const {presidentialResultsData, loading, error, fetchPresidentialResults} = usePresidentialResults();
     const [electionId, setElectionId] = useState(null);
+    const resultsArray = presidentialResultsData?.results || [];
+    const {candidatesData, electionWinner} = usePresidentialResultsProcessor(resultsArray);
 
     useEffect(() => {
         if (allPresidentialElections.length > 0) {
@@ -22,45 +23,6 @@ export default function ElectedPresidential() {
             fetchPresidentialResults(electionId);
         }
     }, [electionId]);
-
-    useEffect(() => {
-        if (presidentialResultsData && presidentialResultsData.results && presidentialResultsData.results.length > 0) {
-            processPresidentialResults(presidentialResultsData.results);
-        } else {
-            setCandidatesData([]);
-            setElectionWinner(null);
-        }
-    }, [presidentialResultsData]);
-
-    const processPresidentialResults = (resultsArray) => {
-        const candidateVotes = {};
-
-        resultsArray.forEach((candidate) => {
-            const candidateName = candidate.candidateName || candidate.organisationName;
-            const organisationName = candidate.organisationName || 'Independente';
-
-            if (!candidateVotes[candidateName]) {
-                candidateVotes[candidateName] = {
-                    candidateName: candidateName,
-                    organisationName: organisationName,
-                    totalVotes: 0
-                };
-            }
-
-            candidateVotes[candidateName].totalVotes += candidate.votes || 0;
-        });
-
-        const candidatesArray = Object.values(candidateVotes).sort((a, b) => b.totalVotes - a.totalVotes);
-        const totalVotes = candidatesArray.reduce((sum, candidate) => sum + candidate.totalVotes, 0);
-        candidatesArray.forEach(candidate => {
-            candidate.totalPercentage = totalVotes > 0 ? ((candidate.totalVotes / totalVotes) * 100).toFixed(2) : 0;
-        });
-
-        setCandidatesData(candidatesArray);
-        if (candidatesArray.length > 0) {
-            setElectionWinner(candidatesArray[0]);
-        }
-    };
 
     const formatNumber = (number) => {
         return new Intl.NumberFormat('pt-PT').format(number);
@@ -128,17 +90,17 @@ export default function ElectedPresidential() {
                                     {candidatesData
                                         .sort((a, b) => b.totalVotes - a.totalVotes)
                                         .map((candidate) => (
-                                        <div key={candidate.candidateName} className="candidate-summary-card">
-                                            <h3 className="candidate-summary-name">{candidate.candidateName}</h3>
-                                            <p className="candidate-summary-party">{candidate.organisationName}</p>
-                                            <p className="candidate-summary-stats">
-                                                <strong>Total de votos:</strong> {formatNumber(candidate.totalVotes)}
-                                            </p>
-                                            <p className="candidate-summary-stats">
-                                                <strong>Percentagem do total:</strong> {candidate.totalPercentage}%
-                                            </p>
-                                        </div>
-                                    ))}
+                                            <div key={candidate.candidateName} className="candidate-summary-card">
+                                                <h3 className="candidate-summary-name">{candidate.candidateName}</h3>
+                                                <p className="candidate-summary-stats">
+                                                    <strong>Total de
+                                                        votos:</strong> {formatNumber(candidate.totalVotes)}
+                                                </p>
+                                                <p className="candidate-summary-stats">
+                                                    <strong>Percentagem do total:</strong> {candidate.totalPercentage}%
+                                                </p>
+                                            </div>
+                                        ))}
                                 </div>
                             ) : (
                                 <div className="no-data">
