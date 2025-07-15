@@ -5,12 +5,14 @@ import ElectoralSeats from "./ElectoralSeats";
 import './charts.css';
 import Results from "../Results";
 import ElectedCandidates from "../ElectedCandidates";
+import ElectedPresidential from "../ElectedPresidential";
 import Districts from "../../../components/specific/Map/Districts";
 
 export const charts = [
     { type: "votesByParty", name: "Votos por Partido", component: VotesByPartyByDistrictChart },
     { type: "results", name: "Mapa de Resultados Legislativas Globais", component: Results },
     { type: "electedCandidates", name: "Candidatos Eleitos Assembleia", component: ElectedCandidates },
+    { type: "electedPresidential", name: "Resultados Eleições Presidenciais", component: ElectedPresidential },
     { type: "globalLegislativeResults", name: "Resultados Legislativas Globais", component: GlobalLegislativeResultsPerYear },
     { type: "assemblySeats", name: "Lugares Assembleia da República", component: ElectoralSeats }
 ];
