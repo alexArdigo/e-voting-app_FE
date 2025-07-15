@@ -29,12 +29,12 @@ const HelpComment = ({ id, comment_text, pub_datetime, answer, likes = [] }) => 
 
     const handleLike = async () => {
         if (!user) {
-            toast("É necessário iniciar sessão para dar like.");
+            toast.warn("É necessário iniciar sessão para dar like.");
             return;
         }
 
         if (user.role !== "VOTER") {
-            toast("Apenas eleitores podem considerar comentários úteis.");
+            toast.warn("Apenas eleitores podem considerar comentários úteis.");
             return;
         }
 
@@ -44,10 +44,10 @@ const HelpComment = ({ id, comment_text, pub_datetime, answer, likes = [] }) => 
                 setLiked(true);
                 setLikeCount((prev) => prev + 1);
             } else {
-                toast("Você já considerou este comentário útil.");
+                toast.warn("Você já considerou este comentário útil.");
             }
         } catch (e) {
-            toast("Ocorreu um erro ao processar o seu like.");
+            toast.warn("Ocorreu um erro ao processar o seu like.");
         }
     };
 

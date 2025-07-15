@@ -45,7 +45,7 @@ const SelectElectionPage = () => {
         e.preventDefault();
 
         if (!selectedOption) {
-            toast("Por favor selecione uma eleição.");
+            toast.warn("Por favor selecione uma eleição.");
             return;
         }
 
