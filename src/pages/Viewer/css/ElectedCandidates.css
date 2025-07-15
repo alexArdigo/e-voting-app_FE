@@ -293,7 +293,7 @@
 }
 
 .candidate-summary-card {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #3C5DBC;
     color: white;
     padding: 25px;
     border-radius: 12px;
@@ -408,7 +408,7 @@
 
 
 .candidate-summary-card:first-child {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #3C5DBC;
     color: white;
     border: none;
     transform: none;
