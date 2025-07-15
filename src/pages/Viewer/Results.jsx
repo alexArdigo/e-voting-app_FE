@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 
 import api from "../../services/api";
+import { useElections } from "../../hooks/useElections";
 import LegislativeResultsMap from "../../components/specific/Map/LegislativeResultsMap";
 import Municipalities from "../../components/specific/Map/municipalities";
 
@@ -9,7 +10,7 @@ import "./css/Results.css";
 export default function Results() {
 
     const [selectedDistrict, setSelectedDistrict] = useState(null);
-    const [allLegisElections, setAllLegisElections] = useState([]);
+    const { allLegisElections, loading: electionsLoading, error: electionsError } = useElections();
     const [resultsData, setResultsData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -19,24 +20,9 @@ export default function Results() {
     const [partyWins, setPartyWins] = useState([]);
 
     useEffect(() => {
-        fetchAllNonActiveLegislativeElections();
         fetchLegislativeResults();
     }, [electionId]);
 
-    const fetchAllNonActiveLegislativeElections = async () => {
-        try {
-            setLoading(true);
-            setError(null);
-            const response = await api.get(`/elections/legislative`);
-            setAllLegisElections(response.data);
-
-        } catch (err) {
-            console.error("Error in fetching elections", err);
-            setError("Error in fetching elections");
-        } finally {
-            setLoading(false);
-        }
-    };
 
     const fetchLegislativeResults = async () => {
         try {
