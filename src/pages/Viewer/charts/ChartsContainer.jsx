@@ -1,12 +1,10 @@
 import React from 'react';
 import VotesByPartyByDistrictChart from "./VotesByPartyByDistrictChart";
-import GlobalLegislativeResultsPerYear from "./GlobalLegislativeResultsPerYear";
 import ElectoralSeats from "./ElectoralSeats";
 import './charts.css';
 import Results from "../Results";
 import ElectedCandidates from "../ElectedCandidates";
 import ElectedPresidential from "../ElectedPresidential";
-import Districts from "../../../components/specific/Map/Districts";
 
 export const charts = [
     { type: "votesByParty", name: "Votos por Partido", component: VotesByPartyByDistrictChart },
