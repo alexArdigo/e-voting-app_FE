@@ -45,13 +45,11 @@ const LegislativeResultsMap = ({electionId}) => {
             try {
                 const {data} = await api.get(`/Elections/${electionId}/results/legislative`);
 
-                console.log("Dados recebidos da API:", data);
 
                 const continentColors = {};
                 const islandsColors = {};
 
                 data.forEach((district) => {
-                    console.log("Processando distrito:", district);
 
                     if (!district.results || district.results.length === 0) {
                         console.warn(`Distrito ${district.districtName} sem resultados`);
@@ -61,13 +59,9 @@ const LegislativeResultsMap = ({electionId}) => {
                     const sorted = [...district.results].sort((a, b) => b.votes - a.votes);
                     const winner = sorted[0];
 
-                    console.log(`Vencedor em ${district.districtName}:`, winner);
-
-
                     const svgId = districtMapping[district.districtName];
                     if (svgId && winner.color) {
                         continentColors[svgId] = winner.color;
-                        console.log(`Cor aplicada ao continente: ${svgId} = ${winner.color}`);
                     }
 
 
@@ -77,7 +71,6 @@ const LegislativeResultsMap = ({electionId}) => {
                         islandPaths.forEach(pathId => {
                             islandsColors[pathId] = winner.color;
                         });
-                        console.log(`Cor aplicada às ilhas ${district.districtName}:`, islandPaths, "=", winner.color);
                     }
 
                     if (!svgId && !islandPaths) {
@@ -85,11 +78,9 @@ const LegislativeResultsMap = ({electionId}) => {
                     }
                 });
 
-                console.log("Cores finais continente:", continentColors);
-                console.log("Cores finais ilhas:", islandsColors);
 
                 setDistrictColors(continentColors);
-               setIslandColors(islandsColors);
+                setIslandColors(islandsColors);
 
             } catch (err) {
                 console.error("Erro ao carregar resultados:", err);
@@ -102,7 +93,7 @@ const LegislativeResultsMap = ({electionId}) => {
         fetchResults();
     }, [electionId]);
 
-    if (loading) return <div>A carregar mapa...</div>;
+    if (loading) return <div>Loading map...</div>;
     if (error) return <div>{error}</div>;
 
     return (
@@ -111,6 +102,6 @@ const LegislativeResultsMap = ({electionId}) => {
             <Islands islandColors={islandColors}/>
         </>
     )
-};
+}
 
 export default LegislativeResultsMap;
