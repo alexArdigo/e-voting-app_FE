@@ -233,7 +233,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 12px;
+    padding: 12px 16px;
     background-color: #f9f9f9;
     border-radius: 8px;
     border: 1px solid #e0e0e0;
@@ -243,6 +243,7 @@
 .party-win-item:hover {
     background-color: #f0f0f0;
     transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .party-color {
@@ -257,20 +258,31 @@
 .party-name {
     font-weight: 600;
     color: #333;
-    min-width: 60px;
+    min-width: 120px;
+    max-width: 150px;
     font-size: 14px;
+    flex-shrink: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .district-name {
     color: #666;
     font-size: 13px;
     flex: 1;
+    text-align: left;
+    margin-right: 10px;
+    min-width: 80px;
 }
 
 .vote-count {
     color: #888;
     font-size: 12px;
     font-weight: 500;
+    text-align: right;
+    min-width: 80px;
+    flex-shrink: 0;
 }
 
 @media (max-width: 1024px) {
