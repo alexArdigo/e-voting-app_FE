@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import {useEffect, useState} from "react";
 
 import api from "../../services/api";
 import LegislativeResultsMap from "../../components/specific/Map/LegislativeResultsMap";
@@ -9,6 +9,7 @@ import "./css/Results.css";
 export default function Results() {
 
     const [selectedDistrict, setSelectedDistrict] = useState(null);
+    const [allLegisElections, setAllLegisElections] = useState([]);
     const [resultsData, setResultsData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -17,18 +18,34 @@ export default function Results() {
     const [electionId, setElectionId] = useState(1);
 
     useEffect(() => {
+        fetchAllNonActiveLegislativeElections();
         fetchElectionResults();
     }, [electionId]);
+
+    const fetchAllNonActiveLegislativeElections = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+            const response = await api.get(`/elections/legislative`);
+            setAllLegisElections(response.data);
+
+        } catch (err) {
+            console.error("Error in fetching elections", err);
+            setError("Error in fetching elections");
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const fetchElectionResults = async () => {
         try {
             setLoading(true);
             setError(null);
-            const response = await api.get(`/Elections/${electionId}/results/legislative`);
+            const response = await api.get(`/elections/${electionId}/results/legislative`);
             setResultsData(response.data);
         } catch (err) {
-            console.error("Erro ao buscar resultados:", err);
-            setError("Erro ao carregar resultados da eleição");
+            console.error("Error in fetching election results:", err);
+            setError("Error in fetching election results");
         } finally {
             setLoading(false);
         }
@@ -41,8 +58,8 @@ export default function Results() {
 
     const calculateAbstention = () => {
         if (!resultsData) return "0%";
-        const total = resultsData.totalVotes || 0;
-        const abstention = resultsData.abstention || 0;
+        const total = resultsData?.totalVotes || 0;
+        const abstention = resultsData?.abstention || 0;
         const percentage = total > 2500 ? ((abstention / (total + abstention)) * 100).toFixed(2) : 0;
         return `${percentage}%`;
     };
@@ -52,11 +69,24 @@ export default function Results() {
             <div className="results-main">
                 <h1 className="results-title">Resultados legislativas</h1>
                 <div className="map-view-toggle">
+                    <select
+                        name="all-elections-dates"
+                        id="all-elections-date"
+                        value={electionId}
+                        onChange={(e) => setElectionId(parseInt(e.target.value))}
+                    >
+                        {
+                            allLegisElections.map(election => {
+                                return <option key={election.id} value={election.id}>{election.name}</option>
+                            })
+                        }
 
+                    </select>
                 </div>
-                <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
+                <div style={{display: 'flex', gap: '2rem', alignItems: 'flex-start'}}>
                     <div>
-                        {mapView === "districts" ? <LegislativeResultsMap electionId={electionId} /> : <Municipalities districtId={selectedDistrict} />}
+                        {mapView === "districts" ? <LegislativeResultsMap electionId={electionId}/> :
+                            <Municipalities districtId={selectedDistrict}/>}
                     </div>
                 </div>
             </div>

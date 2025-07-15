@@ -38,7 +38,6 @@ const ProfileEditor = ({currentImage, onSave}) => {
                         <h3>Escolher nova imagem</h3>
                         <div className="image-gallery">
                             {imageOptions.map((img, value) => {
-                                console.log("image", img);
                                 return (
                                     <img
                                         key={value}

@@ -13,7 +13,6 @@ const Viewer = () => {
                     <div className="graph-content">
                         <div className="graph-buttons">
                             {charts.map((chart, index) => {
-                                console.log(chart);
                                 return  (
                                     <button
                                         key={chart.type}
