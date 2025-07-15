@@ -203,6 +203,72 @@
   color: #fff;
 }
 
+.party-wins-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.party-wins-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.party-wins-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.party-win-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.2s ease;
+}
+
+.party-win-item:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-1px);
+}
+
+.party-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+}
+
+.party-name {
+    font-weight: 600;
+    color: #333;
+    min-width: 60px;
+    font-size: 14px;
+}
+
+.district-name {
+    color: #666;
+    font-size: 13px;
+    flex: 1;
+}
+
+.vote-count {
+    color: #888;
+    font-size: 12px;
+    font-weight: 500;
+}
+
 @media (max-width: 1024px) {
     .results-container {
         flex-direction: column;
