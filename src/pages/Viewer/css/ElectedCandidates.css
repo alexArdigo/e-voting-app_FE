@@ -425,12 +425,6 @@
     color: white;
 }
 
-
-.candidate-summary-card:first-child .candidate-image {
-    border: 4px solid #ffd700;
-    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
-}
-
 @media (max-width: 768px) {
     .elected-candidates-main {
         padding: 20px;
