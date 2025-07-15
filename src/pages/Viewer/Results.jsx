@@ -58,12 +58,25 @@ export default function Results() {
             const {data} = await api.get(`/Elections/${electionId}/results/legislative`);
 
             const wins = [];
+            let totalVotes = 0;
+            let blankVotes = 0;
+            let abstention = 0;
 
             data.forEach((district) => {
 
                 if (!district.results || district.results.length === 0) {
                     console.warn(`Distrito ${district.districtName} sem resultados`);
                     return;
+                }
+
+                if (district.totalVotes) {
+                    totalVotes += district.totalVotes;
+                }
+                if (district.blankVotes) {
+                    blankVotes += district.blankVotes;
+                }
+                if (district.abstention) {
+                    abstention += district.abstention;
                 }
 
                 const sorted = [...district.results].sort((a, b) => b.votes - a.votes);
@@ -81,6 +94,11 @@ export default function Results() {
             });
 
             setPartyWins(wins);
+            setResultsData({
+                totalVotes,
+                blankVotes,
+                abstention
+            });
         } catch (err) {
             console.error("Erro ao buscar vencedores por distrito:", err);
         }
