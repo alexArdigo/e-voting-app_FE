@@ -102,7 +102,7 @@ const LegislativeResultsMap = ({electionId}) => {
         fetchResults();
     }, [electionId]);
 
-    if (loading) return <div>A carregar mapa...</div>;
+    if (loading) return <div>Loading map...</div>;
     if (error) return <div>{error}</div>;
 
     return (

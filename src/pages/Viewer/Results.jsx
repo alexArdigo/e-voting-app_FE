@@ -45,7 +45,7 @@ export default function Results() {
             data.forEach((district) => {
 
                 if (!district.results || district.results.length === 0) {
-                    console.warn(`⚠️ Distrito ${district.districtName} sem resultados`);
+                    console.warn(`Distrito ${district.districtName} sem resultados`);
                     return;
                 }
 
@@ -65,7 +65,7 @@ export default function Results() {
 
             setPartyWins(wins);
         } catch (err) {
-            console.error("💥 Erro ao buscar vencedores por distrito:", err);
+            console.error("Erro ao buscar vencedores por distrito:", err);
         }
     };
 
