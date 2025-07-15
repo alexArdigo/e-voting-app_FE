@@ -12,19 +12,6 @@ export default function ElectedCandidates() {
         fetchElectedCandidates(electionId);
     }, [electionId, fetchElectedCandidates]);
 
-    const formatNumber = (number) => {
-        return new Intl.NumberFormat('pt-PT').format(number);
-    };
-
-    const groupedByParty = electedCandidatesData.reduce((acc, candidate) => {
-        const party = candidate.organisationName;
-        if (!acc[party]) {
-            acc[party] = [];
-        }
-        acc[party].push(candidate);
-        return acc;
-    }, {});
-
     const groupedByDistrict = electedCandidatesData.reduce((acc, candidate) => {
         const district = candidate.districtName;
         if (!acc[district]) {
