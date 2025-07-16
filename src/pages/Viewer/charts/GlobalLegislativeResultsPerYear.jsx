@@ -84,7 +84,27 @@ const GlobalLegislativeResultsPerYear = () => {
                         {
                             label: "Votos por Partido",
                             data: voteCounts,
-                            backgroundColor: "rgba(75, 192, 192, 0.5)"
+                            backgroundColor: [
+                                "rgba(64, 174, 97)",
+                                "rgba(196, 233, 164)",
+                                "rgba(112, 154, 197)",
+                                "rgba(185, 215, 226)",
+                                "rgba(237, 181, 23)",
+                                "rgba(240, 213, 156)",
+                                "rgba(239, 98, 108)",
+                                "rgba(244, 165, 166)",
+                                "rgba(166, 144, 188)",
+                                "rgba(215, 210, 231)",
+                                "rgba(142, 224, 210)",
+                                "rgba(197, 245, 228)",
+                                "rgba(61, 120, 125)",
+                                "rgba(140, 205, 205)",
+                                "rgba(241, 156, 199)",
+                                "rgba(250, 214, 231)",
+                                "rgba(241, 122, 33)",
+                                "rgba(255, 194, 158)",
+                                "rgba(172, 122, 92)",
+                                "rgba(222, 197, 180)"]
                         }
                     ]
                 });
@@ -100,8 +120,8 @@ const GlobalLegislativeResultsPerYear = () => {
     if (!chartData) return <p>A carregar gráfico...</p>;
 
     return (
-        <div className="chart-container">
 
+        <div className="chart-container">
             <div className="year-select-container">
                 <label htmlFor="year-select" className="year-select-label">
                     Seleciona o ano:
@@ -119,7 +139,7 @@ const GlobalLegislativeResultsPerYear = () => {
             </div>
 
             <div className="chart-bar-container">
-                <Bar options={config} data={chartData} height={200} />
+                <Bar options={config} data={chartData} height={220} />
             </div>
         </div>
     );

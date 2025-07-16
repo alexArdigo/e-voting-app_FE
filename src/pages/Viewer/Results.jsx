@@ -7,6 +7,8 @@ import LegislativeResultsMap from "../../components/specific/Map/LegislativeResu
 import Municipalities from "../../components/specific/Map/municipalities";
 
 import "./css/Results.css";
+import GlobalLegislativeResultsPerYear from "./charts/GlobalLegislativeResultsPerYear";
+import StyledContainer from "../../layouts/StyledContainer";
 
 export default function Results() {
 
@@ -26,6 +28,7 @@ export default function Results() {
     };
 
     return (
+        <>
         <div className="results-container">
             <div className="results-main">
                 <h1 className="results-title">Resultados legislativas</h1>
@@ -118,5 +121,10 @@ export default function Results() {
                 )}
             </div>
         </div>
+            <StyledContainer style={{paddingBlock: "100px"}}>
+                <h1 className="results-title">Resultados legislativas - Número de Votos Por Partido</h1>
+            <GlobalLegislativeResultsPerYear></GlobalLegislativeResultsPerYear>
+            </StyledContainer>
+        </>
     );
 }

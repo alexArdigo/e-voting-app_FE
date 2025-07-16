@@ -157,7 +157,8 @@ const ElectoralSeats = () => {
     }, [graphicsData, seats, year]);
 
     return (
-        <div className="chart-container" style={{width:"800px", margin:"auto"}}>
+        <div className="elected-candidates-container">
+            <div className="elected-candidates-main">
             <div className="year-select-container">
                 <label htmlFor="year-select" className="year-select-label" >
                     Seleciona o ano:
@@ -177,6 +178,7 @@ const ElectoralSeats = () => {
             </div>
 
             <canvas ref={canvasRef}></canvas>
+        </div>
         </div>
     );
 };
