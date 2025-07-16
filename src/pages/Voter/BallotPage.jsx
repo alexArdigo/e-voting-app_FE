@@ -1,22 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import React, {useEffect, useState} from 'react';
+import {useLocation, useNavigate} from 'react-router-dom';
+import {toast} from 'react-toastify';
 import MainLayout from '../../layouts/MainLayout.jsx';
 import StyledContainer from '../../layouts/StyledContainer.jsx';
 import Timer from '../../components/specific/Timer.jsx';
 import BallotForm from '../../components/specific/Ballot/BallotForm.jsx';
-import { getBallotByElectionId, castVote } from '../../services/ElectionService.jsx';
-import { useUserContext } from '../../services/UserContext.jsx';
+import {castVote, getBallotByElectionId} from '../../services/ElectionService.jsx';
+import {useUserContext} from '../../services/UserContext.jsx';
 import '../../components/specific/Ballot/Ballot.css';
+import api from "../../services/api";
 
 const BallotPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const electionId = location.state?.electionId
-    const electionName = location.state?.electionName
+    const electionId = location.state?.electionId;
+    const electionName = location.state?.electionName;
 
-    const { user, votingSession, setVotingSession, logout } = useUserContext();
+    const {user, votingSession, setVotingSession, logout} = useUserContext();
 
     const [parties, setParties] = useState([]);
     const [selectedParty, setSelectedParty] = useState('');
@@ -28,13 +29,13 @@ const BallotPage = () => {
     useEffect(() => {
         if (!electionId) {
             toast.error('Eleição não selecionada. Redirecionando...');
-            navigate('/election', { replace: true });
+            navigate('/election', {replace: true});
             return;
         }
 
         if (!user?.id) {
             toast.error('Utilizador não autenticado. Redirecionando...');
-            navigate('/auth', { replace: true });
+            navigate('/auth', {replace: true});
             return;
         }
 
@@ -60,7 +61,7 @@ const BallotPage = () => {
                 id: org.id,
                 name: org.name,
                 fullName: org.organisationName || org.name,
-               // acronym: org.name,
+                // acronym: org.name,
                 logoUrl: org.logoUrl || org.imageUrl,
                 imageUrl: org.imageUrl || org.logoUrl,
                 color: org.color,
@@ -136,14 +137,12 @@ const BallotPage = () => {
             };
 
             await castVote(electionId, voteRequest);
+            handleStopVoting();
             setVotingSession({
                 electionId: null,
                 isVoting: false
-            })
+            });
             toast.success('Voto submetido com sucesso!');
-
-          //  localStorage.removeItem("electionId");
-          //  localStorage.removeItem("electionName");
 
             navigate('/submitted', {
                 state: {
@@ -176,17 +175,36 @@ const BallotPage = () => {
             electionId: null,
             isVoting: false
         });
+        handleStopVoting();
         logout();
         setTimeout(() => navigate('/'), 3000);
+    };
+
+    const handleStopVoting = async () => {
+        try {
+            if (user?.id && electionId) {
+                const body = new FormData();
+                body.set("electionId", electionId);
+                body.set("voterId", user?.id);
+
+
+                await api.post("/voters/stop-voting", body);
+                setVotingSession({
+                    electionId: null
+                });
+            }
+        } catch (error) {
+            console.error('Error in logging out', error);
+        }
     };
 
     if (loading) {
         return (
             <MainLayout className="dflxColumn">
                 <StyledContainer>
-                    <div style={{ textAlign: 'center', padding: '40px' }}>
+                    <div style={{textAlign: 'center', padding: '40px'}}>
                         <p>A carregar opções de voto...</p>
-                        <div style={{ marginTop: '20px' }}>
+                        <div style={{marginTop: '20px'}}>
                             <div style={{
                                 width: '40px',
                                 height: '40px',
@@ -194,7 +212,7 @@ const BallotPage = () => {
                                 borderTop: '4px solid #3C5DBC',
                                 borderRadius: '50%',
                                 margin: '0 auto'
-                            }} />
+                            }}/>
                         </div>
                     </div>
                 </StyledContainer>
@@ -206,13 +224,13 @@ const BallotPage = () => {
         return (
             <MainLayout className="dflxColumn">
                 <StyledContainer>
-                    <div style={{ textAlign: 'center', padding: '40px' }}>
+                    <div style={{textAlign: 'center', padding: '40px'}}>
                         <h2>Erro ao carregar eleição</h2>
                         <p>{error}</p>
                         <button
                             className="vote-button"
                             onClick={() => navigate('/election')}
-                            style={{ marginTop: '20px' }}
+                            style={{marginTop: '20px'}}
                         >
                             Voltar à seleção de eleições
                         </button>
@@ -235,7 +253,7 @@ const BallotPage = () => {
             {/*    <h1>{electionName || 'Eleição'}</h1>*/}
             {/*</StyledContainer>*/}
 
-            <StyledContainer style={{ width: '800px', padding: '40px', margin: '20px auto' }}>
+            <StyledContainer style={{width: '800px', padding: '40px', margin: '20px auto'}}>
                 <h2>Selecione a sua opção:</h2>
                 <BallotForm
                     parties={parties}
@@ -248,13 +266,13 @@ const BallotPage = () => {
                 className={`vote-button ${submitting ? 'submitting' : ''}`}
                 onClick={handleSubmit}
                 //disabled={submitting || !selectedParty}
-                style={{ marginTop: '30px' }}
+                style={{marginTop: '30px'}}
             >
                 {submitting ? 'A submeter...' : 'Submeter Voto'}
             </button>
 
-            <StyledContainer style={{ width: '500px', marginTop: '20px' }}>
-                <div style={{ textAlign: 'center', color: '#6b7280' }}>
+            <StyledContainer style={{width: '500px', marginTop: '20px'}}>
+                <div style={{textAlign: 'center', color: '#6b7280'}}>
                     <p>
                         <em>Selecione uma opção e clique em "Submeter Voto" para confirmar.</em>
                     </p>
@@ -264,7 +282,7 @@ const BallotPage = () => {
                         </em>
                     </p>
                     {selectedParty && (
-                        <p style={{ color: '#059669', fontWeight: 'bold' }}>
+                        <p style={{color: '#059669', fontWeight: 'bold'}}>
                             ✓ Opção selecionada: {parties.find(p => p.id === selectedParty)?.name}
                         </p>
                     )}

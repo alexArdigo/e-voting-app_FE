@@ -14,28 +14,8 @@ const VoteSubmittedPage = () => {
     const [showSuccess, setShowSuccess] = useState(false);
 
     const handleLogout = async () => {
-        try {
-            if (user?.id && electionId) {
-                const body = new FormData();
-                body.set("electionId", electionId);
-                body.set("voterId", user?.id);
-
-                try {
-                    await api.post("/voters/stop-voting", body);
-                    setVotingSession({
-                        electionId: null
-                    });
-                } catch (stopVotingError) {
-                    console.error("Error stopping voting session:", stopVotingError);
-                }
-            }
-
-            setUser(null);
-            logout();
-
-        } catch (error) {
-            console.error("Error during logout process:", error);
-        }
+        setUser(null);
+        logout();
     };
 
     useEffect(() => {
@@ -135,7 +115,8 @@ const VoteSubmittedPage = () => {
                         margin: '0',
                         color: '#6b7280'
                     }}>
-                        Será redirecionado automaticamente em <strong style={{color: '#374151'}}>{countdown}</strong> segundos.
+                        Será redirecionado automaticamente em <strong
+                        style={{color: '#374151'}}>{countdown}</strong> segundos.
                     </p>
                 </div>
 

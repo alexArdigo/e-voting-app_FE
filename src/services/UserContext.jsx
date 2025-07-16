@@ -42,11 +42,15 @@ const UserProvider = ({children}) => {
                 try {
                     const response = await api.get(`voters/${user?.id}/voting-status`);
 
+                    console.log("voting status response: ", response.data);
                     if (response.status === 200) {
                         setVotingSession(response.data);
                     }
 
-                    if (response.data && response.data.isVoting && votingSession.electionId === response.data.electionId) {
+                    if (response.data
+                        && response.data.isVoting
+                        && votingSession.electionId === response.data.electionId
+                    ) {
                         navigate("/ballot", {
                             state: {
                                 electionId: response.data.electionId,
