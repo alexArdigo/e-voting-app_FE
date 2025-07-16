@@ -122,7 +122,7 @@ export default function Results() {
             </div>
         </div>
             <StyledContainer style={{paddingBlock: "100px"}}>
-                <h1 className="results-title">Resultados legislativas - Numero de Votos Por Partido</h1>
+                <h1 className="results-title">Resultados legislativas - Número de Votos Por Partido</h1>
             <GlobalLegislativeResultsPerYear></GlobalLegislativeResultsPerYear>
             </StyledContainer>
         </>
